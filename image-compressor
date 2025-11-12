@@ -3,34 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Image Compressor — Target Size Compression</title>
+  <title>Image Compressor — Free Online Image Compressor</title>
 
   <!-- SEO Meta Tags -->
   <meta name="title" content="Free Online Image Compressor | Compress JPG, PNG, WebP, AVIF">
-  <meta name="description" content="Compress images online with adjustable quality and optional resize. Choose a target file size and the tool will try to reach it by adjusting quality. Preview before download.">
-  <meta name="keywords" content="image compressor, compress image online, target size, jpg compressor, webp compressor, avif compressor, reduce image size">
+  <meta name="description" content="Compress images online with adjustable quality and optional resize. Preview before download. Fast, secure & mobile-friendly image compressor tool.">
+  <meta name="keywords" content="image compressor, compress image online, jpg compressor, webp compressor, avif compressor, reduce image size, image optimizer">
   <meta name="author" content="Your Website Name">
   <meta name="robots" content="index, follow">
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Online Image Compressor">
+  <meta property="og:description" content="Reduce image file size quickly — adjust quality or resize and download compressed images. Works in browser, no upload server required.">
+  <meta property="og:image" content="https://yourwebsite.com/assets/image-compressor-preview.png">
+  <meta property="og:url" content="https://yourwebsite.com/tools/image-compressor">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image Compressor | Reduce Photo Size Online">
+  <meta name="twitter:description" content="Compress photos in browser. Adjust quality, preview and download compressed version. Free & mobile friendly.">
+  <meta name="twitter:image" content="https://yourwebsite.com/assets/image-compressor-preview.png">
+
   <style>
     :root{
-      --blue:#0d6efd;
+      --blue: #0d6efd;
       --blue-2:#0b5ed7;
-      --bg:#ffffff;
-      --muted:#6b7280;
-      --radius:12px;
-      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      --bg: #ffffff;
+      --muted: #6b7280;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      --radius: 12px;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#f6fbff,#ffffff);color:#0f1724;padding:18px;display:flex;align-items:center;justify-content:center;min-height:100vh}
-    .card{width:100%;max-width:1040px;background:var(--bg);border-radius:16px;padding:18px;box-shadow:0 12px 40px rgba(13,110,253,0.06);border:1px solid rgba(13,110,253,0.04)}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#f6fbff 0%, #ffffff 100%);
+      color: #0f1724;
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+    }
+    .card{
+      width:100%;
+      max-width:1024px;
+      background:var(--bg);
+      border-radius:16px;
+      padding:18px;
+      box-shadow: 0 12px 40px rgba(13,110,253,0.06);
+      border:1px solid rgba(13,110,253,0.04);
+    }
     header{display:flex;gap:12px;align-items:center}
     .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
     h1{font-size:18px;margin:0}
     p.lead{margin:0;color:var(--muted);font-size:13px}
-    .grid{display:grid;grid-template-columns:1fr 420px;gap:18px;margin-top:16px}
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:16px}
     .panel{padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid rgba(13,110,253,0.03)}
-    .drop{border:2px dashed rgba(13,110,253,0.14);border-radius:10px;padding:14px;text-align:center;cursor:pointer}
+    .drop{
+      border:2px dashed rgba(13,110,253,0.14);
+      border-radius:10px;padding:14px;text-align:center;cursor:pointer;
+      transition:all .14s;
+    }
     .drop.dragover{border-color:var(--blue);background:rgba(13,110,253,0.03)}
     input[type=file]{display:none}
     .controls{display:flex;flex-direction:column;gap:10px;margin-top:12px}
@@ -39,17 +73,16 @@
     .btn{padding:10px 12px;border-radius:10px;border:0;cursor:pointer}
     .btn-primary{background:var(--blue);color:white;font-weight:600}
     .btn-ghost{background:transparent;border:1px solid rgba(13,110,253,0.12)}
-    .thumb{width:100%;height:340px;background:linear-gradient(90deg,#f3f7ff,#fff);border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .thumb{width:100%;height:300px;background:linear-gradient(90deg,#f3f7ff,#fff);border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .thumb img{max-width:100%;max-height:100%;object-fit:contain}
     .small{font-size:13px;color:var(--muted)}
     .meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .pill{background:#f8fafc;padding:6px 8px;border-radius:999px;border:1px solid rgba(15,23,36,0.04);font-size:13px}
     footer{margin-top:16px;text-align:center;color:var(--muted);font-size:13px}
-    @media (max-width:980px){ .grid{grid-template-columns:1fr} .thumb{height:220px} .logo{width:48px;height:48px} }
+    @media (max-width:900px){ .grid{grid-template-columns:1fr} .thumb{height:220px} .logo{width:48px;height:48px} }
+    /* spinner */
     .spinner{border:4px solid rgba(0,0,0,0.05);border-top:4px solid var(--blue);border-radius:50%;width:36px;height:36px;animation:spin 1s linear infinite;margin:auto}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .progressbar{height:8px;background:#eef2ff;border-radius:999px;overflow:hidden;width:100%}
-    .progressbar > i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-2));width:0%}
   </style>
 </head>
 <body>
@@ -57,8 +90,8 @@
     <header>
       <div class="logo">CMP</div>
       <div>
-        <h1>Image Compressor — Target Size Mode</h1>
-        <p class="lead">Upload an image, set a target file size (KB), or adjust quality/resizing. Preview & download compressed image.</p>
+        <h1>Image Compressor — Reduce file size fast</h1>
+        <p class="lead">Upload an image, preview, compress (quality/resize) and download. No signup — works in the browser.</p>
       </div>
     </header>
 
@@ -74,9 +107,9 @@
           <div class="row">
             <label class="select">Format
               <select id="formatSelect" aria-label="Output format">
-                <option value="image/jpeg">JPG</option>
-                <option value="image/webp">WebP</option>
-                <option value="image/avif">AVIF</option>
+                <option value="image/jpeg">JPG (best compatibility)</option>
+                <option value="image/webp">WebP (better compression)</option>
+                <option value="image/avif">AVIF (best compression, modern browsers)</option>
                 <option value="image/png">PNG (lossless)</option>
               </select>
             </label>
@@ -91,24 +124,8 @@
             </label>
           </div>
 
-          <div class="row">
-            <label class="select">Target size (KB)
-              <input id="targetKB" type="number" placeholder="e.g. 200" style="width:110px" aria-label="Target size in KB" />
-            </label>
-
-            <label class="select">
-              Min Quality
-              <input id="minQuality" type="number" min="10" max="90" value="30" style="width:110px" />
-            </label>
-
-            <label class="select">
-              Step %
-              <input id="stepQuality" type="number" min="1" max="20" value="5" style="width:110px" />
-            </label>
-          </div>
-
           <div style="display:flex;gap:8px;margin-top:8px">
-            <button id="compressBtn" class="btn btn-primary">Compress (Target)</button>
+            <button id="compressBtn" class="btn btn-primary">Compress & Download</button>
             <a id="downloadLink" class="btn btn-primary" style="display:none" download>Download</a>
             <button id="resetBtn" class="btn btn-ghost">Reset</button>
           </div>
@@ -118,29 +135,29 @@
             <div>Compressed: <span id="newInfo" class="pill">—</span></div>
             <div id="dimsInfo" class="pill">—</div>
           </div>
-
-          <div style="margin-top:10px">
-            <div class="progressbar" aria-hidden="true"><i id="progressFill" style="width:0%"></i></div>
-            <div id="progressText" class="small" style="text-align:right;margin-top:6px"></div>
-          </div>
         </div>
       </div>
 
-      <aside class="panel">
+      <aside class="panel" aria-hidden="false">
         <div class="thumb" id="preview"><span class="small">Preview will appear here</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+          <div class="small">Tip: WebP/AVIF give smaller files. PNG ignores quality slider.</div>
+          <div id="progressArea" style="min-width:120px;text-align:right"></div>
+        </div>
       </aside>
     </section>
 
     <footer>
       Made for your multi-tool website · Bright blue & white theme
       <section style="margin-top:12px;color:#555;font-size:13px;max-width:860px;margin-inline:auto">
-        <p><strong>SEO:</strong> Free Image Compressor — compress JPG, PNG, WebP, AVIF online. Target-size compression, adjustable quality & resize, preview and download. Client-side processing for privacy.</p>
+        <p><strong>SEO:</strong> Free Image Compressor — compress JPG, PNG, WebP, AVIF online. Adjust quality & resize, preview and download compressed images. Mobile-friendly and secure (client-side).</p>
+        <p style="margin-top:6px;font-size:13px;color:var(--muted)"><strong>Bonus SEO tips:</strong> Use unique title & meta description per tool, include short keyword-rich explanatory text on the page (below the tool), add schema/FAQ, and generate a social preview image (og:image).</p>
       </section>
     </footer>
   </main>
 
   <script>
-    // DOM
+    // DOM refs
     const fileInput = document.getElementById('fileInput');
     const dropZone = document.getElementById('dropZone');
     const preview = document.getElementById('preview');
@@ -148,23 +165,20 @@
     const downloadLink = document.getElementById('downloadLink');
     const resetBtn = document.getElementById('resetBtn');
     const formatSelect = document.getElementById('formatSelect');
-    const qualityInput = document.getElementById('quality');
+    const quality = document.getElementById('quality');
     const qVal = document.getElementById('qVal');
-    const maxWidthInput = document.getElementById('maxWidth');
+    const maxWidth = document.getElementById('maxWidth');
     const origInfo = document.getElementById('origInfo');
     const newInfo = document.getElementById('newInfo');
     const dimsInfo = document.getElementById('dimsInfo');
-    const targetKB = document.getElementById('targetKB');
-    const minQualityInput = document.getElementById('minQuality');
-    const stepQualityInput = document.getElementById('stepQuality');
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
+    const progressArea = document.getElementById('progressArea');
 
     let currentFile = null;
-    let currentImage = null;
+    let currentImage = null; // HTMLImageElement (preview/fallback)
     let currentBlobUrl = null;
     let outBlobUrl = null;
 
+    // helpers
     function humanBytes(bytes){
       if(!bytes) return '0 B';
       const thresh = 1024;
@@ -175,7 +189,7 @@
       return bytes.toFixed(2) + ' ' + units[u];
     }
 
-    // Drag & drop UX
+    // drag & drop UX
     ['dragenter','dragover'].forEach(ev => dropZone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dropZone.classList.add('dragover'); }));
     ['dragleave','drop'].forEach(ev => dropZone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dropZone.classList.remove('dragover'); }));
     dropZone.addEventListener('drop', e => {
@@ -185,34 +199,34 @@
     dropZone.addEventListener('click', () => fileInput.click());
     fileInput.addEventListener('change', e => { if(e.target.files && e.target.files[0]) handleFile(e.target.files[0]); });
 
-    qualityInput.addEventListener('input', ()=> qVal.textContent = qualityInput.value + '%');
+    // quick UI update
+    quality.addEventListener('input', () => qVal.textContent = quality.value + '%');
 
+    // file handler
     function handleFile(file){
-      if(!file.type.startsWith('image/')){ alert('Please upload an image file.'); return; }
+      if(!file.type.startsWith('image/')) { alert('Please upload an image file.'); return; }
       if(file.size > 25 * 1024 * 1024){ alert('File too large (max 25 MB).'); return; }
 
-      // cleanup
-      if(currentBlobUrl) try{ URL.revokeObjectURL(currentBlobUrl); }catch(e){}
-      if(outBlobUrl) try{ URL.revokeObjectURL(outBlobUrl); }catch(e){}
-
+      // cleanup previous
+      if(currentBlobUrl){ try{ URL.revokeObjectURL(currentBlobUrl); }catch(e){} currentBlobUrl = null; }
+      if(outBlobUrl){ try{ URL.revokeObjectURL(outBlobUrl); }catch(e){} outBlobUrl = null; downloadLink.style.display = 'none'; }
       currentFile = file;
       origInfo.textContent = humanBytes(file.size);
-      newInfo.textContent = '—';
-      progressFill.style.width = '0%';
-      progressText.textContent = '';
 
+      // preview via object URL
       const url = URL.createObjectURL(file);
       currentBlobUrl = url;
       const img = new Image();
-      img.crossOrigin = 'anonymous';
+      img.crossOrigin = 'anonymous'; // try to avoid taint
       img.onload = () => {
         currentImage = img;
         renderPreview(img);
         dimsInfo.textContent = img.naturalWidth + ' × ' + img.naturalHeight;
       };
       img.onerror = () => {
-        currentImage = null;
+        // if preview fails, keep object URL text and allow compressor to try (createImageBitmap path)
         preview.innerHTML = '<div class="small">Preview not available — try compressing directly.</div>';
+        currentImage = null;
       };
       img.src = url;
     }
@@ -225,184 +239,146 @@
       preview.appendChild(img);
     }
 
-    // decode helper - prefer ImageBitmap
+    // createImageBitmap preferred; fallback to IMG element decode
     async function getDrawable(){
       if(window.createImageBitmap && currentFile){
         try{
           const bitmap = await createImageBitmap(currentFile);
-          return { type:'bitmap', src: bitmap };
+          return { type: 'bitmap', src: bitmap };
         }catch(e){
-          console.warn('createImageBitmap failed', e);
+          console.warn('createImageBitmap failed, falling back to IMG decode', e);
         }
       }
       if(currentImage && currentImage.complete && currentImage.naturalWidth && currentImage.naturalHeight){
-        return { type:'img', src: currentImage };
+        return { type: 'img', src: currentImage };
       }
-      // fallback attempt
+      // last-resort: attempt to load a temp IMG from blob
       return new Promise((resolve, reject) => {
         if(!currentFile) return reject(new Error('No file'));
         const tmp = new Image();
         tmp.crossOrigin = 'anonymous';
         const u = URL.createObjectURL(currentFile);
-        let done=false;
-        tmp.onload = ()=>{ if(done) return; done=true; try{ URL.revokeObjectURL(u); }catch(e){} resolve({type:'img', src:tmp}); };
-        tmp.onerror = ()=>{ if(done) return; done=true; try{ URL.revokeObjectURL(u); }catch(e){} reject(new Error('Failed to decode image')); };
+        let done = false;
+        tmp.onload = () => { if(done) return; done = true; try{ URL.revokeObjectURL(u); }catch(e){} resolve({ type:'img', src: tmp }); };
+        tmp.onerror = () => { if(done) return; done = true; try{ URL.revokeObjectURL(u); }catch(e){} reject(new Error('Failed to decode image')); };
         tmp.src = u;
         setTimeout(()=>{ if(!done){ done=true; try{ URL.revokeObjectURL(u); }catch(e){} reject(new Error('Image decode timed out')); } }, 15000);
       });
     }
 
-    // generic compress once with given quality
-    async function compressOnce(drawable, mime, qualityNormalized, maxWidth){
-      const srcW = (drawable.type === 'bitmap') ? drawable.src.width : drawable.src.naturalWidth;
-      const srcH = (drawable.type === 'bitmap') ? drawable.src.height : drawable.src.naturalHeight;
-      if(!srcW || !srcH) throw new Error('Invalid image dimensions');
+    // compression core
+    async function compressImage(opts){
+      // opts: { mime, quality(0-1), maxWidth (int or null) }
+      const drawable = await getDrawable();
+      // derive size
+      const origW = (drawable.type === 'bitmap') ? drawable.src.width : drawable.src.naturalWidth;
+      const origH = (drawable.type === 'bitmap') ? drawable.src.height : drawable.src.naturalHeight;
+      if(!origW || !origH) throw new Error('Invalid image dimensions');
 
-      let outW = srcW, outH = srcH;
-      if(maxWidth && outW > maxWidth){
-        const s = maxWidth / outW;
-        outW = Math.round(outW * s);
-        outH = Math.round(outH * s);
+      // compute output dims
+      let outW = origW, outH = origH;
+      if(opts.maxWidth && outW > opts.maxWidth){
+        const scale = opts.maxWidth / outW;
+        outW = Math.round(outW * scale);
+        outH = Math.round(outH * scale);
       }
 
       const canvas = document.createElement('canvas');
       canvas.width = outW; canvas.height = outH;
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0,0,outW,outH);
+
       try{
         ctx.drawImage(drawable.src, 0, 0, outW, outH);
       }catch(e){
         if(drawable.type === 'bitmap' && typeof drawable.src.close === 'function') try{ drawable.src.close(); }catch(er){}
-        throw new Error('Failed to draw image: ' + (e && e.message));
+        throw new Error('Failed to draw image on canvas: ' + (e && e.message));
       }
-      if(drawable.type === 'bitmap' && typeof drawable.src.close === 'function') try{ drawable.src.close(); }catch(e){}
+      if(drawable.type === 'bitmap' && typeof drawable.src.close === 'function'){
+        try{ drawable.src.close(); }catch(e){}
+      }
 
-      const qArg = (mime === 'image/png') ? undefined : qualityNormalized;
+      // For PNG we ignore quality param (lossless). For JPEG/WebP/AVIF quality applies.
+      const mime = opts.mime || 'image/jpeg';
+      const q = typeof opts.quality === 'number' ? Math.max(0.01, Math.min(1, opts.quality)) : 0.85;
+
+      // Try canvas.toBlob with mime+quality
       return new Promise((resolve, reject) => {
-        try{
+        // show spinner inside progress area
+        progressArea.innerHTML = '<div class="small">Compressing...</div>';
+        try {
           canvas.toBlob(blob => {
-            if(!blob) return reject(new Error('toBlob returned null'));
+            progressArea.innerHTML = '';
+            if(!blob) return reject(new Error('Compression failed'));
             resolve({ blob, canvas });
-          }, mime, qArg);
-        }catch(err){
+          }, mime, (mime === 'image/png') ? undefined : q);
+        } catch(err){
+          progressArea.innerHTML = '';
           reject(err);
         }
       });
     }
 
-    // iterative compression to target size (KB)
-    async function compressToTarget(opts){
-      // opts: { mime, targetBytes, startQuality(0-1), minQuality(0-1), stepQuality(0-1), maxWidth }
-      const drawable = await getDrawable();
-      const mime = opts.mime;
-      const maxWidth = opts.maxWidth;
-      const target = opts.targetBytes;
-      const minQ = opts.minQuality;
-      const stepQ = opts.stepQuality;
-      let q = opts.startQuality;
-
-      // if target is null, just compress once with given quality
-      if(!target || target <= 0){
-        const result = await compressOnce(drawable, mime, q, maxWidth);
-        return { best: result, achieved:false };
-      }
-
-      // start iterative loop: try descending quality until hit target or minQ
-      let best = null;
-      let bestSize = Infinity;
-      let iterations = 0;
-      const maxIter = Math.ceil((q - minQ) / stepQ) + 3;
-
-      while(q >= minQ && iterations < 60){
-        iterations++;
-        progressFill.style.width = Math.min(100, Math.round(((opts.startQuality - q) / (opts.startQuality - minQ + 0.0001)) * 100)) + '%';
-        progressText.textContent = `Trying quality ${(q*100).toFixed(0)}% (step ${Math.round(stepQ*100)}%)`;
-        try{
-          const result = await compressOnce(drawable, mime, q, maxWidth);
-          const size = result.blob.size;
-          if(size <= target){
-            // good enough: return this
-            return { best: result, achieved:true, quality:q, iterations };
-          }
-          // keep best (smallest) so far
-          if(size < bestSize){
-            bestSize = size;
-            best = result;
-          }else{
-            // if size increased unexpectedly, still keep best
-          }
-        }catch(err){
-          console.warn('compressOnce failed at q=', q, err);
-          // continue decreasing quality
-        }
-        q = +(q - stepQ).toFixed(3);
-        if(q <= 0) break;
-      }
-
-      // if loop ends without hitting target, return smallest found
-      if(best) return { best, achieved:false, bestSize, iterations };
-      // fallback: do single compress with minQ
-      const fallback = await compressOnce(drawable, mime, minQ, maxWidth);
-      return { best: fallback, achieved:false, iterations };
-    }
-
-    // UI handler
+    // main button handler
     compressBtn.addEventListener('click', async () => {
       if(!currentFile){ alert('Please upload an image first.'); return; }
       compressBtn.disabled = true;
       compressBtn.textContent = 'Working...';
-      downloadLink.style.display = 'none';
-      progressFill.style.width = '0%';
-      progressText.textContent = '';
 
-      const mime = formatSelect.value || 'image/jpeg';
-      const startQ = (mime === 'image/png') ? 1 : (parseInt(qualityInput.value,10) || 85) / 100;
-      const minQ = Math.max(0.05, (parseInt(minQualityInput.value,10) || 30) / 100);
-      const stepQ = Math.max(0.01, (parseInt(stepQualityInput.value,10) || 5) / 100);
-      const maxW = parseInt(maxWidthInput.value,10) || null;
-      const target = parseInt(targetKB.value,10) ? (parseInt(targetKB.value,10) * 1024) : null;
+      // collect options
+      const selectedMime = formatSelect.value;
+      const qValPercent = parseInt(quality.value, 10) || 85;
+      const q = selectedMime === 'image/png' ? 1 : (qValPercent/100);
+      const maxW = parseInt(maxWidth.value, 10) || null;
 
-      try{
-        const res = await compressToTarget({
-          mime,
-          targetBytes: target,
-          startQuality: startQ,
-          minQuality: minQ,
-          stepQuality: stepQ,
-          maxWidth: maxW
-        });
+      // show spinner preview
+      const prev = preview.innerHTML;
+      preview.innerHTML = '<div class="spinner" aria-hidden="true"></div>';
+      newInfo.textContent = '—';
 
-        const { best, achieved } = res;
-        if(!best || !best.blob){ throw new Error('Compression returned no blob'); }
+      try {
+        const { blob } = await compressImage({ mime: selectedMime, quality: q, maxWidth: maxW });
 
-        // prepare download/preview
-        if(outBlobUrl) try{ URL.revokeObjectURL(outBlobUrl); }catch(e){}
-        outBlobUrl = URL.createObjectURL(best.blob);
+        // create download link
+        if(outBlobUrl){ try{ URL.revokeObjectURL(outBlobUrl); }catch(e){} outBlobUrl = null; }
+        outBlobUrl = URL.createObjectURL(blob);
         downloadLink.href = outBlobUrl;
-        const ext = (mime.split('/')[1] || 'jpg').replace('jpeg','jpg');
+
+        // compute ext
+        let ext = selectedMime.split('/')[1] || 'jpg';
+        if(ext === 'jpeg') ext = 'jpg';
         const baseName = (currentFile && currentFile.name) ? currentFile.name.replace(/\.[^.]+$/,'') : 'compressed-image';
         downloadLink.download = `${baseName}.${ext}`;
         downloadLink.style.display = '';
-        newInfo.textContent = humanBytes(best.blob.size);
-        progressFill.style.width = '100%';
-        progressText.textContent = achieved ? 'Target reached' : 'Finished (closest result)';
-        // show preview
-        const pi = new Image();
-        pi.onload = ()=>{ preview.innerHTML=''; pi.style.maxWidth='100%'; pi.style.maxHeight='100%'; pi.style.objectFit='contain'; preview.appendChild(pi); };
-        pi.onerror = ()=>{ preview.innerHTML = '<div class="small">Compressed preview not available</div>'; };
-        pi.src = outBlobUrl;
+        downloadLink.textContent = `Download (${humanBytes(blob.size)})`;
+        newInfo.textContent = humanBytes(blob.size);
 
-      }catch(err){
+        // preview compressed image
+        const compImg = new Image();
+        compImg.onload = () => {
+          preview.innerHTML = '';
+          compImg.style.maxWidth = '100%'; compImg.style.maxHeight = '100%'; compImg.style.objectFit = 'contain';
+          preview.appendChild(compImg);
+        };
+        compImg.onerror = () => {
+          preview.innerHTML = '<div class="small">Preview of compressed image unavailable.</div>';
+        };
+        compImg.src = outBlobUrl;
+
+      } catch(err) {
         console.error(err);
-        alert('Compression error: ' + (err && err.message ? err.message : 'unknown'));
-      }finally{
+        alert('Compression failed — ' + (err && err.message ? err.message : 'unknown error'));
+        preview.innerHTML = prev;
+      } finally {
         compressBtn.disabled = false;
-        compressBtn.textContent = 'Compress (Target)';
+        compressBtn.textContent = 'Compress & Download';
+        progressArea.innerHTML = '';
       }
     });
 
     // reset
-    resetBtn.addEventListener('click', ()=> {
+    resetBtn.addEventListener('click', () => {
+      // cleanup blob urls
       if(currentBlobUrl) try{ URL.revokeObjectURL(currentBlobUrl); }catch(e){}
       if(outBlobUrl) try{ URL.revokeObjectURL(outBlobUrl); }catch(e){}
       currentBlobUrl = outBlobUrl = null;
@@ -413,23 +389,18 @@
       origInfo.textContent = '—';
       newInfo.textContent = '—';
       dimsInfo.textContent = '—';
-      maxWidthInput.value = '';
-      qualityInput.value = '85';
+      maxWidth.value = '';
+      quality.value = '85';
       qVal.textContent = '85%';
-      targetKB.value = '';
-      minQualityInput.value = '30';
-      stepQualityInput.value = '5';
       fileInput.value = '';
-      progressFill.style.width = '0%';
-      progressText.textContent = '';
+      progressArea.innerHTML = '';
     });
 
-    // accessibility
+    // keyboard accessibility
     dropZone.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') fileInput.click(); });
 
-    // init
-    (function(){ qVal.textContent = qualityInput.value + '%'; origInfo.textContent='—'; newInfo.textContent='—'; dimsInfo.textContent='—'; })();
-
+    // init state
+    (function(){ qVal.textContent = quality.value + '%'; origInfo.textContent = '—'; newInfo.textContent = '—'; dimsInfo.textContent = '—'; })();
   </script>
 </body>
 </html>
