@@ -61,6 +61,13 @@
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
         }
 
         .nav-links {
@@ -73,10 +80,26 @@
             color: var(--text);
             font-weight: 500;
             transition: var(--transition);
+            position: relative;
         }
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .contact-email {
@@ -101,11 +124,37 @@
             background: linear-gradient(135deg, #f5f9ff 0%, #e3f2fd 100%);
             padding: 80px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(26, 115, 232, 0.1);
+            top: -150px;
+            right: -100px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(26, 115, 232, 0.1);
+            bottom: -100px;
+            left: -50px;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
@@ -159,6 +208,12 @@
             box-shadow: 0 5px 15px var(--shadow);
             font-size: 2rem;
             color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .tool-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--shadow);
         }
 
         /* Search Section */
@@ -200,6 +255,37 @@
             background-color: var(--primary-dark);
         }
 
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
         /* Tools Section */
         .tools-section {
             padding: 60px 0;
@@ -237,6 +323,7 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .tool-card:hover {
@@ -302,6 +389,9 @@
         .footer-logo h3 {
             font-size: 1.8rem;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .footer-logo p {
@@ -414,6 +504,12 @@
             .tools-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
+
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -449,7 +545,10 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">ToolSonics</a>
+            <a href="#" class="logo">
+                <i class="fas fa-tools"></i>
+                ToolSonics
+            </a>
             
             <nav class="nav-links">
                 <a href="#">Home</a>
@@ -483,10 +582,13 @@
                     <i class="fas fa-file-alt"></i>
                 </div>
                 <div class="tool-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="tool-icon">
                     <i class="fas fa-code"></i>
                 </div>
                 <div class="tool-icon">
-                    <i class="fas fa-video"></i>
+                    <i class="fas fa-qrcode"></i>
                 </div>
             </div>
         </div>
@@ -502,11 +604,33 @@
         </div>
     </section>
 
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container stats-container">
+            <div class="stat-item">
+                <div class="stat-number">80+</div>
+                <div class="stat-label">Tools Available</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100K+</div>
+                <div class="stat-label">Monthly Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Free Access</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Image Tools Section -->
     <section class="tools-section">
         <div class="container">
             <div class="section-header">
-                <h2>🖼 Image Tools</h2>
+                <h2><i class="fas fa-image"></i> Image Tools</h2>
                 <p>Transform and optimize your images with our comprehensive image tools</p>
             </div>
             
@@ -546,6 +670,42 @@
                     <p>Reduce image file size without losing quality</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-expand-alt"></i>
+                    </div>
+                    <h3>Image Resizer</h3>
+                    <p>Resize images to your desired dimensions</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-crop-alt"></i>
+                    </div>
+                    <h3>Image Cropper</h3>
+                    <p>Crop images to focus on specific areas</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-font"></i>
+                    </div>
+                    <h3>Image to Text (OCR)</h3>
+                    <p>Extract text from images using OCR technology</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Image Rotator/Flipper</h3>
+                    <p>Rotate or flip images as needed</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
             </div>
         </div>
     </section>
@@ -554,7 +714,7 @@
     <section class="tools-section" style="background-color: #fff;">
         <div class="container">
             <div class="section-header">
-                <h2>📄 Document Tools</h2>
+                <h2><i class="fas fa-file-alt"></i> Document Tools</h2>
                 <p>Manage, convert and optimize your documents efficiently</p>
             </div>
             
@@ -590,8 +750,206 @@
                     <div class="tool-icon-small">
                         <i class="fas fa-file-contract"></i>
                     </div>
+                    <h3>PDF to Excel</h3>
+                    <p>Extract data from PDF to Excel format</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-hand-paper"></i>
+                    </div>
+                    <h3>Handwritten Note to PDF</h3>
+                    <p>Convert handwritten notes to digital PDF</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Excel (CSV) to Dashboard</h3>
+                    <p>Convert Excel data to interactive dashboards</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-object-group"></i>
+                    </div>
                     <h3>PDF Merge</h3>
                     <p>Combine multiple PDF files into one document</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>PDF Split</h3>
+                    <p>Split PDF documents into multiple files</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <h3>PDF to Audiobook</h3>
+                    <p>Convert PDF documents to audio format</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-compress-alt"></i>
+                    </div>
+                    <h3>Compress PDF</h3>
+                    <p>Reduce PDF file size without quality loss</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-file-image"></i>
+                    </div>
+                    <h3>PDF to Image</h3>
+                    <p>Convert PDF pages to image formats</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Image to PDF</h3>
+                    <p>Convert images to PDF documents</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Add Watermark to PDF</h3>
+                    <p>Add custom watermarks to PDF documents</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-unlock"></i>
+                    </div>
+                    <h3>Unlock PDF</h3>
+                    <p>Remove password protection from PDF files</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Add Password to PDF</h3>
+                    <p>Secure PDF files with password protection</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-sort-numeric-down"></i>
+                    </div>
+                    <h3>Add Page Numbers</h3>
+                    <p>Add page numbers to PDF documents</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Translate PDF</h3>
+                    <p>Translate PDF content between English and Hindi</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <h3>Convert Text/Note to PDF</h3>
+                    <p>Convert text notes to PDF format</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-signature"></i>
+                    </div>
+                    <h3>Add Digital Signature</h3>
+                    <p>Add digital signatures to PDF documents</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Convert PDF to XML</h3>
+                    <p>Convert PDF content to XML format</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>PDF to Flipbook Viewer</h3>
+                    <p>Convert PDFs to interactive flipbooks</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <h3>E-Way Bill to PDF</h3>
+                    <p>Convert E-Way bills to PDF format</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-file-csv"></i>
+                    </div>
+                    <h3>CSV to Excel</h3>
+                    <p>Convert CSV files to Excel format</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Tally to Excel Converter</h3>
+                    <p>Convert Tally data to Excel format</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Excel to Invoice</h3>
+                    <p>Convert Excel data to professional invoices</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Bank Statement to Excel</h3>
+                    <p>Convert bank statements to Excel format</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
             </div>
@@ -602,7 +960,7 @@
     <section class="tools-section">
         <div class="container">
             <div class="section-header">
-                <h2>🧮 Calculator Tools</h2>
+                <h2><i class="fas fa-calculator"></i> Calculator Tools</h2>
                 <p>Perform financial calculations and conversions with precision</p>
             </div>
             
@@ -627,9 +985,18 @@
                 
                 <div class="tool-card">
                     <div class="tool-icon-small">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>PPF Calculator</h3>
+                    <p>Calculate Public Provident Fund returns</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
                         <i class="fas fa-money-bill-wave"></i>
                     </div>
-                    <h3>Tax Calculator</h3>
+                    <h3>Tax Calculator (India)</h3>
                     <p>Calculate your income tax liabilities</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
@@ -642,6 +1009,309 @@
                     <p>Convert between different world currencies</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
+                    <h3>Compound Interest Calculator</h3>
+                    <p>Calculate compound interest on investments</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>House Area Converter</h3>
+                    <p>Convert between Sqft, Sqm, and Gaj measurements</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Monthly Budget Generator</h3>
+                    <p>Create personalized monthly budgets</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <h3>Excel Loan EMI Calculator</h3>
+                    <p>Calculate loan EMIs using Excel</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3>Salary Slip Generator</h3>
+                    <p>Generate professional salary slips</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3>Age Calculator</h3>
+                    <p>Calculate age from birth date</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <h3>BMI Calculator</h3>
+                    <p>Calculate Body Mass Index</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Loan EMI Calculator</h3>
+                    <p>Calculate loan EMIs for various loan types</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <h3>GST Calculator</h3>
+                    <p>Calculate GST for goods and services</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopkeeper Tools Section -->
+    <section class="tools-section" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-store"></i> Shopkeeper Tools</h2>
+                <p>Tools designed specifically for shopkeepers and small businesses</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h3>Stock Management & Sale Tracker</h3>
+                    <p>Track inventory and sales for your shop</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <h3>Bill / Receipt Generator</h3>
+                    <p>Generate professional bills with your logo</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Web/Developer Tools Section -->
+    <section class="tools-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> Web/Developer Tools</h2>
+                <p>Essential tools for web developers and programmers</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <h3>HTML/CSS/JS Minifier</h3>
+                    <p>Minify your HTML, CSS, and JavaScript code</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-brackets-curly"></i>
+                    </div>
+                    <h3>JSON Formatter & Validator</h3>
+                    <p>Format and validate JSON data</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Base64 Encoder/Decoder</h3>
+                    <p>Encode and decode Base64 strings</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>URL Encoder/Decoder</h3>
+                    <p>Encode and decode URL strings</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Color Picker & Converter</h3>
+                    <p>Pick colors and convert between formats</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3>Regex Tester</h3>
+                    <p>Test and debug regular expressions</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IFSC Code Tools Section -->
+    <section class="tools-section" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-university"></i> IFSC Code Tools</h2>
+                <p>Find banking codes and information quickly</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>IFSC + Micr Code Finder</h3>
+                    <p>Find IFSC and MICR codes for Indian banks</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Utility Tools Section -->
+    <section class="tools-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-wrench"></i> Utility Tools</h2>
+                <p>Everyday utility tools for various purposes</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>QR Code Generator & Scanner</h3>
+                    <p>Create and scan QR codes</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <h3>Barcode Generator</h3>
+                    <p>Generate barcodes for products</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>UUID Generator</h3>
+                    <p>Generate unique identifiers</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h3>Unit Converter</h3>
+                    <p>Convert between different units of measurement</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Time Zone Converter</h3>
+                    <p>Convert time between different time zones</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3>Random Number/Password Generator</h3>
+                    <p>Generate random numbers and secure passwords</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools Section -->
+    <section class="tools-section" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-robot"></i> AI Resume and PPT Tools</h2>
+                <p>AI-powered tools for creating professional documents</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-file-powerpoint"></i>
+                    </div>
+                    <h3>AI PPT Generate</h3>
+                    <p>Generate PowerPoint presentations using AI</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Resume Builder</h3>
+                    <p>Create professional resumes with AI assistance</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Resume Keyword Optimizer</h3>
+                    <p>Optimize your resume for ATS systems</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
             </div>
         </div>
     </section>
@@ -651,7 +1321,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h3>ToolSonics</h3>
+                    <h3><i class="fas fa-tools"></i> ToolSonics</h3>
                     <p>Simplifying your digital life with powerful, easy-to-use tools for all your needs.</p>
                 </div>
                 
@@ -683,6 +1353,7 @@
         document.querySelector('.search-box input').addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
             const toolCards = document.querySelectorAll('.tool-card');
+            let visibleCount = 0;
             
             toolCards.forEach(card => {
                 const toolName = card.querySelector('h3').textContent.toLowerCase();
@@ -690,15 +1361,46 @@
                 
                 if (toolName.includes(searchTerm) || toolDesc.includes(searchTerm)) {
                     card.style.display = 'flex';
+                    visibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
             });
+            
+            // Update stats to show search results
+            if (searchTerm) {
+                document.querySelector('.stat-number').textContent = visibleCount;
+                document.querySelector('.stat-label').textContent = 'Tools Found';
+            } else {
+                document.querySelector('.stat-number').textContent = '80+';
+                document.querySelector('.stat-label').textContent = 'Tools Available';
+            }
         });
 
-        // Mobile menu toggle (basic implementation)
+        // Mobile menu toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            alert('Mobile menu would open here. In a full implementation, this would show the navigation links.');
+            const navLinks = document.querySelector('.nav-links');
+            const contactEmail = document.querySelector('.contact-email');
+            
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+                contactEmail.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                contactEmail.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.backgroundColor = 'white';
+                navLinks.style.padding = '20px';
+                navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+                
+                contactEmail.style.position = 'absolute';
+                contactEmail.style.top = 'calc(100% + 150px)';
+                contactEmail.style.left = '20px';
+            }
         });
     </script>
 </body>
