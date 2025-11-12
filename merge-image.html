@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Image Merger — Free Online Image Merge Tool</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="title" content="Free Online Image Merger | Merge Photos, Overlay, Side-by-Side">
+  <meta name="description" content="Merge two images online — overlay or side-by-side. Preview, adjust opacity & layout, and download the merged image. Fast, secure & mobile-friendly Image Merger tool.">
+  <meta name="keywords" content="image merger, merge images online, overlay images, combine images, side by side image, merge photos, free image tool, image editor online">
+  <meta name="author" content="Your Website Name">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Online Image Merger — Merge Photos Easily">
+  <meta property="og:description" content="Merge images online with overlay or side-by-side layout. Preview and download the merged result. No signup required.">
+  <meta property="og:image" content="https://yourwebsite.com/assets/image-merger-preview.png">
+  <meta property="og:url" content="https://yourwebsite.com/tools/image-merger">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image Merger | Merge Photos Online">
+  <meta name="twitter:description" content="Overlay or place images side-by-side and download the merged image. Free and mobile-friendly.">
+  <meta name="twitter:image" content="https://yourwebsite.com/assets/image-merger-preview.png">
+
+  <style>
+    :root{--blue:#0d6efd;--blue-dark:#0b5ed7;--bg:#ffffff;--muted:#6b7280;--radius:14px;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#f6fbff,#ffffff);color:#0f1724;padding:18px;display:flex;align-items:center;justify-content:center;min-height:100vh}
+    .card{width:100%;max-width:1000px;background:var(--bg);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(13,110,253,0.06);border:1px solid rgba(13,110,253,0.04)}
+    header{display:flex;gap:12px;align-items:center}
+    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    h1{font-size:18px;margin:0}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:16px}
+    .panel{padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid rgba(13,110,253,0.03)}
+    .drop{border:2px dashed rgba(13,110,253,0.14);border-radius:10px;padding:12px;text-align:center;cursor:pointer}
+    .drop.dragover{border-color:var(--blue);background:rgba(13,110,253,0.03)}
+    input[type=file]{display:none}
+    .controls{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+    .row{display:flex;gap:8px;align-items:center}
+    label.select{background:white;border:1px solid rgba(13,110,253,0.06);padding:8px 10px;border-radius:10px;display:flex;align-items:center;gap:8px;font-size:14px}
+    .btn{padding:10px 12px;border-radius:10px;border:0;cursor:pointer}
+    .btn-primary{background:var(--blue);color:white;font-weight:600}
+    .btn-ghost{background:transparent;border:1px solid rgba(13,110,253,0.12)}
+    .thumb{width:100%;height:360px;background:linear-gradient(90deg,#f3f7ff,#fff);border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .thumb img{max-width:100%;max-height:100%;object-fit:contain}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:16px;text-align:center;color:var(--muted);font-size:13px}
+    @media (max-width:880px){.grid{grid-template-columns:1fr}.thumb{height:220px}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header>
+      <div class="logo">MER</div>
+      <div>
+        <h1>Image Merger — Merge Two Images</h1>
+        <p class="lead">Upload two images, choose layout (overlay or side-by-side), preview and download merged image. Fully mobile responsive.</p>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div class="panel">
+        <div class="row" style="gap:12px">
+          <div style="flex:1">
+            <div id="drop1" class="drop" tabindex="0">Click or drop first image<br><small class="small">PNG, JPG, WebP — max 20MB</small><input id="file1" type="file" accept="image/*"></div>
+          </div>
+          <div style="flex:1">
+            <div id="drop2" class="drop" tabindex="0">Click or drop second image<br><small class="small">PNG, JPG, WebP — max 20MB</small><input id="file2" type="file" accept="image/*"></div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="row">
+            <label class="select">Mode
+              <select id="modeSelect">
+                <option value="overlay">Overlay (stack)</option>
+                <option value="side-by-side-h">Side-by-side (horizontal)</option>
+                <option value="side-by-side-v">Side-by-side (vertical)</option>
+              </select>
+            </label>
+
+            <label class="select">Opacity
+              <input id="opacity" type="range" min="0" max="100" value="75" />
+              <span id="opVal">75%</span>
+            </label>
+
+            <label class="select">Max Width
+              <input id="maxWidth" type="number" placeholder="px (auto)" style="width:110px" />
+            </label>
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button id="mergeBtn" class="btn btn-primary">Merge & Create</button>
+            <button id="downloadBtn" class="btn btn-primary" style="display:none">Download Merged Image</button>
+            <button id="resetBtn" class="btn btn-ghost">Reset</button>
+          </div>
+
+          <div id="meta" style="margin-top:10px;display:none" class="small">
+            <div>Image1: <span id="i1info">—</span></div>
+            <div>Image2: <span id="i2info">—</span></div>
+            <div>Merged: <span id="mergedInfo">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="thumb" id="preview"> <span class="small">Merged preview will appear here</span> </div>
+        <div style="margin-top:10px;display:flex;justify-content:space-between;gap:8px">
+          <div class="small">Mode: <strong id="modeLabel">overlay</strong></div>
+          <div class="small">Opacity: <strong id="modeOpacity">75%</strong></div>
+        </div>
+      </aside>
+    </section>
+
+    <footer>Made for your multi-tool website · Bright blue & white theme</footer>
+
+    <!-- SEO text for crawlers (visible on page) -->
+    <section style="margin-top:20px;text-align:center;color:#555;font-size:14px;max-width:880px;margin-inline:auto;">
+      <p>Free <strong>Image Merger Tool</strong> — combine two photos online easily. Choose overlay to superimpose images with adjustable opacity, or place them side-by-side horizontally or vertically. Preview and download the merged result. No signup required — fast, secure & mobile-friendly.</p>
+    </section>
+
+  </main>
+
+  <script>
+    // DOM
+    const file1 = document.getElementById('file1');
+    const file2 = document.getElementById('file2');
+    const drop1 = document.getElementById('drop1');
+    const drop2 = document.getElementById('drop2');
+    const preview = document.getElementById('preview');
+    const mergeBtn = document.getElementById('mergeBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const modeSelect = document.getElementById('modeSelect');
+    const opacity = document.getElementById('opacity');
+    const opVal = document.getElementById('opVal');
+    const maxWidthInput = document.getElementById('maxWidth');
+    const modeLabel = document.getElementById('modeLabel');
+    const modeOpacity = document.getElementById('modeOpacity');
+    const i1info = document.getElementById('i1info');
+    const i2info = document.getElementById('i2info');
+    const mergedInfo = document.getElementById('mergedInfo');
+    const meta = document.getElementById('meta');
+
+    let img1 = null, img2 = null, blobUrl = null;
+
+    function humanBytes(bytes){ if(!bytes) return '0 B'; const thresh=1024; if(Math.abs(bytes)<thresh) return bytes+' B'; const units=['KB','MB','GB']; let u=-1; do{bytes/=thresh; ++u;} while(Math.abs(bytes)>=thresh && u<units.length-1); return bytes.toFixed(2)+' '+units[u]; }
+
+    // helpers: drag & drop
+    ['dragenter','dragover'].forEach(ev=>{ [drop1,drop2].forEach(d=>d.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();d.classList.add('dragover')})) });
+    ['dragleave','drop'].forEach(ev=>{ [drop1,drop2].forEach(d=>d.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();d.classList.remove('dragover')})) });
+
+    drop1.addEventListener('drop', e=>{ const f = e.dataTransfer.files && e.dataTransfer.files[0]; if(f) handleFile(f,1); });
+    drop2.addEventListener('drop', e=>{ const f = e.dataTransfer.files && e.dataTransfer.files[0]; if(f) handleFile(f,2); });
+    drop1.addEventListener('click', ()=> file1.click());
+    drop2.addEventListener('click', ()=> file2.click());
+    file1.addEventListener('change', e=>{ if(e.target.files[0]) handleFile(e.target.files[0],1); });
+    file2.addEventListener('change', e=>{ if(e.target.files[0]) handleFile(e.target.files[0],2); });
+
+    function handleFile(file, which){
+      if(!file.type.startsWith('image/')){ alert('Please upload an image file.'); return; }
+      if(file.size > 20*1024*1024){ alert('File too large (max 20 MB).'); return; }
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = ()=>{
+        if(which===1){ img1 = img; i1info.textContent = file.name + ' • ' + img.naturalWidth + '×' + img.naturalHeight + ' • ' + humanBytes(file.size); }
+        else { img2 = img; i2info.textContent = file.name + ' • ' + img.naturalWidth + '×' + img.naturalHeight + ' • ' + humanBytes(file.size); }
+        meta.style.display = '';
+        renderPreviewPlaceholder();
+        URL.revokeObjectURL(url);
+      };
+      img.src = url;
+    }
+
+    function renderPreviewPlaceholder(){
+      preview.innerHTML = '';
+      const canvas = document.createElement('canvas');
+      canvas.width = preview.clientWidth; canvas.height = preview.clientHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+      if(img1) drawPreview(ctx,canvas,img1,img2);
+      preview.appendChild(canvas);
+    }
+
+    function drawPreview(ctx, canvas, a, b){
+      const mode = modeSelect.value;
+      modeLabel.textContent = mode;
+      modeOpacity.textContent = opacity.value + '%';
+
+      // simple preview: scale images to fit canvas
+      if(mode === 'overlay'){
+        if(a){
+          const r = fitDims(a, canvas.width, canvas.height);
+          ctx.drawImage(a, r.x, r.y, r.w, r.h);
+        }
+        if(b){
+          ctx.globalAlpha = opacity.value/100;
+          const r2 = fitDims(b, canvas.width, canvas.height);
+          ctx.drawImage(b, r2.x, r2.y, r2.w, r2.h);
+          ctx.globalAlpha = 1;
+        }
+      } else if(mode === 'side-by-side-h'){
+        const halfW = Math.floor(canvas.width/2);
+        if(a){ const r = fitDims(a, halfW, canvas.height); ctx.drawImage(a, r.x, r.y, r.w, r.h); }
+        if(b){ const r2 = fitDims(b, halfW, canvas.height); ctx.drawImage(b, halfW + r2.x, r2.y, r2.w, r2.h); }
+      } else {
+        // vertical
+        const halfH = Math.floor(canvas.height/2);
+        if(a){ const r = fitDims(a, canvas.width, halfH); ctx.drawImage(a, r.x, r.y, r.w, r.h); }
+        if(b){ const r2 = fitDims(b, canvas.width, halfH); ctx.drawImage(b, r2.x, halfH + r2.y, r2.w, r2.h); }
+      }
+    }
+
+    function fitDims(img, maxW, maxH){
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      const ratio = Math.min(maxW/iw, maxH/ih);
+      const w = Math.round(iw * ratio), h = Math.round(ih * ratio);
+      const x = Math.round((maxW - w)/2), y = Math.round((maxH - h)/2);
+      return {x,y,w,h};
+    }
+
+    opacity.addEventListener('input', ()=>{ opVal.textContent = opacity.value + '%'; renderPreviewPlaceholder(); });
+    modeSelect.addEventListener('change', ()=>{ renderPreviewPlaceholder(); });
+    window.addEventListener('resize', ()=>{ renderPreviewPlaceholder(); });
+
+    mergeBtn.addEventListener('click', ()=>{
+      if(!img1 && !img2){ alert('Please upload at least one image.'); return; }
+      // determine output dimensions
+      const mode = modeSelect.value;
+      let outW=0, outH=0;
+      if(mode === 'overlay'){
+        // choose max of both
+        outW = Math.max(img1?img1.naturalWidth:0, img2?img2.naturalWidth:0);
+        outH = Math.max(img1?img1.naturalHeight:0, img2?img2.naturalHeight:0);
+      } else if(mode === 'side-by-side-h'){
+        outW = (img1?img1.naturalWidth:0) + (img2?img2.naturalWidth:0);
+        outH = Math.max(img1?img1.naturalHeight:0, img2?img2.naturalHeight:0);
+      } else {
+        outW = Math.max(img1?img1.naturalWidth:0, img2?img2.naturalWidth:0);
+        outH = (img1?img1.naturalHeight:0) + (img2?img2.naturalHeight:0);
+      }
+
+      const maxW = parseInt(maxWidthInput.value) || outW;
+      if(outW > maxW){
+        const scale = maxW / outW; outW = Math.round(outW*scale); outH = Math.round(outH*scale);
+      }
+
+      const canvas = document.createElement('canvas'); canvas.width = outW; canvas.height = outH;
+      const ctx = canvas.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      if(mode === 'overlay'){
+        if(img1) drawImageFull(ctx,img1,canvas);
+        if(img2){ ctx.globalAlpha = opacity.value/100; drawImageFull(ctx,img2,canvas); ctx.globalAlpha =1; }
+      } else if(mode === 'side-by-side-h'){
+        let x=0;
+        if(img1){ drawImageAt(ctx,img1,x,0,Math.round(canvas.width * (img1.naturalWidth/( (img1.naturalWidth||0) + (img2?img2.naturalWidth:0) )) ), canvas.height); x += Math.round(canvas.width * (img1.naturalWidth/( (img1.naturalWidth||0) + (img2?img2.naturalWidth:0) )) ); }
+        if(img2){ drawImageAt(ctx,img2,x,0,canvas.width - x, canvas.height); }
+      } else {
+        let y=0;
+        if(img1){ drawImageAt(ctx,img1,0,y,canvas.width, Math.round(canvas.height * (img1.naturalHeight/( (img1.naturalHeight||0) + (img2?img2.naturalHeight:0) )) )); y += Math.round(canvas.height * (img1.naturalHeight/( (img1.naturalHeight||0) + (img2?img2.naturalHeight:0) )) ); }
+        if(img2){ drawImageAt(ctx,img2,0,y,canvas.width, canvas.height - y); }
+      }
+
+      // create blob and preview
+      canvas.toBlob(blob=>{
+        if(!blob){ alert('Could not create merged image.'); return; }
+        if(blobUrl) URL.revokeObjectURL(blobUrl);
+        blobUrl = URL.createObjectURL(blob);
+        const outImg = new Image(); outImg.onload = ()=>{ preview.innerHTML=''; preview.appendChild(outImg); downloadBtn.style.display='inline-block'; mergedInfo.textContent = humanBytes(blob.size); meta.style.display=''; }
+        outImg.src = blobUrl;
+        // setup download
+        downloadBtn.onclick = ()=>{ const a=document.createElement('a'); a.href=blobUrl; a.download='merged-image.png'; a.click(); }
+      }, 'image/png');
+    });
+
+    function drawImageFull(ctx,img,canvas){
+      // draw centered and scaled to max of canvas while maintaining aspect ratio
+      const r = fitDims(img, canvas.width, canvas.height);
+      ctx.drawImage(img, r.x, r.y, r.w, r.h);
+    }
+
+    function drawImageAt(ctx,img,x,y,w,h){
+      const r = fitDims(img, w, h);
+      ctx.drawImage(img, x + r.x, y + r.y, r.w, r.h);
+    }
+
+    resetBtn.addEventListener('click', ()=>{
+      img1 = img2 = null; preview.innerHTML = '<span class="small">Merged preview will appear here</span>'; downloadBtn.style.display='none'; meta.style.display='none'; i1info.textContent = i2info.textContent = mergedInfo.textContent = '—'; if(blobUrl) URL.revokeObjectURL(blobUrl); blobUrl = null; file1.value = file2.value = '';
+    });
+
+    // small UX: keyboard access
+    drop1.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') file1.click(); });
+    drop2.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') file2.click(); });
+
+    // init
+    (function(){ opVal.textContent = opacity.value + '%'; modeLabel.textContent = modeSelect.value; modeOpacity.textContent = opacity.value + '%'; })();
+  </script>
+</body>
+</html>
