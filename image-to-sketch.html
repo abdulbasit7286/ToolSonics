@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Image to Sketch — Free Online Sketch Tool</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="title" content="Image to Sketch Converter | Free Online Sketch Tool">
+  <meta name="description" content="Convert photos to pencil-like sketches instantly. Upload an image, preview the sketched result, adjust blur & intensity, and download the sketch. Fast, free & mobile-friendly.">
+  <meta name="keywords" content="image to sketch, photo to sketch, pencil sketch online, sketch converter, photo sketch, free sketch tool, image editor">
+  <meta name="author" content="Your Website Name">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Image to Sketch Converter — Convert Photos to Sketches">
+  <meta property="og:description" content="Upload a photo, convert it to a pencil sketch, preview and download. Simple, fast and mobile friendly.">
+  <meta property="og:image" content="https://yourwebsite.com/assets/image-sketch-preview.png">
+  <meta property="og:url" content="https://yourwebsite.com/tools/image-to-sketch">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image to Sketch | Photo to Pencil Sketch">
+  <meta name="twitter:description" content="Transform photos into pencil-like sketches online. Adjust settings and download the result.">
+  <meta name="twitter:image" content="https://yourwebsite.com/assets/image-sketch-preview.png">
+
+  <style>
+    :root{--blue:#0d6efd;--blue-dark:#0b5ed7;--bg:#ffffff;--muted:#6b7280;--radius:14px;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#f6fbff,#ffffff);color:#0f1724;padding:18px;display:flex;align-items:center;justify-content:center;min-height:100vh}
+    .card{width:100%;max-width:980px;background:var(--bg);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(13,110,253,0.06);border:1px solid rgba(13,110,253,0.04)}
+    header{display:flex;gap:12px;align-items:center}
+    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    h1{font-size:18px;margin:0}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:16px}
+    .panel{padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid rgba(13,110,253,0.03)}
+    .drop{border:2px dashed rgba(13,110,253,0.14);border-radius:10px;padding:12px;text-align:center;cursor:pointer}
+    .drop.dragover{border-color:var(--blue);background:rgba(13,110,253,0.03)}
+    input[type=file]{display:none}
+    .controls{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+    .row{display:flex;gap:8px;align-items:center}
+    label.select{background:white;border:1px solid rgba(13,110,253,0.06);padding:8px 10px;border-radius:10px;display:flex;align-items:center;gap:8px;font-size:14px}
+    .btn{padding:10px 12px;border-radius:10px;border:0;cursor:pointer}
+    .btn-primary{background:var(--blue);color:white;font-weight:600}
+    .btn-ghost{background:transparent;border:1px solid rgba(13,110,253,0.12)}
+    .thumb{width:100%;height:360px;background:linear-gradient(90deg,#f3f7ff,#fff);border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .thumb img{max-width:100%;max-height:100%;object-fit:contain}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:16px;text-align:center;color:var(--muted);font-size:13px}
+    @media (max-width:880px){.grid{grid-template-columns:1fr}.thumb{height:220px}}
+
+    /* simple spinner */
+    .spinner{border:4px solid rgba(0,0,0,0.05);border-top:4px solid var(--blue);border-radius:50%;width:38px;height:38px;animation:spin 1s linear infinite;margin:auto}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header>
+      <div class="logo">SKT</div>
+      <div>
+        <h1>Image to Sketch — Photo to Pencil Sketch</h1>
+        <p class="lead">Upload a photo, convert to a pencil-like sketch, preview and download. Fast, free & mobile friendly.</p>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div class="panel">
+        <div id="dropZone" class="drop" tabindex="0">Click or drop an image<br><small class="small">PNG, JPG, WebP — max 20MB</small><input id="fileInput" type="file" accept="image/*"></div>
+
+        <div class="controls">
+          <div class="row">
+            <label class="select">Blur
+              <input id="blurRange" type="range" min="1" max="30" value="8" />
+              <span id="blurVal">8px</span>
+            </label>
+            <label class="select">Intensity
+              <input id="intensity" type="range" min="0" max="200" value="100" />
+              <span id="intVal">100%</span>
+            </label>
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button id="sketchBtn" class="btn btn-primary">Create Sketch</button>
+            <button id="downloadBtn" class="btn btn-primary" style="display:none">Download Sketch</button>
+            <button id="resetBtn" class="btn btn-ghost">Reset</button>
+          </div>
+
+          <div id="meta" style="margin-top:10px;display:none" class="small">
+            <div>Filename: <span id="fname">—</span></div>
+            <div>Dimensions: <span id="dims">—</span></div>
+            <div>Sketch size: <span id="sketchSize">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="thumb" id="preview"> <span class="small">Sketch preview will appear here</span> </div>
+      </aside>
+    </section>
+
+    <footer>Made for your multi-tool website · Bright blue & white theme</footer>
+
+    <!-- SEO text for crawlers (visible on page) -->
+    <section style="margin-top:20px;text-align:center;color:#555;font-size:14px;max-width:880px;margin-inline:auto;">
+      <p>Convert your photos to pencil-like sketches with our free <strong>Image to Sketch</strong> tool. Adjust blur & intensity, preview instantly, and download the sketched image. No signup required — optimized for mobile and desktops.</p>
+    </section>
+
+  </main>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const dropZone = document.getElementById('dropZone');
+    const preview = document.getElementById('preview');
+    const sketchBtn = document.getElementById('sketchBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const blurRange = document.getElementById('blurRange');
+    const blurVal = document.getElementById('blurVal');
+    const intensity = document.getElementById('intensity');
+    const intVal = document.getElementById('intVal');
+    const fname = document.getElementById('fname');
+    const dims = document.getElementById('dims');
+    const sketchSize = document.getElementById('sketchSize');
+    const meta = document.getElementById('meta');
+
+    let currentImage = null;          // HTMLImageElement (for preview/fallback)
+    let currentFileBlob = null;       // File blob
+    let outUrl = null;                // URL for generated sketch
+
+    // utils
+    function humanBytes(bytes){ if(!bytes) return '0 B'; const thresh=1024; if(Math.abs(bytes)<thresh) return bytes+' B'; const units=['KB','MB','GB']; let u=-1; do{bytes/=thresh; ++u;} while(Math.abs(bytes)>=thresh && u<units.length-1); return bytes.toFixed(2)+' '+units[u]; }
+
+    // Drag & drop handlers
+    ['dragenter','dragover'].forEach(ev=>dropZone.addEventListener(ev,e=>{ e.preventDefault(); e.stopPropagation(); dropZone.classList.add('dragover'); }));
+    ['dragleave','drop'].forEach(ev=>dropZone.addEventListener(ev,e=>{ e.preventDefault(); e.stopPropagation(); dropZone.classList.remove('dragover'); }));
+    dropZone.addEventListener('drop', e=>{ const f = e.dataTransfer.files && e.dataTransfer.files[0]; if(f) handleFile(f); });
+    dropZone.addEventListener('click', ()=> fileInput.click());
+    fileInput.addEventListener('change', e=>{ if(e.target.files && e.target.files[0]) handleFile(e.target.files[0]); });
+
+    function handleFile(file){
+      if(!file.type.startsWith('image/')){ alert('Please upload an image file.'); return; }
+      if(file.size > 25*1024*1024){ alert('File too large (max 25 MB).'); return; }
+
+      // Clean up previous outputs
+      if(outUrl) { try{ URL.revokeObjectURL(outUrl); }catch(e){} outUrl = null; }
+      downloadBtn.style.display = 'none';
+      sketchSize.textContent = '—';
+
+      currentFileBlob = file;
+      // create preview IMG immediately for user feedback
+      const img = new Image();
+      img.crossOrigin = 'anonymous'; // try to avoid tainting
+      const url = URL.createObjectURL(file);
+
+      img.onload = () => {
+        currentImage = img; // keep reference for fallback path
+        renderPreviewImage(img);
+        fname.textContent = file.name;
+        dims.textContent = img.naturalWidth + ' × ' + img.naturalHeight;
+        meta.style.display = '';
+        try{ URL.revokeObjectURL(url); }catch(e){}
+      };
+      img.onerror = () => {
+        // fallback: try createImageBitmap for preview if IMG fails to load
+        try{ URL.revokeObjectURL(url); }catch(e){}
+        currentImage = null;
+        preview.innerHTML = '<div class="small">Preview not available. Use "Create Sketch" — decoder will try.</div>';
+        meta.style.display = 'none';
+      };
+
+      // start loading the preview img
+      img.src = url;
+    }
+
+    function renderPreviewImage(img){
+      preview.innerHTML = '';
+      img.style.maxWidth = '100%';
+      img.style.maxHeight = '100%';
+      img.style.objectFit = 'contain';
+      preview.appendChild(img);
+    }
+
+    blurRange.addEventListener('input', ()=>{ blurVal.textContent = blurRange.value + 'px'; });
+    intensity.addEventListener('input', ()=>{ intVal.textContent = intensity.value + '%'; });
+
+    // Try to get an ImageBitmap (fast, reliable) else fallback to using the HTMLImageElement (ensure loaded)
+    async function getDrawableSource(){
+      if(window.createImageBitmap && currentFileBlob){
+        try{
+          const bitmap = await createImageBitmap(currentFileBlob);
+          return { type: 'bitmap', src: bitmap };
+        }catch(e){
+          console.warn('createImageBitmap failed, will fallback to IMG element', e);
+        }
+      }
+
+      // Fallback: ensure HTMLImageElement is loaded
+      if(currentImage && currentImage.complete && currentImage.naturalWidth && currentImage.naturalHeight){
+        return { type: 'img', src: currentImage };
+      }
+
+      // If preview img hasn't loaded (rare), attempt to load an <img> from blob and wait a short time
+      if(currentFileBlob){
+        return new Promise((resolve, reject) => {
+          const tmp = new Image();
+          tmp.crossOrigin = 'anonymous';
+          const u = URL.createObjectURL(currentFileBlob);
+          let settled = false;
+          tmp.onload = () => { if(settled) return; settled = true; try{ URL.revokeObjectURL(u); }catch(e){} resolve({type:'img', src: tmp}); };
+          tmp.onerror = () => { if(settled) return; settled = true; try{ URL.revokeObjectURL(u); }catch(e){} reject(new Error('Failed to decode uploaded image')); };
+          tmp.src = u;
+          // set a fallback timeout so we don't hang forever
+          setTimeout(()=>{ if(!settled){ settled = true; try{ URL.revokeObjectURL(u); }catch(e){} reject(new Error('Image decode timed out')); } }, 15000);
+        });
+      }
+
+      throw new Error('No image available to draw');
+    }
+
+    // Core sketch algorithm
+    async function createSketch(blurPx, intensityPct, maxWidth){
+      const drawable = await getDrawableSource(); // either ImageBitmap or HTMLImageElement
+
+      // get source dims
+      const srcW = (drawable.type === 'bitmap') ? drawable.src.width : drawable.src.naturalWidth;
+      const srcH = (drawable.type === 'bitmap') ? drawable.src.height : drawable.src.naturalHeight;
+      if(!srcW || !srcH) throw new Error('Image has invalid dimensions');
+
+      // scale if maxWidth provided
+      let w = srcW, h = srcH;
+      if(maxWidth && w > maxWidth){ const s = maxWidth / w; w = Math.round(w*s); h = Math.round(h*s); }
+
+      // draw on canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,w,h);
+
+      try{
+        // drawImage supports both ImageBitmap and HTMLImageElement
+        ctx.drawImage(drawable.src, 0, 0, w, h);
+      }catch(e){
+        if(drawable.type === 'bitmap' && typeof drawable.src.close === 'function') try{ drawable.src.close(); }catch(err){}
+        throw new Error('Drawing image to canvas failed: ' + (e && e.message));
+      }
+
+      if(drawable.type === 'bitmap' && typeof drawable.src.close === 'function'){
+        try{ drawable.src.close(); }catch(e){}
+      }
+
+      // attempt to access pixels
+      let baseImgData;
+      try{ baseImgData = ctx.getImageData(0,0,w,h); }catch(e){ throw new Error('Cannot access image pixels. Canvas may be tainted (CORS).'); }
+
+      // grayscale
+      const d = baseImgData.data;
+      for(let i=0;i<d.length;i+=4){
+        const r=d[i], g=d[i+1], b=d[i+2];
+        const gray = Math.round(0.299*r + 0.587*g + 0.114*b);
+        d[i]=d[i+1]=d[i+2]=gray;
+      }
+      ctx.putImageData(baseImgData, 0, 0);
+
+      // blur step onto separate canvas (if filter supported)
+      const blurCanvas = document.createElement('canvas');
+      blurCanvas.width = w; blurCanvas.height = h;
+      const bctx = blurCanvas.getContext('2d');
+      try{
+        if(typeof bctx.filter !== 'undefined'){
+          bctx.clearRect(0,0,w,h);
+          bctx.filter = `blur(${blurPx}px)`;
+          bctx.drawImage(canvas, 0, 0, w, h);
+          bctx.filter = 'none';
+        } else {
+          // fallback: draw once (no blur) - acceptable degraded result
+          bctx.drawImage(canvas, 0, 0, w, h);
+        }
+      }catch(e){
+        bctx.clearRect(0,0,w,h);
+        bctx.drawImage(canvas, 0, 0, w, h);
+      }
+
+      // read blurred pixels
+      let blurPixels;
+      try{ blurPixels = bctx.getImageData(0,0,w,h).data; }catch(e){ throw new Error('Failed to read blurred pixels. Canvas may be tainted.'); }
+
+      // re-read grayscale base
+      let baseAgain;
+      try{ baseAgain = ctx.getImageData(0,0,w,h); }catch(e){ throw new Error('Failed to read base image data for final processing'); }
+
+      const out = ctx.createImageData(w,h);
+      const intensityFactor = Math.max(0.01, intensityPct/100);
+
+      // color dodge blending
+      for(let i=0;i<baseAgain.data.length;i+=4){
+        const base = baseAgain.data[i];
+        const blurred = blurPixels[i];
+        const dodge = (blurred === 255) ? 255 : Math.min(255, (base * 255) / (255 - blurred + 1));
+        const final = Math.round(base * (1 - intensityFactor) + dodge * intensityFactor);
+        out.data[i] = out.data[i+1] = out.data[i+2] = final;
+        out.data[i+3] = 255;
+      }
+
+      ctx.putImageData(out, 0, 0);
+
+      // return blob
+      return new Promise((resolve, reject) => {
+        canvas.toBlob(blob => {
+          if(!blob) return reject(new Error('Failed to generate sketch image'));
+          resolve({ blob, canvas });
+        }, 'image/png');
+      });
+    }
+
+    // sketch button
+    sketchBtn.addEventListener('click', async () => {
+      if(!currentFileBlob && !currentImage){
+        alert('Please upload an image first.');
+        return;
+      }
+      sketchBtn.disabled = true;
+      sketchBtn.textContent = 'Processing...';
+
+      // spinner in preview
+      const oldPreview = preview.innerHTML;
+      preview.innerHTML = '<div class="spinner" aria-hidden="true"></div>';
+
+      try{
+        const blurPx = parseInt(blurRange.value) || 8;
+        const intensityPct = parseInt(intensity.value) || 100;
+        const result = await createSketch(blurPx, intensityPct, null); // no maxWidth for now
+        const blob = result.blob;
+
+        if(outUrl) try{ URL.revokeObjectURL(outUrl); }catch(e){}
+        outUrl = URL.createObjectURL(blob);
+
+        // show preview from blob
+        const pImg = new Image();
+        pImg.onload = () => {
+          preview.innerHTML = '';
+          pImg.style.maxWidth = '100%';
+          pImg.style.maxHeight = '100%';
+          pImg.style.objectFit = 'contain';
+          preview.appendChild(pImg);
+          sketchSize.textContent = humanBytes(blob.size);
+          downloadBtn.style.display = '';
+        };
+        pImg.onerror = () => {
+          preview.innerHTML = oldPreview;
+          alert('Generated image preview failed to load.');
+        };
+        pImg.src = outUrl;
+
+        // download handler
+        downloadBtn.onclick = () => {
+          const a = document.createElement('a');
+          a.href = outUrl;
+          const baseName = (fname.textContent && fname.textContent !== '—') ? fname.textContent.replace(/\.[^.]+$/,'') : 'sketch';
+          a.download = baseName + '-sketch.png';
+          a.click();
+        };
+      }catch(err){
+        console.error(err);
+        alert('Could not create sketch — ' + (err && err.message ? err.message : 'unknown error'));
+        preview.innerHTML = oldPreview;
+      }finally{
+        sketchBtn.disabled = false;
+        sketchBtn.textContent = 'Create Sketch';
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      currentImage = null; currentFileBlob = null;
+      if(outUrl) try{ URL.revokeObjectURL(outUrl); }catch(e){}
+      outUrl = null;
+      preview.innerHTML = '<span class="small">Sketch preview will appear here</span>';
+      downloadBtn.style.display = 'none';
+      meta.style.display = 'none';
+      fileInput.value = '';
+      fname.textContent = '—';
+      dims.textContent = '—';
+      sketchSize.textContent = '—';
+    });
+
+    // accessibility
+    dropZone.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') fileInput.click(); });
+
+    // init values
+    (function(){ blurVal.textContent = blurRange.value + 'px'; intVal.textContent = intensity.value + '%'; })();
+  </script>
+</body>
+</html>
