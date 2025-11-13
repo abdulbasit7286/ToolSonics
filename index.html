@@ -277,6 +277,46 @@
             background-color: var(--primary);
         }
 
+        /* Contact Section */
+        .contact-section {
+            padding: 60px 0;
+            background-color: var(--secondary);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contact-description {
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .contact-email {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .contact-email:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
         /* Footer */
         footer {
             background-color: var(--text);
@@ -347,6 +387,22 @@
             
             nav ul {
                 display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
             }
             
             .mobile-menu-btn {
@@ -402,25 +458,25 @@
         <div class="container header-container">
             <a href="#" class="logo">Tool<span>Sonics</span></a>
             <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Tools</a></li>
-                    <li><a href="#">Contact</a></li>
+                <ul id="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#contact">Contact</a></li>
                     <li><a href="mailto:toolsonics6@gmail.com" class="contact-link">toolsonics6@gmail.com</a></li>
                 </ul>
             </nav>
-            <button class="mobile-menu-btn">
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container hero-content">
             <h1>Your Daily Tools, All in One Place</h1>
             <p>Convert, calculate, compress, and simplify your everyday tasks — fast and free.</p>
-            <a href="#" class="cta-button">Explore Tools</a>
+            <a href="#tools" class="cta-button">Explore Tools</a>
             <div class="tool-icons">
                 <div class="tool-icon"><i class="fas fa-image"></i></div>
                 <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
@@ -442,7 +498,7 @@
     </section>
 
     <!-- Tools Sections -->
-    <main class="container tools-section">
+    <main class="container tools-section" id="tools">
         <!-- Image Tools -->
         <section>
             <h2 class="section-title"><i class="fas fa-image"></i> Image Tools</h2>
@@ -904,6 +960,15 @@
         </section>
     </main>
 
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container contact-container">
+            <h2 class="contact-title">Contact Us</h2>
+            <p class="contact-description">Have questions or feedback? We'd love to hear from you!</p>
+            <a href="mailto:toolsonics6@gmail.com" class="contact-email">toolsonics6@gmail.com</a>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -949,19 +1014,25 @@
             });
             
             // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const nav = document.querySelector('nav ul');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
             
             mobileMenuBtn.addEventListener('click', function() {
-                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+                navMenu.classList.toggle('show');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const navLinks = document.querySelectorAll('#nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('show');
+                });
             });
             
             // Adjust navigation for mobile on resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 768) {
-                    nav.style.display = 'flex';
-                } else {
-                    nav.style.display = 'none';
+                    navMenu.classList.remove('show');
                 }
             });
         });
