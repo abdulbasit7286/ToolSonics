@@ -1,1055 +1,1141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image to Sketch Converter - Turn Photos into Sketches | ToolSonics</title>
-    <meta name="description" content="Free online image to sketch converter. Transform photos into pencil sketches, cartoon effects, and artistic drawings instantly. No registration required.">
-    <meta name="keywords" content="image to sketch, photo to sketch, pencil sketch, cartoon effect, drawing converter, online sketch tool, photo editing">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .header {
-            background: white;
-            border-radius: 15px 15px 0 0;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .header h1 {
-            color: #2d3748;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        .header p {
-            color: #718096;
-            font-size: 1.2rem;
-        }
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        .language-selector select {
-            padding: 8px 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            background: white;
-            color: #2d3748;
-            font-weight: 500;
-        }
-        .tool-card {
-            background: white;
-            border-radius: 0 0 15px 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        .upload-section {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .file-input {
-            display: none;
-        }
-        .upload-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .upload-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-        }
-        .controls-section {
-            background: #f7fafc;
-            padding: 25px;
-            border-radius: 10px;
-            margin: 20px 0;
-            display: none;
-        }
-        .sketch-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .control-group label {
-            font-weight: 600;
-            color: #2d3748;
-        }
-        .style-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
-        }
-        .style-option {
-            padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        .style-option.selected {
-            border-color: #667eea;
-            background: #667eea;
-            color: white;
-            transform: scale(1.05);
-        }
-        .style-icon {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-        .intensity-slider {
-            width: 100%;
-            margin: 10px 0;
-        }
-        .intensity-value {
-            font-weight: bold;
-            color: #667eea;
-            font-size: 1.1rem;
-        }
-        .premium-badge {
-            background: linear-gradient(135deg, #48bb78, #38a169);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            margin-left: 5px;
-        }
-        .preview-section {
-            display: none;
-            margin: 30px 0;
-        }
-        .preview-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 20px 0;
-        }
-        @media (max-width: 768px) {
-            .preview-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        .preview-box {
-            text-align: center;
-            padding: 20px;
-            background: #f7fafc;
-            border-radius: 10px;
-            border: 2px solid #e2e8f0;
-        }
-        .preview-box h3 {
-            color: #2d3748;
-            margin-bottom: 15px;
-        }
-        .preview-image {
-            max-width: 100%;
-            max-height: 300px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-primary {
-            background: #48bb78;
-            color: white;
-        }
-        .btn-primary:hover {
-            background: #38a169;
-            transform: translateY(-2px);
-        }
-        .btn-secondary {
-            background: #718096;
-            color: white;
-        }
-        .btn-secondary:hover {
-            background: #4a5568;
-        }
-        .btn-download {
-            background: #667eea;
-            color: white;
-            display: none;
-            width: 100%;
-            justify-content: center;
-        }
-        .btn-premium {
-            background: linear-gradient(135deg, #48bb78, #38a169);
-            color: white;
-            font-weight: bold;
-        }
-        .loading-container {
-            text-align: center;
-            padding: 40px;
-            display: none;
-        }
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .error-container {
-            margin: 20px 0;
-            display: none;
-        }
-        .error-message {
-            background: #fed7d7;
-            color: #c53030;
-            padding: 15px 20px;
-            border-radius: 8px;
-            border-left: 4px solid #c53030;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .warning-message {
-            background: #feebc8;
-            color: #dd6b20;
-            padding: 15px 20px;
-            border-radius: 8px;
-            border-left: 4px solid #dd6b20;
-        }
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            color: inherit;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        .feature-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        .feature-card h3 {
-            color: #2d3748;
-            margin-bottom: 10px;
-        }
-        .feature-card p {
-            color: #718096;
-            line-height: 1.5;
-        }
-        .privacy-banner {
-            background: #ebf8ff;
-            border: 1px solid #bee3f8;
-            color: #2b6cb0;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 30px 0;
-            text-align: center;
-        }
-        .premium-features {
-            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
-            border: 2px solid #38b2ac;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-        .premium-features h3 {
-            color: #2d3748;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .premium-list {
-            list-style: none;
-            padding: 0;
-        }
-        .premium-list li {
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .premium-list li:before {
-            content: "⭐";
-            font-size: 1.2rem;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .tool-card {
-                padding: 20px;
-            }
-            
-            .sketch-controls {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .language-selector {
-                position: static;
-                text-align: center;
-                margin-bottom: 15px;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Sketch Converter - Turn Photos into Sketches | ToolSonics</title>
+    <meta name="description" content="Free online image to sketch converter. Transform photos into pencil sketches, cartoon effects, and artistic drawings instantly. No registration required.">
+    <meta name="keywords" content="image to sketch, photo to sketch, pencil sketch, cartoon effect, drawing converter, online sketch tool, photo editing">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px 15px 0 0;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.2rem;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            color: #2d3748;
+            font-weight: 500;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 0 0 15px 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .upload-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .controls-section {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .sketch-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .style-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .style-option {
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .style-option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .style-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .intensity-slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .intensity-value {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .preview-section {
+            display: none;
+            margin: 30px 0;
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .preview-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .preview-box {
+            text-align: center;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .preview-box h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #718096;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4a5568;
+        }
+
+        .btn-download {
+            background: #667eea;
+            color: white;
+            display: none;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            font-weight: bold;
+        }
+
+        .loading-container {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-container {
+            margin: 20px 0;
+            display: none;
+        }
+
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #c53030;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .warning-message {
+            background: #feebc8;
+            color: #dd6b20;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #dd6b20;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: inherit;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #718096;
+            line-height: 1.5;
+        }
+
+        .privacy-banner {
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            color: #2b6cb0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .premium-features {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            border: 2px solid #38b2ac;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .premium-features h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .premium-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .premium-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .premium-list li:before {
+            content: "⭐";
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .tool-card {
+                padding: 20px;
+            }
+            
+            .sketch-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .language-selector {
+                position: static;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="language-selector">
-            <select id="languageSelect">
-                <option value="en">🌐 English</option>
-                <option value="es">🌐 Español</option>
-                <option value="fr">🌐 Français</option>
-                <option value="de">🌐 Deutsch</option>
-                <option value="hi">🌐 हिन्दी</option>
-                <option value="ar">🌐 العربية</option>
-            </select>
-        </div>
-        <div class="header">
-            <h1 id="mainTitle">🎨 Image to Sketch</h1>
-            <p id="mainSubtitle">Transform your photos into beautiful sketches and drawings</p>
-        </div>
-        <div class="tool-card">
-            <div class="upload-section">
-                <input type="file" id="fileInput" accept="image/*" class="file-input">
-                <button class="upload-btn" id="uploadBtn">
-                    📁 Choose Image File
-                </button>
-                <p style="margin-top: 10px; color: #718096;" id="supportedFormats">
-                    Supports JPEG, PNG, GIF, WebP (Max 10MB)
-                </p>
-            </div>
-            <div id="loading" class="loading-container">
-                <div class="loading-spinner"></div>
-                <p id="loadingText">Creating your sketch...</p>
-            </div>
-            <div id="controlsSection" class="controls-section">
-                <div class="sketch-controls">
-                    <div class="control-group">
-                        <label for="intensitySlider" id="intensityLabel">Sketch Intensity</label>
-                        <input type="range" id="intensitySlider" class="intensity-slider" min="1" max="10" value="5">
-                        <div class="intensity-value">
-                            <span id="intensityValue">5</span>/10
-                        </div>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label id="styleLabel">Sketch Style</label>
-                        <div class="style-options">
-                            <div class="style-option selected" data-style="pencil">
-                                <div class="style-icon">✏️</div>
-                                <div id="pencilLabel">Pencil Sketch</div>
-                            </div>
-                            <div class="style-option" data-style="cartoon">
-                                <div class="style-icon">🖼️</div>
-                                <div id="cartoonLabel">Cartoon Effect</div>
-                            </div>
-                            <div class="style-option" data-style="artistic">
-                                <div class="style-icon">🎨</div>
-                                <div id="artisticLabel">Artistic Drawing <span class="premium-badge">FREE</span></div>
-                            </div>
-                            <div class="style-option" data-style="charcoal">
-                                <div class="style-icon">⚫</div>
-                                <div id="charcoalLabel">Charcoal Sketch <span class="premium-badge">FREE</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="premium-features">
-                    <h3 id="premiumTitle">🚀 All Features Unlocked!</h3>
-                    <ul class="premium-list">
-                        <li id="feature1">High-resolution sketch downloads</li>
-                        <li id="feature2">Advanced artistic filters</li>
-                        <li id="feature3">Multiple sketch styles</li>
-                        <li id="feature4">No watermarks</li>
-                        <li id="feature5">Batch processing</li>
-                    </ul>
-                    <button class="btn btn-premium" id="premiumBtn">
-                        💎 All Features Free!
-                    </button>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-primary" id="createBtn">
-                        🎨 Create Sketch
-                    </button>
-                    <button class="btn btn-secondary" id="resetBtn">
-                        🗑️ New Image
-                    </button>
-                </div>
-            </div>
-            <div id="previewSection" class="preview-section">
-                <div class="preview-container">
-                    <div class="preview-box">
-                        <h3 id="originalLabel">Original Image</h3>
-                        <img id="originalImage" class="preview-image">
-                    </div>
-                    <div class="preview-box">
-                        <h3 id="sketchLabel">Sketch Result</h3>
-                        <img id="sketchImage" class="preview-image">
-                    </div>
-                </div>
-                <button class="btn btn-download" id="downloadBtn">
-                    📥 Download Sketch
-                </button>
-            </div>
-            <div id="errorContainer" class="error-container"></div>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3 id="featureTitle1">Instant Conversion</h3>
-                <p id="featureDesc1">Transform images to sketches in seconds with AI-powered technology</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3 id="featureTitle2">100% Secure</h3>
-                <p id="featureDesc2">Your images are processed locally and never leave your device</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3 id="featureTitle3">Multiple Styles</h3>
-                <p id="featureDesc3">Choose from pencil sketches, cartoon effects, and artistic drawings</p>
-            </div>
-        </div>
-        <div class="privacy-banner">
-            <p id="privacyText">🔒 <strong>Your Privacy Matters:</strong> All sketch conversion happens locally in your browser. We never upload your images to any server.</p>
-        </div>
-    </div>
-    <script>
-        // ========== MULTI-LANGUAGE SUPPORT ==========
-        const translations = {
-            en: {
-                title: "🎨 Image to Sketch",
-                subtitle: "Transform your photos into beautiful sketches and drawings",
-                chooseImage: "📁 Choose Image File",
-                supportedFormats: "Supports JPEG, PNG, GIF, WebP (Max 10MB)",
-                processing: "Creating your sketch...",
-                sketchIntensity: "Sketch Intensity",
-                sketchStyle: "Sketch Style",
-                pencilSketch: "Pencil Sketch",
-                cartoonEffect: "Cartoon Effect",
-                artisticDrawing: "Artistic Drawing",
-                charcoalSketch: "Charcoal Sketch",
-                createSketch: "🎨 Create Sketch",
-                newImage: "🗑️ New Image",
-                downloadSketch: "📥 Download Sketch",
-                originalImage: "Original Image",
-                sketchResult: "Sketch Result",
-                premiumFeatures: "🚀 All Features Unlocked!",
-                upgradePremium: "💎 All Features Free!",
-                highResolution: "High-resolution sketch downloads",
-                advancedFilters: "Advanced artistic filters",
-                multipleStyles: "Multiple sketch styles",
-                noWatermarks: "No watermarks",
-                batchProcessing: "Batch processing",
-                instantConversion: "Instant Conversion",
-                instantDesc: "Transform images to sketches in seconds with AI-powered technology",
-                secure: "100% Secure",
-                secureDesc: "Your images are processed locally and never leave your device",
-                multipleStyles: "Multiple Styles",
-                multipleDesc: "Choose from pencil sketches, cartoon effects, and artistic drawings",
-                privacy: "🔒 Your Privacy Matters: All sketch conversion happens locally in your browser. We never upload your images to any server.",
-                errorFileType: "Please select a valid image file (JPEG, PNG, GIF, WebP).",
-                errorFileSize: "Image file is too large. Please select a smaller image (max 10MB).",
-                successSketch: "Sketch created successfully! You can now download it.",
-                premiumRequired: "All features are now free! Enjoy unlimited access."
-            },
-            es: {
-                title: "🎨 Imagen a Boceto",
-                subtitle: "Transforma tus fotos en hermosos bocetos y dibujos",
-                chooseImage: "📁 Elegir Archivo de Imagen",
-                supportedFormats: "Soporta JPEG, PNG, GIF, WebP (Máx. 10MB)",
-                processing: "Creando tu boceto...",
-                sketchIntensity: "Intensidad del Boceto",
-                sketchStyle: "Estilo de Boceto",
-                pencilSketch: "Boceto a Lápiz",
-                cartoonEffect: "Efecto de Caricatura",
-                artisticDrawing: "Dibujo Artístico",
-                charcoalSketch: "Boceto a Carbón",
-                createSketch: "🎨 Crear Boceto",
-                newImage: "🗑️ Nueva Imagen",
-                downloadSketch: "📥 Descargar Boceto",
-                originalImage: "Imagen Original",
-                sketchResult: "Resultado del Boceto",
-                premiumFeatures: "🚀 ¡Todas las Características Desbloqueadas!",
-                upgradePremium: "💎 ¡Todas las Características Gratis!",
-                highResolution: "Descargas de bocetos en alta resolución",
-                advancedFilters: "Filtros artísticos avanzados",
-                multipleStyles: "Múltiples estilos de boceto",
-                noWatermarks: "Sin marcas de agua",
-                batchProcessing: "Procesamiento por lotes",
-                instantConversion: "Conversión Instantánea",
-                instantDesc: "Transforma imágenes en bocetos en segundos con tecnología de IA",
-                secure: "100% Seguro",
-                secureDesc: "Tus imágenes se procesan localmente y nunca salen de tu dispositivo",
-                multipleStyles: "Múltiples Estilos",
-                multipleDesc: "Elige entre bocetos a lápiz, efectos de caricatura y dibujos artísticos",
-                privacy: "🔒 Tu Privacidad Importa: Toda la conversión de bocetos ocurre localmente en tu navegador. Nunca subimos tus imágenes a ningún servidor.",
-                errorFileType: "Por favor selecciona un archivo de imagen válido (JPEG, PNG, GIF, WebP).",
-                errorFileSize: "El archivo de imagen es demasiado grande. Por favor selecciona una imagen más pequeña (máx. 10MB).",
-                successSketch: "¡Boceto creado exitosamente! Ahora puedes descargarlo.",
-                premiumRequired: "¡Todas las características son gratuitas! Disfruta de acceso ilimitado."
-            },
-            fr: {
-                title: "🎨 Image en Croquis",
-                subtitle: "Transformez vos photos en de beaux croquis et dessins",
-                chooseImage: "📁 Choisir un Fichier Image",
-                supportedFormats: "Supporte JPEG, PNG, GIF, WebP (Max 10MB)",
-                processing: "Création de votre croquis...",
-                sketchIntensity: "Intensité du Croquis",
-                sketchStyle: "Style de Croquis",
-                pencilSketch: "Croquis au Crayon",
-                cartoonEffect: "Effet de Dessin Animé",
-                artisticDrawing: "Dessin Artistique",
-                charcoalSketch: "Croquis au Fusain",
-                createSketch: "🎨 Créer un Croquis",
-                newImage: "🗑️ Nouvelle Image",
-                downloadSketch: "📥 Télécharger le Croquis",
-                originalImage: "Image Originale",
-                sketchResult: "Résultat du Croquis",
-                premiumFeatures: "🚀 Toutes les Fonctionnalités Débloquées!",
-                upgradePremium: "💎 Toutes les Fonctionnalités Gratuites!",
-                highResolution: "Téléchargements de croquis haute résolution",
-                advancedFilters: "Filtres artistiques avancés",
-                multipleStyles: "Multiples styles de croquis",
-                noWatermarks: "Sans filigranes",
-                batchProcessing: "Traitement par lots",
-                instantConversion: "Conversion Instantanée",
-                instantDesc: "Transformez des images en croquis en secondes avec la technologie IA",
-                secure: "100% Sécurisé",
-                secureDesc: "Vos images sont traitées localement et ne quittent jamais votre appareil",
-                multipleStyles: "Styles Multiples",
-                multipleDesc: "Choisissez parmi des croquis au crayon, des effets de dessin animé et des dessins artistiques",
-                privacy: "🔒 Votre Vie Privée Compte: Toute conversion de croquis se produit localement dans votre navigateur. Nous ne téléchargeons jamais vos images sur aucun serveur.",
-                errorFileType: "Veuillez sélectionner un fichier image valide (JPEG, PNG, GIF, WebP).",
-                errorFileSize: "Le fichier image est trop volumineux. Veuillez sélectionner une image plus petite (max 10MB).",
-                successSketch: "Croquis créé avec succès! Vous pouvez maintenant le télécharger.",
-                premiumRequired: "Toutes les fonctionnalités sont gratuites! Profitez d'un accès illimité."
-            },
-            de: {
-                title: "🎨 Bild zu Skizze",
-                subtitle: "Verwandeln Sie Ihre Fotos in wunderschöne Skizzen und Zeichnungen",
-                chooseImage: "📁 Bilddatei Auswählen",
-                supportedFormats: "Unterstützt JPEG, PNG, GIF, WebP (Max. 10MB)",
-                processing: "Erstelle Ihre Skizze...",
-                sketchIntensity: "Skizzen-Intensität",
-                sketchStyle: "Skizzen-Stil",
-                pencilSketch: "Bleistift-Skizze",
-                cartoonEffect: "Cartoon-Effekt",
-                artisticDrawing: "Künstlerische Zeichnung",
-                charcoalSketch: "Kohle-Skizze",
-                createSketch: "🎨 Skizze Erstellen",
-                newImage: "🗑️ Neues Bild",
-                downloadSketch: "📥 Skizze Herunterladen",
-                originalImage: "Originalbild",
-                sketchResult: "Skizzen-Ergebnis",
-                premiumFeatures: "🚀 Alle Funktionen Freigeschaltet!",
-                upgradePremium: "💎 Alle Funktionen Kostenlos!",
-                highResolution: "Hochauflösende Skizzen-Downloads",
-                advancedFilters: "Erweiterte künstlerische Filter",
-                multipleStyles: "Mehrere Skizzen-Stile",
-                noWatermarks: "Keine Wasserzeichen",
-                batchProcessing: "Stapelverarbeitung",
-                instantConversion: "Sofortige Umwandlung",
-                instantDesc: "Verwandeln Sie Bilder in Sekunden mit KI-Technologie in Skizzen",
-                secure: "100% Sicher",
-                secureDesc: "Ihre Bilder werden lokal verarbeitet und verlassen nie Ihr Gerät",
-                multipleStyles: "Mehrere Stile",
-                multipleDesc: "Wählen Sie aus Bleistiftskizzen, Cartoon-Effekten und künstlerischen Zeichnungen",
-                privacy: "🔒 Ihre Privatsphäre ist uns wichtig: Die gesamte Skizzenkonvertierung erfolgt lokal in Ihrem Browser. Wir laden Ihre Bilder niemals auf einen Server hoch.",
-                errorFileType: "Bitte wählen Sie eine gültige Bilddatei (JPEG, PNG, GIF, WebP).",
-                errorFileSize: "Die Bilddatei ist zu groß. Bitte wählen Sie ein kleineres Bild (max. 10MB).",
-                successSketch: "Skizze erfolgreich erstellt! Sie können sie jetzt herunterladen.",
-                premiumRequired: "Alle Funktionen sind jetzt kostenlos! Genießen Sie unbegrenzten Zugang."
-            },
-            hi: {
-                title: "🎨 इमेज से स्केच",
-                subtitle: "अपनी तस्वीरों को सुंदर स्केच और ड्रॉइंग में बदलें",
-                chooseImage: "📁 इमेज फ़ाइल चुनें",
-                supportedFormats: "JPEG, PNG, GIF, WebP सपोर्टेड (अधिकतम 10MB)",
-                processing: "आपका स्केच बनाया जा रहा है...",
-                sketchIntensity: "स्केच इंटेंसिटी",
-                sketchStyle: "स्केच स्टाइल",
-                pencilSketch: "पेंसिल स्केच",
-                cartoonEffect: "कार्टून इफेक्ट",
-                artisticDrawing: "आर्टिस्टिक ड्रॉइंग",
-                charcoalSketch: "चारकोल स्केच",
-                createSketch: "🎨 स्केच बनाएं",
-                newImage: "🗑️ नई इमेज",
-                downloadSketch: "📥 स्केच डाउनलोड करें",
-                originalImage: "ओरिजिनल इमेज",
-                sketchResult: "स्केच रिजल्ट",
-                premiumFeatures: "🚀 सभी फीचर्स अनलॉक!",
-                upgradePremium: "💎 सभी फीचर्स फ्री!",
-                highResolution: "हाई-रिज़ॉल्यूशन स्केच डाउनलोड",
-                advancedFilters: "एडवांस्ड आर्टिस्टिक फिल्टर्स",
-                multipleStyles: "कई स्केच स्टाइल्स",
-                noWatermarks: "वॉटरमार्क नहीं",
-                batchProcessing: "बैच प्रोसेसिंग",
-                instantConversion: "इंस्टेंट कन्वर्जन",
-                instantDesc: "AI तकनीक से सेकंडों में इमेज को स्केच में बदलें",
-                secure: "100% सिक्योर",
-                secureDesc: "आपकी इमेज लोकल डिवाइस पर प्रोसेस होती हैं, कहीं अपलोड नहीं होतीं",
-                multipleStyles: "कई स्टाइल्स",
-                multipleDesc: "पेंसिल स्केच, कार्टून इफेक्ट और आर्टिस्टिक ड्रॉइंग में से चुनें",
-                privacy: "🔒 आपकी प्राइवेसी महत्वपूर्ण है: सभी स्केच कन्वर्जन आपके ब्राउज़र में लोकल होता है। हम आपकी इमेज किसी सर्वर पर अपलोड नहीं करते।",
-                errorFileType: "कृपया एक वैलिड इमेज फ़ाइल चुनें (JPEG, PNG, GIF, WebP)।",
-                errorFileSize: "इमेज फ़ाइल बहुत बड़ी है। कृपया छोटी इमेज चुनें (अधिकतम 10MB)।",
-                successSketch: "स्केच सफलतापूर्वक बनाया गया! अब आप इसे डाउनलोड कर सकते हैं।",
-                premiumRequired: "सभी फीचर्स अब फ्री हैं! अनलिमिटेड एक्सेस का आनंद लें।"
-            },
-            ar: {
-                title: "🎨 صورة إلى رسم",
-                subtitle: "حول صورك إلى رسومات ورسومات جميلة",
-                chooseImage: "📁 اختر ملف الصورة",
-                supportedFormats: "يدعم JPEG, PNG, GIF, WebP (الحد الأقصى 10MB)",
-                processing: "جاري إنشاء الرسم الخاص بك...",
-                sketchIntensity: "شدة الرسم",
-                sketchStyle: "نمط الرسم",
-                pencilSketch: "رسم بالقلم الرصاص",
-                cartoonEffect: "تأثير الكرتون",
-                artisticDrawing: "رسم فني",
-                charcoalSketch: "رسم بالفحم",
-                createSketch: "🎨 إنشاء رسم",
-                newImage: "🗑️ صورة جديدة",
-                downloadSketch: "📥 تحميل الرسم",
-                originalImage: "الصورة الأصلية",
-                sketchResult: "نتيجة الرسم",
-                premiumFeatures: "🚀 جميع الميزات مفتوحة!",
-                upgradePremium: "💎 جميع الميزات مجانية!",
-                highResolution: "تنزيلات رسوم عالية الدقة",
-                advancedFilters: "مرشحات فنية متقدمة",
-                multipleStyles: "أنماط رسوم متعددة",
-                noWatermarks: "بدون علامات مائية",
-                batchProcessing: "معالجة دفعة",
-                instantConversion: "تحويل فوري",
-                instantDesc: "حول الصور إلى رسوم في ثوانٍ بتقنية الذكاء الاصطناعي",
-                secure: "آمن 100%",
-                secureDesc: "يتم معالجة صورك محليًا ولا تترك جهازك أبدًا",
-                multipleStyles: "أنماط متعددة",
-                multipleDesc: "اختر من بين رسوم بالقلم الرصاص وتأثيرات الكرتون والرسومات الفنية",
-                privacy: "🔒 خصوصيتك مهمة: كل عملية تحويل الرسم تتم محليًا في متصفحك. نحن لا نرفع صورك إلى أي خادم.",
-                errorFileType: "يرجى تحديد ملف صورة صالح (JPEG, PNG, GIF, WebP).",
-                errorFileSize: "ملف الصورة كبير جدًا. يرجى تحديد صورة أصغر (الحد الأقصى 10MB).",
-                successSketch: "تم إنشاء الرسم بنجاح! يمكنك الآن تحميله.",
-                premiumRequired: "جميع الميزات مجانية الآن! استمتع بالوصول غير المحدود."
-            }
-        };
-        let currentLanguage = 'en';
-        let selectedStyle = 'pencil';
-        let originalImageData = null;
-        let sketchImageData = null;
-        // ========== INITIALIZATION ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set up event listeners
-            document.getElementById('fileInput').addEventListener('change', handleImageUpload);
-            document.getElementById('intensitySlider').addEventListener('input', updateIntensityValue);
-            document.getElementById('languageSelect').addEventListener('change', changeLanguage);
-            document.getElementById('uploadBtn').addEventListener('click', () => document.getElementById('fileInput').click());
-            document.getElementById('createBtn').addEventListener('click', convertToSketch);
-            document.getElementById('resetBtn').addEventListener('click', resetConverter);
-            document.getElementById('downloadBtn').addEventListener('click', downloadSketch);
-            document.getElementById('premiumBtn').addEventListener('click', showPremiumModal);
-            
-            // Style selection
-            document.querySelectorAll('.style-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    document.querySelectorAll('.style-option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    this.classList.add('selected');
-                    selectedStyle = this.getAttribute('data-style');
-                });
-            });
-            // Set initial language
-            changeLanguage();
-        });
-        // ========== LANGUAGE FUNCTIONS ==========
-        function changeLanguage() {
-            const select = document.getElementById('languageSelect');
-            currentLanguage = select.value;
-            const t = translations[currentLanguage];
-            
-            // Update all text content
-            document.getElementById('mainTitle').textContent = t.title;
-            document.getElementById('mainSubtitle').textContent = t.subtitle;
-            document.getElementById('uploadBtn').innerHTML = t.chooseImage;
-            document.getElementById('supportedFormats').textContent = t.supportedFormats;
-            document.getElementById('loadingText').textContent = t.processing;
-            document.getElementById('intensityLabel').textContent = t.sketchIntensity;
-            document.getElementById('styleLabel').textContent = t.sketchStyle;
-            
-            // Update style options
-            document.getElementById('pencilLabel').textContent = t.pencilSketch;
-            document.getElementById('cartoonLabel').textContent = t.cartoonEffect;
-            document.getElementById('artisticLabel').innerHTML = t.artisticDrawing + ' <span class="premium-badge">FREE</span>';
-            document.getElementById('charcoalLabel').innerHTML = t.charcoalSketch + ' <span class="premium-badge">FREE</span>';
-            
-            // Update buttons
-            document.getElementById('createBtn').innerHTML = t.createSketch;
-            document.getElementById('resetBtn').innerHTML = t.newImage;
-            document.getElementById('downloadBtn').innerHTML = t.downloadSketch;
-            
-            // Update preview section
-            document.getElementById('originalLabel').textContent = t.originalImage;
-            document.getElementById('sketchLabel').textContent = t.sketchResult;
-            
-            // Update premium section
-            document.getElementById('premiumTitle').innerHTML = t.premiumFeatures;
-            document.getElementById('premiumBtn').innerHTML = t.upgradePremium;
-            
-            document.getElementById('feature1').textContent = t.highResolution;
-            document.getElementById('feature2').textContent = t.advancedFilters;
-            document.getElementById('feature3').textContent = t.multipleStyles;
-            document.getElementById('feature4').textContent = t.noWatermarks;
-            document.getElementById('feature5').textContent = t.batchProcessing;
-            
-            // Update feature cards
-            document.getElementById('featureTitle1').textContent = t.instantConversion;
-            document.getElementById('featureDesc1').textContent = t.instantDesc;
-            document.getElementById('featureTitle2').textContent = t.secure;
-            document.getElementById('featureDesc2').textContent = t.secureDesc;
-            document.getElementById('featureTitle3').textContent = t.multipleStyles;
-            document.getElementById('featureDesc3').textContent = t.multipleDesc;
-            
-            // Update privacy banner
-            document.getElementById('privacyText').innerHTML = t.privacy;
-        }
-        // ========== IMAGE UPLOAD HANDLING ==========
-        function handleImageUpload(event) {
-            const file = event.target.files[0];
-            
-            if (!file) return;
-            
-            // Validate file type
-            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-            if (!validTypes.includes(file.type)) {
-                showError(translations[currentLanguage].errorFileType);
-                return;
-            }
-            
-            // Validate file size (10MB max)
-            if (file.size > 10 * 1024 * 1024) {
-                showError(translations[currentLanguage].errorFileSize);
-                return;
-            }
-            
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                originalImageData = e.target.result;
-                
-                // Display original image
-                const originalImage = document.getElementById('originalImage');
-                originalImage.src = originalImageData;
-                
-                // Show controls and preview sections
-                document.getElementById('controlsSection').style.display = 'block';
-                document.getElementById('previewSection').style.display = 'block';
-                
-                // Hide any previous errors
-                hideError();
-            };
-            
-            reader.readAsDataURL(file);
-        }
-        // ========== SKETCH CONVERSION ==========
-        function convertToSketch() {
-            if (!originalImageData) {
-                showError("Please upload an image first.");
-                return;
-            }
-            
-            // Show loading indicator
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('downloadBtn').style.display = 'none';
-            
-            // Faster processing (500ms instead of 1500ms)
-            setTimeout(() => {
-                // Create a canvas for image processing
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                const img = new Image();
-                
-                img.onload = function() {
-                    // Set canvas dimensions
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    
-                    // Draw original image
-                    ctx.drawImage(img, 0, 0);
-                    
-                    // Get image data
-                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    const data = imageData.data;
-                    
-                    // Apply sketch effect based on selected style
-                    const intensity = document.getElementById('intensitySlider').value;
-                    
-                    switch(selectedStyle) {
-                        case 'pencil':
-                            applyPencilSketch(data, canvas.width, canvas.height, intensity);
-                            break;
-                        case 'cartoon':
-                            applyCartoonEffect(data, canvas.width, canvas.height, intensity);
-                            break;
-                        case 'artistic':
-                            applyArtisticDrawing(data, canvas.width, canvas.height, intensity);
-                            break;
-                        case 'charcoal':
-                            applyCharcoalSketch(data, canvas.width, canvas.height, intensity);
-                            break;
-                        default:
-                            applyPencilSketch(data, canvas.width, canvas.height, intensity);
-                    }
-                    
-                    // Put modified image data back
-                    ctx.putImageData(imageData, 0, 0);
-                    
-                    // Convert to data URL and display
-                    sketchImageData = canvas.toDataURL('image/png');
-                    document.getElementById('sketchImage').src = sketchImageData;
-                    
-                    // Hide loading and show download button
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('downloadBtn').style.display = 'flex';
-                    
-                    // Show success message
-                    showSuccess(translations[currentLanguage].successSketch);
-                };
-                
-                img.src = originalImageData;
-            }, 500); // Faster processing
-        }
-        // ========== SKETCH ALGORITHMS ==========
-        function applyPencilSketch(data, width, height, intensity) {
-            // Simple and fast pencil sketch effect
-            for (let i = 0; i < data.length; i += 4) {
-                // Convert to grayscale
-                const gray = (data[i] + data[i+1] + data[i+2]) / 3;
-                
-                // Invert for pencil sketch effect
-                const inverted = 255 - gray;
-                
-                // Adjust based on intensity
-                const adjusted = Math.min(255, inverted * (intensity / 5));
-                
-                // Set RGB values
-                data[i] = adjusted;
-                data[i+1] = adjusted;
-                data[i+2] = adjusted;
-            }
-        }
-        function applyCartoonEffect(data, width, height, intensity) {
-            // Fast cartoon effect with color quantization
-            const quantizationLevel = Math.max(2, 12 - intensity);
-            
-            for (let i = 0; i < data.length; i += 4) {
-                // Color quantization
-                data[i] = Math.floor(data[i] / quantizationLevel) * quantizationLevel;
-                data[i+1] = Math.floor(data[i+1] / quantizationLevel) * quantizationLevel;
-                data[i+2] = Math.floor(data[i+2] / quantizationLevel) * quantizationLevel;
-                
-                // Enhance contrast
-                const avg = (data[i] + data[i+1] + data[i+2]) / 3;
-                if (avg > 128) {
-                    data[i] = Math.min(255, data[i] + 20);
-                    data[i+1] = Math.min(255, data[i+1] + 20);
-                    data[i+2] = Math.min(255, data[i+2] + 20);
-                } else {
-                    data[i] = Math.max(0, data[i] - 20);
-                    data[i+1] = Math.max(0, data[i+1] - 20);
-                    data[i+2] = Math.max(0, data[i+2] - 20);
-                }
-            }
-        }
-        function applyArtisticDrawing(data, width, height, intensity) {
-            // Artistic effect with enhanced colors
-            for (let i = 0; i < data.length; i += 4) {
-                // Boost colors
-                data[i] = Math.min(255, data[i] * 1.2);     // Red
-                data[i+1] = Math.min(255, data[i+1] * 1.1); // Green
-                data[i+2] = Math.min(255, data[i+2] * 1.3); // Blue
-                
-                // Add some artistic flair
-                if (i % 8 === 0) {
-                    data[i] = Math.min(255, data[i] + 30);
-                }
-                if (i % 12 === 0) {
-                    data[i+1] = Math.min(255, data[i+1] + 20);
-                }
-            }
-        }
-        function applyCharcoalSketch(data, width, height, intensity) {
-            // Charcoal effect with noise
-            const noiseLevel = intensity * 3;
-            
-            for (let i = 0; i < data.length; i += 4) {
-                // Convert to grayscale and invert
-                const gray = 255 - ((data[i] + data[i+1] + data[i+2]) / 3);
-                
-                // Add charcoal texture (random noise)
-                const noise = (Math.random() - 0.5) * noiseLevel;
-                const charcoalValue = Math.max(0, Math.min(255, gray + noise));
-                
-                data[i] = charcoalValue;
-                data[i+1] = charcoalValue;
-                data[i+2] = charcoalValue;
-            }
-        }
-        // ========== UI CONTROLS ==========
-        function updateIntensityValue() {
-            const slider = document.getElementById('intensitySlider');
-            const valueDisplay = document.getElementById('intensityValue');
-            valueDisplay.textContent = slider.value;
-        }
-        function resetConverter() {
-            // Reset file input
-            document.getElementById('fileInput').value = '';
-            
-            // Hide sections
-            document.getElementById('controlsSection').style.display = 'none';
-            document.getElementById('previewSection').style.display = 'none';
-            document.getElementById('downloadBtn').style.display = 'none';
-            
-            // Clear images
-            document.getElementById('originalImage').src = '';
-            document.getElementById('sketchImage').src = '';
-            
-            // Reset to default values
-            document.getElementById('intensitySlider').value = 5;
-            updateIntensityValue();
-            
-            // Reset style selection
-            document.querySelectorAll('.style-option').forEach(opt => {
-                opt.classList.remove('selected');
-                if (opt.getAttribute('data-style') === 'pencil') {
-                    opt.classList.add('selected');
-                }
-            });
-            selectedStyle = 'pencil';
-            
-            // Clear data
-            originalImageData = null;
-            sketchImageData = null;
-            
-            // Hide any errors
-            hideError();
-        }
-        function downloadSketch() {
-            if (!sketchImageData) return;
-            
-            const link = document.createElement('a');
-            link.download = 'sketch-' + Date.now() + '.png';
-            link.href = sketchImageData;
-            link.click();
-        }
-        // ========== ERROR AND MESSAGE HANDLING ==========
-        function showError(message) {
-            const errorContainer = document.getElementById('errorContainer');
-            errorContainer.innerHTML = `
-                <div class="error-message">
-                    <span>❌ ${message}</span>
-                    <button class="close-btn" onclick="hideError()">×</button>
-                </div>
-            `;
-            errorContainer.style.display = 'block';
-        }
-        function showSuccess(message) {
-            const errorContainer = document.getElementById('errorContainer');
-            errorContainer.innerHTML = `
-                <div class="warning-message">
-                    <span>✅ ${message}</span>
-                    <button class="close-btn" onclick="hideError()">×</button>
-                </div>
-            `;
-            errorContainer.style.display = 'block';
-        }
-        function hideError() {
-            document.getElementById('errorContainer').style.display = 'none';
-        }
-        function showPremiumModal() {
-            alert('🎉 All premium features are now completely free!\n\nEnjoy unlimited access to:\n• All sketch styles\n• High-resolution downloads\n• Advanced filters\n• No watermarks\n• Batch processing');
-        }
-    </script>
+    <div class="container">
+        <div class="language-selector">
+            <select id="languageSelect">
+                <option value="en">🌐 English</option>
+                <option value="es">🌐 Español</option>
+                <option value="fr">🌐 Français</option>
+                <option value="de">🌐 Deutsch</option>
+                <option value="hi">🌐 हिन्दी</option>
+                <option value="ar">🌐 العربية</option>
+            </select>
+        </div>
+
+        <div class="header">
+            <h1 id="mainTitle">🎨 Image to Sketch</h1>
+            <p id="mainSubtitle">Transform your photos into beautiful sketches and drawings</p>
+        </div>
+
+        <div class="tool-card">
+            <div class="upload-section">
+                <input type="file" id="fileInput" accept="image/*" class="file-input">
+                <button class="upload-btn" id="uploadBtn">
+                    📁 Choose Image File
+                </button>
+                <p style="margin-top: 10px; color: #718096;" id="supportedFormats">
+                    Supports JPEG, PNG, GIF, WebP (Max 10MB)
+                </p>
+            </div>
+
+            <div id="loading" class="loading-container">
+                <div class="loading-spinner"></div>
+                <p id="loadingText">Creating your sketch...</p>
+            </div>
+
+            <div id="controlsSection" class="controls-section">
+                <div class="sketch-controls">
+                    <div class="control-group">
+                        <label for="intensitySlider" id="intensityLabel">Sketch Intensity</label>
+                        <input type="range" id="intensitySlider" class="intensity-slider" min="1" max="10" value="5">
+                        <div class="intensity-value">
+                            <span id="intensityValue">5</span>/10
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label id="styleLabel">Sketch Style</label>
+                        <div class="style-options">
+                            <div class="style-option selected" data-style="pencil">
+                                <div class="style-icon">✏️</div>
+                                <div id="pencilLabel">Pencil Sketch</div>
+                            </div>
+                            <div class="style-option" data-style="cartoon">
+                                <div class="style-icon">🖼️</div>
+                                <div id="cartoonLabel">Cartoon Effect</div>
+                            </div>
+                            <div class="style-option" data-style="artistic">
+                                <div class="style-icon">🎨</div>
+                                <div id="artisticLabel">Artistic Drawing <span class="premium-badge">FREE</span></div>
+                            </div>
+                            <div class="style-option" data-style="charcoal">
+                                <div class="style-icon">⚫</div>
+                                <div id="charcoalLabel">Charcoal Sketch <span class="premium-badge">FREE</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="premium-features">
+                    <h3 id="premiumTitle">🚀 All Features Unlocked!</h3>
+                    <ul class="premium-list">
+                        <li id="feature1">High-resolution sketch downloads</li>
+                        <li id="feature2">Advanced artistic filters</li>
+                        <li id="feature3">Multiple sketch styles</li>
+                        <li id="feature4">No watermarks</li>
+                        <li id="feature5">Batch processing</li>
+                    </ul>
+                    <button class="btn btn-premium" id="premiumBtn">
+                        💎 All Features Free!
+                    </button>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="createBtn">
+                        🎨 Create Sketch
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn">
+                        🗑️ New Image
+                    </button>
+                </div>
+            </div>
+
+            <div id="previewSection" class="preview-section">
+                <div class="preview-container">
+                    <div class="preview-box">
+                        <h3 id="originalLabel">Original Image</h3>
+                        <img id="originalImage" class="preview-image">
+                    </div>
+                    <div class="preview-box">
+                        <h3 id="sketchLabel">Sketch Result</h3>
+                        <img id="sketchImage" class="preview-image">
+                    </div>
+                </div>
+
+                <button class="btn btn-download" id="downloadBtn">
+                    📥 Download Sketch
+                </button>
+            </div>
+
+            <div id="errorContainer" class="error-container"></div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 id="featureTitle1">Instant Conversion</h3>
+                <p id="featureDesc1">Transform images to sketches in seconds with AI-powered technology</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 id="featureTitle2">100% Secure</h3>
+                <p id="featureDesc2">Your images are processed locally and never leave your device</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 id="featureTitle3">Multiple Styles</h3>
+                <p id="featureDesc3">Choose from pencil sketches, cartoon effects, and artistic drawings</p>
+            </div>
+        </div>
+
+        <div class="privacy-banner">
+            <p id="privacyText">🔒 <strong>Your Privacy Matters:</strong> All sketch conversion happens locally in your browser. We never upload your images to any server.</p>
+        </div>
+    </div>
+
+    <script>
+        // ========== MULTI-LANGUAGE SUPPORT ==========
+        const translations = {
+            en: {
+                title: "🎨 Image to Sketch",
+                subtitle: "Transform your photos into beautiful sketches and drawings",
+                chooseImage: "📁 Choose Image File",
+                supportedFormats: "Supports JPEG, PNG, GIF, WebP (Max 10MB)",
+                processing: "Creating your sketch...",
+                sketchIntensity: "Sketch Intensity",
+                sketchStyle: "Sketch Style",
+                pencilSketch: "Pencil Sketch",
+                cartoonEffect: "Cartoon Effect",
+                artisticDrawing: "Artistic Drawing",
+                charcoalSketch: "Charcoal Sketch",
+                createSketch: "🎨 Create Sketch",
+                newImage: "🗑️ New Image",
+                downloadSketch: "📥 Download Sketch",
+                originalImage: "Original Image",
+                sketchResult: "Sketch Result",
+                premiumFeatures: "🚀 All Features Unlocked!",
+                upgradePremium: "💎 All Features Free!",
+                highResolution: "High-resolution sketch downloads",
+                advancedFilters: "Advanced artistic filters",
+                multipleStyles: "Multiple sketch styles",
+                noWatermarks: "No watermarks",
+                batchProcessing: "Batch processing",
+                instantConversion: "Instant Conversion",
+                instantDesc: "Transform images to sketches in seconds with AI-powered technology",
+                secure: "100% Secure",
+                secureDesc: "Your images are processed locally and never leave your device",
+                multipleStyles: "Multiple Styles",
+                multipleDesc: "Choose from pencil sketches, cartoon effects, and artistic drawings",
+                privacy: "🔒 Your Privacy Matters: All sketch conversion happens locally in your browser. We never upload your images to any server.",
+                errorFileType: "Please select a valid image file (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "Image file is too large. Please select a smaller image (max 10MB).",
+                successSketch: "Sketch created successfully! You can now download it.",
+                premiumRequired: "All features are now free! Enjoy unlimited access."
+            },
+            es: {
+                title: "🎨 Imagen a Boceto",
+                subtitle: "Transforma tus fotos en hermosos bocetos y dibujos",
+                chooseImage: "📁 Elegir Archivo de Imagen",
+                supportedFormats: "Soporta JPEG, PNG, GIF, WebP (Máx. 10MB)",
+                processing: "Creando tu boceto...",
+                sketchIntensity: "Intensidad del Boceto",
+                sketchStyle: "Estilo de Boceto",
+                pencilSketch: "Boceto a Lápiz",
+                cartoonEffect: "Efecto de Caricatura",
+                artisticDrawing: "Dibujo Artístico",
+                charcoalSketch: "Boceto a Carbón",
+                createSketch: "🎨 Crear Boceto",
+                newImage: "🗑️ Nueva Imagen",
+                downloadSketch: "📥 Descargar Boceto",
+                originalImage: "Imagen Original",
+                sketchResult: "Resultado del Boceto",
+                premiumFeatures: "🚀 ¡Todas las Características Desbloqueadas!",
+                upgradePremium: "💎 ¡Todas las Características Gratis!",
+                highResolution: "Descargas de bocetos en alta resolución",
+                advancedFilters: "Filtros artísticos avanzados",
+                multipleStyles: "Múltiples estilos de boceto",
+                noWatermarks: "Sin marcas de agua",
+                batchProcessing: "Procesamiento por lotes",
+                instantConversion: "Conversión Instantánea",
+                instantDesc: "Transforma imágenes en bocetos en segundos con tecnología de IA",
+                secure: "100% Seguro",
+                secureDesc: "Tus imágenes se procesan localmente y nunca salen de tu dispositivo",
+                multipleStyles: "Múltiples Estilos",
+                multipleDesc: "Elige entre bocetos a lápiz, efectos de caricatura y dibujos artísticos",
+                privacy: "🔒 Tu Privacidad Importa: Toda la conversión de bocetos ocurre localmente en tu navegador. Nunca subimos tus imágenes a ningún servidor.",
+                errorFileType: "Por favor selecciona un archivo de imagen válido (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "El archivo de imagen es demasiado grande. Por favor selecciona una imagen más pequeña (máx. 10MB).",
+                successSketch: "¡Boceto creado exitosamente! Ahora puedes descargarlo.",
+                premiumRequired: "¡Todas las características son gratuitas! Disfruta de acceso ilimitado."
+            },
+            fr: {
+                title: "🎨 Image en Croquis",
+                subtitle: "Transformez vos photos en de beaux croquis et dessins",
+                chooseImage: "📁 Choisir un Fichier Image",
+                supportedFormats: "Supporte JPEG, PNG, GIF, WebP (Max 10MB)",
+                processing: "Création de votre croquis...",
+                sketchIntensity: "Intensité du Croquis",
+                sketchStyle: "Style de Croquis",
+                pencilSketch: "Croquis au Crayon",
+                cartoonEffect: "Effet de Dessin Animé",
+                artisticDrawing: "Dessin Artistique",
+                charcoalSketch: "Croquis au Fusain",
+                createSketch: "🎨 Créer un Croquis",
+                newImage: "🗑️ Nouvelle Image",
+                downloadSketch: "📥 Télécharger le Croquis",
+                originalImage: "Image Originale",
+                sketchResult: "Résultat du Croquis",
+                premiumFeatures: "🚀 Toutes les Fonctionnalités Débloquées!",
+                upgradePremium: "💎 Toutes les Fonctionnalités Gratuites!",
+                highResolution: "Téléchargements de croquis haute résolution",
+                advancedFilters: "Filtres artistiques avancés",
+                multipleStyles: "Multiples styles de croquis",
+                noWatermarks: "Sans filigranes",
+                batchProcessing: "Traitement par lots",
+                instantConversion: "Conversion Instantanée",
+                instantDesc: "Transformez des images en croquis en secondes avec la technologie IA",
+                secure: "100% Sécurisé",
+                secureDesc: "Vos images sont traitées localement et ne quittent jamais votre appareil",
+                multipleStyles: "Styles Multiples",
+                multipleDesc: "Choisissez parmi des croquis au crayon, des effets de dessin animé et des dessins artistiques",
+                privacy: "🔒 Votre Vie Privée Compte: Toute conversion de croquis se produit localement dans votre navigateur. Nous ne téléchargeons jamais vos images sur aucun serveur.",
+                errorFileType: "Veuillez sélectionner un fichier image valide (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "Le fichier image est trop volumineux. Veuillez sélectionner une image plus petite (max 10MB).",
+                successSketch: "Croquis créé avec succès! Vous pouvez maintenant le télécharger.",
+                premiumRequired: "Toutes les fonctionnalités sont gratuites! Profitez d'un accès illimité."
+            },
+            de: {
+                title: "🎨 Bild zu Skizze",
+                subtitle: "Verwandeln Sie Ihre Fotos in wunderschöne Skizzen und Zeichnungen",
+                chooseImage: "📁 Bilddatei Auswählen",
+                supportedFormats: "Unterstützt JPEG, PNG, GIF, WebP (Max. 10MB)",
+                processing: "Erstelle Ihre Skizze...",
+                sketchIntensity: "Skizzen-Intensität",
+                sketchStyle: "Skizzen-Stil",
+                pencilSketch: "Bleistift-Skizze",
+                cartoonEffect: "Cartoon-Effekt",
+                artisticDrawing: "Künstlerische Zeichnung",
+                charcoalSketch: "Kohle-Skizze",
+                createSketch: "🎨 Skizze Erstellen",
+                newImage: "🗑️ Neues Bild",
+                downloadSketch: "📥 Skizze Herunterladen",
+                originalImage: "Originalbild",
+                sketchResult: "Skizzen-Ergebnis",
+                premiumFeatures: "🚀 Alle Funktionen Freigeschaltet!",
+                upgradePremium: "💎 Alle Funktionen Kostenlos!",
+                highResolution: "Hochauflösende Skizzen-Downloads",
+                advancedFilters: "Erweiterte künstlerische Filter",
+                multipleStyles: "Mehrere Skizzen-Stile",
+                noWatermarks: "Keine Wasserzeichen",
+                batchProcessing: "Stapelverarbeitung",
+                instantConversion: "Sofortige Umwandlung",
+                instantDesc: "Verwandeln Sie Bilder in Sekunden mit KI-Technologie in Skizzen",
+                secure: "100% Sicher",
+                secureDesc: "Ihre Bilder werden lokal verarbeitet und verlassen nie Ihr Gerät",
+                multipleStyles: "Mehrere Stile",
+                multipleDesc: "Wählen Sie aus Bleistiftskizzen, Cartoon-Effekten und künstlerischen Zeichnungen",
+                privacy: "🔒 Ihre Privatsphäre ist uns wichtig: Die gesamte Skizzenkonvertierung erfolgt lokal in Ihrem Browser. Wir laden Ihre Bilder niemals auf einen Server hoch.",
+                errorFileType: "Bitte wählen Sie eine gültige Bilddatei (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "Die Bilddatei ist zu groß. Bitte wählen Sie ein kleineres Bild (max. 10MB).",
+                successSketch: "Skizze erfolgreich erstellt! Sie können sie jetzt herunterladen.",
+                premiumRequired: "Alle Funktionen sind jetzt kostenlos! Genießen Sie unbegrenzten Zugang."
+            },
+            hi: {
+                title: "🎨 इमेज से स्केच",
+                subtitle: "अपनी तस्वीरों को सुंदर स्केच और ड्रॉइंग में बदलें",
+                chooseImage: "📁 इमेज फ़ाइल चुनें",
+                supportedFormats: "JPEG, PNG, GIF, WebP सपोर्टेड (अधिकतम 10MB)",
+                processing: "आपका स्केच बनाया जा रहा है...",
+                sketchIntensity: "स्केच इंटेंसिटी",
+                sketchStyle: "स्केच स्टाइल",
+                pencilSketch: "पेंसिल स्केच",
+                cartoonEffect: "कार्टून इफेक्ट",
+                artisticDrawing: "आर्टिस्टिक ड्रॉइंग",
+                charcoalSketch: "चारकोल स्केच",
+                createSketch: "🎨 स्केच बनाएं",
+                newImage: "🗑️ नई इमेज",
+                downloadSketch: "📥 स्केच डाउनलोड करें",
+                originalImage: "ओरिजिनल इमेज",
+                sketchResult: "स्केच रिजल्ट",
+                premiumFeatures: "🚀 सभी फीचर्स अनलॉक!",
+                upgradePremium: "💎 सभी फीचर्स फ्री!",
+                highResolution: "हाई-रिज़ॉल्यूशन स्केच डाउनलोड",
+                advancedFilters: "एडवांस्ड आर्टिस्टिक फिल्टर्स",
+                multipleStyles: "कई स्केच स्टाइल्स",
+                noWatermarks: "वॉटरमार्क नहीं",
+                batchProcessing: "बैच प्रोसेसिंग",
+                instantConversion: "इंस्टेंट कन्वर्जन",
+                instantDesc: "AI तकनीक से सेकंडों में इमेज को स्केच में बदलें",
+                secure: "100% सिक्योर",
+                secureDesc: "आपकी इमेज लोकल डिवाइस पर प्रोसेस होती हैं, कहीं अपलोड नहीं होतीं",
+                multipleStyles: "कई स्टाइल्स",
+                multipleDesc: "पेंसिल स्केच, कार्टून इफेक्ट और आर्टिस्टिक ड्रॉइंग में से चुनें",
+                privacy: "🔒 आपकी प्राइवेसी महत्वपूर्ण है: सभी स्केच कन्वर्जन आपके ब्राउज़र में लोकल होता है। हम आपकी इमेज किसी सर्वर पर अपलोड नहीं करते।",
+                errorFileType: "कृपया एक वैलिड इमेज फ़ाइल चुनें (JPEG, PNG, GIF, WebP)।",
+                errorFileSize: "इमेज फ़ाइल बहुत बड़ी है। कृपया छोटी इमेज चुनें (अधिकतम 10MB)।",
+                successSketch: "स्केच सफलतापूर्वक बनाया गया! अब आप इसे डाउनलोड कर सकते हैं।",
+                premiumRequired: "सभी फीचर्स अब फ्री हैं! अनलिमिटेड एक्सेस का आनंद लें।"
+            },
+            ar: {
+                title: "🎨 صورة إلى رسم",
+                subtitle: "حول صورك إلى رسومات ورسومات جميلة",
+                chooseImage: "📁 اختر ملف الصورة",
+                supportedFormats: "يدعم JPEG, PNG, GIF, WebP (الحد الأقصى 10MB)",
+                processing: "جاري إنشاء الرسم الخاص بك...",
+                sketchIntensity: "شدة الرسم",
+                sketchStyle: "نمط الرسم",
+                pencilSketch: "رسم بالقلم الرصاص",
+                cartoonEffect: "تأثير الكرتون",
+                artisticDrawing: "رسم فني",
+                charcoalSketch: "رسم بالفحم",
+                createSketch: "🎨 إنشاء رسم",
+                newImage: "🗑️ صورة جديدة",
+                downloadSketch: "📥 تحميل الرسم",
+                originalImage: "الصورة الأصلية",
+                sketchResult: "نتيجة الرسم",
+                premiumFeatures: "🚀 جميع الميزات مفتوحة!",
+                upgradePremium: "💎 جميع الميزات مجانية!",
+                highResolution: "تنزيلات رسوم عالية الدقة",
+                advancedFilters: "مرشحات فنية متقدمة",
+                multipleStyles: "أنماط رسوم متعددة",
+                noWatermarks: "بدون علامات مائية",
+                batchProcessing: "معالجة دفعة",
+                instantConversion: "تحويل فوري",
+                instantDesc: "حول الصور إلى رسوم في ثوانٍ بتقنية الذكاء الاصطناعي",
+                secure: "آمن 100%",
+                secureDesc: "يتم معالجة صورك محليًا ولا تترك جهازك أبدًا",
+                multipleStyles: "أنماط متعددة",
+                multipleDesc: "اختر من بين رسوم بالقلم الرصاص وتأثيرات الكرتون والرسومات الفنية",
+                privacy: "🔒 خصوصيتك مهمة: كل عملية تحويل الرسم تتم محليًا في متصفحك. نحن لا نرفع صورك إلى أي خادم.",
+                errorFileType: "يرجى تحديد ملف صورة صالح (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "ملف الصورة كبير جدًا. يرجى تحديد صورة أصغر (الحد الأقصى 10MB).",
+                successSketch: "تم إنشاء الرسم بنجاح! يمكنك الآن تحميله.",
+                premiumRequired: "جميع الميزات مجانية الآن! استمتع بالوصول غير المحدود."
+            }
+        };
+
+        let currentLanguage = 'en';
+        let selectedStyle = 'pencil';
+        let originalImageData = null;
+        let sketchImageData = null;
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up event listeners
+            document.getElementById('fileInput').addEventListener('change', handleImageUpload);
+            document.getElementById('intensitySlider').addEventListener('input', updateIntensityValue);
+            document.getElementById('languageSelect').addEventListener('change', changeLanguage);
+            document.getElementById('uploadBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+            document.getElementById('createBtn').addEventListener('click', convertToSketch);
+            document.getElementById('resetBtn').addEventListener('click', resetConverter);
+            document.getElementById('downloadBtn').addEventListener('click', downloadSketch);
+            document.getElementById('premiumBtn').addEventListener('click', showPremiumModal);
+            
+            // Style selection
+            document.querySelectorAll('.style-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.style-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    selectedStyle = this.getAttribute('data-style');
+                });
+            });
+
+            // Set initial language
+            changeLanguage();
+        });
+
+        // ========== LANGUAGE FUNCTIONS ==========
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            currentLanguage = select.value;
+            const t = translations[currentLanguage];
+            
+            // Update all text content
+            document.getElementById('mainTitle').textContent = t.title;
+            document.getElementById('mainSubtitle').textContent = t.subtitle;
+            document.getElementById('uploadBtn').innerHTML = t.chooseImage;
+            document.getElementById('supportedFormats').textContent = t.supportedFormats;
+            document.getElementById('loadingText').textContent = t.processing;
+            document.getElementById('intensityLabel').textContent = t.sketchIntensity;
+            document.getElementById('styleLabel').textContent = t.sketchStyle;
+            
+            // Update style options
+            document.getElementById('pencilLabel').textContent = t.pencilSketch;
+            document.getElementById('cartoonLabel').textContent = t.cartoonEffect;
+            document.getElementById('artisticLabel').innerHTML = t.artisticDrawing + ' <span class="premium-badge">FREE</span>';
+            document.getElementById('charcoalLabel').innerHTML = t.charcoalSketch + ' <span class="premium-badge">FREE</span>';
+            
+            // Update buttons
+            document.getElementById('createBtn').innerHTML = t.createSketch;
+            document.getElementById('resetBtn').innerHTML = t.newImage;
+            document.getElementById('downloadBtn').innerHTML = t.downloadSketch;
+            
+            // Update preview section
+            document.getElementById('originalLabel').textContent = t.originalImage;
+            document.getElementById('sketchLabel').textContent = t.sketchResult;
+            
+            // Update premium section
+            document.getElementById('premiumTitle').innerHTML = t.premiumFeatures;
+            document.getElementById('premiumBtn').innerHTML = t.upgradePremium;
+            
+            document.getElementById('feature1').textContent = t.highResolution;
+            document.getElementById('feature2').textContent = t.advancedFilters;
+            document.getElementById('feature3').textContent = t.multipleStyles;
+            document.getElementById('feature4').textContent = t.noWatermarks;
+            document.getElementById('feature5').textContent = t.batchProcessing;
+            
+            // Update feature cards
+            document.getElementById('featureTitle1').textContent = t.instantConversion;
+            document.getElementById('featureDesc1').textContent = t.instantDesc;
+            document.getElementById('featureTitle2').textContent = t.secure;
+            document.getElementById('featureDesc2').textContent = t.secureDesc;
+            document.getElementById('featureTitle3').textContent = t.multipleStyles;
+            document.getElementById('featureDesc3').textContent = t.multipleDesc;
+            
+            // Update privacy banner
+            document.getElementById('privacyText').innerHTML = t.privacy;
+        }
+
+        // ========== IMAGE UPLOAD HANDLING ==========
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            
+            if (!file) return;
+            
+            // Validate file type
+            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            if (!validTypes.includes(file.type)) {
+                showError(translations[currentLanguage].errorFileType);
+                return;
+            }
+            
+            // Validate file size (10MB max)
+            if (file.size > 10 * 1024 * 1024) {
+                showError(translations[currentLanguage].errorFileSize);
+                return;
+            }
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                originalImageData = e.target.result;
+                
+                // Display original image
+                const originalImage = document.getElementById('originalImage');
+                originalImage.src = originalImageData;
+                
+                // Show controls and preview sections
+                document.getElementById('controlsSection').style.display = 'block';
+                document.getElementById('previewSection').style.display = 'block';
+                
+                // Hide any previous errors
+                hideError();
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        // ========== SKETCH CONVERSION ==========
+        function convertToSketch() {
+            if (!originalImageData) {
+                showError("Please upload an image first.");
+                return;
+            }
+            
+            // Show loading indicator
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('downloadBtn').style.display = 'none';
+            
+            // Faster processing (500ms instead of 1500ms)
+            setTimeout(() => {
+                // Create a canvas for image processing
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+                
+                img.onload = function() {
+                    // Set canvas dimensions
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    
+                    // Draw original image
+                    ctx.drawImage(img, 0, 0);
+                    
+                    // Get image data
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = imageData.data;
+                    
+                    // Apply sketch effect based on selected style
+                    const intensity = document.getElementById('intensitySlider').value;
+                    
+                    switch(selectedStyle) {
+                        case 'pencil':
+                            applyPencilSketch(data, canvas.width, canvas.height, intensity);
+                            break;
+                        case 'cartoon':
+                            applyCartoonEffect(data, canvas.width, canvas.height, intensity);
+                            break;
+                        case 'artistic':
+                            applyArtisticDrawing(data, canvas.width, canvas.height, intensity);
+                            break;
+                        case 'charcoal':
+                            applyCharcoalSketch(data, canvas.width, canvas.height, intensity);
+                            break;
+                        default:
+                            applyPencilSketch(data, canvas.width, canvas.height, intensity);
+                    }
+                    
+                    // Put modified image data back
+                    ctx.putImageData(imageData, 0, 0);
+                    
+                    // Convert to data URL and display
+                    sketchImageData = canvas.toDataURL('image/png');
+                    document.getElementById('sketchImage').src = sketchImageData;
+                    
+                    // Hide loading and show download button
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('downloadBtn').style.display = 'flex';
+                    
+                    // Show success message
+                    showSuccess(translations[currentLanguage].successSketch);
+                };
+                
+                img.src = originalImageData;
+            }, 500); // Faster processing
+        }
+
+        // ========== SKETCH ALGORITHMS ==========
+        function applyPencilSketch(data, width, height, intensity) {
+            // Simple and fast pencil sketch effect
+            for (let i = 0; i < data.length; i += 4) {
+                // Convert to grayscale
+                const gray = (data[i] + data[i+1] + data[i+2]) / 3;
+                
+                // Invert for pencil sketch effect
+                const inverted = 255 - gray;
+                
+                // Adjust based on intensity
+                const adjusted = Math.min(255, inverted * (intensity / 5));
+                
+                // Set RGB values
+                data[i] = adjusted;
+                data[i+1] = adjusted;
+                data[i+2] = adjusted;
+            }
+        }
+
+        function applyCartoonEffect(data, width, height, intensity) {
+            // Fast cartoon effect with color quantization
+            const quantizationLevel = Math.max(2, 12 - intensity);
+            
+            for (let i = 0; i < data.length; i += 4) {
+                // Color quantization
+                data[i] = Math.floor(data[i] / quantizationLevel) * quantizationLevel;
+                data[i+1] = Math.floor(data[i+1] / quantizationLevel) * quantizationLevel;
+                data[i+2] = Math.floor(data[i+2] / quantizationLevel) * quantizationLevel;
+                
+                // Enhance contrast
+                const avg = (data[i] + data[i+1] + data[i+2]) / 3;
+                if (avg > 128) {
+                    data[i] = Math.min(255, data[i] + 20);
+                    data[i+1] = Math.min(255, data[i+1] + 20);
+                    data[i+2] = Math.min(255, data[i+2] + 20);
+                } else {
+                    data[i] = Math.max(0, data[i] - 20);
+                    data[i+1] = Math.max(0, data[i+1] - 20);
+                    data[i+2] = Math.max(0, data[i+2] - 20);
+                }
+            }
+        }
+
+        function applyArtisticDrawing(data, width, height, intensity) {
+            // Artistic effect with enhanced colors
+            for (let i = 0; i < data.length; i += 4) {
+                // Boost colors
+                data[i] = Math.min(255, data[i] * 1.2);     // Red
+                data[i+1] = Math.min(255, data[i+1] * 1.1); // Green
+                data[i+2] = Math.min(255, data[i+2] * 1.3); // Blue
+                
+                // Add some artistic flair
+                if (i % 8 === 0) {
+                    data[i] = Math.min(255, data[i] + 30);
+                }
+                if (i % 12 === 0) {
+                    data[i+1] = Math.min(255, data[i+1] + 20);
+                }
+            }
+        }
+
+        function applyCharcoalSketch(data, width, height, intensity) {
+            // Charcoal effect with noise
+            const noiseLevel = intensity * 3;
+            
+            for (let i = 0; i < data.length; i += 4) {
+                // Convert to grayscale and invert
+                const gray = 255 - ((data[i] + data[i+1] + data[i+2]) / 3);
+                
+                // Add charcoal texture (random noise)
+                const noise = (Math.random() - 0.5) * noiseLevel;
+                const charcoalValue = Math.max(0, Math.min(255, gray + noise));
+                
+                data[i] = charcoalValue;
+                data[i+1] = charcoalValue;
+                data[i+2] = charcoalValue;
+            }
+        }
+
+        // ========== UI CONTROLS ==========
+        function updateIntensityValue() {
+            const slider = document.getElementById('intensitySlider');
+            const valueDisplay = document.getElementById('intensityValue');
+            valueDisplay.textContent = slider.value;
+        }
+
+        function resetConverter() {
+            // Reset file input
+            document.getElementById('fileInput').value = '';
+            
+            // Hide sections
+            document.getElementById('controlsSection').style.display = 'none';
+            document.getElementById('previewSection').style.display = 'none';
+            document.getElementById('downloadBtn').style.display = 'none';
+            
+            // Clear images
+            document.getElementById('originalImage').src = '';
+            document.getElementById('sketchImage').src = '';
+            
+            // Reset to default values
+            document.getElementById('intensitySlider').value = 5;
+            updateIntensityValue();
+            
+            // Reset style selection
+            document.querySelectorAll('.style-option').forEach(opt => {
+                opt.classList.remove('selected');
+                if (opt.getAttribute('data-style') === 'pencil') {
+                    opt.classList.add('selected');
+                }
+            });
+            selectedStyle = 'pencil';
+            
+            // Clear data
+            originalImageData = null;
+            sketchImageData = null;
+            
+            // Hide any errors
+            hideError();
+        }
+
+        function downloadSketch() {
+            if (!sketchImageData) return;
+            
+            const link = document.createElement('a');
+            link.download = 'sketch-' + Date.now() + '.png';
+            link.href = sketchImageData;
+            link.click();
+        }
+
+        // ========== ERROR AND MESSAGE HANDLING ==========
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `
+                <div class="error-message">
+                    <span>❌ ${message}</span>
+                    <button class="close-btn" onclick="hideError()">×</button>
+                </div>
+            `;
+            errorContainer.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `
+                <div class="warning-message">
+                    <span>✅ ${message}</span>
+                    <button class="close-btn" onclick="hideError()">×</button>
+                </div>
+            `;
+            errorContainer.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('errorContainer').style.display = 'none';
+        }
+
+        function showPremiumModal() {
+            alert('🎉 All premium features are now completely free!\n\nEnjoy unlimited access to:\n• All sketch styles\n• High-resolution downloads\n• Advanced filters\n• No watermarks\n• Batch processing');
+        }
+    </script>
 </body>
 </html>
