@@ -38,4 +38,575 @@
         .stat { background: white; padding: 10px; border-radius: 6px; font-size: 12px; }
         .stat .value { font-weight: bold; color: #667eea; }
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin: 25px 0; flex-wrap: wrap; }
-        .btn { padding: 12px 25px; border: none; border-radius: 8px; font-size: 14px; font-wei
+        .btn { padding: 12px 25px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary { background: #48bb78; color: white; }
+        .btn-primary:hover { background: #38a169; transform: translateY(-2px); }
+        .btn-secondary { background: #718096; color: white; }
+        .btn-download { background: #667eea; color: white; display: none; width: 100%; justify-content: center; }
+        .loading-container { text-align: center; padding: 40px; display: none; }
+        .loading-spinner { width: 50px; height: 50px; border: 4px solid #f3f4f6; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .error-container { margin: 20px 0; display: none; }
+        .error-message { background: #fed7d7; color: #c53030; padding: 15px 20px; border-radius: 8px; border-left: 4px solid #c53030; display: flex; justify-content: space-between; align-items: center; }
+        .warning-message { background: #feebc8; color: #dd6b20; padding: 15px 20px; border-radius: 8px; border-left: 4px solid #dd6b20; }
+        .close-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: inherit; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 40px 0; }
+        .feature-card { background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .privacy-banner { background: #ebf8ff; border: 1px solid #bee3f8; color: #2b6cb0; padding: 20px; border-radius: 10px; margin: 30px 0; text-align: center; }
+        @media (max-width: 768px) { .preview-container { grid-template-columns: 1fr; } .action-buttons { flex-direction: column; } .btn { width: 100%; } .language-selector { position: static; margin-bottom: 15px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <select id="languageSelect" onchange="changeLanguage()">
+                <option value="en">🌐 English</option>
+                <option value="es">🌐 Español</option>
+                <option value="fr">🌐 Français</option>
+                <option value="de">🌐 Deutsch</option>
+                <option value="hi">🌐 हिन्दी</option>
+                <option value="ar">🌐 العربية</option>
+            </select>
+        </div>
+        <!-- Header -->
+        <div class="header">
+            <h1>🖼️ Image Resizer</h1>
+            <p>Resize your images to any dimension instantly</p>
+        </div>
+        <!-- Main Tool Card -->
+        <div class="tool-card">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <input type="file" id="fileInput" accept="image/*" class="file-input">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    📁 Choose Image File
+                </button>
+                <p style="margin-top: 10px; color: #718096;">
+                    Supports JPEG, PNG, GIF, WebP (Max 10MB)
+                </p>
+            </div>
+            <!-- Loading Animation -->
+            <div id="loading" class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Processing your image...</p>
+            </div>
+            <!-- Controls Section -->
+            <div id="controlsSection" class="controls-section">
+                <div class="size-controls">
+                    <div class="control-group">
+                        <label for="widthInput">Width (px)</label>
+                        <input type="number" id="widthInput" placeholder="Enter width">
+                    </div>
+                    <div class="control-group">
+                        <label for="heightInput">Height (px)</label>
+                        <input type="number" id="heightInput" placeholder="Enter height">
+                    </div>
+                    <div class="control-group">
+                        <label for="sizeUnit">Size Unit</label>
+                        <select id="sizeUnit">
+                            <option value="px">Pixels (px)</option>
+                            <option value="percent">Percentage (%)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="aspect-ratio">
+                    <span>Maintain Aspect Ratio:</span>
+                    <button class="aspect-toggle active" onclick="toggleAspectRatio(true)">Yes</button>
+                    <button class="aspect-toggle" onclick="toggleAspectRatio(false)">No</button>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="resizeImage()">
+                        🔄 Resize Image
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetResizer()">
+                        🗑️ New Image
+                    </button>
+                </div>
+            </div>
+            <!-- Preview Section -->
+            <div id="previewSection" class="preview-section">
+                <div class="preview-container">
+                    <div class="preview-box">
+                        <h3>Original Image</h3>
+                        <img id="originalImage" class="preview-image">
+                        <div id="originalStats" class="image-stats"></div>
+                    </div>
+                    <div class="preview-box">
+                        <h3>Resized Image</h3>
+                        <img id="resizedImage" class="preview-image">
+                        <div id="resizedStats" class="image-stats"></div>
+                    </div>
+                </div>
+                <button class="btn btn-download" id="downloadBtn" onclick="downloadImage()">
+                    📥 Download Resized Image
+                </button>
+            </div>
+            <!-- Error Container -->
+            <div id="errorContainer" class="error-container"></div>
+        </div>
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Resize images instantly in your browser</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>100% Secure</h3>
+                <p>Your images never leave your computer</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Precise Control</h3>
+                <p>Exact dimensions and aspect ratio</p>
+            </div>
+        </div>
+        <!-- Privacy Banner -->
+        <div class="privacy-banner">
+            <p>🔒 <strong>Your Privacy Matters:</strong> All processing happens locally in your browser. We never upload your images.</p>
+        </div>
+    </div>
+    <script>
+        // ========== MULTI-LANGUAGE SUPPORT ==========
+        const translations = {
+            en: {
+                title: "🖼️ Image Resizer",
+                subtitle: "Resize your images to any dimension instantly",
+                chooseImage: "📁 Choose Image File",
+                supportedFormats: "Supports JPEG, PNG, GIF, WebP (Max 10MB)",
+                processing: "Processing your image...",
+                width: "Width (px)",
+                height: "Height (px)",
+                sizeUnit: "Size Unit",
+                pixels: "Pixels (px)",
+                percent: "Percentage (%)",
+                maintainAspect: "Maintain Aspect Ratio:",
+                yes: "Yes",
+                no: "No",
+                resizeBtn: "🔄 Resize Image",
+                newImageBtn: "🗑️ New Image",
+                downloadBtn: "📥 Download Resized Image",
+                original: "Original Image",
+                resized: "Resized Image",
+                size: "Size",
+                dimensions: "Dimensions",
+                type: "Type",
+                lightningFast: "Lightning Fast",
+                lightningDesc: "Resize images instantly in your browser",
+                secure: "100% Secure",
+                secureDesc: "Your images never leave your computer",
+                precise: "Precise Control",
+                preciseDesc: "Exact dimensions and aspect ratio",
+                privacy: "🔒 Your Privacy Matters: All processing happens locally in your browser. We never upload your images.",
+                errorFileType: "Please select a valid image file (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "Image file is too large. Please select a smaller image (max 10MB).",
+                successResize: "Image resized successfully! You can now download it."
+            },
+            es: {
+                title: "🖼️ Redimensionador de Imágenes",
+                subtitle: "Redimensiona tus imágenes a cualquier dimensión al instante",
+                chooseImage: "📁 Elegir Archivo de Imagen",
+                supportedFormats: "Soporta JPEG, PNG, GIF, WebP (Máx. 10MB)",
+                processing: "Procesando tu imagen...",
+                width: "Ancho (px)",
+                height: "Alto (px)",
+                sizeUnit: "Unidad de Tamaño",
+                pixels: "Píxeles (px)",
+                percent: "Porcentaje (%)",
+                maintainAspect: "Mantener Relación de Aspecto:",
+                yes: "Sí",
+                no: "No",
+                resizeBtn: "🔄 Redimensionar Imagen",
+                newImageBtn: "🗑️ Nueva Imagen",
+                downloadBtn: "📥 Descargar Imagen Redimensionada",
+                original: "Imagen Original",
+                resized: "Imagen Redimensionada",
+                size: "Tamaño",
+                dimensions: "Dimensiones",
+                type: "Tipo",
+                lightningFast: "Súper Rápido",
+                lightningDesc: "Redimensiona imágenes al instante en tu navegador",
+                secure: "100% Seguro",
+                secureDesc: "Tus imágenes nunca salen de tu computadora",
+                precise: "Control Preciso",
+                preciseDesc: "Dimensiones exactas y relación de aspecto",
+                privacy: "🔒 Tu Privacidad Importa: Todo el procesamiento ocurre localmente en tu navegador. Nunca subimos tus imágenes.",
+                errorFileType: "Por favor selecciona un archivo de imagen válido (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "El archivo de imagen es demasiado grande. Por favor selecciona una imagen más pequeña (máx. 10MB).",
+                successResize: "¡Imagen redimensionada exitosamente! Ya puedes descargarla."
+            },
+            fr: {
+                title: "🖼️ Redimensionneur d'Image",
+                subtitle: "Redimensionnez vos images à n'importe quelle dimension instantanément",
+                chooseImage: "📁 Choisir un Fichier Image",
+                supportedFormats: "Prend en charge JPEG, PNG, GIF, WebP (Max 10MB)",
+                processing: "Traitement de votre image...",
+                width: "Largeur (px)",
+                height: "Hauteur (px)",
+                sizeUnit: "Unité de Taille",
+                pixels: "Pixels (px)",
+                percent: "Pourcentage (%)",
+                maintainAspect: "Maintenir le Ratio d'Aspect:",
+                yes: "Oui",
+                no: "Non",
+                resizeBtn: "🔄 Redimensionner l'Image",
+                newImageBtn: "🗑️ Nouvelle Image",
+                downloadBtn: "📥 Télécharger l'Image Redimensionnée",
+                original: "Image Originale",
+                resized: "Image Redimensionnée",
+                size: "Taille",
+                dimensions: "Dimensions",
+                type: "Type",
+                lightningFast: "Extrêmement Rapide",
+                lightningDesc: "Redimensionnez les images instantanément dans votre navigateur",
+                secure: "100% Sécurisé",
+                secureDesc: "Vos images ne quittent jamais votre ordinateur",
+                precise: "Contrôle Précis",
+                preciseDesc: "Dimensions exactes et ratio d'aspect",
+                privacy: "🔒 Votre Vie Privée Compte: Tout le traitement se fait localement dans votre navigateur. Nous ne téléchargeons jamais vos images.",
+                errorFileType: "Veuillez sélectionner un fichier image valide (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "Le fichier image est trop volumineux. Veuillez sélectionner une image plus petite (max 10MB).",
+                successResize: "Image redimensionnée avec succès ! Vous pouvez maintenant la télécharger."
+            },
+            de: {
+                title: "🖼️ Bildgrößenänderer",
+                subtitle: "Ändern Sie Ihre Bilder sofort auf jede Größe",
+                chooseImage: "📁 Bilddatei Auswählen",
+                supportedFormats: "Unterstützt JPEG, PNG, GIF, WebP (Max. 10MB)",
+                processing: "Ihr Bild wird verarbeitet...",
+                width: "Breite (px)",
+                height: "Höhe (px)",
+                sizeUnit: "Größeneinheit",
+                pixels: "Pixel (px)",
+                percent: "Prozentsatz (%)",
+                maintainAspect: "Seitenverhältnis beibehalten:",
+                yes: "Ja",
+                no: "Nein",
+                resizeBtn: "🔄 Bildgröße Ändern",
+                newImageBtn: "🗑️ Neues Bild",
+                downloadBtn: "📥 Größenverändertes Bild Herunterladen",
+                original: "Originalbild",
+                resized: "Größenverändertes Bild",
+                size: "Größe",
+                dimensions: "Abmessungen",
+                type: "Typ",
+                lightningFast: "Blitzschnell",
+                lightningDesc: "Ändern Sie Bildgrößen sofort in Ihrem Browser",
+                secure: "100% Sicher",
+                secureDesc: "Ihre Bilder verlassen nie Ihren Computer",
+                precise: "Präzise Steuerung",
+                preciseDesc: "Exakte Abmessungen und Seitenverhältnis",
+                privacy: "🔒 Ihre Privatsphäre ist wichtig: Die gesamte Verarbeitung erfolgt lokal in Ihrem Browser. Wir laden Ihre Bilder niemals hoch.",
+                errorFileType: "Bitte wählen Sie eine gültige Bilddatei (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "Die Bilddatei ist zu groß. Bitte wählen Sie ein kleineres Bild (max. 10MB).",
+                successResize: "Bild erfolgreich Größenverändert! Sie können es jetzt herunterladen."
+            },
+            hi: {
+                title: "🖼️ इमेज रीसाइज़र",
+                subtitle: "अपनी इमेज को किसी भी आकार में तुरंत बदलें",
+                chooseImage: "📁 इमेज फाइल चुनें",
+                supportedFormats: "JPEG, PNG, GIF, WebP सपोर्टेड (अधिकतम 10MB)",
+                processing: "आपकी इमेज प्रोसेस हो रही है...",
+                width: "चौड़ाई (px)",
+                height: "ऊंचाई (px)",
+                sizeUnit: "आकार इकाई",
+                pixels: "पिक्सेल (px)",
+                percent: "प्रतिशत (%)",
+                maintainAspect: "एस्पेक्ट रेशियो बनाए रखें:",
+                yes: "हाँ",
+                no: "नहीं",
+                resizeBtn: "🔄 इमेज रीसाइज़ करें",
+                newImageBtn: "🗑️ नई इमेज",
+                downloadBtn: "📥 रीसाइज़ की गई इमेज डाउनलोड करें",
+                original: "ओरिजिनल इमेज",
+                resized: "रीसाइज़ की गई इमेज",
+                size: "आकार",
+                dimensions: "डाइमेंशन",
+                type: "प्रकार",
+                lightningFast: "बिजली की तेज",
+                lightningDesc: "अपने ब्राउज़र में तुरंत इमेज रीसाइज़ करें",
+                secure: "100% सुरक्षित",
+                secureDesc: "आपकी इमेज आपके कंप्यूटर से कभी बाहर नहीं जाती",
+                precise: "सटीक नियंत्रण",
+                preciseDesc: "सटीक आयाम और एस्पेक्ट रेशियो",
+                privacy: "🔒 आपकी गोपनीयता मायने रखती है: सारी प्रोसेसिंग आपके ब्राउज़र में स्थानीय रूप से होती है। हम आपकी इमेज कभी अपलोड नहीं करते।",
+                errorFileType: "कृपया एक वैध इमेज फ़ाइल चुनें (JPEG, PNG, GIF, WebP)।",
+                errorFileSize: "इमेज फ़ाइल बहुत बड़ी है। कृपया छोटी इमेज चुनें (अधिकतम 10MB)।",
+                successResize: "इमेज सफलतापूर्वक रीसाइज़ हो गई! अब आप इसे डाउनलोड कर सकते हैं।"
+            },
+            ar: {
+                title: "🖼️ مُغيِّر حجم الصورة",
+                subtitle: "غيّر حجم صورك إلى أي بُعد على الفور",
+                chooseImage: "📁 اختر ملف الصورة",
+                supportedFormats: "يدعم JPEG, PNG, GIF, WebP (الحد الأقصى 10MB)",
+                processing: "جاري معالجة صورتك...",
+                width: "العرض (بكسل)",
+                height: "الارتفاع (بكسل)",
+                sizeUnit: "وحدة الحجم",
+                pixels: "بكسل (px)",
+                percent: "النسبة المئوية (%)",
+                maintainAspect: "الحفاظ على نسبة العرض إلى الارتفاع:",
+                yes: "نعم",
+                no: "لا",
+                resizeBtn: "🔄 تغيير حجم الصورة",
+                newImageBtn: "🗑️ صورة جديدة",
+                downloadBtn: "📥 تحميل الصورة المُغيَّر حجمها",
+                original: "الصورة الأصلية",
+                resized: "الصورة المُغيَّر حجمها",
+                size: "الحجم",
+                dimensions: "الأبعاد",
+                type: "النوع",
+                lightningFast: "سريع جدًا",
+                lightningDesc: "غيّر حجم الصور على الفور في متصفحك",
+                secure: "آمن 100%",
+                secureDesc: "صورك لا تترك جهازك أبدًا",
+                precise: "تحكم دقيق",
+                preciseDesc: "أبعاد دقيقة ونسبة عرض إلى ارتفاع",
+                privacy: "🔒 خصوصيتك تهمنا: كل المعالجة تتم محليًا في متصفحك. نحن never نرفع صورك.",
+                errorFileType: "يرجى تحديد ملف صورة صالح (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "ملف الصورة كبير جدًا. يرجى تحديد صورة أصغر (الحد الأقصى 10MB).",
+                successResize: "تم تغيير حجم الصورة بنجاح! يمكنك الآن تحميلها."
+            }
+        };
+        // ========== GLOBAL VARIABLES ==========
+        let currentLanguage = 'en';
+        let originalImage = null;
+        let resizedImageBlob = null;
+        let maintainAspectRatio = true;
+        let originalWidth = 0;
+        let originalHeight = 0;
+        // ========== LANGUAGE FUNCTIONS ==========
+        function changeLanguage() {
+            currentLanguage = document.getElementById('languageSelect').value;
+            updateTexts();
+        }
+        function updateTexts() {
+            const trans = translations[currentLanguage];
+            if (!trans) return;
+            // Update all texts
+            document.querySelector('.header h1').textContent = trans.title;
+            document.querySelector('.header p').textContent = trans.subtitle;
+            document.querySelector('.upload-btn').innerHTML = trans.chooseImage;
+            document.querySelector('.upload-section p').textContent = trans.supportedFormats;
+            document.querySelector('#loading p').textContent = trans.processing;
+            
+            // Update controls
+            document.querySelector('label[for="widthInput"]').textContent = trans.width;
+            document.querySelector('label[for="heightInput"]').textContent = trans.height;
+            document.querySelector('label[for="sizeUnit"]').textContent = trans.sizeUnit;
+            document.querySelector('.aspect-ratio span').textContent = trans.maintainAspect;
+            document.querySelectorAll('.aspect-toggle')[0].textContent = trans.yes;
+            document.querySelectorAll('.aspect-toggle')[1].textContent = trans.no;
+            
+            // Update buttons
+            document.querySelector('.btn-primary').innerHTML = trans.resizeBtn;
+            document.querySelector('.btn-secondary').innerHTML = trans.newImageBtn;
+            document.querySelector('.btn-download').innerHTML = trans.downloadBtn;
+            
+            // Update preview
+            document.querySelectorAll('.preview-box h3')[0].textContent = trans.original;
+            document.querySelectorAll('.preview-box h3')[1].textContent = trans.resized;
+            
+            // Update features
+            const features = document.querySelectorAll('.feature-card');
+            features[0].querySelector('h3').textContent = trans.lightningFast;
+            features[0].querySelector('p').textContent = trans.lightningDesc;
+            features[1].querySelector('h3').textContent = trans.secure;
+            features[1].querySelector('p').textContent = trans.secureDesc;
+            features[2].querySelector('h3').textContent = trans.precise;
+            features[2].querySelector('p').textContent = trans.preciseDesc;
+            
+            // Update privacy
+            document.querySelector('.privacy-banner p').innerHTML = trans.privacy;
+        }
+        // ========== IMAGE PROCESSING FUNCTIONS ==========
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (!file.type.match('image.*')) {
+                showError(translations[currentLanguage].errorFileType, 'error');
+                return;
+            }
+            if (file.size > 10 * 1024 * 1024) {
+                showError(translations[currentLanguage].errorFileSize, 'error');
+                return;
+            }
+            showLoading();
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                originalImage = new Image();
+                originalImage.onload = function() {
+                    originalWidth = originalImage.width;
+                    originalHeight = originalImage.height;
+                    
+                    hideLoading();
+                    showControls();
+                    showPreview();
+                    updateOriginalStats(file);
+                    
+                    // Set default values
+                    document.getElementById('widthInput').value = originalWidth;
+                    document.getElementById('heightInput').value = originalHeight;
+                };
+                originalImage.onerror = function() {
+                    hideLoading();
+                    showError('Failed to load image', 'error');
+                };
+                originalImage.src = e.target.result;
+            };
+            reader.onerror = function() {
+                hideLoading();
+                showError('Failed to read file', 'error');
+            };
+            reader.readAsDataURL(file);
+        }
+        function resizeImage() {
+            if (!originalImage) {
+                showError('Please select an image first', 'error');
+                return;
+            }
+            const width = parseInt(document.getElementById('widthInput').value);
+            const height = parseInt(document.getElementById('heightInput').value);
+            const unit = document.getElementById('sizeUnit').value;
+            if (!width || !height || width <= 0 || height <= 0) {
+                showError('Please enter valid dimensions', 'error');
+                return;
+            }
+            showLoading();
+            setTimeout(() => {
+                let newWidth = width;
+                let newHeight = height;
+                if (unit === 'percent') {
+                    newWidth = (originalWidth * width) / 100;
+                    newHeight = (originalHeight * height) / 100;
+                }
+                if (maintainAspectRatio) {
+                    const ratio = originalWidth / originalHeight;
+                    if (newWidth / newHeight > ratio) {
+                        newWidth = newHeight * ratio;
+                    } else {
+                        newHeight = newWidth / ratio;
+                    }
+                }
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = newWidth;
+                canvas.height = newHeight;
+                ctx.drawImage(originalImage, 0, 0, newWidth, newHeight);
+                canvas.toBlob(function(blob) {
+                    resizedImageBlob = blob;
+                    const resizedUrl = URL.createObjectURL(blob);
+                    document.getElementById('resizedImage').src = resizedUrl;
+                    updateResizedStats(blob, newWidth, newHeight);
+                    
+                    hideLoading();
+                    document.getElementById('downloadBtn').style.display = 'flex';
+                    showError(translations[currentLanguage].successResize, 'warning');
+                }, 'image/png', 0.95);
+            }, 500);
+        }
+        function toggleAspectRatio(enable) {
+            maintainAspectRatio = enable;
+            document.querySelectorAll('.aspect-toggle').forEach((btn, index) => {
+                if ((enable && index === 0) || (!enable && index === 1)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            if (enable && originalImage) {
+                const width = document.getElementById('widthInput').value;
+                if (width) {
+                    const ratio = originalWidth / originalHeight;
+                    document.getElementById('heightInput').value = Math.round(width / ratio);
+                }
+            }
+        }
+        // ========== UTILITY FUNCTIONS ==========
+        function showControls() {
+            document.getElementById('controlsSection').style.display = 'block';
+        }
+        function showPreview() {
+            document.getElementById('previewSection').style.display = 'block';
+            document.getElementById('originalImage').src = originalImage.src;
+        }
+        function updateOriginalStats(file) {
+            document.getElementById('originalStats').innerHTML = `
+                <div class="stat"><span class="value">${(file.size / 1024).toFixed(2)} KB</span><br>Size</div>
+                <div class="stat"><span class="value">${originalWidth}×${originalHeight}</span><br>Dimensions</div>
+                <div class="stat"><span class="value">${file.type.split('/')[1]}</span><br>Type</div>
+            `;
+        }
+        function updateResizedStats(blob, width, height) {
+            document.getElementById('resizedStats').innerHTML = `
+                <div class="stat"><span class="value">${(blob.size / 1024).toFixed(2)} KB</span><br>Size</div>
+                <div class="stat"><span class="value">${Math.round(width)}×${Math.round(height)}</span><br>Dimensions</div>
+                <div class="stat"><span class="value">PNG</span><br>Type</div>
+            `;
+        }
+        function downloadImage() {
+            if (!resizedImageBlob) return;
+            
+            const link = document.createElement('a');
+            link.download = 'resized-image.png';
+            link.href = URL.createObjectURL(resizedImageBlob);
+            link.click();
+        }
+        function resetResizer() {
+            originalImage = null;
+            resizedImageBlob = null;
+            document.getElementById('controlsSection').style.display = 'none';
+            document.getElementById('previewSection').style.display = 'none';
+            document.getElementById('downloadBtn').style.display = 'none';
+            document.getElementById('fileInput').value = '';
+            hideError();
+        }
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        function showError(message, type = 'error') {
+            const errorContainer = document.getElementById('errorContainer');
+            const errorClass = type === 'error' ? 'error-message' : 'warning-message';
+            
+            errorContainer.innerHTML = `
+                <div class="${errorClass}">
+                    <strong>${type === 'error' ? '❌ Error:' : '⚠️ Success:'}</strong> ${message}
+                    <button onclick="this.parentElement.remove()" class="close-btn">×</button>
+                </div>
+            `;
+            errorContainer.style.display = 'block';
+        }
+        function hideError() {
+            document.getElementById('errorContainer').style.display = 'none';
+        }
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // File input change
+            document.getElementById('fileInput').addEventListener('change', handleImageUpload);
+            
+            // Auto-detect language
+            const browserLang = navigator.language.split('-')[0];
+            if (translations[browserLang]) {
+                currentLanguage = browserLang;
+                document.getElementById('languageSelect').value = currentLanguage;
+            }
+            updateTexts();
+            
+            // Aspect ratio auto-update
+            document.getElementById('widthInput').addEventListener('input', function() {
+                if (maintainAspectRatio && originalImage) {
+                    const ratio = originalWidth / originalHeight;
+                    document.getElementById('heightInput').value = Math.round(this.value / ratio);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
