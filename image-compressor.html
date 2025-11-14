@@ -100,3 +100,801 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+        }
+        .control-group label {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .quality-slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .quality-value {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+        .format-options {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .format-option {
+            padding: 10px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .format-option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+        .preview-section {
+            display: none;
+            margin: 30px 0;
+        }
+        .preview-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .preview-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .preview-box {
+            text-align: center;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+        .preview-box h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .image-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .stat {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        .stat .value {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .compression-info {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: #48bb78;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #718096;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #4a5568;
+        }
+        .btn-download {
+            background: #667eea;
+            color: white;
+            display: none;
+            width: 100%;
+            justify-content: center;
+        }
+        .loading-container {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .error-container {
+            margin: 20px 0;
+            display: none;
+        }
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #c53030;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .warning-message {
+            background: #feebc8;
+            color: #dd6b20;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #dd6b20;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: inherit;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: #718096;
+            line-height: 1.5;
+        }
+        .privacy-banner {
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            color: #2b6cb0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .tool-card {
+                padding: 20px;
+            }
+            
+            .quality-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .language-selector {
+                position: static;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <select id="languageSelect" onchange="changeLanguage()">
+                <option value="en">🌐 English</option>
+                <option value="es">🌐 Español</option>
+                <option value="fr">🌐 Français</option>
+                <option value="de">🌐 Deutsch</option>
+                <option value="hi">🌐 हिन्दी</option>
+                <option value="ar">🌐 العربية</option>
+            </select>
+        </div>
+        <div class="header">
+            <h1>📦 Image Compressor</h1>
+            <p>Reduce image file size without losing quality</p>
+        </div>
+        <div class="tool-card">
+            <div class="upload-section">
+                <input type="file" id="fileInput" accept="image/*" class="file-input">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    📁 Choose Image File
+                </button>
+                <p style="margin-top: 10px; color: #718096;">
+                    Supports JPEG, PNG, GIF, WebP (Max 10MB)
+                </p>
+            </div>
+            <div id="loading" class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Compressing your image...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            <div id="controlsSection" class="controls-section">
+                <div class="quality-controls">
+                    <div class="control-group">
+                        <label for="qualitySlider">Compression Quality</label>
+                        <input type="range" id="qualitySlider" class="quality-slider" min="10" max="100" value="80">
+                        <div class="quality-value">
+                            <span id="qualityValue">80</span>%
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>Output Format</label>
+                        <div class="format-options">
+                            <div class="format-option selected" data-format="original">Original</div>
+                            <div class="format-option" data-format="jpeg">JPEG</div>
+                            <div class="format-option" data-format="png">PNG</div>
+                            <div class="format-option" data-format="webp">WebP</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="compressImage()">
+                        🔄 Compress Image
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetCompressor()">
+                        🗑️ New Image
+                    </button>
+                </div>
+            </div>
+            <div id="previewSection" class="preview-section">
+                <div class="preview-container">
+                    <div class="preview-box">
+                        <h3>Original Image</h3>
+                        <img id="originalImage" class="preview-image">
+                        <div id="originalStats" class="image-stats"></div>
+                    </div>
+                    <div class="preview-box">
+                        <h3>Compressed Image</h3>
+                        <img id="compressedImage" class="preview-image">
+                        <div id="compressedStats" class="image-stats"></div>
+                    </div>
+                </div>
+                <div id="compressionInfo" class="compression-info"></div>
+                <button class="btn btn-download" id="downloadBtn" onclick="downloadImage()">
+                    📥 Download Compressed Image
+                </button>
+            </div>
+            <div id="errorContainer" class="error-container"></div>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Compress images instantly in your browser</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>100% Secure</h3>
+                <p>Your images never leave your computer</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Quality Control</h3>
+                <p>Adjust compression level as needed</p>
+            </div>
+        </div>
+        <div class="privacy-banner">
+            <p>🔒 <strong>Your Privacy Matters:</strong> All processing happens locally in your browser. We never upload your images.</p>
+        </div>
+    </div>
+    <script>
+        const translations = {
+            en: {
+                title: "📦 Image Compressor",
+                subtitle: "Reduce image file size without losing quality",
+                chooseImage: "📁 Choose Image File",
+                supportedFormats: "Supports JPEG, PNG, GIF, WebP (Max 10MB)",
+                processing: "Compressing your image...",
+                quality: "Compression Quality",
+                outputFormat: "Output Format",
+                original: "Original",
+                jpeg: "JPEG",
+                png: "PNG",
+                webp: "WebP",
+                compressBtn: "🔄 Compress Image",
+                newImageBtn: "🗑️ New Image",
+                downloadBtn: "📥 Download Compressed Image",
+                originalImage: "Original Image",
+                compressedImage: "Compressed Image",
+                size: "Size",
+                dimensions: "Dimensions",
+                type: "Type",
+                saved: "Saved",
+                qualityLevel: "Quality",
+                lightningFast: "Lightning Fast",
+                lightningDesc: "Compress images instantly in your browser",
+                secure: "100% Secure",
+                secureDesc: "Your images never leave your computer",
+                qualityControl: "Quality Control",
+                qualityDesc: "Adjust compression level as needed",
+                privacy: "🔒 Your Privacy Matters: All processing happens locally in your browser. We never upload your images.",
+                errorFileType: "Please select a valid image file (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "Image file is too large. Please select a smaller image (max 10MB).",
+                successCompress: "Image compressed successfully! You can now download it.",
+                compressionStats: "Reduced by {saved}% • Original: {original} • Compressed: {compressed}"
+            },
+            es: {
+                title: "📦 Compresor de Imágenes",
+                subtitle: "Reduce el tamaño de archivo de imagen sin perder calidad",
+                chooseImage: "📁 Elegir Archivo de Imagen",
+                supportedFormats: "Soporta JPEG, PNG, GIF, WebP (Máx. 10MB)",
+                processing: "Comprimiendo tu imagen...",
+                quality: "Calidad de Compresión",
+                outputFormat: "Formato de Salida",
+                original: "Original",
+                jpeg: "JPEG",
+                png: "PNG",
+                webp: "WebP",
+                compressBtn: "🔄 Comprimir Imagen",
+                newImageBtn: "🗑️ Nueva Imagen",
+                downloadBtn: "📥 Descargar Imagen Comprimida",
+                originalImage: "Imagen Original",
+                compressedImage: "Imagen Comprimida",
+                size: "Tamaño",
+                dimensions: "Dimensiones",
+                type: "Tipo",
+                saved: "Guardado",
+                qualityLevel: "Calidad",
+                lightningFast: "Súper Rápido",
+                lightningDesc: "Comprime imágenes al instante en tu navegador",
+                secure: "100% Seguro",
+                secureDesc: "Tus imágenes nunca salen de tu computadora",
+                qualityControl: "Control de Calidad",
+                qualityDesc: "Ajusta el nivel de compresión según sea necesario",
+                privacy: "🔒 Tu Privacidad Importa: Todo el procesamiento ocurre localmente en tu navegador. Nunca subimos tus imágenes.",
+                errorFileType: "Por favor selecciona un archivo de imagen válido (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "El archivo de imagen es demasiado grande. Por favor selecciona una imagen más pequeña (máx. 10MB).",
+                successCompress: "¡Imagen comprimida exitosamente! Ya puedes descargarla.",
+                compressionStats: "Reducido en {saved}% • Original: {original} • Comprimido: {compressed}"
+            },
+            fr: {
+                title: "📦 Compresseur d'Images",
+                subtitle: "Réduisez la taille des fichiers image sans perdre en qualité",
+                chooseImage: "📁 Choisir un Fichier Image",
+                supportedFormats: "Prend en charge JPEG, PNG, GIF, WebP (Max 10MB)",
+                processing: "Compression de votre image...",
+                quality: "Qualité de Compression",
+                outputFormat: "Format de Sortie",
+                original: "Original",
+                jpeg: "JPEG",
+                png: "PNG",
+                webp: "WebP",
+                compressBtn: "🔄 Compresser l'Image",
+                newImageBtn: "🗑️ Nouvelle Image",
+                downloadBtn: "📥 Télécharger l'Image Compressée",
+                originalImage: "Image Originale",
+                compressedImage: "Image Compressée",
+                size: "Taille",
+                dimensions: "Dimensions",
+                type: "Type",
+                saved: "Économisé",
+                qualityLevel: "Qualité",
+                lightningFast: "Extrêmement Rapide",
+                lightningDesc: "Compressez les images instantanément dans votre navigateur",
+                secure: "100% Sécurisé",
+                secureDesc: "Vos images ne quittent jamais votre ordinateur",
+                qualityControl: "Contrôle de Qualité",
+                qualityDesc: "Ajustez le niveau de compression selon vos besoins",
+                privacy: "🔒 Votre Vie Privée Compte: Tout le traitement se fait localement dans votre navigateur. Nous ne téléchargeons jamais vos images.",
+                errorFileType: "Veuillez sélectionner un fichier image valide (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "Le fichier image est trop volumineux. Veuillez sélectionner une image plus petite (max 10MB).",
+                successCompress: "Image compressée avec succès ! Vous pouvez maintenant la télécharger.",
+                compressionStats: "Réduit de {saved}% • Original: {original} • Compressé: {compressed}"
+            },
+            de: {
+                title: "📦 Bildkomprimierer",
+                subtitle: "Reduzieren Sie die Bilddateigröße ohne Qualitätsverlust",
+                chooseImage: "📁 Bilddatei Auswählen",
+                supportedFormats: "Unterstützt JPEG, PNG, GIF, WebP (Max. 10MB)",
+                processing: "Ihr Bild wird komprimiert...",
+                quality: "Komprimierungsqualität",
+                outputFormat: "Ausgabeformat",
+                original: "Original",
+                jpeg: "JPEG",
+                png: "PNG",
+                webp: "WebP",
+                compressBtn: "🔄 Bild Komprimieren",
+                newImageBtn: "🗑️ Neues Bild",
+                downloadBtn: "📥 Komprimiertes Bild Herunterladen",
+                originalImage: "Originalbild",
+                compressedImage: "Komprimiertes Bild",
+                size: "Größe",
+                dimensions: "Abmessungen",
+                type: "Typ",
+                saved: "Gespart",
+                qualityLevel: "Qualität",
+                lightningFast: "Blitzschnell",
+                lightningDesc: "Komprimieren Sie Bilder sofort in Ihrem Browser",
+                secure: "100% Sicher",
+                secureDesc: "Ihre Bilder verlassen nie Ihren Computer",
+                qualityControl: "Qualitätskontrolle",
+                qualityDesc: "Passen Sie den Komprimierungsgrad nach Bedarf an",
+                privacy: "🔒 Ihre Privatsphäre ist wichtig: Die gesamte Verarbeitung erfolgt lokal in Ihrem Browser. Wir laden Ihre Bilder niemals hoch.",
+                errorFileType: "Bitte wählen Sie eine gültige Bilddatei (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "Die Bilddatei ist zu groß. Bitte wählen Sie ein kleineres Bild (max. 10MB).",
+                successCompress: "Bild erfolgreich komprimiert! Sie können es jetzt herunterladen.",
+                compressionStats: "Reduziert um {saved}% • Original: {original} • Komprimiert: {compressed}"
+            },
+            hi: {
+                title: "📦 इमेज कंप्रेसर",
+                subtitle: "गुणवत्ता खोए बिना इमेज फाइल आकार कम करें",
+                chooseImage: "📁 इमेज फाइल चुनें",
+                supportedFormats: "JPEG, PNG, GIF, WebP सपोर्टेड (अधिकतम 10MB)",
+                processing: "आपकी इमेज कंप्रेस हो रही है...",
+                quality: "कंप्रेशन क्वालिटी",
+                outputFormat: "आउटपुट फॉर्मेट",
+                original: "ओरिजिनल",
+                jpeg: "JPEG",
+                png: "PNG",
+                webp: "WebP",
+                compressBtn: "🔄 इमेज कंप्रेस करें",
+                newImageBtn: "🗑️ नई इमेज",
+                downloadBtn: "📥 कंप्रेस की गई इमेज डाउनलोड करें",
+                originalImage: "ओरिजिनल इमेज",
+                compressedImage: "कंप्रेस की गई इमेज",
+                size: "आकार",
+                dimensions: "डाइमेंशन",
+                type: "प्रकार",
+                saved: "बचत",
+                qualityLevel: "क्वालिटी",
+                lightningFast: "बिजली की तेज",
+                lightningDesc: "अपने ब्राउज़र में तुरंत इमेज कंप्रेस करें",
+                secure: "100% सुरक्षित",
+                secureDesc: "आपकी इमेज आपके कंप्यूटर से कभी बाहर नहीं जाती",
+                qualityControl: "क्वालिटी कंट्रोल",
+                qualityDesc: "जरूरत के अनुसार कंप्रेशन लेवल समायोजित करें",
+                privacy: "🔒 आपकी गोपनीयता मायने रखती है: सारी प्रोसेसिंग आपके ब्राउज़र में स्थानीय रूप से होती है। हम आपकी इमेज कभी अपलोड नहीं करते।",
+                errorFileType: "कृपया एक वैध इमेज फ़ाइल चुनें (JPEG, PNG, GIF, WebP)।",
+                errorFileSize: "इमेज फ़ाइल बहुत बड़ी है। कृपया छोटी इमेज चुनें (अधिकतम 10MB)।",
+                successCompress: "इमेज सफलतापूर्वक कंप्रेस हो गई! अब आप इसे डाउनलोड कर सकते हैं।",
+                compressionStats: "{saved}% कम किया गया • ओरिजिनल: {original} • कंप्रेस: {compressed}"
+            },
+            ar: {
+                title: "📦 ضاغط الصور",
+                subtitle: "قلل حجم ملف الصورة دون فقدان الجودة",
+                chooseImage: "📁 اختر ملف الصورة",
+                supportedFormats: "يدعم JPEG, PNG, GIF, WebP (الحد الأقصى 10MB)",
+                processing: "جاري ضغط صورتك...",
+                quality: "جودة الضغط",
+                outputFormat: "تنسيق الإخراج",
+                original: "الأصلي",
+                jpeg: "JPEG",
+                png: "PNG",
+                webp: "WebP",
+                compressBtn: "🔄 ضغط الصورة",
+                newImageBtn: "🗑️ صورة جديدة",
+                downloadBtn: "📥 تحميل الصورة المضغوطة",
+                originalImage: "الصورة الأصلية",
+                compressedImage: "الصورة المضغوطة",
+                size: "الحجم",
+                dimensions: "الأبعاد",
+                type: "النوع",
+                saved: "محفوظ",
+                qualityLevel: "الجودة",
+                lightningFast: "سريع جدًا",
+                lightningDesc: "اضغط الصور على الفور في متصفحك",
+                secure: "آمن 100%",
+                secureDesc: "صورك لا تترك جهازك أبدًا",
+                qualityControl: "التحكم في الجودة",
+                qualityDesc: "اضبط مستوى الضغط حسب الحاجة",
+                privacy: "🔒 خصوصيتك تهمنا: كل المعالجة تتم محليًا في متصفحك. نحن never نرفع صورك.",
+                errorFileType: "يرجى تحديد ملف صورة صالح (JPEG, PNG, GIF, WebP).",
+                errorFileSize: "ملف الصورة كبير جدًا. يرجى تحديد صورة أصغر (الحد الأقصى 10MB).",
+                successCompress: "تم ضغط الصورة بنجاح! يمكنك الآن تحميلها.",
+                compressionStats: "تم التخفيض بنسبة {saved}% • الأصلي: {original} • المضغوط: {compressed}"
+            }
+        };
+        let currentLanguage = 'en';
+        let originalFile = null;
+        let compressedBlob = null;
+        let outputFormat = 'original';
+        function changeLanguage() {
+            currentLanguage = document.getElementById('languageSelect').value;
+            updateTexts();
+        }
+        function updateTexts() {
+            const trans = translations[currentLanguage];
+            if (!trans) return;
+            document.querySelector('.header h1').textContent = trans.title;
+            document.querySelector('.header p').textContent = trans.subtitle;
+            document.querySelector('.upload-btn').innerHTML = trans.chooseImage;
+            document.querySelector('.upload-section p').textContent = trans.supportedFormats;
+            document.querySelector('#loading p').textContent = trans.processing;
+            
+            document.querySelector('label[for="qualitySlider"]').textContent = trans.quality;
+            document.querySelector('.control-group label').textContent = trans.outputFormat;
+            
+            document.querySelectorAll('.format-option').forEach((option, index) => {
+                const formats = [trans.original, trans.jpeg, trans.png, trans.webp];
+                option.textContent = formats[index];
+            });
+            
+            document.querySelector('.btn-primary').innerHTML = trans.compressBtn;
+            document.querySelector('.btn-secondary').innerHTML = trans.newImageBtn;
+            document.querySelector('.btn-download').innerHTML = trans.downloadBtn;
+            
+            document.querySelectorAll('.preview-box h3')[0].textContent = trans.originalImage;
+            document.querySelectorAll('.preview-box h3')[1].textContent = trans.compressedImage;
+            
+            const features = document.querySelectorAll('.feature-card');
+            features[0].querySelector('h3').textContent = trans.lightningFast;
+            features[0].querySelector('p').textContent = trans.lightningDesc;
+            features[1].querySelector('h3').textContent = trans.secure;
+            features[1].querySelector('p').textContent = trans.secureDesc;
+            features[2].querySelector('h3').textContent = trans.qualityControl;
+            features[2].querySelector('p').textContent = trans.qualityDesc;
+            
+            document.querySelector('.privacy-banner p').innerHTML = trans.privacy;
+        }
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (!file.type.match('image.*')) {
+                showError(translations[currentLanguage].errorFileType, 'error');
+                return;
+            }
+            if (file.size > 10 * 1024 * 1024) {
+                showError(translations[currentLanguage].errorFileSize, 'error');
+                return;
+            }
+            originalFile = file;
+            showLoading();
+            const originalUrl = URL.createObjectURL(file);
+            document.getElementById('originalImage').src = originalUrl;
+            
+            updateOriginalStats(file);
+            setupFormatOptions();
+            
+            hideLoading();
+            showControls();
+            showPreview();
+            
+            setTimeout(() => compressImage(), 500);
+        }
+        function setupFormatOptions() {
+            document.querySelectorAll('.format-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.format-option').forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    outputFormat = this.getAttribute('data-format');
+                });
+            });
+        }
+        function compressImage() {
+            if (!originalFile) {
+                showError('Please select an image first', 'error');
+                return;
+            }
+            showLoading();
+            simulateProgress();
+            const quality = document.getElementById('qualitySlider').value / 100;
+            const format = outputFormat === 'original' ? originalFile.type.split('/')[1] : outputFormat;
+            setTimeout(() => {
+                compressImageFile(originalFile, quality, format)
+                    .then(compressed => {
+                        compressedBlob = compressed;
+                        const compressedUrl = URL.createObjectURL(compressed);
+                        document.getElementById('compressedImage').src = compressedUrl;
+                        updateCompressedStats(compressed);
+                        
+                        hideLoading();
+                        document.getElementById('downloadBtn').style.display = 'flex';
+                        showError(translations[currentLanguage].successCompress, 'warning');
+                    })
+                    .catch(error => {
+                        hideLoading();
+                        showError('Compression failed: ' + error.message, 'error');
+                    });
+            }, 1000);
+        }
+        function compressImageFile(file, quality, format) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    
+                    let mimeType = 'image/jpeg';
+                    if (format === 'png') mimeType = 'image/png';
+                    else if (format === 'webp') mimeType = 'image/webp';
+                    
+                    canvas.toBlob(resolve, mimeType, quality);
+                };
+                
+                img.onerror = reject;
+                img.src = URL.createObjectURL(file);
+            });
+        }
+        function simulateProgress() {
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                }
+                document.getElementById('progressFill').style.width = progress + '%';
+            }, 100);
+        }
+        function updateOriginalStats(file) {
+            document.getElementById('originalStats').innerHTML = `
+                <div class="stat"><span class="value">${(file.size / 1024).toFixed(2)} KB</span><br>${translations[currentLanguage].size}</div>
+                <div class="stat"><span class="value">Loading...</span><br>${translations[currentLanguage].dimensions}</div>
+                <div class="stat"><span class="value">${file.type.split('/')[1]}</span><br>${translations[currentLanguage].type}</div>
+            `;
+        }
+        function updateCompressedStats(blob) {
+            const originalSize = originalFile.size;
+            const compressedSize = blob.size;
+            const saved = ((1 - compressedSize / originalSize) * 100).toFixed(1);
+            
+            document.getElementById('compressedStats').innerHTML = `
+                <div class="stat"><span class="value">${(compressedSize / 1024).toFixed(2)} KB</span><br>${translations[currentLanguage].size}</div>
+                <div class="stat"><span class="value">Loading...</span><br>${translations[currentLanguage].dimensions}</div>
+                <div class="stat"><span class="value">${outputFormat === 'original' ? originalFile.type.split('/')[1] : outputFormat}</span><br>${translations[currentLanguage].type}</div>
+            `;
+            
+            const trans = translations[currentLanguage];
+            const infoText = trans.compressionStats
+                .replace('{saved}', saved)
+                .replace('{original}', (originalSize / 1024).toFixed(2) + ' KB')
+                .replace('{compressed}', (compressedSize / 1024).toFixed(2) + ' KB');
+            
+            document.getElementById('compressionInfo').innerHTML = `
+                <strong>🎉 ${infoText}</strong>
+            `;
+        }
+        function downloadImage() {
+            if (!compressedBlob) return;
+            
+            const format = outputFormat === 'original' ? originalFile.type.split('/')[1] : outputFormat;
+            const link = document.createElement('a');
+            link.download = `compressed-image.${format}`;
+            link.href = URL.createObjectURL(compressedBlob);
+            link.click();
+        }
+        function resetCompressor() {
+            originalFile = null;
+            compressedBlob = null;
+            document.getElementById('controlsSection').style.display = 'none';
+            document.getElementById('previewSection').style.display = 'none';
+            document.getElementById('downloadBtn').style.display = 'none';
+            document.getElementById('fileInput').value = '';
+            document.getElementById('compressionInfo').innerHTML = '';
+            hideError();
+        }
+        function showControls() {
+            document.getElementById('controlsSection').style.display = 'block';
+        }
+        function showPreview() {
+            document.getElementById('previewSection').style.display = 'block';
+        }
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('progressFill').style.width = '0%';
+        }
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        function showError(message, type = 'error') {
+            const errorContainer = document.getElementById('errorContainer');
+            const errorClass = type === 'error' ? 'error-message' : 'warning-message';
+            
+            errorContainer.innerHTML = `
+                <div class="${errorClass}">
+                    <strong>${type === 'error' ? '❌ Error:' : '⚠️ Success:'}</strong> ${message}
+                    <button onclick="this.parentElement.remove()" class="close-btn">×</button>
+                </div>
+            `;
+            errorContainer.style.display = 'block';
+        }
+        function hideError() {
+            document.getElementById('errorContainer').style.display = 'none';
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('fileInput').addEventListener('change', handleImageUpload);
+            document.getElementById('qualitySlider').addEventListener('input', function() {
+                document.getElementById('qualityValue').textContent = this.value;
+            });
+            const browserLang = navigator.language.split('-')[0];
+            if (translations[browserLang]) {
+                currentLanguage = browserLang;
+                document.getElementById('languageSelect').value = currentLanguage;
+            }
+            updateTexts();
+            setupFormatOptions();
+        });
+    </script>
+</body>
+</html>
