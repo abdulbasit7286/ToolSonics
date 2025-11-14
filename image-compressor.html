@@ -1,406 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Image Compressor — Free Online Image Compressor</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="title" content="Free Online Image Compressor | Compress JPG, PNG, WebP, AVIF">
-  <meta name="description" content="Compress images online with adjustable quality and optional resize. Preview before download. Fast, secure & mobile-friendly image compressor tool.">
-  <meta name="keywords" content="image compressor, compress image online, jpg compressor, webp compressor, avif compressor, reduce image size, image optimizer">
-  <meta name="author" content="Your Website Name">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Free Online Image Compressor">
-  <meta property="og:description" content="Reduce image file size quickly — adjust quality or resize and download compressed images. Works in browser, no upload server required.">
-  <meta property="og:image" content="https://yourwebsite.com/assets/image-compressor-preview.png">
-  <meta property="og:url" content="https://yourwebsite.com/tools/image-compressor">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Image Compressor | Reduce Photo Size Online">
-  <meta name="twitter:description" content="Compress photos in browser. Adjust quality, preview and download compressed version. Free & mobile friendly.">
-  <meta name="twitter:image" content="https://yourwebsite.com/assets/image-compressor-preview.png">
-
-  <style>
-    :root{
-      --blue: #0d6efd;
-      --blue-2:#0b5ed7;
-      --bg: #ffffff;
-      --muted: #6b7280;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      --radius: 12px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background: linear-gradient(180deg,#f6fbff 0%, #ffffff 100%);
-      color: #0f1724;
-      padding:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-    }
-    .card{
-      width:100%;
-      max-width:1024px;
-      background:var(--bg);
-      border-radius:16px;
-      padding:18px;
-      box-shadow: 0 12px 40px rgba(13,110,253,0.06);
-      border:1px solid rgba(13,110,253,0.04);
-    }
-    header{display:flex;gap:12px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-    h1{font-size:18px;margin:0}
-    p.lead{margin:0;color:var(--muted);font-size:13px}
-    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:16px}
-    .panel{padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid rgba(13,110,253,0.03)}
-    .drop{
-      border:2px dashed rgba(13,110,253,0.14);
-      border-radius:10px;padding:14px;text-align:center;cursor:pointer;
-      transition:all .14s;
-    }
-    .drop.dragover{border-color:var(--blue);background:rgba(13,110,253,0.03)}
-    input[type=file]{display:none}
-    .controls{display:flex;flex-direction:column;gap:10px;margin-top:12px}
-    .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-    label.select{background:white;border:1px solid rgba(13,110,253,0.06);padding:8px 10px;border-radius:10px;display:flex;align-items:center;gap:8px;font-size:14px}
-    .btn{padding:10px 12px;border-radius:10px;border:0;cursor:pointer}
-    .btn-primary{background:var(--blue);color:white;font-weight:600}
-    .btn-ghost{background:transparent;border:1px solid rgba(13,110,253,0.12)}
-    .thumb{width:100%;height:300px;background:linear-gradient(90deg,#f3f7ff,#fff);border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .thumb img{max-width:100%;max-height:100%;object-fit:contain}
-    .small{font-size:13px;color:var(--muted)}
-    .meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .pill{background:#f8fafc;padding:6px 8px;border-radius:999px;border:1px solid rgba(15,23,36,0.04);font-size:13px}
-    footer{margin-top:16px;text-align:center;color:var(--muted);font-size:13px}
-    @media (max-width:900px){ .grid{grid-template-columns:1fr} .thumb{height:220px} .logo{width:48px;height:48px} }
-    /* spinner */
-    .spinner{border:4px solid rgba(0,0,0,0.05);border-top:4px solid var(--blue);border-radius:50%;width:36px;height:36px;animation:spin 1s linear infinite;margin:auto}
-    @keyframes spin{to{transform:rotate(360deg)}}
-  </style>
-</head>
-<body>
-  <main class="card" role="main">
-    <header>
-      <div class="logo">CMP</div>
-      <div>
-        <h1>Image Compressor — Reduce file size fast</h1>
-        <p class="lead">Upload an image, preview, compress (quality/resize) and download. No signup — works in the browser.</p>
-      </div>
-    </header>
-
-    <section class="grid" aria-live="polite">
-      <div class="panel">
-        <div id="dropZone" class="drop" tabindex="0" aria-label="Upload image dropzone">
-          <strong>Drag & drop or click to upload</strong>
-          <div style="margin-top:6px" class="small">PNG, JPG, JPEG, WebP, AVIF — max 25 MB</div>
-          <input id="fileInput" type="file" accept="image/*" />
-        </div>
-
-        <div class="controls">
-          <div class="row">
-            <label class="select">Format
-              <select id="formatSelect" aria-label="Output format">
-                <option value="image/jpeg">JPG (best compatibility)</option>
-                <option value="image/webp">WebP (better compression)</option>
-                <option value="image/avif">AVIF (best compression, modern browsers)</option>
-                <option value="image/png">PNG (lossless)</option>
-              </select>
-            </label>
-
-            <label class="select">Quality
-              <input id="quality" type="range" min="10" max="100" value="85" aria-label="Quality slider" />
-              <span id="qVal">85%</span>
-            </label>
-
-            <label class="select">Max Width (px)
-              <input id="maxWidth" type="number" placeholder="auto" style="width:110px" aria-label="Max width" />
-            </label>
-          </div>
-
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button id="compressBtn" class="btn btn-primary">Compress & Download</button>
-            <a id="downloadLink" class="btn btn-primary" style="display:none" download>Download</a>
-            <button id="resetBtn" class="btn btn-ghost">Reset</button>
-          </div>
-
-          <div class="meta-row">
-            <div>Original: <span id="origInfo" class="pill">—</span></div>
-            <div>Compressed: <span id="newInfo" class="pill">—</span></div>
-            <div id="dimsInfo" class="pill">—</div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="panel" aria-hidden="false">
-        <div class="thumb" id="preview"><span class="small">Preview will appear here</span></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
-          <div class="small">Tip: WebP/AVIF give smaller files. PNG ignores quality slider.</div>
-          <div id="progressArea" style="min-width:120px;text-align:right"></div>
-        </div>
-      </aside>
-    </section>
-
-    <footer>
-      Made for your multi-tool website · Bright blue & white theme
-      <section style="margin-top:12px;color:#555;font-size:13px;max-width:860px;margin-inline:auto">
-        <p><strong>SEO:</strong> Free Image Compressor — compress JPG, PNG, WebP, AVIF online. Adjust quality & resize, preview and download compressed images. Mobile-friendly and secure (client-side).</p>
-        <p style="margin-top:6px;font-size:13px;color:var(--muted)"><strong>Bonus SEO tips:</strong> Use unique title & meta description per tool, include short keyword-rich explanatory text on the page (below the tool), add schema/FAQ, and generate a social preview image (og:image).</p>
-      </section>
-    </footer>
-  </main>
-
-  <script>
-    // DOM refs
-    const fileInput = document.getElementById('fileInput');
-    const dropZone = document.getElementById('dropZone');
-    const preview = document.getElementById('preview');
-    const compressBtn = document.getElementById('compressBtn');
-    const downloadLink = document.getElementById('downloadLink');
-    const resetBtn = document.getElementById('resetBtn');
-    const formatSelect = document.getElementById('formatSelect');
-    const quality = document.getElementById('quality');
-    const qVal = document.getElementById('qVal');
-    const maxWidth = document.getElementById('maxWidth');
-    const origInfo = document.getElementById('origInfo');
-    const newInfo = document.getElementById('newInfo');
-    const dimsInfo = document.getElementById('dimsInfo');
-    const progressArea = document.getElementById('progressArea');
-
-    let currentFile = null;
-    let currentImage = null; // HTMLImageElement (preview/fallback)
-    let currentBlobUrl = null;
-    let outBlobUrl = null;
-
-    // helpers
-    function humanBytes(bytes){
-      if(!bytes) return '0 B';
-      const thresh = 1024;
-      if(Math.abs(bytes) < thresh) return bytes + ' B';
-      const units = ['KB','MB','GB','TB'];
-      let u = -1;
-      do { bytes /= thresh; ++u; } while(Math.abs(bytes) >= thresh && u < units.length - 1);
-      return bytes.toFixed(2) + ' ' + units[u];
-    }
-
-    // drag & drop UX
-    ['dragenter','dragover'].forEach(ev => dropZone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dropZone.classList.add('dragover'); }));
-    ['dragleave','drop'].forEach(ev => dropZone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dropZone.classList.remove('dragover'); }));
-    dropZone.addEventListener('drop', e => {
-      const f = e.dataTransfer.files && e.dataTransfer.files[0];
-      if(f) handleFile(f);
-    });
-    dropZone.addEventListener('click', () => fileInput.click());
-    fileInput.addEventListener('change', e => { if(e.target.files && e.target.files[0]) handleFile(e.target.files[0]); });
-
-    // quick UI update
-    quality.addEventListener('input', () => qVal.textContent = quality.value + '%');
-
-    // file handler
-    function handleFile(file){
-      if(!file.type.startsWith('image/')) { alert('Please upload an image file.'); return; }
-      if(file.size > 25 * 1024 * 1024){ alert('File too large (max 25 MB).'); return; }
-
-      // cleanup previous
-      if(currentBlobUrl){ try{ URL.revokeObjectURL(currentBlobUrl); }catch(e){} currentBlobUrl = null; }
-      if(outBlobUrl){ try{ URL.revokeObjectURL(outBlobUrl); }catch(e){} outBlobUrl = null; downloadLink.style.display = 'none'; }
-      currentFile = file;
-      origInfo.textContent = humanBytes(file.size);
-
-      // preview via object URL
-      const url = URL.createObjectURL(file);
-      currentBlobUrl = url;
-      const img = new Image();
-      img.crossOrigin = 'anonymous'; // try to avoid taint
-      img.onload = () => {
-        currentImage = img;
-        renderPreview(img);
-        dimsInfo.textContent = img.naturalWidth + ' × ' + img.naturalHeight;
-      };
-      img.onerror = () => {
-        // if preview fails, keep object URL text and allow compressor to try (createImageBitmap path)
-        preview.innerHTML = '<div class="small">Preview not available — try compressing directly.</div>';
-        currentImage = null;
-      };
-      img.src = url;
-    }
-
-    function renderPreview(img){
-      preview.innerHTML = '';
-      img.style.maxWidth = '100%';
-      img.style.maxHeight = '100%';
-      img.style.objectFit = 'contain';
-      preview.appendChild(img);
-    }
-
-    // createImageBitmap preferred; fallback to IMG element decode
-    async function getDrawable(){
-      if(window.createImageBitmap && currentFile){
-        try{
-          const bitmap = await createImageBitmap(currentFile);
-          return { type: 'bitmap', src: bitmap };
-        }catch(e){
-          console.warn('createImageBitmap failed, falling back to IMG decode', e);
-        }
-      }
-      if(currentImage && currentImage.complete && currentImage.naturalWidth && currentImage.naturalHeight){
-        return { type: 'img', src: currentImage };
-      }
-      // last-resort: attempt to load a temp IMG from blob
-      return new Promise((resolve, reject) => {
-        if(!currentFile) return reject(new Error('No file'));
-        const tmp = new Image();
-        tmp.crossOrigin = 'anonymous';
-        const u = URL.createObjectURL(currentFile);
-        let done = false;
-        tmp.onload = () => { if(done) return; done = true; try{ URL.revokeObjectURL(u); }catch(e){} resolve({ type:'img', src: tmp }); };
-        tmp.onerror = () => { if(done) return; done = true; try{ URL.revokeObjectURL(u); }catch(e){} reject(new Error('Failed to decode image')); };
-        tmp.src = u;
-        setTimeout(()=>{ if(!done){ done=true; try{ URL.revokeObjectURL(u); }catch(e){} reject(new Error('Image decode timed out')); } }, 15000);
-      });
-    }
-
-    // compression core
-    async function compressImage(opts){
-      // opts: { mime, quality(0-1), maxWidth (int or null) }
-      const drawable = await getDrawable();
-      // derive size
-      const origW = (drawable.type === 'bitmap') ? drawable.src.width : drawable.src.naturalWidth;
-      const origH = (drawable.type === 'bitmap') ? drawable.src.height : drawable.src.naturalHeight;
-      if(!origW || !origH) throw new Error('Invalid image dimensions');
-
-      // compute output dims
-      let outW = origW, outH = origH;
-      if(opts.maxWidth && outW > opts.maxWidth){
-        const scale = opts.maxWidth / outW;
-        outW = Math.round(outW * scale);
-        outH = Math.round(outH * scale);
-      }
-
-      const canvas = document.createElement('canvas');
-      canvas.width = outW; canvas.height = outH;
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0,0,outW,outH);
-
-      try{
-        ctx.drawImage(drawable.src, 0, 0, outW, outH);
-      }catch(e){
-        if(drawable.type === 'bitmap' && typeof drawable.src.close === 'function') try{ drawable.src.close(); }catch(er){}
-        throw new Error('Failed to draw image on canvas: ' + (e && e.message));
-      }
-      if(drawable.type === 'bitmap' && typeof drawable.src.close === 'function'){
-        try{ drawable.src.close(); }catch(e){}
-      }
-
-      // For PNG we ignore quality param (lossless). For JPEG/WebP/AVIF quality applies.
-      const mime = opts.mime || 'image/jpeg';
-      const q = typeof opts.quality === 'number' ? Math.max(0.01, Math.min(1, opts.quality)) : 0.85;
-
-      // Try canvas.toBlob with mime+quality
-      return new Promise((resolve, reject) => {
-        // show spinner inside progress area
-        progressArea.innerHTML = '<div class="small">Compressing...</div>';
-        try {
-          canvas.toBlob(blob => {
-            progressArea.innerHTML = '';
-            if(!blob) return reject(new Error('Compression failed'));
-            resolve({ blob, canvas });
-          }, mime, (mime === 'image/png') ? undefined : q);
-        } catch(err){
-          progressArea.innerHTML = '';
-          reject(err);
-        }
-      });
-    }
-
-    // main button handler
-    compressBtn.addEventListener('click', async () => {
-      if(!currentFile){ alert('Please upload an image first.'); return; }
-      compressBtn.disabled = true;
-      compressBtn.textContent = 'Working...';
-
-      // collect options
-      const selectedMime = formatSelect.value;
-      const qValPercent = parseInt(quality.value, 10) || 85;
-      const q = selectedMime === 'image/png' ? 1 : (qValPercent/100);
-      const maxW = parseInt(maxWidth.value, 10) || null;
-
-      // show spinner preview
-      const prev = preview.innerHTML;
-      preview.innerHTML = '<div class="spinner" aria-hidden="true"></div>';
-      newInfo.textContent = '—';
-
-      try {
-        const { blob } = await compressImage({ mime: selectedMime, quality: q, maxWidth: maxW });
-
-        // create download link
-        if(outBlobUrl){ try{ URL.revokeObjectURL(outBlobUrl); }catch(e){} outBlobUrl = null; }
-        outBlobUrl = URL.createObjectURL(blob);
-        downloadLink.href = outBlobUrl;
-
-        // compute ext
-        let ext = selectedMime.split('/')[1] || 'jpg';
-        if(ext === 'jpeg') ext = 'jpg';
-        const baseName = (currentFile && currentFile.name) ? currentFile.name.replace(/\.[^.]+$/,'') : 'compressed-image';
-        downloadLink.download = `${baseName}.${ext}`;
-        downloadLink.style.display = '';
-        downloadLink.textContent = `Download (${humanBytes(blob.size)})`;
-        newInfo.textContent = humanBytes(blob.size);
-
-        // preview compressed image
-        const compImg = new Image();
-        compImg.onload = () => {
-          preview.innerHTML = '';
-          compImg.style.maxWidth = '100%'; compImg.style.maxHeight = '100%'; compImg.style.objectFit = 'contain';
-          preview.appendChild(compImg);
-        };
-        compImg.onerror = () => {
-          preview.innerHTML = '<div class="small">Preview of compressed image unavailable.</div>';
-        };
-        compImg.src = outBlobUrl;
-
-      } catch(err) {
-        console.error(err);
-        alert('Compression failed — ' + (err && err.message ? err.message : 'unknown error'));
-        preview.innerHTML = prev;
-      } finally {
-        compressBtn.disabled = false;
-        compressBtn.textContent = 'Compress & Download';
-        progressArea.innerHTML = '';
-      }
-    });
-
-    // reset
-    resetBtn.addEventListener('click', () => {
-      // cleanup blob urls
-      if(currentBlobUrl) try{ URL.revokeObjectURL(currentBlobUrl); }catch(e){}
-      if(outBlobUrl) try{ URL.revokeObjectURL(outBlobUrl); }catch(e){}
-      currentBlobUrl = outBlobUrl = null;
-      currentFile = null;
-      currentImage = null;
-      preview.innerHTML = '<span class="small">Preview will appear here</span>';
-      downloadLink.style.display = 'none';
-      origInfo.textContent = '—';
-      newInfo.textContent = '—';
-      dimsInfo.textContent = '—';
-      maxWidth.value = '';
-      quality.value = '85';
-      qVal.textContent = '85%';
-      fileInput.value = '';
-      progressArea.innerHTML = '';
-    });
-
-    // keyboard accessibility
-    dropZone.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') fileInput.click(); });
-
-    // init state
-    (function(){ qVal.textContent = quality.value + '%'; origInfo.textContent = '—'; newInfo.textContent = '—'; dimsInfo.textContent = '—'; })();
-  </script>
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor - Reduce Image Size | ToolSonics</title>
+    <meta name="description" content="Free online image compressor tool. Reduce JPEG, PNG, GIF image file size without losing quality. Compress photos instantly.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            border-radius: 15px 15px 0 0;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #718096;
+            font-size: 1.2rem;
+        }
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .language-selector select {
+            padding: 8px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            color: #2d3748;
+            font-weight: 500;
+        }
+        .tool-card {
+            background: white;
+            border-radius: 0 0 15px 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .upload-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .file-input {
+            display: none;
+        }
+        .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        .controls-section {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+        .quality-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
