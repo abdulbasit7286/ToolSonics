@@ -9,6 +9,45 @@
     <meta name="author" content="ToolSonics">
     <meta name="robots" content="index, follow">
     
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Professional Image Cropper - Free Online Photo Cropping Tool">
+    <meta property="og:description" content="Crop photos online with precision. No registration required. 100% secure browser-based processing.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolsonics.com/image-cropper">
+    <meta property="og:image" content="https://toolsonics.com/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Professional Image Cropper - Free Online Tool">
+    <meta name="twitter:description" content="Crop photos online with precision. No registration required. 100% secure.">
+    <meta name="twitter:image" content="https://toolsonics.com/twitter-image.jpg">
+    
+    <!-- Structured Data / Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Professional Image Cropper",
+        "url": "https://toolsonics.com/image-cropper",
+        "description": "Free online image cropping tool for precise photo editing",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "ToolSonics"
+        }
+    }
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://toolsonics.com/image-cropper">
+    
     <style>
         * {
             margin: 0;
@@ -16,162 +55,195 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
+        
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --success: #06d6a0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border: #dee2e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+        
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
+            padding-bottom: 2rem;
         }
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-        .nav-container {
+        
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
+        
         .logo {
-            color: #4f46e5;
-            font-size: 1.8rem;
-            font-weight: bold;
-            text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
         }
+        
         .logo-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
+        
         .nav-links {
             display: flex;
+            gap: 1.5rem;
             align-items: center;
-            gap: 1rem;
         }
+        
         .language-selector {
             padding: 0.5rem 1rem;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--border);
             border-radius: 8px;
             background: white;
-            color: #1f2937;
+            color: var(--dark);
             font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
-        .language-selector:hover {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 2rem;
         }
-        .main-container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 20px;
-        }
+        
         .tool-card {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             overflow: hidden;
-            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
         }
+        
         .tool-header {
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 3rem 2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
-        .tool-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
+        
         .tool-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
-            position: relative;
         }
+        
         .tool-header p {
             opacity: 0.9;
-            font-size: 1.2rem;
-            position: relative;
+            font-size: 1.1rem;
         }
+        
         .tool-content {
-            padding: 3rem;
+            padding: 2.5rem;
         }
+        
+        /* Upload Section */
         .upload-section {
             text-align: center;
             margin-bottom: 2rem;
         }
+        
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 3rem 2rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+            background: var(--light);
+        }
+        
+        .upload-area.active {
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
         .file-input {
             display: none;
         }
+        
         .upload-label {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 1.2rem 2.5rem;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            padding: 1rem 2rem;
+            background: var(--primary);
             color: white;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
             border: none;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            font-size: 1rem;
         }
+        
         .upload-label:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
         }
+        
+        /* Preview Section */
         .preview-section {
-            margin: 2rem 0;
             display: none;
+            margin: 2rem 0;
         }
+        
         .canvas-container {
-            background: #f8fafc;
-            border: 2px dashed #cbd5e1;
-            border-radius: 12px;
+            background: var(--light);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
             padding: 1.5rem;
             margin: 1rem 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 350px;
-            transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
-        .canvas-container:hover {
-            border-color: #4f46e5;
-        }
+        
         #cropCanvas {
             max-width: 100%;
             max-height: 400px;
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             cursor: crosshair;
         }
+        
+        /* Controls */
         .controls {
             display: flex;
             gap: 1rem;
@@ -179,10 +251,11 @@
             margin: 2rem 0;
             flex-wrap: wrap;
         }
+        
         .btn {
             padding: 1rem 2rem;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -191,155 +264,135 @@
             gap: 0.5rem;
             font-size: 1rem;
         }
+        
         .btn-primary {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: var(--success);
             color: white;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
+        
         .btn-primary:hover {
+            opacity: 0.9;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
         }
+        
         .btn-secondary {
-            background: linear-gradient(135deg, #6b7280, #4b5563);
+            background: var(--gray);
             color: white;
-            box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
         }
+        
         .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(107, 114, 128, 0.4);
+            opacity: 0.9;
         }
+        
         .btn-download {
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            background: var(--primary);
             color: white;
             width: 100%;
             justify-content: center;
             display: none;
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
         }
-        .btn-download:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
-        }
+        
+        /* Loading */
         .loading-container {
             text-align: center;
-            padding: 3rem;
+            padding: 2rem;
             display: none;
         }
+        
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #4f46e5;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light);
+            border-top: 4px solid var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1rem;
         }
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .error-container {
-            margin: 1rem 0;
-        }
-        .error-message {
-            background: #fef2f2;
-            color: #dc2626;
-            padding: 1.2rem;
-            border-radius: 10px;
-            border-left: 5px solid #dc2626;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(220, 38, 38, 0.1);
-        }
-        .warning-message {
-            background: #fffbeb;
-            color: #d97706;
-            padding: 1.2rem;
-            border-radius: 10px;
-            border-left: 5px solid #d97706;
-            box-shadow: 0 2px 10px rgba(217, 119, 6, 0.1);
-        }
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: inherit;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-        .close-btn:hover {
-            background: rgba(0,0,0,0.1);
-        }
+        
+        /* Features Grid */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
+        
         .feature-card {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
+            padding: 1.5rem;
+            border-radius: var(--radius);
             text-align: center;
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
         }
+        
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
+        
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
+        
+        /* Privacy Banner */
         .privacy-banner {
             background: linear-gradient(135deg, #dbeafe, #bfdbfe);
             border: 1px solid #93c5fd;
             color: #1e40af;
             padding: 1.5rem;
-            border-radius: 12px;
+            border-radius: var(--radius);
             margin: 2rem 0;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(219, 234, 254, 0.5);
         }
+        
+        /* Instructions */
         .instructions {
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            border-left: 5px solid #4f46e5;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
         }
+        
         .instructions h3 {
-            color: #4f46e5;
+            color: var(--primary);
             margin-bottom: 1rem;
-            font-size: 1.4rem;
         }
+        
         .instructions ol {
             margin-left: 1.5rem;
         }
+        
         .instructions li {
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
         
+        /* Footer */
+        footer {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .footer-content {
+            text-align: center;
+            color: var(--gray);
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .main-container {
-                margin: 1rem auto;
-                padding: 0 15px;
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
             }
             
             .tool-header {
@@ -347,11 +400,11 @@
             }
             
             .tool-header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .tool-content {
-                padding: 2rem;
+                padding: 1.5rem;
             }
             
             .controls {
@@ -363,65 +416,79 @@
                 justify-content: center;
             }
             
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
+            .canvas-container {
+                min-height: 250px;
+            }
+            
+            #cropCanvas {
+                max-height: 300px;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="https://toolsonics.com" class="logo">
-                <span class="logo-icon">🛠️</span>
-                ToolSonics
-            </a>
-            <div class="nav-links">
-                <select id="languageSelect" class="language-selector">
-                    <option value="en">🌐 English</option>
-                    <option value="hi">🌐 हिन्दी</option>
-                    <option value="es">🌐 Español</option>
-                    <option value="fr">🌐 Français</option>
-                </select>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="https://toolsonics.com" class="logo">
+                    <span class="logo-icon">🛠️</span>
+                    ToolSonics
+                </a>
+                <div class="nav-links">
+                    <select id="languageSelect" class="language-selector">
+                        <option value="en">🌐 English</option>
+                        <option value="es">🌐 Español</option>
+                        <option value="fr">🌐 Français</option>
+                        <option value="de">🌐 Deutsch</option>
+                        <option value="hi">🌐 हिन्दी</option>
+                        <option value="ar">🌐 العربية</option>
+                    </select>
+                </div>
             </div>
         </div>
-    </nav>
-    
-    <div class="main-container">
+    </header>
+
+    <div class="container main-content">
         <div class="tool-card">
             <div class="tool-header">
-                <h1>✂️ Professional Image Cropper</h1>
-                <p>Crop images with precision and download instantly</p>
+                <h1 id="title">✂️ Professional Image Cropper</h1>
+                <p id="subtitle">Crop images with precision and download instantly</p>
             </div>
             <div class="tool-content">
                 <div class="instructions">
-                    <h3>How to Use:</h3>
+                    <h3 id="howToUse">How to Use:</h3>
                     <ol>
-                        <li>Upload your image using the button below</li>
-                        <li>Drag to select the area you want to crop</li>
-                        <li>Click "Crop Image" to process</li>
-                        <li>Download your cropped image</li>
+                        <li id="step1">Upload your image using the button below</li>
+                        <li id="step2">Drag to select the area you want to crop</li>
+                        <li id="step3">Click "Crop Image" to process</li>
+                        <li id="step4">Download your cropped image</li>
                     </ol>
                 </div>
+
                 <div class="upload-section">
                     <input type="file" id="imageInput" accept="image/*" class="file-input">
-                    <label for="imageInput" class="upload-label">
-                        📁 Choose Image File
-                    </label>
-                    <p style="margin-top: 1rem; color: #6b7280; font-size: 1rem;">
-                        Supports JPEG, PNG, GIF, WebP (Max 10MB)
-                    </p>
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📁</div>
+                        <h3 id="uploadText">Drop your image here or click to upload</h3>
+                        <p id="supportedFormats" style="margin-top: 0.5rem; color: var(--gray);">
+                            Supports JPEG, PNG, GIF, WebP (Max 10MB)
+                        </p>
+                        <label for="imageInput" class="upload-label" id="uploadLabel">
+                            📁 Choose Image File
+                        </label>
+                    </div>
                 </div>
+
                 <div id="loading" class="loading-container">
                     <div class="loading-spinner"></div>
-                    <p>Processing your image...</p>
+                    <p id="loadingText">Processing your image...</p>
                 </div>
+
                 <div id="previewSection" class="preview-section">
                     <div class="canvas-container">
                         <canvas id="cropCanvas"></canvas>
                     </div>
-                    
+
                     <div class="controls">
                         <button id="cropBtn" class="btn btn-primary">
                             ✅ Crop Image
@@ -430,46 +497,207 @@
                             🔄 Reset
                         </button>
                     </div>
+
+                    <div class="download-section">
+                        <button id="downloadBtn" class="btn btn-download">
+                            📥 Download Cropped Image
+                        </button>
+                    </div>
                 </div>
-                <div class="download-section">
-                    <button id="downloadBtn" class="btn btn-download">
-                        📥 Download Cropped Image
-                    </button>
-                </div>
-                <div id="errorContainer" class="error-container"></div>
             </div>
         </div>
-        
+
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
-                <h3>100% Secure</h3>
-                <p>All processing happens in your browser. No server uploads.</p>
+                <h3 id="secureTitle">100% Secure</h3>
+                <p id="secureDesc">All processing happens in your browser. No server uploads.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Instant processing with no waiting time.</p>
+                <h3 id="fastTitle">Lightning Fast</h3>
+                <p id="fastDesc">Instant processing with no waiting time.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
-                <h3>Precision Tools</h3>
-                <p>Pixel-perfect cropping with easy controls.</p>
+                <h3 id="precisionTitle">Precision Tools</h3>
+                <p id="precisionDesc">Pixel-perfect cropping with easy controls.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🌍</div>
-                <h3>Multi-language</h3>
-                <p>Available in multiple languages for global users.</p>
+                <h3 id="multiLangTitle">Multi-language</h3>
+                <p id="multiLangDesc">Available in multiple languages for global users.</p>
             </div>
         </div>
-        
+
         <div class="privacy-banner">
-            <p>🔒 <strong>Your Privacy Matters:</strong> All image processing happens locally in your browser. We never see or store your images.</p>
+            <p id="privacyText">🔒 <strong>Your Privacy Matters:</strong> All image processing happens locally in your browser. We never see or store your images.</p>
         </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2023 ToolSonics. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
     <script>
+        // Language Translations
+        const translations = {
+            en: {
+                title: "✂️ Professional Image Cropper",
+                subtitle: "Crop images with precision and download instantly",
+                howToUse: "How to Use:",
+                step1: "Upload your image using the button below",
+                step2: "Drag to select the area you want to crop",
+                step3: "Click 'Crop Image' to process",
+                step4: "Download your cropped image",
+                uploadText: "Drop your image here or click to upload",
+                supportedFormats: "Supports JPEG, PNG, GIF, WebP (Max 10MB)",
+                uploadLabel: "📁 Choose Image File",
+                loadingText: "Processing your image...",
+                cropBtn: "✅ Crop Image",
+                resetBtn: "🔄 Reset",
+                downloadBtn: "📥 Download Cropped Image",
+                secureTitle: "100% Secure",
+                secureDesc: "All processing happens in your browser. No server uploads.",
+                fastTitle: "Lightning Fast",
+                fastDesc: "Instant processing with no waiting time.",
+                precisionTitle: "Precision Tools",
+                precisionDesc: "Pixel-perfect cropping with easy controls.",
+                multiLangTitle: "Multi-language",
+                multiLangDesc: "Available in multiple languages for global users.",
+                privacyText: "🔒 <strong>Your Privacy Matters:</strong> All image processing happens locally in your browser. We never see or store your images."
+            },
+            es: {
+                title: "✂️ Recortador de Imágenes Profesional",
+                subtitle: "Recorta imágenes con precisión y descarga al instante",
+                howToUse: "Cómo Usar:",
+                step1: "Sube tu imagen usando el botón de abajo",
+                step2: "Arrastra para seleccionar el área que quieres recortar",
+                step3: "Haz clic en 'Recortar Imagen' para procesar",
+                step4: "Descarga tu imagen recortada",
+                uploadText: "Suelta tu imagen aquí o haz clic para subir",
+                supportedFormats: "Soporta JPEG, PNG, GIF, WebP (Máx. 10MB)",
+                uploadLabel: "📁 Elegir Archivo de Imagen",
+                loadingText: "Procesando tu imagen...",
+                cropBtn: "✅ Recortar Imagen",
+                resetBtn: "🔄 Reiniciar",
+                downloadBtn: "📥 Descargar Imagen Recortada",
+                secureTitle: "100% Seguro",
+                secureDesc: "Todo el procesamiento ocurre en tu navegador. Sin subidas al servidor.",
+                fastTitle: "Súper Rápido",
+                fastDesc: "Procesamiento instantáneo sin tiempo de espera.",
+                precisionTitle: "Herramientas de Precisión",
+                precisionDesc: "Recorte perfecto en píxeles con controles fáciles.",
+                multiLangTitle: "Multi-idioma",
+                multiLangDesc: "Disponible en múltiples idiomas para usuarios globales.",
+                privacyText: "🔒 <strong>Tu Privacidad Importa:</strong> Todo el procesamiento de imágenes ocurre localmente en tu navegador. Nunca vemos ni almacenamos tus imágenes."
+            },
+            fr: {
+                title: "✂️ Rogneur d'Image Professionnel",
+                subtitle: "Recadrez des images avec précision et téléchargez instantanément",
+                howToUse: "Comment Utiliser:",
+                step1: "Téléchargez votre image en utilisant le bouton ci-dessous",
+                step2: "Faites glisser pour sélectionner la zone que vous souhaitez recadrer",
+                step3: "Cliquez sur 'Recadrer l'Image' pour traiter",
+                step4: "Téléchargez votre image recadrée",
+                uploadText: "Déposez votre image ici ou cliquez pour télécharger",
+                supportedFormats: "Prend en charge JPEG, PNG, GIF, WebP (Max 10MB)",
+                uploadLabel: "📁 Choisir un Fichier Image",
+                loadingText: "Traitement de votre image...",
+                cropBtn: "✅ Recadrer l'Image",
+                resetBtn: "🔄 Réinitialiser",
+                downloadBtn: "📥 Télécharger l'Image Recadrée",
+                secureTitle: "100% Sécurisé",
+                secureDesc: "Tout le traitement se fait dans votre navigateur. Aucun téléchargement vers le serveur.",
+                fastTitle: "Extrêmement Rapide",
+                fastDesc: "Traitement instantané sans temps d'attente.",
+                precisionTitle: "Outils de Précision",
+                precisionDesc: "Recadrage parfait au pixel près avec des contrôles faciles.",
+                multiLangTitle: "Multi-langue",
+                multiLangDesc: "Disponible en plusieurs langues pour les utilisateurs du monde entier.",
+                privacyText: "🔒 <strong>Votre Vie Privée Compte:</strong> Tout le traitement d'image se fait localement dans votre navigateur. Nous ne voyons ni ne stockons jamais vos images."
+            },
+            de: {
+                title: "✂️ Professioneller Bildausschnitt",
+                subtitle: "Schneiden Sie Bilder präzise zu und laden Sie sie sofort herunter",
+                howToUse: "So wird's gemacht:",
+                step1: "Laden Sie Ihr Bild mit der Schaltfläche unten hoch",
+                step2: "Ziehen Sie, um den Bereich auszuwählen, den Sie zuschneiden möchten",
+                step3: "Klicken Sie auf 'Bild Zuschneiden' zum Verarbeiten",
+                step4: "Laden Sie Ihr zugeschnittenes Bild herunter",
+                uploadText: "Legen Sie Ihr Bild hier ab oder klicken Sie zum Hochladen",
+                supportedFormats: "Unterstützt JPEG, PNG, GIF, WebP (Max. 10MB)",
+                uploadLabel: "📁 Bilddatei Auswählen",
+                loadingText: "Ihr Bild wird verarbeitet...",
+                cropBtn: "✅ Bild Zuschneiden",
+                resetBtn: "🔄 Zurücksetzen",
+                downloadBtn: "📥 Zugeschnittenes Bild Herunterladen",
+                secureTitle: "100% Sicher",
+                secureDesc: "Die gesamte Verarbeitung erfolgt in Ihrem Browser. Keine Server-Uploads.",
+                fastTitle: "Blitzschnell",
+                fastDesc: "Sofortige Verarbeitung ohne Wartezeit.",
+                precisionTitle: "Präzisionswerkzeuge",
+                precisionDesc: "Pixelgenaues Zuschneiden mit einfachen Steuerelementen.",
+                multiLangTitle: "Mehrsprachig",
+                multiLangDesc: "Verfügbar in mehreren Sprachen für globale Benutzer.",
+                privacyText: "🔒 <strong>Ihre Privatsphäre ist uns wichtig:</strong> Die gesamte Bildverarbeitung erfolgt lokal in Ihrem Browser. Wir sehen oder speichern Ihre Bilder niemals."
+            },
+            hi: {
+                title: "✂️ प्रोफेशनल इमेज क्रॉपर",
+                subtitle: "सटीकता के साथ इमेज क्रॉप करें और तुरंत डाउनलोड करें",
+                howToUse: "उपयोग कैसे करें:",
+                step1: "नीचे दिए बटन का उपयोग करके अपनी इमेज अपलोड करें",
+                step2: "क्रॉप करने के लिए एरिया सेलेक्ट करने के लिए ड्रैग करें",
+                step3: "प्रोसेस करने के लिए 'इमेज क्रॉप करें' पर क्लिक करें",
+                step4: "अपनी क्रॉप की गई इमेज डाउनलोड करें",
+                uploadText: "अपनी इमेज यहां ड्रॉप करें या अपलोड करने के लिए क्लिक करें",
+                supportedFormats: "JPEG, PNG, GIF, WebP सपोर्टेड (अधिकतम 10MB)",
+                uploadLabel: "📁 इमेज फाइल चुनें",
+                loadingText: "आपकी इमेज प्रोसेस हो रही है...",
+                cropBtn: "✅ इमेज क्रॉप करें",
+                resetBtn: "🔄 रीसेट करें",
+                downloadBtn: "📥 क्रॉप की गई इमेज डाउनलोड करें",
+                secureTitle: "100% सुरक्षित",
+                secureDesc: "सारी प्रोसेसिंग आपके ब्राउज़र में होती है। कोई सर्वर अपलोड नहीं।",
+                fastTitle: "बिजली की तेज",
+                fastDesc: "बिना इंतजार के तुरंत प्रोसेसिंग।",
+                precisionTitle: "सटीक उपकरण",
+                precisionDesc: "आसान नियंत्रण के साथ पिक्सेल-परफेक्ट क्रॉपिंग।",
+                multiLangTitle: "बहुभाषी",
+                multiLangDesc: "वैश्विक उपयोगकर्ताओं के लिए कई भाषाओं में उपलब्ध।",
+                privacyText: "🔒 <strong>आपकी गोपनीयता मायने रखती है:</strong> सारी इमेज प्रोसेसिंग आपके ब्राउज़र में स्थानीय रूप से होती है। हम आपकी इमेज कभी नहीं देखते या स्टोर नहीं करते।"
+            },
+            ar: {
+                title: "✂️ أداة اقتصاص الصور الاحترافية",
+                subtitle: "اقتصاص الصور بدقة وتحميلها فورًا",
+                howToUse: "طريقة الاستخدام:",
+                step1: "قم بتحميل صورتك باستخدام الزر أدناه",
+                step2: "اسحب لتحديد المنطقة التي تريد اقتصاصها",
+                step3: "انقر على 'اقتصاص الصورة' للمعالجة",
+                step4: "قم بتحميل صورتك المقتطعة",
+                uploadText: "أسقط صورتك هنا أو انقر للتحميل",
+                supportedFormats: "يدعم JPEG, PNG, GIF, WebP (الحد الأقصى 10MB)",
+                uploadLabel: "📁 اختر ملف الصورة",
+                loadingText: "جاري معالجة صورتك...",
+                cropBtn: "✅ اقتصاص الصورة",
+                resetBtn: "🔄 إعادة تعيين",
+                downloadBtn: "📥 تحميل الصورة المقتطعة",
+                secureTitle: "آمن 100%",
+                secureDesc: "كل المعالجة تتم في متصفحك. لا توجد تحميلات إلى الخادم.",
+                fastTitle: "سريع جدًا",
+                fastDesc: "معالجة فورية دون وقت انتظار.",
+                precisionTitle: "أدوات دقيقة",
+                precisionDesc: "اقتصاص بدقة البكسل مع ضوابط سهلة.",
+                multiLangTitle: "متعدد اللغات",
+                multiLangDesc: "متاح بعدة لغات للمستخدمين حول العالم.",
+                privacyText: "🔒 <strong>خصوصيتك تهمنا:</strong> كل معالجة الصور تتم محليًا في متصفحك. نحن لا نرى أو نخزن صورك أبدًا."
+            }
+        };
+
         // Application state
+        let currentLanguage = 'en';
         let currentImage = null;
         let canvas = null;
         let ctx = null;
@@ -479,13 +707,14 @@
         let originalImageData = null;
 
         // DOM Elements
+        const languageSelect = document.getElementById('languageSelect');
         const imageInput = document.getElementById('imageInput');
+        const uploadArea = document.getElementById('uploadArea');
         const previewSection = document.getElementById('previewSection');
         const cropBtn = document.getElementById('cropBtn');
         const resetBtn = document.getElementById('resetBtn');
         const downloadBtn = document.getElementById('downloadBtn');
         const loading = document.getElementById('loading');
-        const errorContainer = document.getElementById('errorContainer');
 
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
@@ -493,25 +722,129 @@
             ctx = canvas.getContext('2d');
             
             // Set up event listeners
+            languageSelect.addEventListener('change', changeLanguage);
             imageInput.addEventListener('change', handleImageUpload);
             cropBtn.addEventListener('click', cropImage);
             resetBtn.addEventListener('click', resetCropper);
             downloadBtn.addEventListener('click', downloadImage);
             
+            // Drag and drop functionality
+            setupDragAndDrop();
+            
+            // Auto-detect browser language
+            detectBrowserLanguage();
+            
+            // Setup canvas events
             setupCanvasEvents();
         });
+
+        function changeLanguage() {
+            currentLanguage = languageSelect.value;
+            updateTexts();
+        }
+
+        function updateTexts() {
+            const trans = translations[currentLanguage];
+            
+            if (!trans) return;
+            
+            // Update all text elements
+            document.getElementById('title').textContent = trans.title;
+            document.getElementById('subtitle').textContent = trans.subtitle;
+            document.getElementById('howToUse').textContent = trans.howToUse;
+            document.getElementById('step1').textContent = trans.step1;
+            document.getElementById('step2').textContent = trans.step2;
+            document.getElementById('step3').textContent = trans.step3;
+            document.getElementById('step4').textContent = trans.step4;
+            document.getElementById('uploadText').textContent = trans.uploadText;
+            document.getElementById('uploadLabel').innerHTML = trans.uploadLabel;
+            document.getElementById('loadingText').textContent = trans.loadingText;
+            document.getElementById('cropBtn').innerHTML = trans.cropBtn;
+            document.getElementById('resetBtn').innerHTML = trans.resetBtn;
+            document.getElementById('downloadBtn').innerHTML = trans.downloadBtn;
+            document.getElementById('secureTitle').textContent = trans.secureTitle;
+            document.getElementById('secureDesc').textContent = trans.secureDesc;
+            document.getElementById('fastTitle').textContent = trans.fastTitle;
+            document.getElementById('fastDesc').textContent = trans.fastDesc;
+            document.getElementById('precisionTitle').textContent = trans.precisionTitle;
+            document.getElementById('precisionDesc').textContent = trans.precisionDesc;
+            document.getElementById('multiLangTitle').textContent = trans.multiLangTitle;
+            document.getElementById('multiLangDesc').textContent = trans.multiLangDesc;
+            document.getElementById('privacyText').innerHTML = trans.privacyText;
+        }
+
+        function detectBrowserLanguage() {
+            const browserLang = navigator.language.split('-')[0];
+            if (translations[browserLang]) {
+                currentLanguage = browserLang;
+                languageSelect.value = currentLanguage;
+                updateTexts();
+            }
+        }
+
+        function setupDragAndDrop() {
+            // Prevent default drag behaviors
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, preventDefaults, false);
+                document.body.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            // Highlight drop area when item is dragged over it
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            // Handle dropped files
+            uploadArea.addEventListener('drop', handleDrop, false);
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            function highlight() {
+                uploadArea.classList.add('active');
+            }
+            
+            function unhighlight() {
+                uploadArea.classList.remove('active');
+            }
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                imageInput.files = files;
+                handleImageUpload({ target: { files: files } });
+            }
+        }
+
+        function setupCanvasEvents() {
+            canvas.addEventListener('mousedown', startDragging);
+            canvas.addEventListener('mousemove', whileDragging);
+            canvas.addEventListener('mouseup', stopDragging);
+            canvas.addEventListener('mouseleave', stopDragging);
+            
+            // Touch events for mobile
+            canvas.addEventListener('touchstart', handleTouchStart);
+            canvas.addEventListener('touchmove', handleTouchMove);
+            canvas.addEventListener('touchend', stopDragging);
+        }
 
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
             
             if (!file.type.match('image.*')) {
-                showError('Please select a valid image file (JPEG, PNG, GIF, WebP).', 'error');
+                alert('Please select a valid image file (JPEG, PNG, GIF, WebP).');
                 return;
             }
             
             if (file.size > 10 * 1024 * 1024) {
-                showError('Image file is too large. Please select a smaller image (max 10MB).', 'error');
+                alert('Image file is too large. Please select a smaller image (max 10MB).');
                 return;
             }
             
@@ -528,13 +861,13 @@
                 };
                 currentImage.onerror = function() {
                     hideLoading();
-                    showError('Failed to load the image. Please try another file.', 'error');
+                    alert('Failed to load the image. Please try another file.');
                 };
                 currentImage.src = e.target.result;
             };
             reader.onerror = function() {
                 hideLoading();
-                showError('Failed to read the file. Please try again.', 'error');
+                alert('Failed to read the file. Please try again.');
             };
             reader.readAsDataURL(file);
         }
@@ -567,13 +900,6 @@
                 width: imgWidth * ratio,
                 height: imgHeight * ratio
             };
-        }
-
-        function setupCanvasEvents() {
-            canvas.addEventListener('mousedown', startDragging);
-            canvas.addEventListener('mousemove', whileDragging);
-            canvas.addEventListener('mouseup', stopDragging);
-            canvas.addEventListener('mouseleave', stopDragging);
         }
 
         function drawCropArea() {
@@ -642,6 +968,41 @@
             hasCropArea = true;
         }
 
+        function handleTouchStart(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            
+            startX = touch.clientX - rect.left;
+            startY = touch.clientY - rect.top;
+            
+            // Initialize end coordinates
+            endX = startX;
+            endY = startY;
+            
+            hasCropArea = true;
+            isDragging = true;
+        }
+
+        function handleTouchMove(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            
+            endX = touch.clientX - rect.left;
+            endY = touch.clientY - rect.top;
+            
+            // Ensure coordinates stay within canvas bounds
+            startX = Math.max(0, Math.min(startX, canvas.width));
+            startY = Math.max(0, Math.min(startY, canvas.height));
+            endX = Math.max(0, Math.min(endX, canvas.width));
+            endY = Math.max(0, Math.min(endY, canvas.height));
+            
+            drawCropArea();
+        }
+
         function whileDragging(e) {
             if (!isDragging) return;
             
@@ -676,12 +1037,12 @@
 
         function cropImage() {
             if (!currentImage) {
-                showError('Please select an image first.', 'error');
+                alert('Please select an image first.');
                 return;
             }
             
             if (!hasCropArea) {
-                showError('Please select a crop area by dragging on the image.', 'error');
+                alert('Please select a crop area by dragging on the image.');
                 return;
             }
             
@@ -692,7 +1053,7 @@
             const height = Math.abs(endY - startY);
             
             if (width < 10 || height < 10) {
-                showError('Crop area is too small. Please select a larger area.', 'error');
+                alert('Crop area is too small. Please select a larger area.');
                 return;
             }
             
@@ -720,7 +1081,6 @@
                 
                 hideLoading();
                 downloadBtn.style.display = 'flex';
-                showError('Image cropped successfully! You can now download it.', 'warning');
                 
                 // Reset crop state
                 hasCropArea = false;
@@ -746,7 +1106,6 @@
             imageInput.value = '';
             hasCropArea = false;
             originalImageData = null;
-            hideError();
         }
 
         function showLoading() {
@@ -755,22 +1114,6 @@
 
         function hideLoading() {
             loading.style.display = 'none';
-        }
-
-        function showError(message, type = 'error') {
-            const errorClass = type === 'error' ? 'error-message' : 'warning-message';
-            
-            errorContainer.innerHTML = `
-                <div class="${errorClass}">
-                    <strong>${type === 'error' ? '❌ Error:' : '✅ Success:'}</strong> ${message}
-                    <button onclick="this.parentElement.remove()" class="close-btn">×</button>
-                </div>
-            `;
-            errorContainer.style.display = 'block';
-        }
-
-        function hideError() {
-            errorContainer.style.display = 'none';
         }
     </script>
 </body>
