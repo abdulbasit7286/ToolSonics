@@ -182,27 +182,6 @@
             display: none;
         }
 
-        .language-selector {
-            margin: 20px 0;
-        }
-
-        .language-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #2d3748;
-        }
-
-        .language-dropdown {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            background-color: white;
-            font-size: 1rem;
-            color: #2d3748;
-        }
-
         .action-buttons {
             display: flex;
             gap: 15px;
@@ -435,9 +414,6 @@
                     <i>📁</i> Unlimited File Size
                 </div>
                 <div class="meta-item">
-                    <i>🌐</i> 100+ Languages
-                </div>
-                <div class="meta-item">
                     <i>⚡</i> Fast Processing
                 </div>
             </div>
@@ -458,26 +434,6 @@
                         <p class="upload-subtext">Supports JPG, PNG, BMP, TIFF • No Size Limits</p>
                         <button class="browse-btn">Browse Files</button>
                         <input type="file" id="fileInput" class="file-input" accept="image/*">
-                    </div>
-                    
-                    <div class="language-selector">
-                        <label class="language-label" for="languageSelect">
-                            <i>🌐</i> Select Language
-                        </label>
-                        <select id="languageSelect" class="language-dropdown">
-                            <option value="eng">English</option>
-                            <option value="spa">Spanish</option>
-                            <option value="fra">French</option>
-                            <option value="deu">German</option>
-                            <option value="ita">Italian</option>
-                            <option value="por">Portuguese</option>
-                            <option value="rus">Russian</option>
-                            <option value="chi_sim">Chinese (Simplified)</option>
-                            <option value="jpn">Japanese</option>
-                            <option value="kor">Korean</option>
-                            <option value="ara">Arabic</option>
-                            <option value="hin">Hindi</option>
-                        </select>
                     </div>
                     
                     <div class="preview-container">
@@ -544,12 +500,6 @@
             </div>
             
             <div class="feature-card">
-                <div class="feature-icon">🌐</div>
-                <h3>Multi-Language</h3>
-                <p>Supports 100+ languages including English, Spanish, Chinese, Arabic.</p>
-            </div>
-            
-            <div class="feature-card">
                 <div class="feature-icon">📱</div>
                 <h3>Mobile Friendly</h3>
                 <p>Works perfectly on all devices - desktop, tablet, and mobile.</p>
@@ -577,7 +527,6 @@
             const progressFill = document.getElementById('progressFill');
             const progressText = document.getElementById('progressText');
             const progressPercent = document.getElementById('progressPercent');
-            const languageSelect = document.getElementById('languageSelect');
             const errorContainer = document.getElementById('errorContainer');
             
             let uploadedImage = null;
@@ -643,62 +592,50 @@
                     return;
                 }
                 
+                // Reset previous results
+                resultText.textContent = '';
+                placeholderText.style.display = 'none';
+                copyBtn.style.display = 'none';
+                
                 // Show progress
                 progressContainer.style.display = 'block';
-                progressFill.style.width = '10%';
-                progressPercent.textContent = '10%';
-                progressText.textContent = 'Initializing OCR engine...';
                 
-                // Disable buttons during processing
-                extractBtn.disabled = true;
-                resetBtn.disabled = true;
-                
-                const selectedLanguage = languageSelect.value;
-                
+                // Use Tesseract.js for OCR
                 Tesseract.recognize(
                     uploadedImage,
-                    selectedLanguage,
+                    'eng', // Default to English
                     {
                         logger: progress => {
                             if (progress.status === 'recognizing text') {
                                 const p = Math.round(progress.progress * 100);
-                                const progressValue = 10 + (p * 0.8);
-                                progressFill.style.width = `${progressValue}%`;
-                                progressPercent.textContent = `${Math.round(progressValue)}%`;
-                                progressText.textContent = `Processing: ${p}%`;
-                            } else if (progress.status === 'loading tesseract core') {
-                                progressText.textContent = 'Loading OCR engine...';
-                            } else if (progress.status === 'initializing tesseract') {
-                                progressText.textContent = 'Initializing...';
-                            } else if (progress.status === 'loading language traineddata') {
-                                progressText.textContent = 'Loading language data...';
+                                progressFill.style.width = `${p}%`;
+                                progressPercent.textContent = `${p}%`;
+                                
+                                if (p < 30) {
+                                    progressText.textContent = 'Loading OCR engine...';
+                                } else if (p < 60) {
+                                    progressText.textContent = 'Processing image...';
+                                } else if (p < 90) {
+                                    progressText.textContent = 'Recognizing text...';
+                                } else {
+                                    progressText.textContent = 'Finalizing...';
+                                }
                             }
                         }
                     }
                 ).then(({ data: { text } }) => {
-                    // Hide placeholder and show result
-                    placeholderText.style.display = 'none';
-                    resultText.textContent = text;
+                    // Hide progress
+                    progressContainer.style.display = 'none';
                     
-                    // Complete progress
-                    progressFill.style.width = '100%';
-                    progressPercent.textContent = '100%';
-                    progressText.textContent = 'Text extraction complete!';
-                    
-                    // Re-enable buttons
-                    extractBtn.disabled = false;
-                    resetBtn.disabled = false;
-                    
-                    // Show copy button
+                    // Display result
+                    resultText.textContent = text.trim() || 'No text detected in the image.';
                     copyBtn.style.display = 'flex';
-                }).catch(error => {
-                    console.error('OCR Error:', error);
-                    progressText.textContent = 'Error occurred during text extraction';
-                    showError('Failed to extract text. Please try with a clearer image.');
                     
-                    // Re-enable buttons
-                    extractBtn.disabled = false;
-                    resetBtn.disabled = false;
+                    // Hide error if any
+                    hideError();
+                }).catch(err => {
+                    progressContainer.style.display = 'none';
+                    showError('Error extracting text: ' + err.message);
                 });
             }
             
@@ -706,47 +643,41 @@
                 fileInput.value = '';
                 imagePreview.src = '';
                 imagePreview.style.display = 'none';
-                resultText.textContent = '';
-                placeholderText.style.display = 'block';
-                progressContainer.style.display = 'none';
-                copyBtn.style.display = 'none';
-                errorContainer.style.display = 'none';
                 uploadedImage = null;
                 extractBtn.disabled = true;
+                resultText.textContent = '';
+                placeholderText.style.display = 'block';
+                copyBtn.style.display = 'none';
+                progressContainer.style.display = 'none';
+                hideError();
             }
             
             function copyToClipboard() {
-                const textToCopy = resultText.textContent;
-                
-                if (!textToCopy) {
-                    showError('No text to copy');
-                    return;
-                }
-                
-                navigator.clipboard.writeText(textToCopy)
-                    .then(() => {
-                        // Visual feedback
-                        const originalText = copyBtn.innerHTML;
-                        copyBtn.innerHTML = '<i>✓</i> Copied!';
-                        
-                        setTimeout(() => {
-                            copyBtn.innerHTML = originalText;
-                        }, 2000);
-                    })
-                    .catch(err => {
-                        console.error('Failed to copy text: ', err);
-                        showError('Failed to copy text to clipboard');
-                    });
+                const text = resultText.textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    // Show temporary success message
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i>✓</i> Copied!';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    showError('Failed to copy text: ' + err);
+                });
             }
             
             function showError(message) {
                 errorContainer.innerHTML = `
                     <div class="error-message">
-                        ${message}
-                        <button class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">×</button>
+                        <span>${message}</span>
+                        <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
                     </div>
                 `;
                 errorContainer.style.display = 'block';
+            }
+            
+            function hideError() {
+                errorContainer.style.display = 'none';
             }
         });
     </script>
