@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SEO Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPF Calculator - Calculate Public Provident Fund Returns & Maturity | ToolSonics</title>
+    <meta name="description" content="Free PPF Calculator - Calculate returns on Public Provident Fund with compound interest. Plan your PPF investments and tax-free returns.">
+    <meta name="keywords" content="ppf calculator, public provident fund calculator, ppf maturity calculator, ppf interest calculator, tax free investment, ppf returns, financial planning">
+    <meta name="author" content="ToolSonics">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="PPF Calculator - Calculate PPF Returns Online | ToolSonics">
+    <meta property="og:description" content="Free PPF Calculator for Public Provident Fund investments with detailed maturity calculation and tax-free returns.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolsonics.com/ppf-calculator">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://toolsonics.com/ppf-calculator">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Calculator",
+      "name": "PPF Calculator",
+      "description": "Free PPF Calculator for Public Provident Fund investments and maturity calculation",
+      "url": "https://toolsonics.com/ppf-calculator",
+      "operatingSystem": "Any",
+      "applicationCategory": "FinanceApplication"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #f8f9fa;
+            --text: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calculator-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .range-container {
+            margin-top: 10px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e0e0e0;
+            outline: none;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .calculate-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .result-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .maturity-value {
+            font-size: 2.5rem !important;
+            color: var(--warning);
+        }
+
+        .progress-container {
+            margin: 25px 0;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--warning);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .investment-table {
+            margin-top: 30px;
+            overflow-x: auto;
+        }
+
+        .investment-table h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: var(--secondary);
+        }
+
+        .investment-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .investment-type-btn {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            background: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .investment-type-btn.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .notification {
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .notification.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .notification.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--text);
+            color: var(--white);
+            text-align: center;
+            border-radius: var(--radius);
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .amount-display {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: var(--secondary);
+            border-radius: var(--radius);
+        }
+
+        .zero-investment-message {
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+            margin: 10px 0;
+            padding: 10px;
+            background: #fff3cd;
+            border-radius: var(--radius);
+            border: 1px solid #ffeaa7;
+        }
+
+        .ppf-info {
+            background: #e7f3ff;
+            border-radius: var(--radius);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .ppf-info h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .ppf-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .ppf-info li {
+            margin-bottom: 5px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .ppf-info li:before {
+            content: "✓";
+            color: var(--success);
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: var(--primary); margin-bottom: 10px;">
+            <i class="fas fa-piggy-bank"></i> PPF Calculator
+        </h1>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 30px;">
+            Calculate returns on your Public Provident Fund with tax-free compound interest - Secure your financial future
+        </p>
+
+        <div class="ppf-info">
+            <h4><i class="fas fa-info-circle"></i> PPF Key Features</h4>
+            <ul>
+                <li>Tax-free returns under Section 80C</li>
+                <li>15-year lock-in period</li>
+                <li>Minimum investment: ₹500 per year</li>
+                <li>Maximum investment: ₹1.5 lakh per year</li>
+                <li>Current interest rate: 7.1% per annum</li>
+            </ul>
+        </div>
+
+        <div class="investment-types">
+            <div class="investment-type-btn active" data-type="regular">💼 Regular PPF</div>
+            <div class="investment-type-btn" data-type="max">💰 Maximum PPF</div>
+            <div class="investment-type-btn" data-type="extended">📈 Extended PPF</div>
+        </div>
+
+        <div class="notification success" id="successNotification">
+            PPF calculation completed! Check your maturity details below.
+        </div>
+
+        <div class="notification error" id="errorNotification">
+            Please fill all fields with valid values. Annual investment should be between ₹500 and ₹1,50,000.
+        </div>
+
+        <div class="calculator-container">
+            <!-- Input Section -->
+            <div class="calculator-card">
+                <h2 class="section-title">
+                    <i class="fas fa-edit"></i> PPF Investment Details
+                </h2>
+
+                <div class="input-group">
+                    <label for="annualInvestment">
+                        Annual Investment (₹)
+                        <span class="tooltip">ℹ️
+                            <span class="tooltiptext">Annual PPF investment between ₹500 to ₹1.5 Lakh (Tax limit)</span>
+                        </span>
+                    </label>
+                    <input type="number" id="annualInvestment" placeholder="e.g., 50000" min="500" max="150000" value="50000">
+                    <div class="amount-display" id="annualInvestmentDisplay">₹50,000</div>
+                    <div class="range-container">
+                        <input type="range" id="annualInvestmentRange" min="500" max="150000" step="500" value="50000">
+                        <div class="range-labels">
+                            <span>₹500</span>
+                            <span>₹75K</span>
+                            <span>₹1.5L</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="ppfInterestRate">
+                        PPF Interest Rate (%)
+                        <span class="tooltip">ℹ️
+                            <span class="tooltiptext">Current PPF interest rate set by government (usually 7-8%)</span>
+                        </span>
+                    </label>
+                    <input type="number" id="ppfInterestRate" placeholder="e.g., 7.1" min="5" max="10" step="0.1" value="7.1">
+                    <div class="range-container">
+                        <input type="range" id="ppfInterestRateRange" min="5" max="10" step="0.1" value="7.1">
+                        <div class="range-labels">
+                            <span>5%</span>
+                            <span>7.5%</span>
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="investmentPeriod">
+                        Investment Period (Years)
+                        <span class="tooltip">ℹ️
+                            <span class="tooltiptext">PPF has 15-year lock-in, but you can extend in blocks of 5 years</span>
+                        </span>
+                    </label>
+                    <input type="number" id="investmentPeriod" placeholder="e.g., 15" min="15" max="50" value="15">
+                    <div class="range-container">
+                        <input type="range" id="investmentPeriodRange" min="15" max="50" value="15">
+                        <div class="range-labels">
+                            <span>15 Years</span>
+                            <span>30 Years</span>
+                            <span>50 Years</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculatePPF()">
+                    <i class="fas fa-calculator"></i> Calculate Maturity
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="calculator-card result-card">
+                <h2 class="section-title" style="color: var(--white);">
+                    <i class="fas fa-chart-pie"></i> PPF Maturity Summary
+                </h2>
+
+                <div id="zeroInvestmentMessage" class="zero-investment-message" style="display: none;">
+                    Please enter an annual investment amount to see calculation results.
+                </div>
+
+                <div id="resultsContent">
+                    <div class="result-item">
+                        <div class="result-label">Total Investment</div>
+                        <div class="result-value" id="totalInvestment">₹0</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Wealth Gained</div>
+                        <div class="result-value" id="wealthGained">₹0</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Maturity Value</div>
+                        <div class="result-value maturity-value" id="maturityValue">₹0</div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-labels">
+                            <span>Investment</span>
+                            <span>Returns</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="investmentProgress" style="width: 50%"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Annual Investment</div>
+                        <div class="result-value" id="displayAnnualInvestment">₹0</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Interest Rate</div>
+                        <div class="result-value" id="displayInterestRate">0%</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Investment Period</div>
+                        <div class="result-value" id="displayInvestmentPeriod">0 Years</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Effective Yield</div>
+                        <div class="result-value" id="effectiveYield">0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yearly Growth Table -->
+        <div class="investment-table" id="growthTable" style="display: none;">
+            <h3><i class="fas fa-table"></i> Yearly PPF Growth</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Investment</th>
+                        <th>Interest</th>
+                        <th>Balance</th>
+                        <th>Growth</th>
+                    </tr>
+                </thead>
+                <tbody id="growthBody">
+                    <!-- Growth data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PPF Extension Info -->
+        <div class="ppf-info" style="margin-top: 30px;">
+            <h4><i class="fas fa-clock"></i> PPF Extension Options</h4>
+            <p>After 15 years, you can extend your PPF account in blocks of 5 years with or without contributions.</p>
+        </div>
+    </div>
+
+    <script>
+        // Investment type selection
+        document.querySelectorAll('.investment-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.investment-type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const investmentType = this.getAttribute('data-type');
+                setInvestmentDefaults(investmentType);
+            });
+        });
+
+        function setInvestmentDefaults(type) {
+            const defaults = {
+                'regular': { investment: 50000, rate: 7.1, period: 15 },
+                'max': { investment: 150000, rate: 7.1, period: 15 },
+                'extended': { investment: 150000, rate: 7.1, period: 30 }
+            };
+
+            const defaultValues = defaults[type];
+            
+            // Set values directly
+            document.getElementById('annualInvestment').value = defaultValues.investment;
+            document.getElementById('annualInvestmentRange').value = defaultValues.investment;
+            document.getElementById('ppfInterestRate').value = defaultValues.rate;
+            document.getElementById('ppfInterestRateRange').value = defaultValues.rate;
+            document.getElementById('investmentPeriod').value = defaultValues.period;
+            document.getElementById('investmentPeriodRange').value = defaultValues.period;
+
+            // Update display
+            updateAnnualInvestmentDisplay();
+        }
+
+        // Update annual investment display
+        function updateAnnualInvestmentDisplay() {
+            const value = document.getElementById('annualInvestment').value;
+            const formattedValue = new Intl.NumberFormat('en-IN').format(value);
+            document.getElementById('annualInvestmentDisplay').textContent = '₹' + formattedValue;
+            
+            // Show/hide zero investment message
+            if (value == 0) {
+                document.getElementById('zeroInvestmentMessage').style.display = 'block';
+                document.getElementById('resultsContent').style.display = 'none';
+                document.getElementById('growthTable').style.display = 'none';
+            } else {
+                document.getElementById('zeroInvestmentMessage').style.display = 'none';
+                document.getElementById('resultsContent').style.display = 'block';
+            }
+        }
+
+        // Range slider synchronization
+        document.getElementById('annualInvestmentRange').addEventListener('input', function() {
+            const value = this.value;
+            document.getElementById('annualInvestment').value = value;
+            updateAnnualInvestmentDisplay();
+            
+            // Auto-calculate if value is not zero
+            if (value > 0) {
+                calculatePPF();
+            }
+        });
+
+        document.getElementById('ppfInterestRateRange').addEventListener('input', function() {
+            document.getElementById('ppfInterestRate').value = this.value;
+            // Auto-calculate if annual investment is not zero
+            if (document.getElementById('annualInvestment').value > 0) {
+                calculatePPF();
+            }
+        });
+
+        document.getElementById('investmentPeriodRange').addEventListener('input', function() {
+            document.getElementById('investmentPeriod').value = this.value;
+            // Auto-calculate if annual investment is not zero
+            if (document.getElementById('annualInvestment').value > 0) {
+                calculatePPF();
+            }
+        });
+
+        // Input event listeners
+        document.getElementById('annualInvestment').addEventListener('input', function() {
+            let value = parseInt(this.value);
+            if (!isNaN(value)) {
+                // Ensure value is within PPF limits
+                value = Math.max(500, Math.min(150000, value));
+                this.value = value;
+                document.getElementById('annualInvestmentRange').value = value;
+                updateAnnualInvestmentDisplay();
+                
+                // Auto-calculate if value is not zero
+                if (value > 0) {
+                    calculatePPF();
+                }
+            }
+        });
+
+        document.getElementById('ppfInterestRate').addEventListener('input', function() {
+            let value = parseFloat(this.value);
+            if (!isNaN(value)) {
+                value = Math.max(5, Math.min(10, value));
+                this.value = value;
+                document.getElementById('ppfInterestRateRange').value = value;
+                // Auto-calculate if annual investment is not zero
+                if (document.getElementById('annualInvestment').value > 0) {
+                    calculatePPF();
+                }
+            }
+        });
+
+        document.getElementById('investmentPeriod').addEventListener('input', function() {
+            let value = parseInt(this.value);
+            if (!isNaN(value)) {
+                value = Math.max(15, Math.min(50, value));
+                this.value = value;
+                document.getElementById('investmentPeriodRange').value = value;
+                // Auto-calculate if annual investment is not zero
+                if (document.getElementById('annualInvestment').value > 0) {
+                    calculatePPF();
+                }
+            }
+        });
+
+        // PPF Calculation Function
+        function calculatePPF() {
+            // Get input values
+            const annualInvestment = parseFloat(document.getElementById('annualInvestment').value);
+            const interestRate = parseFloat(document.getElementById('ppfInterestRate').value);
+            const investmentPeriod = parseFloat(document.getElementById('investmentPeriod').value);
+
+            // If annual investment is zero, show message and return
+            if (annualInvestment === 0) {
+                document.getElementById('zeroInvestmentMessage').style.display = 'block';
+                document.getElementById('resultsContent').style.display = 'none';
+                document.getElementById('growthTable').style.display = 'none';
+                return;
+            }
+
+            // Validation for other fields
+            if (!annualInvestment || isNaN(annualInvestment) || annualInvestment < 500 || annualInvestment > 150000 ||
+                !interestRate || isNaN(interestRate) || interestRate < 5 || interestRate > 10 ||
+                !investmentPeriod || isNaN(investmentPeriod) || investmentPeriod < 15 || investmentPeriod > 50) {
+                showNotification('error');
+                return;
+            }
+
+            // PPF calculation (compounded annually)
+            let balance = 0;
+            const yearlyData = [];
+
+            for (let year = 1; year <= investmentPeriod; year++) {
+                // Add annual investment at the beginning of the year
+                balance += annualInvestment;
+                
+                // Calculate interest at the end of the year
+                const interest = balance * (interestRate / 100);
+                balance += interest;
+                
+                yearlyData.push({
+                    year: year,
+                    investment: annualInvestment * year,
+                    interest: interest,
+                    balance: balance
+                });
+            }
+
+            const totalInvestment = annualInvestment * investmentPeriod;
+            const maturityValue = balance;
+            const wealthGained = maturityValue - totalInvestment;
+
+            // Format numbers with Indian numbering system
+            const formatNumber = (num) => new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(Math.round(num));
+
+            // Display results
+            document.getElementById('totalInvestment').textContent = '₹' + formatNumber(totalInvestment);
+            document.getElementById('wealthGained').textContent = '₹' + formatNumber(wealthGained);
+            document.getElementById('maturityValue').textContent = '₹' + formatNumber(maturityValue);
+            document.getElementById('displayAnnualInvestment').textContent = '₹' + formatNumber(annualInvestment);
+            document.getElementById('displayInterestRate').textContent = interestRate.toFixed(1) + '%';
+            document.getElementById('displayInvestmentPeriod').textContent = investmentPeriod + ' Years';
+
+            // Calculate effective yield
+            const effectiveYield = (Math.pow(maturityValue / totalInvestment, 1 / investmentPeriod) - 1) * 100;
+            document.getElementById('effectiveYield').textContent = effectiveYield.toFixed(1) + '%';
+
+            // Update progress bar
+            const investmentPercentage = (totalInvestment / maturityValue) * 100;
+            document.getElementById('investmentProgress').style.width = investmentPercentage + '%';
+
+            // Generate growth table
+            generateGrowthTable(yearlyData);
+
+            // Show results
+            document.getElementById('zeroInvestmentMessage').style.display = 'none';
+            document.getElementById('resultsContent').style.display = 'block';
+            document.getElementById('growthTable').style.display = 'block';
+
+            showNotification('success');
+        }
+
+        function generateGrowthTable(yearlyData) {
+            const tableBody = document.getElementById('growthBody');
+            tableBody.innerHTML = '';
+
+            const formatNumber = (num) => new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(Math.round(num));
+
+            yearlyData.forEach((data, index) => {
+                const growth = index === 0 ? 0 : ((data.balance - yearlyData[index - 1].balance) / yearlyData[index - 1].balance) * 100;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${data.year}</td>
+                    <td>₹${formatNumber(data.investment)}</td>
+                    <td>₹${formatNumber(data.interest)}</td>
+                    <td>₹${formatNumber(data.balance)}</td>
+                    <td style="color: ${growth >= 0 ? 'var(--success)' : 'var(--danger)'}">
+                        ${growth >= 0 ? '+' : ''}${growth.toFixed(1)}%
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+
+                // Show only first 20 years for better readability
+                if (data.year === 20) return;
+            });
+        }
+
+        function showNotification(type) {
+            const successNotif = document.getElementById('successNotification');
+            const errorNotif = document.getElementById('errorNotification');
+
+            if (type === 'success') {
+                successNotif.style.display = 'block';
+                errorNotif.style.display = 'none';
+            } else {
+                successNotif.style.display = 'none';
+                errorNotif.style.display = 'block';
+            }
+
+            setTimeout(() => {
+                successNotif.style.display = 'none';
+                errorNotif.style.display = 'none';
+            }, 5000);
+        }
+
+        // Initialize calculator
+        setInvestmentDefaults('regular');
+        calculatePPF(); // Calculate on page load
+    </script>
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>
