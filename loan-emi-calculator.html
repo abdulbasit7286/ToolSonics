@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Professional Loan EMI Calculator | Excel Export Feature</title>
+    <meta name="description" content="Calculate loan EMI with detailed amortization schedule. Export to Excel with one click. Professional financial tool for planning.">
+    <meta name="keywords" content="loan EMI calculator, Excel export, amortization schedule, financial planning, interest calculator">
+    <meta name="author" content="FinancePro">
+    
+    <!-- SheetJS Library for Excel Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <style>
+        :root {
+            --excel-green: #217346;
+            --excel-light-green: #e7f4e4;
+            --excel-border: #c6e0b4;
+            --excel-header: #2f75b5;
+            --excel-alt-row: #f2f2f2;
+            --excel-grid: #d0d0d0;
+            --primary-blue: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--excel-green);
+        }
+        
+        header h1 {
+            color: var(--excel-green);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        header p {
+            color: #64748b;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h2 {
+            color: var(--excel-header);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--excel-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+            font-size: 1rem;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--excel-green);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(33, 115, 70, 0.1);
+            background: white;
+        }
+        
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        
+        .range-container input[type="range"] {
+            flex: 1;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        .range-container input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: var(--excel-green);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .range-value {
+            min-width: 100px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--excel-green);
+            background: var(--excel-light-green);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--excel-green);
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #1a5c38;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .btn-success {
+            background: var(--success);
+        }
+        
+        .btn-success:hover {
+            background: #0da271;
+        }
+        
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .result-box {
+            background: var(--excel-light-green);
+            border: 2px solid var(--excel-border);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .result-box:hover {
+            transform: scale(1.02);
+        }
+        
+        .result-label {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--excel-green);
+        }
+        
+        .summary-details {
+            margin-top: 25px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: #4b5563;
+        }
+        
+        .summary-value {
+            font-weight: 700;
+            color: var(--excel-green);
+        }
+        
+        .payment-breakdown {
+            display: flex;
+            height: 50px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .principal-part {
+            background: var(--excel-green);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        
+        .interest-part {
+            background: #f59e0b;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: var(--excel-header);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--excel-alt-row);
+        }
+        
+        tr:hover {
+            background-color: #e6f3ff;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        
+        @media (max-width: 480px) {
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6b7280;
+            font-size: 0.9rem;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            color: var(--excel-green);
+            font-weight: 600;
+        }
+        
+        .success-message {
+            display: none;
+            background: var(--success);
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏦 Loan EMI Calculator</h1>
+            <p>Calculate your monthly EMI with detailed amortization schedule and export to Excel</p>
+        </header>
+        
+        <div class="calculator-container">
+            <!-- Input Section -->
+            <div class="card">
+                <h2>📊 Loan Details</h2>
+                
+                <div class="input-group">
+                    <label for="loanAmount">Loan Amount (₹)</label>
+                    <input type="number" id="loanAmount" min="10000" max="50000000" step="1000" value="1000000">
+                    <div class="range-container">
+                        <input type="range" id="loanAmountRange" min="10000" max="5000000" step="10000" value="1000000">
+                        <span class="range-value" id="loanAmountValue">₹10,00,000</span>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="interestRate">Annual Interest Rate (%)</label>
+                    <input type="number" id="interestRate" min="1" max="30" step="0.1" value="8.5">
+                    <div class="range-container">
+                        <input type="range" id="interestRateRange" min="1" max="20" step="0.1" value="8.5">
+                        <span class="range-value" id="interestRateValue">8.5%</span>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="loanTenure">Loan Tenure (Years)</label>
+                    <input type="number" id="loanTenure" min="1" max="30" value="20">
+                    <div class="range-container">
+                        <input type="range" id="loanTenureRange" min="1" max="30" value="20">
+                        <span class="range-value" id="loanTenureValue">20 Years</span>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateEMI()">Calculate EMI</button>
+                <button class="btn btn-secondary" onclick="resetCalculator()">Reset Calculator</button>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="card">
+                <h2>📈 EMI Summary</h2>
+                
+                <div class="results-container">
+                    <div class="result-box">
+                        <div class="result-label">Monthly EMI</div>
+                        <div class="result-value" id="emiValue">₹8,618</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">Total Interest</div>
+                        <div class="result-value" id="totalInterest">₹10,68,320</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">Total Payment</div>
+                        <div class="result-value" id="totalPayment">₹20,68,320</div>
+                    </div>
+                </div>
+                
+                <div class="payment-breakdown">
+                    <div class="principal-part" id="principalPart" style="width: 48%">Principal 48%</div>
+                    <div class="interest-part" id="interestPart" style="width: 52%">Interest 52%</div>
+                </div>
+                
+                <div class="summary-details">
+                    <div class="summary-item">
+                        <span class="summary-label">Loan Amount:</span>
+                        <span class="summary-value" id="summaryLoanAmount">₹10,00,000</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Interest Rate:</span>
+                        <span class="summary-value" id="summaryInterestRate">8.5%</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Loan Tenure:</span>
+                        <span class="summary-value" id="summaryTenure">20 Years</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Total Interest Payable:</span>
+                        <span class="summary-value" id="summaryTotalInterest">₹10,68,320</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Amortization Schedule -->
+        <div class="card">
+            <h2>📅 Amortization Schedule</h2>
+            <p>Year-wise breakdown of principal and interest payments</p>
+            
+            <div class="loading" id="loadingMessage">Generating schedule...</div>
+            
+            <div class="table-container">
+                <table id="amortizationTable">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Principal Paid (₹)</th>
+                            <th>Interest Paid (₹)</th>
+                            <th>Remaining Balance (₹)</th>
+                            <th>Cumulative Interest (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="amortizationBody">
+                        <!-- Table rows will be generated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                Excel file downloaded successfully!
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-success" onclick="exportToExcel()">
+                    📊 Export to Excel
+                </button>
+                <button class="btn" onclick="exportDetailedExcel()">
+                    📈 Detailed Excel Report
+                </button>
+                <button class="btn btn-secondary" onclick="printSchedule()">
+                    🖨️ Print Schedule
+                </button>
+                <button class="btn" onclick="shareCalculation()">
+                    📤 Share Calculation
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Professional Loan EMI Calculator | For financial planning and education purposes</p>
+            <p style="margin-top: 8px; font-size: 0.8rem;">Uses actual Excel export functionality with SheetJS library</p>
+        </footer>
+    </div>
+
+    <script>
+        // Global variables to store calculation data
+        let amortizationData = [];
+        let loanDetails = {};
+        
+        // Format currency for display
+        function formatCurrency(amount) {
+            return '₹' + amount.toLocaleString('en-IN');
+        }
+        
+        // Sync range sliders with number inputs
+        function initializeEventListeners() {
+            // Loan Amount Sync
+            document.getElementById('loanAmountRange').addEventListener('input', function() {
+                const value = parseInt(this.value);
+                document.getElementById('loanAmount').value = value;
+                document.getElementById('loanAmountValue').textContent = formatCurrency(value);
+            });
+            
+            document.getElementById('loanAmount').addEventListener('input', function() {
+                const value = parseInt(this.value) || 0;
+                if (value < 10000) value = 10000;
+                if (value > 5000000) value = 5000000;
+                document.getElementById('loanAmountRange').value = value;
+                document.getElementById('loanAmountValue').textContent = formatCurrency(value);
+            });
+            
+            // Interest Rate Sync
+            document.getElementById('interestRateRange').addEventListener('input', function() {
+                const value = parseFloat(this.value);
+                document.getElementById('interestRate').value = value;
+                document.getElementById('interestRateValue').textContent = value.toFixed(1) + '%';
+            });
+            
+            document.getElementById('interestRate').addEventListener('input', function() {
+                const value = parseFloat(this.value) || 0;
+                if (value < 1) value = 1;
+                if (value > 20) value = 20;
+                document.getElementById('interestRateRange').value = value;
+                document.getElementById('interestRateValue').textContent = value.toFixed(1) + '%';
+            });
+            
+            // Loan Tenure Sync
+            document.getElementById('loanTenureRange').addEventListener('input', function() {
+                const value = parseInt(this.value);
+                document.getElementById('loanTenure').value = value;
+                document.getElementById('loanTenureValue').textContent = value + ' Years';
+            });
+            
+            document.getElementById('loanTenure').addEventListener('input', function() {
+                const value = parseInt(this.value) || 0;
+                if (value < 1) value = 1;
+                if (value > 30) value = 30;
+                document.getElementById('loanTenureRange').value = value;
+                document.getElementById('loanTenureValue').textContent = value + ' Years';
+            });
+        }
+        
+        // Calculate EMI function
+        function calculateEMI() {
+            // Show loading
+            document.getElementById('loadingMessage').style.display = 'block';
+            
+            // Get input values
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            const annualInterestRate = parseFloat(document.getElementById('interestRate').value);
+            const loanTenureYears = parseFloat(document.getElementById('loanTenure').value);
+            
+            // Validate inputs
+            if (!loanAmount || !annualInterestRate || !loanTenureYears) {
+                alert('Please enter all loan details');
+                document.getElementById('loadingMessage').style.display = 'none';
+                return;
+            }
+            
+            // Calculate monthly interest rate and number of payments
+            const monthlyInterestRate = annualInterestRate / 12 / 100;
+            const numberOfPayments = loanTenureYears * 12;
+            
+            // Calculate EMI using the formula
+            const emi = loanAmount * monthlyInterestRate * 
+                       Math.pow(1 + monthlyInterestRate, numberOfPayments) / 
+                       (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+            
+            // Calculate total payment and total interest
+            const totalPayment = emi * numberOfPayments;
+            const totalInterest = totalPayment - loanAmount;
+            
+            // Update results in the UI
+            document.getElementById('emiValue').textContent = formatCurrency(Math.round(emi));
+            document.getElementById('totalInterest').textContent = formatCurrency(Math.round(totalInterest));
+            document.getElementById('totalPayment').textContent = formatCurrency(Math.round(totalPayment));
+            
+            // Update summary details
+            document.getElementById('summaryLoanAmount').textContent = formatCurrency(loanAmount);
+            document.getElementById('summaryInterestRate').textContent = annualInterestRate.toFixed(1) + '%';
+            document.getElementById('summaryTenure').textContent = loanTenureYears + ' Years';
+            document.getElementById('summaryTotalInterest').textContent = formatCurrency(Math.round(totalInterest));
+            
+            // Update payment breakdown chart
+            const principalPercentage = Math.round((loanAmount / totalPayment) * 100);
+            const interestPercentage = 100 - principalPercentage;
+            
+            document.getElementById('principalPart').style.width = principalPercentage + '%';
+            document.getElementById('interestPart').style.width = interestPercentage + '%';
+            document.getElementById('principalPart').textContent = `Principal ${principalPercentage}%`;
+            document.getElementById('interestPart').textContent = `Interest ${interestPercentage}%`;
+            
+            // Store loan details for export
+            loanDetails = {
+                loanAmount,
+                annualInterestRate,
+                loanTenureYears,
+                emi: Math.round(emi),
+                totalInterest: Math.round(totalInterest),
+                totalPayment: Math.round(totalPayment)
+            };
+            
+            // Generate amortization schedule
+            generateAmortizationSchedule(loanAmount, annualInterestRate, loanTenureYears, emi);
+            
+            // Hide loading
+            setTimeout(() => {
+                document.getElementById('loadingMessage').style.display = 'none';
+            }, 500);
+        }
+        
+        // Generate amortization schedule
+        function generateAmortizationSchedule(loanAmount, annualInterestRate, loanTenureYears, emi) {
+            const monthlyInterestRate = annualInterestRate / 12 / 100;
+            const numberOfPayments = loanTenureYears * 12;
+            
+            let remainingBalance = loanAmount;
+            let cumulativeInterest = 0;
+            amortizationData = [];
+            
+            // Calculate year-by-year breakdown
+            for (let year = 1; year <= loanTenureYears; year++) {
+                let yearPrincipal = 0;
+                let yearInterest = 0;
+                
+                // Calculate for each month in the year
+                for (let month = 1; month <= 12; month++) {
+                    const interestPayment = remainingBalance * monthlyInterestRate;
+                    const principalPayment = emi - interestPayment;
+                    
+                    yearPrincipal += principalPayment;
+                    yearInterest += interestPayment;
+                    cumulativeInterest += interestPayment;
+                    
+                    remainingBalance -= principalPayment;
+                    
+                    // Stop if loan is paid off
+                    if (remainingBalance <= 0) {
+                        remainingBalance = 0;
+                        break;
+                    }
+                }
+                
+                amortizationData.push({
+                    year: year,
+                    principal: yearPrincipal,
+                    interest: yearInterest,
+                    balance: remainingBalance,
+                    cumulativeInterest: cumulativeInterest
+                });
+                
+                // Stop if loan is paid off
+                if (remainingBalance <= 0) break;
+            }
+            
+            // Update the amortization table
+            const tableBody = document.getElementById('amortizationBody');
+            tableBody.innerHTML = '';
+            
+            amortizationData.forEach(yearData => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${yearData.year}</td>
+                    <td>${formatCurrency(Math.round(yearData.principal))}</td>
+                    <td>${formatCurrency(Math.round(yearData.interest))}</td>
+                    <td>${formatCurrency(Math.round(yearData.balance))}</td>
+                    <td>${formatCurrency(Math.round(yearData.cumulativeInterest))}</td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Export to Excel function
+        function exportToExcel() {
+            try {
+                if (amortizationData.length === 0) {
+                    alert('Please calculate EMI first');
+                    return;
+                }
+                
+                // Create new workbook
+                const workbook = XLSX.utils.book_new();
+                
+                // Prepare data for Excel sheet
+                const excelData = [
+                    ['Year', 'Principal Paid (₹)', 'Interest Paid (₹)', 'Remaining Balance (₹)', 'Cumulative Interest (₹)']
+                ];
+                
+                amortizationData.forEach(item => {
+                    excelData.push([
+                        item.year,
+                        Math.round(item.principal),
+                        Math.round(item.interest),
+                        Math.round(item.balance),
+                        Math.round(item.cumulativeInterest)
+                    ]);
+                });
+                
+                // Create worksheet
+                const worksheet = XLSX.utils.aoa_to_sheet(excelData);
+                
+                // Add worksheet to workbook
+                XLSX.utils.book_append_sheet(workbook, worksheet, 'Amortization Schedule');
+                
+                // Generate file name with timestamp
+                const fileName = `Loan_EMI_Schedule_${new Date().toISOString().split('T')[0]}.xlsx`;
+                
+                // Export to Excel
+                XLSX.writeFile(workbook, fileName);
+                
+                // Show success message
+                showSuccessMessage('Excel file downloaded successfully!');
+                
+            } catch (error) {
+                console.error('Excel export error:', error);
+                alert('Error exporting to Excel. Please try again.');
+            }
+        }
+        
+        // Export detailed Excel report
+        function exportDetailedExcel() {
+            try {
+                if (amortizationData.length === 0) {
+                    alert('Please calculate EMI first');
+                    return;
+                }
+                
+                // Create new workbook
+                const workbook = XLSX.utils.book_new();
+                
+                // Sheet 1: Loan Summary
+                const summaryData = [
+                    ['LOAN EMI CALCULATION REPORT'],
+                    ['Generated on:', new Date().toLocaleDateString('en-IN')],
+                    [''],
+                    ['LOAN DETAILS'],
+                    ['Loan Amount:', formatCurrency(loanDetails.loanAmount)],
+                    ['Annual Interest Rate:', loanDetails.annualInterestRate.toFixed(1) + '%'],
+                    ['Loan Tenure:', loanDetails.loanTenureYears + ' Years'],
+                    [''],
+                    ['PAYMENT SUMMARY'],
+                    ['Monthly EMI:', formatCurrency(loanDetails.emi)],
+                    ['Total Interest Payable:', formatCurrency(loanDetails.totalInterest)],
+                    ['Total Payment:', formatCurrency(loanDetails.totalPayment)],
+                    [''],
+                    ['INTEREST TO PRINCIPAL RATIO'],
+                    ['Principal Percentage:', document.getElementById('principalPart').textContent.split(' ')[1]],
+                    ['Interest Percentage:', document.getElementById('interestPart').textContent.split(' ')[1]]
+                ];
+                
+                const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
+                XLSX.utils.book_append_sheet(workbook, summarySheet, 'Loan Summary');
+                
+                // Sheet 2: Yearly Amortization
+                const yearlyData = [
+                    ['Year', 'Principal Paid (₹)', 'Interest Paid (₹)', 'Remaining Balance (₹)', 'Cumulative Interest (₹)']
+                ];
+                
+                amortizationData.forEach(item => {
+                    yearlyData.push([
+                        item.year,
+                        Math.round(item.principal),
+                        Math.round(item.interest),
+                        Math.round(item.balance),
+                        Math.round(item.cumulativeInterest)
+                    ]);
+                });
+                
+                const yearlySheet = XLSX.utils.aoa_to_sheet(yearlyData);
+                XLSX.utils.book_append_sheet(workbook, yearlySheet, 'Yearly Schedule');
+                
+                // Sheet 3: Monthly Detailed Schedule
+                const monthlyData = generateMonthlyAmortizationData();
+                const monthlySheet = XLSX.utils.aoa_to_sheet(monthlyData);
+                XLSX.utils.book_append_sheet(workbook, monthlySheet, 'Monthly Schedule');
+                
+                // Generate file name
+                const fileName = `Detailed_Loan_Report_${new Date().toISOString().split('T')[0]}.xlsx`;
+                
+                // Export to Excel
+                XLSX.writeFile(workbook, fileName);
+                
+                // Show success message
+                showSuccessMessage('Detailed Excel report downloaded successfully!');
+                
+            } catch (error) {
+                console.error('Detailed Excel export error:', error);
+                alert('Error exporting detailed report. Please try again.');
+            }
+        }
+        
+        // Generate monthly amortization data
+        function generateMonthlyAmortizationData() {
+            const loanAmount = loanDetails.loanAmount;
+            const annualInterestRate = loanDetails.annualInterestRate;
+            const loanTenureYears = loanDetails.loanTenureYears;
+            const emi = loanDetails.emi;
+            
+            const monthlyInterestRate = annualInterestRate / 12 / 100;
+            const numberOfPayments = loanTenureYears * 12;
+            
+            let remainingBalance = loanAmount;
+            const monthlyData = [
+                ['Month', 'EMI (₹)', 'Principal (₹)', 'Interest (₹)', 'Remaining Balance (₹)']
+            ];
+            
+            for (let month = 1; month <= numberOfPayments; month++) {
+                const interestPayment = remainingBalance * monthlyInterestRate;
+                const principalPayment = emi - interestPayment;
+                
+                remainingBalance -= principalPayment;
+                if (remainingBalance < 0) remainingBalance = 0;
+                
+                monthlyData.push([
+                    month,
+                    Math.round(emi),
+                    Math.round(principalPayment),
+                    Math.round(interestPayment),
+                    Math.round(remainingBalance)
+                ]);
+                
+                if (remainingBalance <= 0) break;
+            }
+            
+            return monthlyData;
+        }
+        
+        // Show success message
+        function showSuccessMessage(message) {
+            const successElement = document.getElementById('successMessage');
+            successElement.textContent = message;
+            successElement.style.display = 'block';
+            
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Reset calculator
+        function resetCalculator() {
+            document.getElementById('loanAmount').value = 1000000;
+            document.getElementById('loanAmountRange').value = 1000000;
+            document.getElementById('loanAmountValue').textContent = formatCurrency(1000000);
+            
+            document.getElementById('interestRate').value = 8.5;
+            document.getElementById('interestRateRange').value = 8.5;
+            document.getElementById('interestRateValue').textContent = '8.5%';
+            
+            document.getElementById('loanTenure').value = 20;
+            document.getElementById('loanTenureRange').value = 20;
+            document.getElementById('loanTenureValue').textContent = '20 Years';
+            
+            // Clear results
+            document.getElementById('amortizationBody').innerHTML = '';
+            amortizationData = [];
+            
+            calculateEMI();
+        }
+        
+        // Print schedule
+        function printSchedule() {
+            window.print();
+        }
+        
+        // Share calculation (simulated)
+        function shareCalculation() {
+            const emi = document.getElementById('emiValue').textContent;
+            const totalInterest = document.getElementById('totalInterest').textContent;
+            
+            const shareText = `My Loan EMI Calculation: ${emi} per month, Total Interest: ${totalInterest}. Calculated using Professional EMI Calculator.`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Loan EMI Calculation',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } else {
+                alert('Share this calculation:\n\n' + shareText + '\n\n' + window.location.href);
+            }
+        }
+        
+        // Initialize the calculator
+        window.onload = function() {
+            initializeEventListeners();
+            calculateEMI();
+        };
+    </script>
+</body>
+</html>
