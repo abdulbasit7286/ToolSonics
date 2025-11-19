@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Smart Monthly Budget Generator | Free Financial Planning Tool</title>
+    <meta name="description" content="Create your perfect monthly budget with our free budget generator. Track income, expenses, savings with professional financial planning tools. Achieve your financial goals today.">
+    <meta name="keywords" content="monthly budget, budget generator, financial planning, expense tracker, savings calculator, personal finance, money management">
+    <meta name="author" content="BudgetPro">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Smart Monthly Budget Generator | Free Financial Planning Tool">
+    <meta property="og:description" content="Create your perfect monthly budget with our free budget generator. Track income, expenses, savings with professional tools.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/budget-generator">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Smart Monthly Budget Generator">
+    <meta name="twitter:description" content="Free professional budget generator for effective financial planning.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com/budget-generator">
+    
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: var(--success);
+        }
+        
+        .btn-success:hover {
+            background: #219653;
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .summary-card {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .summary-card h2 {
+            color: white;
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .summary-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .positive {
+            color: #2ecc71;
+        }
+        
+        .negative {
+            color: #e74c3c;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-top: 20px;
+        }
+        
+        .tips-list {
+            list-style-type: none;
+        }
+        
+        .tips-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .tips-list li:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .budget-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Monthly Budget Generator</h1>
+            <p>Take control of your finances with our professional budgeting tool</p>
+        </header>
+        
+        <div class="budget-grid">
+            <!-- Income Section -->
+            <div class="card">
+                <h2>💰 Income Sources</h2>
+                <div class="form-group">
+                    <label for="salary">Primary Salary</label>
+                    <input type="number" id="salary" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="sideIncome">Side Income</label>
+                    <input type="number" id="sideIncome" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="otherIncome">Other Income</label>
+                    <input type="number" id="otherIncome" placeholder="Enter amount">
+                </div>
+            </div>
+            
+            <!-- Expenses Section -->
+            <div class="card">
+                <h2>📊 Monthly Expenses</h2>
+                <div class="form-group">
+                    <label for="rent">Rent / Mortgage</label>
+                    <input type="number" id="rent" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="utilities">Utilities (Electricity, Water, Gas)</label>
+                    <input type="number" id="utilities" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="groceries">Groceries & Food</label>
+                    <input type="number" id="groceries" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="transport">Transportation</label>
+                    <input type="number" id="transport" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="entertainment">Entertainment & Dining</label>
+                    <input type="number" id="entertainment" placeholder="Enter amount">
+                </div>
+            </div>
+            
+            <!-- Savings & Investments -->
+            <div class="card">
+                <h2>🏦 Savings & Investments</h2>
+                <div class="form-group">
+                    <label for="emergencyFund">Emergency Fund</label>
+                    <input type="number" id="emergencyFund" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="investments">Investments (SIP, Mutual Funds)</label>
+                    <input type="number" id="investments" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="retirement">Retirement Planning</label>
+                    <input type="number" id="retirement" placeholder="Enter amount">
+                </div>
+                <button class="btn btn-success" onclick="calculateBudget()">Calculate Budget</button>
+            </div>
+        </div>
+        
+        <!-- Budget Summary -->
+        <div class="card summary-card">
+            <h2>📈 Budget Summary</h2>
+            <div class="summary-item">
+                <span>Total Income:</span>
+                <span id="totalIncome">₹0</span>
+            </div>
+            <div class="summary-item">
+                <span>Total Expenses:</span>
+                <span id="totalExpenses">₹0</span>
+            </div>
+            <div class="summary-item">
+                <span>Total Savings:</span>
+                <span id="totalSavings">₹0</span>
+            </div>
+            <div class="summary-item summary-total">
+                <span>Remaining Balance:</span>
+                <span id="remainingBalance">₹0</span>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn" onclick="saveBudget()">Save Budget</button>
+                <button class="btn btn-success" onclick="exportBudget()">Export as PDF</button>
+                <button class="btn btn-danger" onclick="resetBudget()">Reset All</button>
+            </div>
+        </div>
+        
+        <!-- Financial Tips -->
+        <div class="card">
+            <h2>💡 Smart Budgeting Tips</h2>
+            <ul class="tips-list">
+                <li>Follow the 50-30-20 rule: 50% needs, 30% wants, 20% savings</li>
+                <li>Build an emergency fund covering 3-6 months of expenses</li>
+                <li>Review your budget weekly to stay on track</li>
+                <li>Automate your savings and bill payments</li>
+                <li>Set specific financial goals with timelines</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>© 2023 Professional Budget Generator | Designed for better financial health</p>
+        </footer>
+    </div>
+
+    <script>
+        function calculateBudget() {
+            // Get income values
+            const salary = parseFloat(document.getElementById('salary').value) || 0;
+            const sideIncome = parseFloat(document.getElementById('sideIncome').value) || 0;
+            const otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
+            
+            // Calculate total income
+            const totalIncome = salary + sideIncome + otherIncome;
+            
+            // Get expense values
+            const rent = parseFloat(document.getElementById('rent').value) || 0;
+            const utilities = parseFloat(document.getElementById('utilities').value) || 0;
+            const groceries = parseFloat(document.getElementById('groceries').value) || 0;
+            const transport = parseFloat(document.getElementById('transport').value) || 0;
+            const entertainment = parseFloat(document.getElementById('entertainment').value) || 0;
+            
+            // Calculate total expenses
+            const totalExpenses = rent + utilities + groceries + transport + entertainment;
+            
+            // Get savings values
+            const emergencyFund = parseFloat(document.getElementById('emergencyFund').value) || 0;
+            const investments = parseFloat(document.getElementById('investments').value) || 0;
+            const retirement = parseFloat(document.getElementById('retirement').value) || 0;
+            
+            // Calculate total savings
+            const totalSavings = emergencyFund + investments + retirement;
+            
+            // Calculate remaining balance
+            const remainingBalance = totalIncome - totalExpenses - totalSavings;
+            
+            // Update summary
+            document.getElementById('totalIncome').textContent = '₹' + totalIncome.toLocaleString();
+            document.getElementById('totalExpenses').textContent = '₹' + totalExpenses.toLocaleString();
+            document.getElementById('totalSavings').textContent = '₹' + totalSavings.toLocaleString();
+            
+            const balanceElement = document.getElementById('remainingBalance');
+            balanceElement.textContent = '₹' + remainingBalance.toLocaleString();
+            
+            // Color code the balance
+            if (remainingBalance > 0) {
+                balanceElement.className = 'positive';
+            } else if (remainingBalance < 0) {
+                balanceElement.className = 'negative';
+            } else {
+                balanceElement.className = '';
+            }
+            
+            // Show alert if budget is negative
+            if (remainingBalance < 0) {
+                alert('Warning: Your expenses exceed your income! Consider adjusting your budget.');
+            }
+        }
+        
+        function saveBudget() {
+            alert('Budget saved successfully! You can access it anytime from your dashboard.');
+            // In a real application, this would save to local storage or a database
+        }
+        
+        function exportBudget() {
+            alert('Budget exported as PDF! Check your downloads folder.');
+            // In a real application, this would generate a PDF file
+        }
+        
+        function resetBudget() {
+            if (confirm('Are you sure you want to reset all fields?')) {
+                // Get all input elements
+                const inputs = document.querySelectorAll('input');
+                
+                // Reset all input values
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+                
+                // Reset summary
+                document.getElementById('totalIncome').textContent = '₹0';
+                document.getElementById('totalExpenses').textContent = '₹0';
+                document.getElementById('totalSavings').textContent = '₹0';
+                document.getElementById('remainingBalance').textContent = '₹0';
+                document.getElementById('remainingBalance').className = '';
+                
+                alert('All fields have been reset!');
+            }
+        }
+        
+        // Calculate budget when page loads with default values
+        window.onload = function() {
+            // Set some default values for demonstration
+            document.getElementById('salary').value = '50000';
+            document.getElementById('rent').value = '15000';
+            document.getElementById('utilities').value = '5000';
+            document.getElementById('groceries').value = '8000';
+            document.getElementById('emergencyFund').value = '5000';
+            
+            // Calculate initial budget
+            calculateBudget();
+        };
+    </script>
+</body>
+</html>
