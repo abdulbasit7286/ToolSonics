@@ -743,6 +743,7 @@
         let originalFile = null;
         let compressedBlob = null;
         let outputFormat = 'original';
+        let originalFileName = '';
 
         function changeLanguage() {
             currentLanguage = document.getElementById('languageSelect').value;
@@ -800,6 +801,9 @@
             }
 
             originalFile = file;
+            // Store original file name without extension
+            originalFileName = file.name.replace(/\.[^/.]+$/, "");
+            
             showLoading();
 
             const originalUrl = URL.createObjectURL(file);
@@ -892,11 +896,15 @@
         }
 
         function updateOriginalStats(file) {
-            document.getElementById('originalStats').innerHTML = `
-                <div class="stat"><span class="value">${(file.size / 1024).toFixed(2)} KB</span><br>${translations[currentLanguage].size}</div>
-                <div class="stat"><span class="value">Loading...</span><br>${translations[currentLanguage].dimensions}</div>
-                <div class="stat"><span class="value">${file.type.split('/')[1]}</span><br>${translations[currentLanguage].type}</div>
-            `;
+            const img = new Image();
+            img.onload = function() {
+                document.getElementById('originalStats').innerHTML = `
+                    <div class="stat"><span class="value">${(file.size / 1024).toFixed(2)} KB</span><br>${translations[currentLanguage].size}</div>
+                    <div class="stat"><span class="value">${img.width}×${img.height}</span><br>${translations[currentLanguage].dimensions}</div>
+                    <div class="stat"><span class="value">${file.type.split('/')[1]}</span><br>${translations[currentLanguage].type}</div>
+                `;
+            };
+            img.src = URL.createObjectURL(file);
         }
 
         function updateCompressedStats(blob) {
@@ -904,11 +912,15 @@
             const compressedSize = blob.size;
             const saved = ((1 - compressedSize / originalSize) * 100).toFixed(1);
             
-            document.getElementById('compressedStats').innerHTML = `
-                <div class="stat"><span class="value">${(compressedSize / 1024).toFixed(2)} KB</span><br>${translations[currentLanguage].size}</div>
-                <div class="stat"><span class="value">Loading...</span><br>${translations[currentLanguage].dimensions}</div>
-                <div class="stat"><span class="value">${outputFormat === 'original' ? originalFile.type.split('/')[1] : outputFormat}</span><br>${translations[currentLanguage].type}</div>
-            `;
+            const img = new Image();
+            img.onload = function() {
+                document.getElementById('compressedStats').innerHTML = `
+                    <div class="stat"><span class="value">${(compressedSize / 1024).toFixed(2)} KB</span><br>${translations[currentLanguage].size}</div>
+                    <div class="stat"><span class="value">${img.width}×${img.height}</span><br>${translations[currentLanguage].dimensions}</div>
+                    <div class="stat"><span class="value">${outputFormat === 'original' ? originalFile.type.split('/')[1] : outputFormat}</span><br>${translations[currentLanguage].type}</div>
+                `;
+            };
+            img.src = URL.createObjectURL(blob);
             
             const trans = translations[currentLanguage];
             const infoText = trans.compressionStats
@@ -926,7 +938,7 @@
             
             const format = outputFormat === 'original' ? originalFile.type.split('/')[1] : outputFormat;
             const link = document.createElement('a');
-            link.download = `compressed-image.${format}`;
+            link.download = `${originalFileName}-compressed.${format}`;
             link.href = URL.createObjectURL(compressedBlob);
             link.click();
         }
@@ -934,6 +946,7 @@
         function resetCompressor() {
             originalFile = null;
             compressedBlob = null;
+            originalFileName = '';
             document.getElementById('controlsSection').style.display = 'none';
             document.getElementById('previewSection').style.display = 'none';
             document.getElementById('downloadBtn').style.display = 'none';
