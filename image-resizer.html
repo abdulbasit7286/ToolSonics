@@ -7,7 +7,6 @@
     <meta name="description" content="Free online image resizer tool. Resize JPEG, PNG, GIF images to any dimension. Maintain aspect ratio, bulk resize, and download instantly.">
     
     <style>
-        /* Same professional CSS as before - unchanged */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -392,6 +391,8 @@
         let maintainAspectRatio = true;
         let originalWidth = 0;
         let originalHeight = 0;
+        let originalFileName = '';
+        let originalFileType = '';
 
         // ========== LANGUAGE FUNCTIONS ==========
         function changeLanguage() {
@@ -454,6 +455,10 @@
                 showError(translations[currentLanguage].errorFileSize, 'error');
                 return;
             }
+
+            // Store original file info
+            originalFileName = file.name;
+            originalFileType = file.type;
 
             showLoading();
 
@@ -528,6 +533,13 @@
 
                 ctx.drawImage(originalImage, 0, 0, newWidth, newHeight);
 
+                // Determine output format based on original file type
+                let outputType = 'image/png'; // default fallback
+                if (originalFileType === 'image/jpeg') outputType = 'image/jpeg';
+                else if (originalFileType === 'image/png') outputType = 'image/png';
+                else if (originalFileType === 'image/gif') outputType = 'image/gif';
+                else if (originalFileType === 'image/webp') outputType = 'image/webp';
+
                 canvas.toBlob(function(blob) {
                     resizedImageBlob = blob;
                     const resizedUrl = URL.createObjectURL(blob);
@@ -537,7 +549,7 @@
                     hideLoading();
                     document.getElementById('downloadBtn').style.display = 'flex';
                     showError(translations[currentLanguage].successResize, 'warning');
-                }, 'image/png', 0.95);
+                }, outputType, 0.95);
             }, 500);
         }
 
@@ -579,18 +591,36 @@
         }
 
         function updateResizedStats(blob, width, height) {
+            // Determine file extension for display
+            let fileExtension = 'PNG';
+            if (originalFileType === 'image/jpeg') fileExtension = 'JPEG';
+            else if (originalFileType === 'image/png') fileExtension = 'PNG';
+            else if (originalFileType === 'image/gif') fileExtension = 'GIF';
+            else if (originalFileType === 'image/webp') fileExtension = 'WebP';
+            
             document.getElementById('resizedStats').innerHTML = `
                 <div class="stat"><span class="value">${(blob.size / 1024).toFixed(2)} KB</span><br>Size</div>
                 <div class="stat"><span class="value">${Math.round(width)}×${Math.round(height)}</span><br>Dimensions</div>
-                <div class="stat"><span class="value">PNG</span><br>Type</div>
+                <div class="stat"><span class="value">${fileExtension}</span><br>Type</div>
             `;
         }
 
         function downloadImage() {
             if (!resizedImageBlob) return;
             
+            // Create filename with original name + "-resized" + original extension
+            const originalName = originalFileName.substring(0, originalFileName.lastIndexOf('.'));
+            let fileExtension = '.png'; // default fallback
+            
+            if (originalFileType === 'image/jpeg') fileExtension = '.jpg';
+            else if (originalFileType === 'image/png') fileExtension = '.png';
+            else if (originalFileType === 'image/gif') fileExtension = '.gif';
+            else if (originalFileType === 'image/webp') fileExtension = '.webp';
+            
+            const downloadName = `${originalName}-resized${fileExtension}`;
+            
             const link = document.createElement('a');
-            link.download = 'resized-image.png';
+            link.download = downloadName;
             link.href = URL.createObjectURL(resizedImageBlob);
             link.click();
         }
@@ -598,6 +628,8 @@
         function resetResizer() {
             originalImage = null;
             resizedImageBlob = null;
+            originalFileName = '';
+            originalFileType = '';
             document.getElementById('controlsSection').style.display = 'none';
             document.getElementById('previewSection').style.display = 'none';
             document.getElementById('downloadBtn').style.display = 'none';
@@ -648,6 +680,13 @@
                 if (maintainAspectRatio && originalImage) {
                     const ratio = originalWidth / originalHeight;
                     document.getElementById('heightInput').value = Math.round(this.value / ratio);
+                }
+            });
+            
+            document.getElementById('heightInput').addEventListener('input', function() {
+                if (maintainAspectRatio && originalImage) {
+                    const ratio = originalWidth / originalHeight;
+                    document.getElementById('widthInput').value = Math.round(this.value * ratio);
                 }
             });
         });
