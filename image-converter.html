@@ -941,11 +941,11 @@
             },
             fr: {
                 title: "🖼️ Image Converter Pro",
-                subtitle: "Convertissez, redimensionnez et optimisez vos images professionnellement en secondes",
+                subtitle: "Convertissez, redimensionnez et optimisez vos imágenes professionnellement en secondes",
                 chooseImage: "📁 Choisir un Fichier Image",
                 supportedFormats: "Supporte JPG, PNG, WebP, GIF (Max 20MB)",
-                dragDropText: "ou faites glisser et déposez votre image ici",
-                processing: "Traitement de votre image...",
+                dragDropText: "ou faites glisser et déposez votre image aquí",
+                processing: "Traitement de votre imagen...",
                 formatLabel: "Format de Sortie",
                 sizeLabel: "Préréglages de Taille",
                 customSizeLabel: "Dimensions Personnalisées",
@@ -956,17 +956,17 @@
                 resetBtn: "🗑️ Nouvelle Image",
                 downloadBtn: "📥 Télécharger l'Image Convertie",
                 featureTitle1: "Conversion Instantanée",
-                featureDesc1: "Convertissez des images entre formats en secondes avec notre moteur de traitement optimisé",
+                featureDesc1: "Convertissez des imágenes entre formats en secondes avec notre moteur de traitement optimisé",
                 featureTitle2: "100% Sécurisé",
-                featureDesc2: "Vos images sont traitées localement dans votre navigateur. Nous ne les téléchargeons jamais sur aucun serveur",
+                featureDesc2: "Vos imágenes sont traitées localement dans votre navigateur. Nous ne les téléchargeons jamais sur aucun serveur",
                 featureTitle3: "Support Global",
                 featureDesc3: "Disponible en 10+ langues avec support pour les utilisateurs de tous les pays",
                 featureTitle4: "Préréglages Intelligents",
                 featureDesc4: "Préréglages en un clic pour les médias sociaux, qualité HD et formats personnalisés",
-                privacyText: "Votre Vie Privée Compte: Tout le traitement d'image se produit localement dans votre navigateur. Nous ne téléchargeons jamais vos images sur aucun serveur.",
-                userText: "Images converties par des utilisateurs du monde entier",
+                privacyText: "Votre Vie Privée Compte: Tout le traitement d'image se produit localement dans votre navigateur. Nous ne téléchargeons jamais vos imágenes sur aucun serveur.",
+                userText: "Imágenes converties par des utilisateurs du monde entier",
                 errorFileType: "Veuillez sélectionner un fichier image valide (JPG, PNG, WebP, GIF).",
-                errorFileSize: "Le fichier image est trop volumineux. Veuillez sélectionner une image plus petite (max 20MB).",
+                errorFileSize: "Le fichier image est trop volumineux. Veuillez sélectionner une imagen plus petite (max 20MB).",
                 successConvert: "Image convertie avec succès! Vous pouvez maintenant la télécharger."
             },
             de: {
@@ -1158,6 +1158,7 @@
         let originalImageData = null;
         let convertedImageData = null;
         let originalFileInfo = null;
+        let originalFileName = '';
 
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
@@ -1298,6 +1299,9 @@
                 return;
             }
             
+            // Store original file name
+            originalFileName = file.name.replace(/\.[^/.]+$/, ""); // Remove extension
+            
             const reader = new FileReader();
             
             reader.onload = function(e) {
@@ -1437,7 +1441,7 @@
                 // Update converted file info
                 const convertedSize = formatFileSize(convertedImageData.length * 0.75); // Approximate size
                 document.getElementById('convertedInfo').innerHTML = `
-                    <strong>converted.${selectedFormat}</strong><br>
+                    <strong>${originalFileName}.${selectedFormat}</strong><br>
                     Size: ${convertedSize}<br>
                     Dimensions: ${targetWidth} × ${targetHeight}px<br>
                     Type: ${selectedFormat.toUpperCase()}<br>
@@ -1517,6 +1521,7 @@
             originalImageData = null;
             convertedImageData = null;
             originalFileInfo = null;
+            originalFileName = '';
             
             // Hide any messages
             hideMessage();
@@ -1526,7 +1531,7 @@
             if (!convertedImageData) return;
             
             const link = document.createElement('a');
-            link.download = `converted-image.${selectedFormat}`;
+            link.download = `${originalFileName}.${selectedFormat}`;
             link.href = convertedImageData;
             link.click();
         }
