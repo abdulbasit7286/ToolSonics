@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone Converter - Convert Time Zones Worldwide | GlobalTime</title>
+    <meta name="description" content="Free online time zone converter. Convert between 400+ time zones worldwide. Schedule meetings, coordinate teams, and track global time differences with ease.">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="time zone converter, world clock, time zone calculator, meeting planner, global time, time difference, UTC converter, international time">
+    <meta name="author" content="GlobalTime">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Time Zone Converter - Convert Time Zones Worldwide | GlobalTime">
+    <meta property="og:description" content="Free online time zone converter for global scheduling and coordination.">
+    <meta property="og:type" content="website">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --primary-light: #e8f0fe;
+            --secondary: #f8f9fa;
+            --text: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --success: #34a853;
+            --warning: #f9ab00;
+            --error: #ea4335;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2a3c6c, #3a4c6c);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            border-radius: 15px 15px 0 0;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin-bottom: 0;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        .tagline {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Main Card */
+        .main-card {
+            background: var(--white);
+            border-radius: 0 0 15px 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        /* Tool Header */
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tool-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tool-description {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Converter Section */
+        .converter-section {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: end;
+            margin-bottom: 30px;
+        }
+
+        .time-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-label {
+            font-weight: 600;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time-input, .timezone-select {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .time-input:focus, .timezone-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        .swap-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .swap-btn:hover {
+            background: var(--primary-dark);
+            transform: rotate(180deg);
+        }
+
+        /* Result Section */
+        .result-section {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            border: 2px solid var(--primary-light);
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .time-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        .time-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .timezone-name {
+            font-size: 1.1rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .time-details {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* World Clocks Section */
+        .clocks-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .clocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .clock-card {
+            background: var(--white);
+            padding: 15px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .clock-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .clock-card.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .clock-city {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .clock-time {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .clock-timezone {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        /* Meeting Planner */
+        .meeting-section {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+        }
+
+        .meeting-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .action-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .action-btn:hover {
+            background: #2e7d32;
+            transform: translateY(-2px);
+        }
+
+        .meeting-result {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            display: none;
+            margin-top: 20px;
+            border: 2px solid var(--primary-light);
+        }
+
+        .meeting-times {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        /* Features Section */
+        .features-section {
+            margin: 40px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .converter-section {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+            
+            .swap-btn {
+                align-self: center;
+                justify-self: center;
+                margin: 10px 0;
+            }
+            
+            .tool-title {
+                font-size: 1.8rem;
+            }
+            
+            .time-value {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .clocks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .meeting-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--text);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: var(--success);
+        }
+
+        .toast.error {
+            background: var(--error);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">Global<span>Time</span></div>
+            <p class="tagline">Your Worldwide Time Management Solution</p>
+        </header>
+
+        <!-- Main Card -->
+        <div class="main-card">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1 class="tool-title">
+                    <i class="fas fa-globe-americas"></i>
+                    Time Zone Converter
+                </h1>
+                <p class="tool-description">
+                    Convert between 400+ time zones worldwide. Schedule meetings, coordinate international teams, 
+                    and track global time differences with precision.
+                </p>
+            </div>
+
+            <!-- Converter Section -->
+            <div class="converter-section">
+                <div class="time-input-group">
+                    <label class="input-label">
+                        <i class="fas fa-clock"></i>
+                        From Time
+                    </label>
+                    <input type="datetime-local" class="time-input" id="from-time">
+                    <select class="timezone-select" id="from-timezone">
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+
+                <button class="swap-btn" id="swap-btn">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+
+                <div class="time-input-group">
+                    <label class="input-label">
+                        <i class="fas fa-flag"></i>
+                        To Timezone
+                    </label>
+                    <input type="text" class="time-input" id="to-time" readonly>
+                    <select class="timezone-select" id="to-timezone">
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            <div class="result-section">
+                <h3 class="section-title">
+                    <i class="fas fa-sync-alt"></i>
+                    Conversion Result
+                </h3>
+                <div class="result-grid">
+                    <div class="time-card">
+                        <div class="timezone-name" id="from-timezone-name">New York</div>
+                        <div class="time-value" id="from-time-value">10:30 AM</div>
+                        <div class="time-details" id="from-date">Monday, Jan 15, 2024</div>
+                    </div>
+                    <div class="time-card">
+                        <div class="time-details">Converts to</div>
+                        <div class="time-value"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                    <div class="time-card">
+                        <div class="timezone-name" id="to-timezone-name">London</div>
+                        <div class="time-value" id="to-time-value">3:30 PM</div>
+                        <div class="time-details" id="to-date">Monday, Jan 15, 2024</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- World Clocks Section -->
+            <div class="clocks-section">
+                <h3 class="section-title">
+                    <i class="fas fa-globe"></i>
+                    Popular Time Zones
+                </h3>
+                <div class="clocks-grid" id="world-clocks">
+                    <!-- Clock cards will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Meeting Planner -->
+            <div class="meeting-section">
+                <h3 class="section-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Meeting Planner
+                </h3>
+                <div class="meeting-form">
+                    <div class="form-group">
+                        <label>Meeting Time (Your Time)</label>
+                        <input type="datetime-local" class="time-input" id="meeting-time">
+                    </div>
+                    <div class="form-group">
+                        <label>Your Timezone</label>
+                        <select class="timezone-select" id="meeting-your-timezone">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Participant Timezone</label>
+                        <select class="timezone-select" id="meeting-their-timezone">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+                <button class="action-btn" id="calculate-meeting">
+                    <i class="fas fa-calculator"></i>
+                    Calculate Meeting Times
+                </button>
+                <div class="meeting-result" id="meeting-result">
+                    <h4>Meeting Times:</h4>
+                    <div class="meeting-times">
+                        <div class="time-card">
+                            <div class="timezone-name" id="meeting-your-tz">Your Time</div>
+                            <div class="time-value" id="meeting-your-time">10:00 AM</div>
+                            <div class="time-details" id="meeting-your-date">Mon, Jan 15</div>
+                        </div>
+                        <div class="time-card">
+                            <div class="timezone-name" id="meeting-their-tz">Their Time</div>
+                            <div class="time-value" id="meeting-their-time">2:00 PM</div>
+                            <div class="time-details" id="meeting-their-date">Mon, Jan 15</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <h2 class="section-title" style="text-align: center; color: white;">
+                    Why Use Our Time Zone Converter?
+                </h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="feature-title">Instant Conversion</h3>
+                        <p class="feature-description">
+                            Convert between any time zones instantly with our real-time calculator.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="feature-title">400+ Time Zones</h3>
+                        <p class="feature-description">
+                            Access all major time zones worldwide, including DST adjustments.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">Meeting Planner</h3>
+                        <p class="feature-description">
+                            Perfect for scheduling international meetings and team coordination.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Mobile Friendly</h3>
+                        <p class="feature-description">
+                            Works perfectly on all devices - desktop, tablet, and mobile.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">All Tools</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <p class="copyright">
+                &copy; 2024 GlobalTime. All rights reserved. | 
+                Time Zone Converter Tool
+            </p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Timezone data with major cities
+        const timeZones = [
+            { value: 'America/New_York', label: 'New York (EST)', offset: '-05:00' },
+            { value: 'America/Los_Angeles', label: 'Los Angeles (PST)', offset: '-08:00' },
+            { value: 'America/Chicago', label: 'Chicago (CST)', offset: '-06:00' },
+            { value: 'America/Denver', label: 'Denver (MST)', offset: '-07:00' },
+            { value: 'Europe/London', label: 'London (GMT)', offset: '+00:00' },
+            { value: 'Europe/Paris', label: 'Paris (CET)', offset: '+01:00' },
+            { value: 'Europe/Berlin', label: 'Berlin (CET)', offset: '+01:00' },
+            { value: 'Asia/Tokyo', label: 'Tokyo (JST)', offset: '+09:00' },
+            { value: 'Asia/Shanghai', label: 'Shanghai (CST)', offset: '+08:00' },
+            { value: 'Asia/Dubai', label: 'Dubai (GST)', offset: '+04:00' },
+            { value: 'Asia/Kolkata', label: 'Mumbai (IST)', offset: '+05:30' },
+            { value: 'Australia/Sydney', label: 'Sydney (AEST)', offset: '+10:00' },
+            { value: 'Pacific/Auckland', label: 'Auckland (NZST)', offset: '+12:00' }
+        ];
+
+        // Popular cities for world clocks
+        const popularCities = [
+            { name: 'New York', timezone: 'America/New_York' },
+            { name: 'London', timezone: 'Europe/London' },
+            { name: 'Tokyo', timezone: 'Asia/Tokyo' },
+            { name: 'Sydney', timezone: 'Australia/Sydney' },
+            { name: 'Dubai', timezone: 'Asia/Dubai' },
+            { name: 'Mumbai', timezone: 'Asia/Kolkata' }
+        ];
+
+        // DOM Elements
+        const fromTimeInput = document.getElementById('from-time');
+        const fromTimezoneSelect = document.getElementById('from-timezone');
+        const toTimeInput = document.getElementById('to-time');
+        const toTimezoneSelect = document.getElementById('to-timezone');
+        const swapBtn = document.getElementById('swap-btn');
+        const worldClocksContainer = document.getElementById('world-clocks');
+        const calculateMeetingBtn = document.getElementById('calculate-meeting');
+        const meetingResult = document.getElementById('meeting-result');
+
+        // Initialize the converter
+        function initConverter() {
+            populateTimezoneSelects();
+            setupEventListeners();
+            setDefaultTimes();
+            updateWorldClocks();
+            convertTime();
+            
+            // Update clocks every minute
+            setInterval(updateWorldClocks, 60000);
+        }
+
+        // Populate timezone selects
+        function populateTimezoneSelects() {
+            timeZones.forEach(tz => {
+                // From timezone
+                const fromOption = document.createElement('option');
+                fromOption.value = tz.value;
+                fromOption.textContent = tz.label;
+                fromTimezoneSelect.appendChild(fromOption);
+                
+                // To timezone
+                const toOption = document.createElement('option');
+                toOption.value = tz.value;
+                toOption.textContent = tz.label;
+                toTimezoneSelect.appendChild(toOption);
+                
+                // Meeting timezones
+                const yourOption = document.createElement('option');
+                yourOption.value = tz.value;
+                yourOption.textContent = tz.label;
+                document.getElementById('meeting-your-timezone').appendChild(yourOption);
+                
+                const theirOption = document.createElement('option');
+                theirOption.value = tz.value;
+                theirOption.textContent = tz.label;
+                document.getElementById('meeting-their-timezone').appendChild(theirOption);
+            });
+            
+            // Set defaults
+            fromTimezoneSelect.value = 'America/New_York';
+            toTimezoneSelect.value = 'Europe/London';
+            document.getElementById('meeting-your-timezone').value = 'America/New_York';
+            document.getElementById('meeting-their-timezone').value = 'Europe/London';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            fromTimeInput.addEventListener('change', convertTime);
+            fromTimezoneSelect.addEventListener('change', convertTime);
+            toTimezoneSelect.addEventListener('change', convertTime);
+            swapBtn.addEventListener('click', swapTimezones);
+            calculateMeetingBtn.addEventListener('click', calculateMeeting);
+        }
+
+        // Set default times
+        function setDefaultTimes() {
+            const now = new Date();
+            const localDateTime = formatDateTimeLocal(now);
+            fromTimeInput.value = localDateTime;
+            document.getElementById('meeting-time').value = localDateTime;
+        }
+
+        // Format date for datetime-local input
+        function formatDateTimeLocal(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+
+        // Convert time between timezones
+        function convertTime() {
+            const fromTime = fromTimeInput.value;
+            const fromTimezone = fromTimezoneSelect.value;
+            const toTimezone = toTimezoneSelect.value;
+            
+            if (!fromTime) return;
+            
+            const fromDate = new Date(fromTime);
+            const toDate = convertTimeZone(fromDate, fromTimezone, toTimezone);
+            
+            // Update result display
+            document.getElementById('from-timezone-name').textContent = 
+                fromTimezoneSelect.options[fromTimezoneSelect.selectedIndex].text;
+            document.getElementById('to-timezone-name').textContent = 
+                toTimezoneSelect.options[toTimezoneSelect.selectedIndex].text;
+            
+            document.getElementById('from-time-value').textContent = 
+                formatTime(fromDate, fromTimezone);
+            document.getElementById('to-time-value').textContent = 
+                formatTime(toDate, toTimezone);
+            
+            document.getElementById('from-date').textContent = 
+                formatDate(fromDate, fromTimezone);
+            document.getElementById('to-date').textContent = 
+                formatDate(toDate, toTimezone);
+            
+            toTimeInput.value = formatDateTimeLocal(toDate);
+        }
+
+        // Convert time between timezones (fixed implementation)
+        function convertTimeZone(date, fromTZ, toTZ) {
+            // Create date in source timezone
+            const sourceDate = new Date(date.toLocaleString('en-US', { timeZone: fromTZ }));
+            
+            // Convert to target timezone
+            const targetDate = new Date(sourceDate.toLocaleString('en-US', { timeZone: toTZ }));
+            
+            // Calculate the offset difference
+            const sourceOffset = date.getTime() - sourceDate.getTime();
+            const targetOffset = date.getTime() - targetDate.getTime();
+            const offsetDiff = targetOffset - sourceOffset;
+            
+            // Apply the offset difference
+            return new Date(date.getTime() + offsetDiff);
+        }
+
+        // Format time for display
+        function formatTime(date, timezone) {
+            return date.toLocaleTimeString('en-US', { 
+                timeZone: timezone,
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true 
+            });
+        }
+
+        // Format date for display
+        function formatDate(date, timezone) {
+            return date.toLocaleDateString('en-US', { 
+                timeZone: timezone,
+                weekday: 'long',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        // Format short date for meeting display
+        function formatShortDate(date, timezone) {
+            return date.toLocaleDateString('en-US', { 
+                timeZone: timezone,
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        // Swap timezones
+        function swapTimezones() {
+            const tempTimezone = fromTimezoneSelect.value;
+            fromTimezoneSelect.value = toTimezoneSelect.value;
+            toTimezoneSelect.value = tempTimezone;
+            convertTime();
+        }
+
+        // Update world clocks
+        function updateWorldClocks() {
+            worldClocksContainer.innerHTML = '';
+            
+            popularCities.forEach(city => {
+                const now = new Date();
+                const cityTime = new Date(now.toLocaleString('en-US', { timeZone: city.timezone }));
+                
+                const clockCard = document.createElement('div');
+                clockCard.className = 'clock-card';
+                clockCard.innerHTML = `
+                    <div class="clock-city">${city.name}</div>
+                    <div class="clock-time">${formatTime(cityTime, city.timezone)}</div>
+                    <div class="clock-timezone">${getTimezoneLabel(city.timezone)}</div>
+                `;
+                
+                clockCard.addEventListener('click', () => {
+                    toTimezoneSelect.value = city.timezone;
+                    convertTime();
+                    showToast(`Set to ${city.name} timezone`);
+                });
+                
+                worldClocksContainer.appendChild(clockCard);
+            });
+        }
+
+        // Get timezone label
+        function getTimezoneLabel(timezone) {
+            const tz = timeZones.find(t => t.value === timezone);
+            return tz ? tz.label : timezone;
+        }
+
+        // Calculate meeting times (FIXED FUNCTION)
+        function calculateMeeting() {
+            const meetingTimeInput = document.getElementById('meeting-time').value;
+            const yourTimezone = document.getElementById('meeting-your-timezone').value;
+            const theirTimezone = document.getElementById('meeting-their-timezone').value;
+            
+            if (!meetingTimeInput) {
+                showToast('Please select a meeting time', 'error');
+                return;
+            }
+            
+            // Parse the meeting time (this is in the user's local time)
+            const meetingDate = new Date(meetingTimeInput);
+            
+            // Calculate times in both timezones
+            const yourTime = new Date(meetingDate.toLocaleString('en-US', { timeZone: yourTimezone }));
+            const theirTime = new Date(meetingDate.toLocaleString('en-US', { timeZone: theirTimezone }));
+            
+            // Update the display
+            document.getElementById('meeting-your-tz').textContent = 
+                document.getElementById('meeting-your-timezone').options[document.getElementById('meeting-your-timezone').selectedIndex].text;
+            document.getElementById('meeting-their-tz').textContent = 
+                document.getElementById('meeting-their-timezone').options[document.getElementById('meeting-their-timezone').selectedIndex].text;
+            
+            document.getElementById('meeting-your-time').textContent = formatTime(yourTime, yourTimezone);
+            document.getElementById('meeting-their-time').textContent = formatTime(theirTime, theirTimezone);
+            
+            document.getElementById('meeting-your-date').textContent = formatShortDate(yourTime, yourTimezone);
+            document.getElementById('meeting-their-date').textContent = formatShortDate(theirTime, theirTimezone);
+            
+            meetingResult.style.display = 'block';
+            showToast('Meeting times calculated successfully');
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize the converter
+        document.addEventListener('DOMContentLoaded', initConverter);
+    </script>
+</body>
+</html>
