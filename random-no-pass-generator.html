@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Generator - Number & Password Generator | SecureTools</title>
+    <meta name="description" content="Free online Random Number Generator and Password Generator. Create secure passwords, random numbers, PIN codes, and more with customizable options.">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="random number generator, password generator, random password, secure password, PIN generator, number generator, crypto random">
+    <meta name="author" content="SecureTools">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Random Generator - Number & Password Generator | SecureTools">
+    <meta property="og:description" content="Free online Random Number Generator and Password Generator with secure, customizable options.">
+    <meta property="og:type" content="website">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --primary-light: #e8f0fe;
+            --secondary: #f8f9fa;
+            --text: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --success: #34a853;
+            --warning: #f9ab00;
+            --error: #ea4335;
+            --info: #4285f4;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.15);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            border-radius: 15px 15px 0 0;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin-bottom: 0;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        .tagline {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Main Card */
+        .main-card {
+            background: var(--white);
+            border-radius: 0 0 15px 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        /* Tool Header */
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tool-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tool-description {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Generator Tabs */
+        .generator-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Generator Sections */
+        .generator-section {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 25px;
+            border: 2px solid var(--primary-light);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-label {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .number-input, .select-input {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .number-input:focus, .select-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        /* Checkbox Groups */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            margin: 0;
+        }
+
+        /* Strength Meter */
+        .strength-meter {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .strength-weak {
+            background: var(--error);
+            width: 25%;
+        }
+
+        .strength-medium {
+            background: var(--warning);
+            width: 50%;
+        }
+
+        .strength-strong {
+            background: var(--success);
+            width: 75%;
+        }
+
+        .strength-very-strong {
+            background: var(--success);
+            width: 100%;
+        }
+
+        .strength-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: right;
+        }
+
+        /* Results Section */
+        .results-section {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .results-container {
+            min-height: 150px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background: var(--secondary);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            background: var(--white);
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .result-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .result-value {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            word-break: break-all;
+            flex: 1;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: 15px;
+        }
+
+        .action-icon {
+            padding: 8px;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-light);
+        }
+
+        .action-icon:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: var(--text-light);
+            padding: 40px 20px;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .generate-btn {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .generate-btn:hover {
+            background: #2e7d32;
+            transform: translateY(-2px);
+        }
+
+        .copy-all-btn {
+            background: var(--info);
+            color: var(--white);
+        }
+
+        .copy-all-btn:hover {
+            background: #1565c0;
+            transform: translateY(-2px);
+        }
+
+        .clear-btn {
+            background: var(--warning);
+            color: var(--white);
+        }
+
+        .clear-btn:hover {
+            background: #f57c00;
+            transform: translateY(-2px);
+        }
+
+        .bulk-btn {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .bulk-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Statistics */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: var(--white);
+            padding: 15px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features-section {
+            margin: 40px 0;
+        }
+
+        .section-title-main {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--text);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: var(--success);
+        }
+
+        .toast.error {
+            background: var(--error);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .generator-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tool-title {
+                font-size: 1.8rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .result-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">Secure<span>Tools</span></div>
+            <p class="tagline">Your Security and Utility Tools Collection</p>
+        </header>
+
+        <!-- Main Card -->
+        <div class="main-card">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1 class="tool-title">
+                    <i class="fas fa-random"></i>
+                    Random Generator
+                </h1>
+                <p class="tool-description">
+                    Generate secure random numbers and passwords with customizable options. 
+                    Perfect for security, testing, gaming, and development purposes.
+                </p>
+            </div>
+
+            <!-- Generator Tabs -->
+            <div class="generator-tabs">
+                <button class="tab-btn active" data-tab="password">Password Generator</button>
+                <button class="tab-btn" data-tab="number">Number Generator</button>
+                <button class="tab-btn" data-tab="pin">PIN Generator</button>
+            </div>
+
+            <!-- Password Generator Tab -->
+            <div class="tab-content active" id="password-tab">
+                <div class="generator-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-key"></i>
+                        Password Settings
+                    </h3>
+                    
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label class="input-label">Password Length</label>
+                            <input type="number" class="number-input" id="password-length" min="4" max="128" value="12">
+                        </div>
+                        <div class="option-group">
+                            <label class="input-label">Number of Passwords</label>
+                            <input type="number" class="number-input" id="password-count" min="1" max="50" value="5">
+                        </div>
+                    </div>
+
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="uppercase" checked>
+                                <span>Uppercase Letters (A-Z)</span>
+                            </label>
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="lowercase" checked>
+                                <span>Lowercase Letters (a-z)</span>
+                            </label>
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="numbers" checked>
+                                <span>Numbers (0-9)</span>
+                            </label>
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="symbols">
+                                <span>Symbols (!@#$%^&*)</span>
+                            </label>
+                        </div>
+                        <div class="option-group">
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="exclude-similar">
+                                <span>Exclude Similar Characters (i, l, 1, L, o, 0, O)</span>
+                            </label>
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="exclude-ambiguous">
+                                <span>Exclude Ambiguous Characters ({ } [ ] ( ) / \ ' " ` ~ , ; : . < >)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Password Strength Meter -->
+                    <div class="strength-section">
+                        <div class="input-label">Password Strength</div>
+                        <div class="strength-meter">
+                            <div class="strength-bar" id="strength-bar"></div>
+                        </div>
+                        <div class="strength-label" id="strength-label">Medium</div>
+                    </div>
+                </div>
+
+                <!-- Password Results -->
+                <div class="results-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-lock"></i>
+                        Generated Passwords
+                    </h3>
+                    
+                    <div class="results-container" id="password-results">
+                        <div class="empty-state">
+                            <i class="fas fa-key"></i>
+                            <p>No passwords generated yet. Click "Generate Passwords" to get started.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="action-btn generate-btn" id="generate-passwords">
+                            <i class="fas fa-bolt"></i>
+                            Generate Passwords
+                        </button>
+                        <button class="action-btn bulk-btn" id="bulk-passwords">
+                            <i class="fas fa-copy"></i>
+                            Generate 10 Passwords
+                        </button>
+                        <button class="action-btn copy-all-btn" id="copy-all-passwords">
+                            <i class="fas fa-paste"></i>
+                            Copy All Passwords
+                        </button>
+                        <button class="action-btn clear-btn" id="clear-passwords">
+                            <i class="fas fa-broom"></i>
+                            Clear All
+                        </button>
+                    </div>
+
+                    <div class="stats-section" id="password-stats" style="display: none;">
+                        <div class="stat-box">
+                            <div class="stat-value" id="password-total">0</div>
+                            <div class="stat-label">Total Passwords</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="password-avg-length">0</div>
+                            <div class="stat-label">Avg Length</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="password-strength">Medium</div>
+                            <div class="stat-label">Avg Strength</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Number Generator Tab -->
+            <div class="tab-content" id="number-tab">
+                <div class="generator-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-hashtag"></i>
+                        Number Settings
+                    </h3>
+                    
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label class="input-label">Minimum Value</label>
+                            <input type="number" class="number-input" id="min-value" value="1">
+                        </div>
+                        <div class="option-group">
+                            <label class="input-label">Maximum Value</label>
+                            <input type="number" class="number-input" id="max-value" value="100">
+                        </div>
+                        <div class="option-group">
+                            <label class="input-label">Number of Results</label>
+                            <input type="number" class="number-input" id="number-count" min="1" max="100" value="10">
+                        </div>
+                        <div class="option-group">
+                            <label class="input-label">Precision (Decimal Places)</label>
+                            <input type="number" class="number-input" id="precision" min="0" max="10" value="0">
+                        </div>
+                    </div>
+
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="unique-numbers">
+                                <span>Generate Unique Numbers Only</span>
+                            </label>
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="sort-numbers">
+                                <span>Sort Results</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Number Results -->
+                <div class="results-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-list-ol"></i>
+                        Generated Numbers
+                    </h3>
+                    
+                    <div class="results-container" id="number-results">
+                        <div class="empty-state">
+                            <i class="fas fa-hashtag"></i>
+                            <p>No numbers generated yet. Click "Generate Numbers" to get started.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="action-btn generate-btn" id="generate-numbers">
+                            <i class="fas fa-bolt"></i>
+                            Generate Numbers
+                        </button>
+                        <button class="action-btn bulk-btn" id="bulk-numbers">
+                            <i class="fas fa-copy"></i>
+                            Generate 50 Numbers
+                        </button>
+                        <button class="action-btn copy-all-btn" id="copy-all-numbers">
+                            <i class="fas fa-paste"></i>
+                            Copy All Numbers
+                        </button>
+                        <button class="action-btn clear-btn" id="clear-numbers">
+                            <i class="fas fa-broom"></i>
+                            Clear All
+                        </button>
+                    </div>
+
+                    <div class="stats-section" id="number-stats" style="display: none;">
+                        <div class="stat-box">
+                            <div class="stat-value" id="number-total">0</div>
+                            <div class="stat-label">Total Numbers</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="number-min">0</div>
+                            <div class="stat-label">Min Value</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="number-max">0</div>
+                            <div class="stat-label">Max Value</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="number-avg">0</div>
+                            <div class="stat-label">Average</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PIN Generator Tab -->
+            <div class="tab-content" id="pin-tab">
+                <div class="generator-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-mobile-alt"></i>
+                        PIN Settings
+                    </h3>
+                    
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label class="input-label">PIN Length</label>
+                            <input type="number" class="number-input" id="pin-length" min="4" max="12" value="6">
+                        </div>
+                        <div class="option-group">
+                            <label class="input-label">Number of PINs</label>
+                            <input type="number" class="number-input" id="pin-count" min="1" max="50" value="10">
+                        </div>
+                    </div>
+
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="unique-pins" checked>
+                                <span>Generate Unique PINs Only</span>
+                            </label>
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="avoid-repeating">
+                                <span>Avoid Repeating Digits</span>
+                            </label>
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="avoid-sequential">
+                                <span>Avoid Sequential Digits</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PIN Results -->
+                <div class="results-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-shield-alt"></i>
+                        Generated PINs
+                    </h3>
+                    
+                    <div class="results-container" id="pin-results">
+                        <div class="empty-state">
+                            <i class="fas fa-mobile-alt"></i>
+                            <p>No PINs generated yet. Click "Generate PINs" to get started.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="action-btn generate-btn" id="generate-pins">
+                            <i class="fas fa-bolt"></i>
+                            Generate PINs
+                        </button>
+                        <button class="action-btn bulk-btn" id="bulk-pins">
+                            <i class="fas fa-copy"></i>
+                            Generate 20 PINs
+                        </button>
+                        <button class="action-btn copy-all-btn" id="copy-all-pins">
+                            <i class="fas fa-paste"></i>
+                            Copy All PINs
+                        </button>
+                        <button class="action-btn clear-btn" id="clear-pins">
+                            <i class="fas fa-broom"></i>
+                            Clear All
+                        </button>
+                    </div>
+
+                    <div class="stats-section" id="pin-stats" style="display: none;">
+                        <div class="stat-box">
+                            <div class="stat-value" id="pin-total">0</div>
+                            <div class="stat-label">Total PINs</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="pin-length-display">6</div>
+                            <div class="stat-label">PIN Length</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="pin-unique">10</div>
+                            <div class="stat-label">Unique PINs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <h2 class="section-title-main">Why Use Our Random Generator?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Cryptographically Secure</h3>
+                        <p class="feature-description">
+                            All random values are generated using cryptographically secure methods for maximum security.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h3 class="feature-title">Highly Customizable</h3>
+                        <p class="feature-description">
+                            Fine-tune generation parameters to meet your specific requirements and use cases.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="feature-title">Instant Generation</h3>
+                        <p class="feature-description">
+                            Generate passwords, numbers, and PINs instantly with our optimized algorithms.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="feature-title">Easy to Use</h3>
+                        <p class="feature-description">
+                            Simple interface with one-click copy functionality for all generated values.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">All Tools</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <p class="copyright">
+                &copy; 2024 SecureTools. All rights reserved. | 
+                Random Generator Tool
+            </p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Character sets
+        const charSets = {
+            uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            lowercase: 'abcdefghijklmnopqrstuvwxyz',
+            numbers: '0123456789',
+            symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
+        };
+
+        // Similar characters to exclude
+        const similarChars = 'il1Lo0O';
+        
+        // Ambiguous characters to exclude
+        const ambiguousChars = '{}[]()/\\\'"`~,;:.<>';
+
+        // DOM Elements
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Password elements
+        const generatePasswordsBtn = document.getElementById('generate-passwords');
+        const bulkPasswordsBtn = document.getElementById('bulk-passwords');
+        const copyAllPasswordsBtn = document.getElementById('copy-all-passwords');
+        const clearPasswordsBtn = document.getElementById('clear-passwords');
+        const passwordResults = document.getElementById('password-results');
+        const passwordStats = document.getElementById('password-stats');
+        
+        // Number elements
+        const generateNumbersBtn = document.getElementById('generate-numbers');
+        const bulkNumbersBtn = document.getElementById('bulk-numbers');
+        const copyAllNumbersBtn = document.getElementById('copy-all-numbers');
+        const clearNumbersBtn = document.getElementById('clear-numbers');
+        const numberResults = document.getElementById('number-results');
+        const numberStats = document.getElementById('number-stats');
+        
+        // PIN elements
+        const generatePinsBtn = document.getElementById('generate-pins');
+        const bulkPinsBtn = document.getElementById('bulk-pins');
+        const copyAllPinsBtn = document.getElementById('copy-all-pins');
+        const clearPinsBtn = document.getElementById('clear-pins');
+        const pinResults = document.getElementById('pin-results');
+        const pinStats = document.getElementById('pin-stats');
+
+        // Global variables
+        let generatedPasswords = [];
+        let generatedNumbers = [];
+        let generatedPins = [];
+
+        // Initialize the generator
+        function initGenerator() {
+            setupEventListeners();
+            updateStrengthMeter();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Tab switching
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.dataset.tab;
+                    switchTab(tabId);
+                });
+            });
+
+            // Password events
+            generatePasswordsBtn.addEventListener('click', generatePasswords);
+            bulkPasswordsBtn.addEventListener('click', generateBulkPasswords);
+            copyAllPasswordsBtn.addEventListener('click', copyAllPasswords);
+            clearPasswordsBtn.addEventListener('click', clearPasswords);
+            
+            // Number events
+            generateNumbersBtn.addEventListener('click', generateNumbers);
+            bulkNumbersBtn.addEventListener('click', generateBulkNumbers);
+            copyAllNumbersBtn.addEventListener('click', copyAllNumbers);
+            clearNumbersBtn.addEventListener('click', clearNumbers);
+            
+            // PIN events
+            generatePinsBtn.addEventListener('click', generatePins);
+            bulkPinsBtn.addEventListener('click', generateBulkPins);
+            copyAllPinsBtn.addEventListener('click', copyAllPins);
+            clearPinsBtn.addEventListener('click', clearPins);
+
+            // Strength meter updates
+            const passwordOptions = [
+                'password-length', 'uppercase', 'lowercase', 'numbers', 'symbols'
+            ];
+            passwordOptions.forEach(option => {
+                document.getElementById(option).addEventListener('change', updateStrengthMeter);
+            });
+        }
+
+        // Switch between tabs
+        function switchTab(tabId) {
+            // Update tab buttons
+            tabBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tabId);
+            });
+            
+            // Update tab contents
+            tabContents.forEach(content => {
+                content.classList.toggle('active', content.id === `${tabId}-tab`);
+            });
+        }
+
+        // Update password strength meter
+        function updateStrengthMeter() {
+            const length = parseInt(document.getElementById('password-length').value) || 0;
+            const hasUpper = document.getElementById('uppercase').checked;
+            const hasLower = document.getElementById('lowercase').checked;
+            const hasNumbers = document.getElementById('numbers').checked;
+            const hasSymbols = document.getElementById('symbols').checked;
+            
+            let strength = 0;
+            let strengthLabel = 'Very Weak';
+            
+            // Length contributes to strength
+            if (length >= 8) strength += 1;
+            if (length >= 12) strength += 1;
+            if (length >= 16) strength += 1;
+            
+            // Character variety contributes to strength
+            if (hasUpper) strength += 1;
+            if (hasLower) strength += 1;
+            if (hasNumbers) strength += 1;
+            if (hasSymbols) strength += 1;
+            
+            // Determine strength level
+            const strengthBar = document.getElementById('strength-bar');
+            const strengthLabelElem = document.getElementById('strength-label');
+            
+            if (strength <= 2) {
+                strengthBar.className = 'strength-bar strength-weak';
+                strengthLabel = 'Weak';
+            } else if (strength <= 4) {
+                strengthBar.className = 'strength-bar strength-medium';
+                strengthLabel = 'Medium';
+            } else if (strength <= 6) {
+                strengthBar.className = 'strength-bar strength-strong';
+                strengthLabel = 'Strong';
+            } else {
+                strengthBar.className = 'strength-bar strength-very-strong';
+                strengthLabel = 'Very Strong';
+            }
+            
+            strengthLabelElem.textContent = strengthLabel;
+        }
+
+        // Generate passwords
+        function generatePasswords() {
+            const count = parseInt(document.getElementById('password-count').value) || 1;
+            const length = parseInt(document.getElementById('password-length').value) || 12;
+            
+            const passwords = [];
+            for (let i = 0; i < count; i++) {
+                const password = generatePassword(length);
+                passwords.push({
+                    id: i + 1,
+                    value: password,
+                    strength: calculatePasswordStrength(password)
+                });
+            }
+            
+            generatedPasswords = passwords;
+            displayPasswords();
+            updatePasswordStats();
+        }
+
+        // Generate a single password
+        function generatePassword(length) {
+            let charset = '';
+            
+            // Build character set based on options
+            if (document.getElementById('uppercase').checked) {
+                charset += charSets.uppercase;
+            }
+            if (document.getElementById('lowercase').checked) {
+                charset += charSets.lowercase;
+            }
+            if (document.getElementById('numbers').checked) {
+                charset += charSets.numbers;
+            }
+            if (document.getElementById('symbols').checked) {
+                charset += charSets.symbols;
+            }
+            
+            // Remove excluded characters
+            if (document.getElementById('exclude-similar').checked) {
+                for (const char of similarChars) {
+                    charset = charset.replace(char, '');
+                }
+            }
+            
+            if (document.getElementById('exclude-ambiguous').checked) {
+                for (const char of ambiguousChars) {
+                    charset = charset.replace(char, '');
+                }
+            }
+            
+            // If no character set selected, use lowercase as default
+            if (charset === '') {
+                charset = charSets.lowercase;
+            }
+            
+            // Generate password
+            let password = '';
+            const cryptoArray = new Uint32Array(length);
+            window.crypto.getRandomValues(cryptoArray);
+            
+            for (let i = 0; i < length; i++) {
+                password += charset[cryptoArray[i] % charset.length];
+            }
+            
+            return password;
+        }
+
+        // Calculate password strength
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            
+            // Length factor
+            if (password.length >= 8) strength += 1;
+            if (password.length >= 12) strength += 1;
+            if (password.length >= 16) strength += 1;
+            
+            // Character variety
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[a-z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+            
+            if (strength <= 2) return 'Weak';
+            if (strength <= 4) return 'Medium';
+            if (strength <= 6) return 'Strong';
+            return 'Very Strong';
+        }
+
+        // Display generated passwords
+        function displayPasswords() {
+            if (generatedPasswords.length === 0) {
+                passwordResults.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-key"></i>
+                        <p>No passwords generated yet. Click "Generate Passwords" to get started.</p>
+                    </div>
+                `;
+                passwordStats.style.display = 'none';
+                return;
+            }
+            
+            let html = '';
+            generatedPasswords.forEach((password, index) => {
+                html += `
+                    <div class="result-item">
+                        <div class="result-value">${password.value}</div>
+                        <div class="result-actions">
+                            <button class="action-icon" onclick="copyPassword(${index})" title="Copy Password">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="action-icon" onclick="regeneratePassword(${index})" title="Regenerate">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <span class="strength-badge" style="color: ${
+                                password.strength === 'Weak' ? '#ea4335' : 
+                                password.strength === 'Medium' ? '#f9ab00' : 
+                                password.strength === 'Strong' ? '#34a853' : '#0d652d'
+                            }">${password.strength}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            passwordResults.innerHTML = html;
+            passwordStats.style.display = 'grid';
+        }
+
+        // Update password statistics
+        function updatePasswordStats() {
+            document.getElementById('password-total').textContent = generatedPasswords.length;
+            
+            const avgLength = generatedPasswords.reduce((sum, p) => sum + p.value.length, 0) / generatedPasswords.length;
+            document.getElementById('password-avg-length').textContent = avgLength.toFixed(1);
+            
+            const strengths = generatedPasswords.map(p => p.strength);
+            const strengthCounts = {
+                'Weak': 0,
+                'Medium': 0,
+                'Strong': 0,
+                'Very Strong': 0
+            };
+            
+            strengths.forEach(s => strengthCounts[s]++);
+            
+            let avgStrength = 'Medium';
+            if (strengthCounts['Very Strong'] > strengths.length / 2) {
+                avgStrength = 'Very Strong';
+            } else if (strengthCounts['Strong'] > strengths.length / 2) {
+                avgStrength = 'Strong';
+            } else if (strengthCounts['Weak'] > strengths.length / 2) {
+                avgStrength = 'Weak';
+            }
+            
+            document.getElementById('password-strength').textContent = avgStrength;
+        }
+
+        // Generate bulk passwords
+        function generateBulkPasswords() {
+            document.getElementById('password-count').value = 10;
+            generatePasswords();
+            showToast('Generated 10 passwords successfully!');
+        }
+
+        // Copy all passwords
+        function copyAllPasswords() {
+            if (generatedPasswords.length === 0) {
+                showToast('No passwords to copy', 'error');
+                return;
+            }
+            
+            const allPasswords = generatedPasswords.map(p => p.value).join('\n');
+            copyToClipboard(allPasswords);
+            showToast(`Copied ${generatedPasswords.length} passwords to clipboard!`);
+        }
+
+        // Copy single password
+        function copyPassword(index) {
+            const password = generatedPasswords[index].value;
+            copyToClipboard(password);
+            showToast('Password copied to clipboard!');
+        }
+
+        // Regenerate single password
+        function regeneratePassword(index) {
+            const length = parseInt(document.getElementById('password-length').value) || 12;
+            const newPassword = generatePassword(length);
+            generatedPasswords[index].value = newPassword;
+            generatedPasswords[index].strength = calculatePasswordStrength(newPassword);
+            displayPasswords();
+            updatePasswordStats();
+            showToast('Password regenerated!');
+        }
+
+        // Clear all passwords
+        function clearPasswords() {
+            generatedPasswords = [];
+            displayPasswords();
+            showToast('All passwords cleared');
+        }
+
+        // Generate random numbers
+        function generateNumbers() {
+            const count = parseInt(document.getElementById('number-count').value) || 10;
+            const min = parseFloat(document.getElementById('min-value').value) || 0;
+            const max = parseFloat(document.getElementById('max-value').value) || 100;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+            const unique = document.getElementById('unique-numbers').checked;
+            const sort = document.getElementById('sort-numbers').checked;
+            
+            if (min >= max) {
+                showToast('Minimum value must be less than maximum value', 'error');
+                return;
+            }
+            
+            const numbers = [];
+            const generatedValues = new Set();
+            
+            for (let i = 0; i < count; i++) {
+                let number;
+                do {
+                    number = generateRandomNumber(min, max, precision);
+                } while (unique && generatedValues.has(number) && generatedValues.size < (max - min));
+                
+                if (unique) generatedValues.add(number);
+                
+                numbers.push({
+                    id: i + 1,
+                    value: number
+                });
+            }
+            
+            if (sort) {
+                numbers.sort((a, b) => a.value - b.value);
+            }
+            
+            generatedNumbers = numbers;
+            displayNumbers();
+            updateNumberStats();
+        }
+
+        // Generate a single random number
+        function generateRandomNumber(min, max, precision) {
+            const random = Math.random();
+            const range = max - min;
+            let number = min + (random * range);
+            
+            if (precision > 0) {
+                const factor = Math.pow(10, precision);
+                number = Math.round(number * factor) / factor;
+            } else {
+                number = Math.floor(number);
+            }
+            
+            return number;
+        }
+
+        // Display generated numbers
+        function displayNumbers() {
+            if (generatedNumbers.length === 0) {
+                numberResults.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-hashtag"></i>
+                        <p>No numbers generated yet. Click "Generate Numbers" to get started.</p>
+                    </div>
+                `;
+                numberStats.style.display = 'none';
+                return;
+            }
+            
+            let html = '';
+            generatedNumbers.forEach((number, index) => {
+                html += `
+                    <div class="result-item">
+                        <div class="result-value">${number.value}</div>
+                        <div class="result-actions">
+                            <button class="action-icon" onclick="copyNumber(${index})" title="Copy Number">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="action-icon" onclick="regenerateNumber(${index})" title="Regenerate">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            numberResults.innerHTML = html;
+            numberStats.style.display = 'grid';
+        }
+
+        // Update number statistics
+        function updateNumberStats() {
+            document.getElementById('number-total').textContent = generatedNumbers.length;
+            
+            const values = generatedNumbers.map(n => n.value);
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+            const avg = values.reduce((sum, val) => sum + val, 0) / values.length;
+            
+            document.getElementById('number-min').textContent = min;
+            document.getElementById('number-max').textContent = max;
+            document.getElementById('number-avg').textContent = avg.toFixed(2);
+        }
+
+        // Generate bulk numbers
+        function generateBulkNumbers() {
+            document.getElementById('number-count').value = 50;
+            generateNumbers();
+            showToast('Generated 50 numbers successfully!');
+        }
+
+        // Copy all numbers
+        function copyAllNumbers() {
+            if (generatedNumbers.length === 0) {
+                showToast('No numbers to copy', 'error');
+                return;
+            }
+            
+            const allNumbers = generatedNumbers.map(n => n.value).join('\n');
+            copyToClipboard(allNumbers);
+            showToast(`Copied ${generatedNumbers.length} numbers to clipboard!`);
+        }
+
+        // Copy single number
+        function copyNumber(index) {
+            const number = generatedNumbers[index].value;
+            copyToClipboard(number.toString());
+            showToast('Number copied to clipboard!');
+        }
+
+        // Regenerate single number
+        function regenerateNumber(index) {
+            const min = parseFloat(document.getElementById('min-value').value) || 0;
+            const max = parseFloat(document.getElementById('max-value').value) || 100;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+            
+            const newNumber = generateRandomNumber(min, max, precision);
+            generatedNumbers[index].value = newNumber;
+            displayNumbers();
+            updateNumberStats();
+            showToast('Number regenerated!');
+        }
+
+        // Clear all numbers
+        function clearNumbers() {
+            generatedNumbers = [];
+            displayNumbers();
+            showToast('All numbers cleared');
+        }
+
+        // Generate PINs
+        function generatePins() {
+            const count = parseInt(document.getElementById('pin-count').value) || 10;
+            const length = parseInt(document.getElementById('pin-length').value) || 6;
+            const unique = document.getElementById('unique-pins').checked;
+            const avoidRepeating = document.getElementById('avoid-repeating').checked;
+            const avoidSequential = document.getElementById('avoid-sequential').checked;
+            
+            const pins = [];
+            const generatedPinsSet = new Set();
+            
+            for (let i = 0; i < count; i++) {
+                let pin;
+                let attempts = 0;
+                const maxAttempts = 1000;
+                
+                do {
+                    pin = generatePin(length, avoidRepeating, avoidSequential);
+                    attempts++;
+                } while (unique && generatedPinsSet.has(pin) && attempts < maxAttempts);
+                
+                if (unique) generatedPinsSet.add(pin);
+                
+                pins.push({
+                    id: i + 1,
+                    value: pin
+                });
+            }
+            
+            generatedPins = pins;
+            displayPins();
+            updatePinStats();
+        }
+
+        // Generate a single PIN
+        function generatePin(length, avoidRepeating, avoidSequential) {
+            let pin;
+            let isValid = false;
+            let attempts = 0;
+            const maxAttempts = 100;
+            
+            do {
+                pin = '';
+                const cryptoArray = new Uint32Array(length);
+                window.crypto.getRandomValues(cryptoArray);
+                
+                for (let i = 0; i < length; i++) {
+                    pin += charSets.numbers[cryptoArray[i] % 10];
+                }
+                
+                // Check constraints
+                isValid = true;
+                
+                if (avoidRepeating) {
+                    for (let i = 1; i < pin.length; i++) {
+                        if (pin[i] === pin[i-1]) {
+                            isValid = false;
+                            break;
+                        }
+                    }
+                }
+                
+                if (avoidSequential && isValid) {
+                    for (let i = 1; i < pin.length; i++) {
+                        const current = parseInt(pin[i]);
+                        const previous = parseInt(pin[i-1]);
+                        if (Math.abs(current - previous) === 1) {
+                            isValid = false;
+                            break;
+                        }
+                    }
+                }
+                
+                attempts++;
+            } while (!isValid && attempts < maxAttempts);
+            
+            return pin;
+        }
+
+        // Display generated PINs
+        function displayPins() {
+            if (generatedPins.length === 0) {
+                pinResults.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-mobile-alt"></i>
+                        <p>No PINs generated yet. Click "Generate PINs" to get started.</p>
+                    </div>
+                `;
+                pinStats.style.display = 'none';
+                return;
+            }
+            
+            let html = '';
+            generatedPins.forEach((pin, index) => {
+                html += `
+                    <div class="result-item">
+                        <div class="result-value">${pin.value}</div>
+                        <div class="result-actions">
+                            <button class="action-icon" onclick="copyPin(${index})" title="Copy PIN">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="action-icon" onclick="regeneratePin(${index})" title="Regenerate">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            pinResults.innerHTML = html;
+            pinStats.style.display = 'grid';
+        }
+
+        // Update PIN statistics
+        function updatePinStats() {
+            document.getElementById('pin-total').textContent = generatedPins.length;
+            document.getElementById('pin-length-display').textContent = document.getElementById('pin-length').value;
+            
+            const uniquePins = new Set(generatedPins.map(p => p.value)).size;
+            document.getElementById('pin-unique').textContent = uniquePins;
+        }
+
+        // Generate bulk PINs
+        function generateBulkPins() {
+            document.getElementById('pin-count').value = 20;
+            generatePins();
+            showToast('Generated 20 PINs successfully!');
+        }
+
+        // Copy all PINs
+        function copyAllPins() {
+            if (generatedPins.length === 0) {
+                showToast('No PINs to copy', 'error');
+                return;
+            }
+            
+            const allPins = generatedPins.map(p => p.value).join('\n');
+            copyToClipboard(allPins);
+            showToast(`Copied ${generatedPins.length} PINs to clipboard!`);
+        }
+
+        // Copy single PIN
+        function copyPin(index) {
+            const pin = generatedPins[index].value;
+            copyToClipboard(pin);
+            showToast('PIN copied to clipboard!');
+        }
+
+        // Regenerate single PIN
+        function regeneratePin(index) {
+            const length = parseInt(document.getElementById('pin-length').value) || 6;
+            const avoidRepeating = document.getElementById('avoid-repeating').checked;
+            const avoidSequential = document.getElementById('avoid-sequential').checked;
+            
+            const newPin = generatePin(length, avoidRepeating, avoidSequential);
+            generatedPins[index].value = newPin;
+            displayPins();
+            updatePinStats();
+            showToast('PIN regenerated!');
+        }
+
+        // Clear all PINs
+        function clearPins() {
+            generatedPins = [];
+            displayPins();
+            showToast('All PINs cleared');
+        }
+
+        // Copy text to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .catch(() => {
+                    // Fallback
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                });
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize the generator
+        document.addEventListener('DOMContentLoaded', initGenerator);
+    </script>
+</body>
+</html>
