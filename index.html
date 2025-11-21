@@ -162,9 +162,57 @@
             font-size: 1.8rem;
         }
 
+        /* Category Filter Buttons */
+        .category-section {
+            padding: 30px 0 20px;
+            background-color: var(--secondary);
+        }
+
+        .category-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .category-btn {
+            background-color: var(--white);
+            color: var(--text);
+            border: 1px solid #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .category-btn:hover {
+            background-color: var(--primary-light);
+            border-color: var(--primary);
+        }
+
+        .category-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
         /* Search Section */
         .search-section {
-            padding: 40px 0;
+            padding: 20px 0 40px;
             background-color: var(--secondary);
         }
 
@@ -449,6 +497,15 @@
             .section-title {
                 font-size: 1.5rem;
             }
+            
+            .category-buttons {
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -488,6 +545,42 @@
         </div>
     </section>
 
+    <!-- Category Filter Buttons -->
+    <section class="category-section">
+        <div class="container">
+            <h3 class="category-title">Browse Tools by Category</h3>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">
+                    <i class="fas fa-th-large"></i> All Tools
+                </button>
+                <button class="category-btn" data-category="document">
+                    <i class="fas fa-file-alt"></i> Document Tools
+                </button>
+                <button class="category-btn" data-category="image">
+                    <i class="fas fa-image"></i> Image Tools
+                </button>
+                <button class="category-btn" data-category="calculator">
+                    <i class="fas fa-calculator"></i> Calculator Tools
+                </button>
+                <button class="category-btn" data-category="shopkeeper">
+                    <i class="fas fa-store"></i> Shopkeeper Tools
+                </button>
+                <button class="category-btn" data-category="web">
+                    <i class="fas fa-code"></i> Web/Developer Tools
+                </button>
+                <button class="category-btn" data-category="ifsc">
+                    <i class="fas fa-university"></i> IFSC Codes
+                </button>
+                <button class="category-btn" data-category="utility">
+                    <i class="fas fa-tools"></i> Utility Tools
+                </button>
+                <button class="category-btn" data-category="ai">
+                    <i class="fas fa-robot"></i> AI Tools
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Search Section -->
     <section class="search-section">
         <div class="container search-container">
@@ -501,7 +594,7 @@
     <!-- Tools Sections -->
     <main class="container tools-section" id="tools">
         <!-- Document Tools (Now First) -->
-        <section>
+        <section class="tool-category" data-category="document">
             <h2 class="section-title"><i class="fas fa-file-alt"></i> Document Tools</h2>
             <p class="section-subtitle">Manage, convert, and optimize your documents with ease</p>
             <div class="tools-grid">
@@ -659,7 +752,7 @@
         </section>
 
         <!-- Image Tools (Now Second) -->
-        <section>
+        <section class="tool-category" data-category="image">
             <h2 class="section-title"><i class="fas fa-image"></i> Image Tools</h2>
             <p class="section-subtitle">Edit, convert, and optimize your images with our powerful tools</p>
             <div class="tools-grid">
@@ -709,7 +802,7 @@
         </section>
 
         <!-- Calculator Tools -->
-        <section>
+        <section class="tool-category" data-category="calculator">
             <h2 class="section-title"><i class="fas fa-calculator"></i> Calculator Tools</h2>
             <p class="section-subtitle">Financial, health, and utility calculators for everyday needs</p>
             <div class="tools-grid">
@@ -795,7 +888,7 @@
         </section>
 
         <!-- Shopkeeper Tools -->
-        <section>
+        <section class="tool-category" data-category="shopkeeper">
             <h2 class="section-title"><i class="fas fa-store"></i> Shopkeeper Tools</h2>
             <p class="section-subtitle">Business management tools for shopkeepers and retailers</p>
             <div class="tools-grid">
@@ -815,7 +908,7 @@
         </section>
 
         <!-- Web/Developer Tools -->
-        <section>
+        <section class="tool-category" data-category="web">
             <h2 class="section-title"><i class="fas fa-code"></i> Web/Developer Tools</h2>
             <p class="section-subtitle">Essential tools for web developers and programmers</p>
             <div class="tools-grid">
@@ -859,7 +952,7 @@
         </section>
 
         <!-- IFSC Code Tools -->
-        <section>
+        <section class="tool-category" data-category="ifsc">
             <h2 class="section-title"><i class="fas fa-university"></i> IFSC Codes</h2>
             <p class="section-subtitle">Banking code lookup tools for Indian financial transactions</p>
             <div class="tools-grid">
@@ -873,7 +966,7 @@
         </section>
 
         <!-- Utility Tools -->
-        <section>
+        <section class="tool-category" data-category="utility">
             <h2 class="section-title"><i class="fas fa-tools"></i> Utility Tools</h2>
             <p class="section-subtitle">Everyday utility tools for various purposes</p>
             <div class="tools-grid">
@@ -917,7 +1010,7 @@
         </section>
 
         <!-- AI Tools -->
-        <section>
+        <section class="tool-category" data-category="ai">
             <h2 class="section-title"><i class="fas fa-robot"></i> AI Resume and PPT Generate</h2>
             <p class="section-subtitle">AI-powered tools for creating professional documents</p>
             <div class="tools-grid">
@@ -984,34 +1077,77 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 ToolSonics. All rights reserved.</p>
+                <p>&copy; 2025 ToolSonics. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Search functionality
+        // Category Filter Functionality
         document.addEventListener('DOMContentLoaded', function() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const toolCategories = document.querySelectorAll('.tool-category');
             const searchInput = document.getElementById('searchInput');
             const toolCards = document.querySelectorAll('.tool-card');
             
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase().trim();
+            let activeCategory = 'all';
+            
+            // Category button click handler
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    // Update active button
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter tools by category
+                    filterToolsByCategory(category);
+                    activeCategory = category;
+                });
+            });
+            
+            // Filter tools by category
+            function filterToolsByCategory(category) {
+                toolCategories.forEach(section => {
+                    if (category === 'all' || section.dataset.category === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
                 
+                // Also apply search filter if there's a search term
+                if (searchInput.value.trim() !== '') {
+                    applySearchFilter(searchInput.value.trim());
+                }
+            }
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                applySearchFilter(this.value.toLowerCase().trim());
+            });
+            
+            // Apply search filter
+            function applySearchFilter(searchTerm) {
                 toolCards.forEach(card => {
                     const toolName = card.querySelector('h3').textContent.toLowerCase();
                     const toolDesc = card.querySelector('p').textContent.toLowerCase();
                     
-                    if (searchTerm === '' || toolName.includes(searchTerm) || toolDesc.includes(searchTerm)) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    const isVisible = searchTerm === '' || 
+                                    toolName.includes(searchTerm) || 
+                                    toolDesc.includes(searchTerm);
+                    
+                    card.style.display = isVisible ? 'flex' : 'none';
                 });
                 
                 // Show/hide section titles based on visible tools
-                const sections = document.querySelectorAll('.tools-section > section');
-                sections.forEach(section => {
+                const visibleSections = document.querySelectorAll('.tool-category');
+                visibleSections.forEach(section => {
+                    if (activeCategory !== 'all' && section.dataset.category !== activeCategory) {
+                        return;
+                    }
+                    
                     const sectionTools = section.querySelectorAll('.tool-card');
                     const visibleTools = Array.from(sectionTools).filter(card => 
                         card.style.display !== 'none'
@@ -1023,7 +1159,7 @@
                         section.style.display = 'block';
                     }
                 });
-            });
+            }
             
             // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
