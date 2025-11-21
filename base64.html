@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder/Decoder - Convert Text to Base64 & Vice Versa | ToolSonics</title>
+    <meta name="description" content="Free online Base64 encoder and decoder tool. Convert text to Base64 encoding and decode Base64 back to text instantly. No data is sent to servers - 100% secure.">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="base64 encoder, base64 decoder, base64 converter, text to base64, base64 to text, online encoder, online decoder, toolsonics">
+    <meta name="author" content="ToolSonics">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Base64 Encoder/Decoder - Convert Text to Base64 & Vice Versa | ToolSonics">
+    <meta property="og:description" content="Free online Base64 encoder and decoder tool. Convert text to Base64 encoding and decode Base64 back to text instantly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolsonics.com/base64-encoder-decoder">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Base64 Encoder/Decoder - ToolSonics">
+    <meta name="twitter:description" content="Free online Base64 encoder and decoder tool. Convert text to Base64 instantly.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://toolsonics.com/base64-encoder-decoder">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://toolsonics.com/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --primary-light: #e8f0fe;
+            --secondary: #f8f9fa;
+            --text: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --success: #34a853;
+            --warning: #f9ab00;
+            --error: #ea4335;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.15);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            border-radius: 15px 15px 0 0;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin-bottom: 0;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        .tagline {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: var(--white);
+            border-radius: 0 0 15px 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        /* Tool Header */
+        .tool-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tool-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tool-description {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Tool Controls */
+        .tool-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .control-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .encode-btn {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .encode-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .decode-btn {
+            background: var(--secondary);
+            color: var(--text);
+            border: 2px solid #e0e0e0;
+        }
+
+        .decode-btn:hover {
+            background: #e8f0fe;
+            transform: translateY(-2px);
+        }
+
+        .clear-btn {
+            background: var(--error);
+            color: var(--white);
+        }
+
+        .clear-btn:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        /* Input/Output Areas */
+        .io-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .io-box {
+            background: var(--secondary);
+            border-radius: var(--radius);
+            padding: 25px;
+            border: 2px solid #e8f0fe;
+            transition: var(--transition);
+        }
+
+        .io-box:hover {
+            border-color: var(--primary-light);
+        }
+
+        .io-box.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        .io-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .io-title {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .char-count {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .io-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            resize: vertical;
+            transition: var(--transition);
+        }
+
+        .io-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .copy-btn {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .copy-btn:hover {
+            background: #2e7d32;
+            transform: translateY(-2px);
+        }
+
+        .download-btn {
+            background: var(--warning);
+            color: var(--white);
+        }
+
+        .download-btn:hover {
+            background: #f57c00;
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features-section {
+            margin: 50px 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* How to Use Section */
+        .how-to-use {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin: 40px 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        .step-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--text);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: var(--success);
+        }
+
+        .toast.error {
+            background: var(--error);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .io-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-controls {
+                flex-direction: column;
+            }
+            
+            .control-btn, .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .tool-title {
+                font-size: 1.8rem;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            .tool-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tool-title {
+                font-size: 1.5rem;
+            }
+            
+            .tool-description {
+                font-size: 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">Tool<span>Sonics</span></div>
+            <p class="tagline">Your Daily Tools, All in One Place</p>
+        </header>
+
+        <!-- Main Tool Card -->
+        <div class="tool-card">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1 class="tool-title">
+                    <i class="fas fa-lock"></i>
+                    Base64 Encoder/Decoder
+                </h1>
+                <p class="tool-description">
+                    Convert text to Base64 encoding and decode Base64 back to text instantly. 
+                    All processing happens in your browser - your data never leaves your computer.
+                </p>
+            </div>
+
+            <!-- Tool Controls -->
+            <div class="tool-controls">
+                <button class="control-btn encode-btn" id="encodeBtn">
+                    <i class="fas fa-lock"></i>
+                    Encode to Base64
+                </button>
+                <button class="control-btn decode-btn" id="decodeBtn">
+                    <i class="fas fa-unlock"></i>
+                    Decode from Base64
+                </button>
+                <button class="control-btn clear-btn" id="clearBtn">
+                    <i class="fas fa-broom"></i>
+                    Clear All
+                </button>
+            </div>
+
+            <!-- Input/Output Areas -->
+            <div class="io-container">
+                <div class="io-box" id="inputBox">
+                    <div class="io-header">
+                        <h3 class="io-title">Input Text</h3>
+                        <span class="char-count" id="inputCount">0 characters</span>
+                    </div>
+                    <textarea 
+                        class="io-textarea" 
+                        id="inputText" 
+                        placeholder="Enter text to encode or Base64 to decode..."
+                        autofocus
+                    ></textarea>
+                </div>
+
+                <div class="io-box" id="outputBox">
+                    <div class="io-header">
+                        <h3 class="io-title">Output</h3>
+                        <span class="char-count" id="outputCount">0 characters</span>
+                    </div>
+                    <textarea 
+                        class="io-textarea" 
+                        id="outputText" 
+                        placeholder="Result will appear here..."
+                        readonly
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn copy-btn" id="copyBtn">
+                    <i class="fas fa-copy"></i>
+                    Copy Output
+                </button>
+                <button class="action-btn download-btn" id="downloadBtn">
+                    <i class="fas fa-download"></i>
+                    Download as Text File
+                </button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title">Why Use Our Base64 Tool?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">100% Secure</h3>
+                    <p class="feature-description">
+                        All encoding and decoding happens locally in your browser. 
+                        Your data never leaves your computer.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-description">
+                        Instant conversion with no delays. Process large texts 
+                        quickly and efficiently.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Mobile Friendly</h3>
+                    <p class="feature-description">
+                        Works perfectly on all devices - desktop, tablet, and mobile.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="feature-title">No Limits</h3>
+                    <p class="feature-description">
+                        No restrictions on usage. Convert as much text as you need, 
+                        completely free.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section class="how-to-use">
+            <h2 class="section-title">How to Use Base64 Encoder/Decoder</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Enter Your Text</h4>
+                        <p>Type or paste your text in the input area on the left.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Choose Action</h4>
+                        <p>Click "Encode to Base64" or "Decode from Base64" based on your need.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Get Results</h4>
+                        <p>Your converted text will appear instantly in the output area.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Copy or Download</h4>
+                        <p>Use the copy or download buttons to save your results.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="https://toolsonics.com">Home</a>
+                <a href="https://toolsonics.com/tools">All Tools</a>
+                <a href="https://toolsonics.com/privacy">Privacy Policy</a>
+                <a href="https://toolsonics.com/terms">Terms of Service</a>
+                <a href="mailto:toolsonics6@gmail.com">Contact Us</a>
+            </div>
+            <p class="copyright">
+                &copy; 2023 ToolSonics. All rights reserved. | 
+                Base64 Encoder/Decoder Tool
+            </p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // DOM Elements
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const inputCount = document.getElementById('inputCount');
+        const outputCount = document.getElementById('outputCount');
+        const encodeBtn = document.getElementById('encodeBtn');
+        const decodeBtn = document.getElementById('decodeBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const toast = document.getElementById('toast');
+
+        // Character Count Update
+        function updateCharCount() {
+            inputCount.textContent = `${inputText.value.length} characters`;
+            outputCount.textContent = `${outputText.value.length} characters`;
+        }
+
+        // Show Toast Notification
+        function showToast(message, type = 'success') {
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Base64 Encode
+        function encodeToBase64() {
+            const text = inputText.value.trim();
+            
+            if (!text) {
+                showToast('Please enter some text to encode', 'error');
+                return;
+            }
+            
+            try {
+                const encoded = btoa(unescape(encodeURIComponent(text)));
+                outputText.value = encoded;
+                updateCharCount();
+                showToast('Text encoded to Base64 successfully!');
+            } catch (error) {
+                showToast('Error encoding text: ' + error.message, 'error');
+            }
+        }
+
+        // Base64 Decode
+        function decodeFromBase64() {
+            const base64 = inputText.value.trim();
+            
+            if (!base64) {
+                showToast('Please enter Base64 text to decode', 'error');
+                return;
+            }
+            
+            try {
+                // Remove data URL prefix if present
+                const cleanBase64 = base64.replace(/^data:[^;]+;base64,/, '');
+                
+                const decoded = decodeURIComponent(escape(atob(cleanBase64)));
+                outputText.value = decoded;
+                updateCharCount();
+                showToast('Base64 decoded to text successfully!');
+            } catch (error) {
+                showToast('Error decoding Base64. Please check if the input is valid Base64.', 'error');
+            }
+        }
+
+        // Clear All
+        function clearAll() {
+            inputText.value = '';
+            outputText.value = '';
+            updateCharCount();
+            inputText.focus();
+            showToast('All fields cleared');
+        }
+
+        // Copy Output to Clipboard
+        function copyOutput() {
+            if (!outputText.value) {
+                showToast('No output to copy', 'error');
+                return;
+            }
+            
+            outputText.select();
+            document.execCommand('copy');
+            
+            // For modern browsers
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(outputText.value);
+            }
+            
+            showToast('Output copied to clipboard!');
+        }
+
+        // Download Output as Text File
+        function downloadOutput() {
+            if (!outputText.value) {
+                showToast('No output to download', 'error');
+                return;
+            }
+            
+            const blob = new Blob([outputText.value], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            
+            a.href = url;
+            a.download = 'base64-conversion.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('File downloaded successfully!');
+        }
+
+        // Auto-detect and process
+        function autoProcess() {
+            const text = inputText.value.trim();
+            
+            if (!text) {
+                outputText.value = '';
+                updateCharCount();
+                return;
+            }
+            
+            // Simple heuristic to detect Base64
+            const isLikelyBase64 = /^[A-Za-z0-9+/]*={0,2}$/.test(text) && text.length % 4 === 0;
+            
+            if (isLikelyBase64) {
+                try {
+                    decodeFromBase64();
+                } catch (e) {
+                    // If decoding fails, try encoding
+                    encodeToBase64();
+                }
+            } else {
+                encodeToBase64();
+            }
+        }
+
+        // Event Listeners
+        inputText.addEventListener('input', updateCharCount);
+        inputText.addEventListener('input', autoProcess);
+        encodeBtn.addEventListener('click', encodeToBase64);
+        decodeBtn.addEventListener('click', decodeFromBase64);
+        clearBtn.addEventListener('click', clearAll);
+        copyBtn.addEventListener('click', copyOutput);
+        downloadBtn.addEventListener('click', downloadOutput);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCharCount();
+            inputText.focus();
+            
+            // Add some sample text for demonstration
+            inputText.placeholder = "Enter text to encode or Base64 to decode...\n\nExample for encoding: Hello World!\nExample for decoding: SGVsbG8gV29ybGQh";
+        });
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'Enter':
+                        e.preventDefault();
+                        autoProcess();
+                        break;
+                    case 'e':
+                        e.preventDefault();
+                        encodeToBase64();
+                        break;
+                    case 'd':
+                        e.preventDefault();
+                        decodeFromBase64();
+                        break;
+                    case 'c':
+                        if (outputText.value) {
+                            e.preventDefault();
+                            copyOutput();
+                        }
+                        break;
+                }
+            }
+            
+            if (e.key === 'Escape') {
+                clearAll();
+            }
+        });
+
+        // PWA features for better mobile experience
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('SW registered: ', registration);
+                }).catch(function(registrationError) {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
