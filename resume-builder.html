@@ -19,6 +19,10 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
     <style>
         :root {
             --primary: #1a73e8;
@@ -1022,7 +1026,7 @@
                 <a href="mailto:toolsonics6@gmail.com">Contact Us</a>
             </div>
             <p class="copyright">
-                &copy; 2024 ToolSonics. All rights reserved. | 
+                &copy; 2025 ToolSonics. All rights reserved. | 
                 AI Resume Builder Tool
             </p>
         </footer>
@@ -1442,7 +1446,7 @@
             showToast('Form reset successfully');
         }
 
-        // Download resume
+        // Download resume as PDF
         function downloadResume() {
             const name = document.getElementById('full-name').value;
             if (!name) {
@@ -1450,15 +1454,154 @@
                 return;
             }
             
-            // Simulate download process
+            // Show loading state
             downloadBtn.innerHTML = '<div class="loading"></div> Preparing...';
             downloadBtn.disabled = true;
             
-            setTimeout(() => {
-                showToast('Resume downloaded successfully!');
-                downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download PDF';
-                downloadBtn.disabled = false;
-            }, 1500);
+            // Use jsPDF to create PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            
+            // Set PDF content based on resume data
+            const resumeName = document.getElementById('full-name').value || 'Your Name';
+            const resumeTitle = document.getElementById('professional-title').value || 'Professional Title';
+            const resumeEmail = document.getElementById('email').value || 'email@example.com';
+            const resumePhone = document.getElementById('phone').value || '+1 (555) 123-4567';
+            const resumeLocation = document.getElementById('location').value || 'City, State';
+            const resumeSummary = document.getElementById('professional-summary').value || 'Your professional summary will appear here.';
+            
+            // Set font and colors
+            doc.setFont('helvetica');
+            doc.setFontSize(22);
+            doc.setTextColor(26, 115, 232); // Primary color
+            doc.text(resumeName, 20, 30);
+            
+            doc.setFontSize(14);
+            doc.setTextColor(95, 99, 104); // Text light color
+            doc.text(resumeTitle, 20, 40);
+            
+            doc.setFontSize(10);
+            doc.text(`${resumeEmail} | ${resumePhone} | ${resumeLocation}`, 20, 48);
+            
+            // Add horizontal line
+            doc.setDrawColor(26, 115, 232);
+            doc.setLineWidth(0.5);
+            doc.line(20, 52, 190, 52);
+            
+            // Professional Summary
+            doc.setFontSize(16);
+            doc.setTextColor(26, 115, 232);
+            doc.text('PROFESSIONAL SUMMARY', 20, 65);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(32, 33, 36);
+            const splitSummary = doc.splitTextToSize(resumeSummary, 170);
+            doc.text(splitSummary, 20, 75);
+            
+            // Work Experience
+            let yPosition = 90;
+            if (experiences.length > 0) {
+                doc.setFontSize(16);
+                doc.setTextColor(26, 115, 232);
+                doc.text('WORK EXPERIENCE', 20, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(10);
+                doc.setTextColor(32, 33, 36);
+                
+                experiences.forEach(exp => {
+                    if (yPosition > 250) {
+                        doc.addPage();
+                        yPosition = 20;
+                    }
+                    
+                    const jobTitle = exp.title || 'Job Title';
+                    const company = exp.company || 'Company';
+                    const location = exp.location || 'Location';
+                    const startDate = exp.startDate || 'Start';
+                    const endDate = exp.endDate || 'End';
+                    const description = exp.description || 'Description of responsibilities and achievements.';
+                    
+                    doc.setFont(undefined, 'bold');
+                    doc.text(jobTitle, 20, yPosition);
+                    doc.setFont(undefined, 'normal');
+                    
+                    doc.text(`${company} | ${location}`, 20, yPosition + 5);
+                    doc.text(`${startDate} - ${endDate}`, 160, yPosition, { align: 'right' });
+                    
+                    const splitDesc = doc.splitTextToSize(description, 170);
+                    doc.text(splitDesc, 20, yPosition + 12);
+                    
+                    yPosition += 12 + (splitDesc.length * 5) + 5;
+                });
+            }
+            
+            // Education
+            if (education.length > 0) {
+                if (yPosition > 220) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                
+                doc.setFontSize(16);
+                doc.setTextColor(26, 115, 232);
+                doc.text('EDUCATION', 20, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(10);
+                doc.setTextColor(32, 33, 36);
+                
+                education.forEach(edu => {
+                    if (yPosition > 250) {
+                        doc.addPage();
+                        yPosition = 20;
+                    }
+                    
+                    const degree = edu.degree || 'Degree';
+                    const school = edu.school || 'School';
+                    const location = edu.location || 'Location';
+                    const year = edu.year || 'Year';
+                    
+                    doc.setFont(undefined, 'bold');
+                    doc.text(degree, 20, yPosition);
+                    doc.setFont(undefined, 'normal');
+                    
+                    doc.text(`${school} | ${location}`, 20, yPosition + 5);
+                    doc.text(year, 160, yPosition, { align: 'right' });
+                    
+                    yPosition += 15;
+                });
+            }
+            
+            // Skills
+            if (skills.length > 0) {
+                if (yPosition > 240) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                
+                doc.setFontSize(16);
+                doc.setTextColor(26, 115, 232);
+                doc.text('SKILLS', 20, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(10);
+                doc.setTextColor(32, 33, 36);
+                
+                let skillsText = skills.join(', ');
+                const splitSkills = doc.splitTextToSize(skillsText, 170);
+                doc.text(splitSkills, 20, yPosition);
+            }
+            
+            // Save the PDF
+            const fileName = `${resumeName.replace(/\s+/g, '_')}_Resume.pdf`;
+            doc.save(fileName);
+            
+            // Reset button
+            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download PDF';
+            downloadBtn.disabled = false;
+            
+            showToast('Resume downloaded successfully!');
         }
 
         // Show toast notification
