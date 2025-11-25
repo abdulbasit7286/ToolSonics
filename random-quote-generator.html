@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator - Get Inspired with Motivational Quotes | ToolSonics</title>
+    <meta name="description" content="Free online random quote generator. Get inspired with motivational, life, success, and famous quotes from great thinkers, leaders, and authors. Daily inspiration tool.">
+    <meta name="keywords" content="random quote generator, motivational quotes, inspirational quotes, daily quotes, famous quotes, life quotes, success quotes, wisdom quotes, quote of the day">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolsonics.com/random-quote-generator/">
+    <meta property="og:title" content="Random Quote Generator - Get Inspired with Motivational Quotes | ToolSonics">
+    <meta property="og:description" content="Free online random quote generator. Get inspired with motivational, life, success, and famous quotes from great thinkers, leaders, and authors.">
+    <meta property="og:image" content="https://toolsonics.com/images/quote-generator-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://toolsonics.com/random-quote-generator/">
+    <meta property="twitter:title" content="Random Quote Generator - Get Inspired with Motivational Quotes | ToolSonics">
+    <meta property="twitter:description" content="Free online random quote generator. Get inspired with motivational, life, success, and famous quotes from great thinkers, leaders, and authors.">
+    <meta property="twitter:image" content="https://toolsonics.com/images/quote-generator-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://toolsonics.com/random-quote-generator/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Random Quote Generator",
+      "url": "https://toolsonics.com/random-quote-generator/",
+      "description": "Free online random quote generator for daily inspiration and motivation",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "ToolSonics",
+        "url": "https://toolsonics.com/"
+      },
+      "screenshot": "https://toolsonics.com/images/quote-generator-preview.jpg"
+    }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #f8f9fa;
+            --text: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .contact-link {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: calc(100vh - 140px);
+        }
+
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tool-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tool-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Quote Container */
+        .quote-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .quote-display {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: var(--radius);
+            padding: 40px;
+            position: relative;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .quote-display:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: var(--text);
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .quote-text::before,
+        .quote-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .quote-text::before {
+            top: -20px;
+            left: -10px;
+        }
+
+        .quote-text::after {
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+            padding-top: 15px;
+        }
+
+        .quote-author::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+            opacity: 0.5;
+        }
+
+        .quote-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .category-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .category-btn {
+            background: var(--secondary);
+            border: 2px solid #e0e0e0;
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .category-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .action-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-button:active {
+            transform: translateY(0);
+        }
+
+        .action-button.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .action-button.secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Favorites */
+        .favorites-section {
+            margin-top: 40px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 30px;
+        }
+
+        .favorites-section h3 {
+            margin-bottom: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .favorites-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--radius);
+            padding: 20px;
+            background: var(--secondary);
+        }
+
+        .favorite-item {
+            background: var(--white);
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--primary);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .favorite-item:hover {
+            transform: translateX(5px);
+        }
+
+        .favorite-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .favorite-quote {
+            font-style: italic;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .favorite-author {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .favorite-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .favorite-action {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 5px;
+        }
+
+        .favorite-action:hover {
+            color: var(--primary);
+        }
+
+        .clear-favorites {
+            background: transparent;
+            border: 1px solid var(--text-light);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .clear-favorites:hover {
+            background: var(--text-light);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text);
+            color: var(--white);
+            padding: 30px 0 15px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 300px;
+        }
+
+        .footer-contact {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .tool-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tool-container {
+                padding: 30px 20px;
+            }
+            
+            .quote-text {
+                font-size: 1.3rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tool-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .quote-display {
+                padding: 30px 20px;
+            }
+            
+            .quote-text {
+                font-size: 1.2rem;
+            }
+            
+            .quote-author {
+                font-size: 1.1rem;
+            }
+            
+            .action-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .category-controls {
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Tool<span>Sonics</span></a>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#tools">Tools</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="mailto:toolsonics6@gmail.com" class="contact-link">toolsonics6@gmail.com</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h1><i class="fas fa-quote-right"></i> Random Quote Generator</h1>
+                    <p>Get inspired with motivational quotes from great thinkers and leaders</p>
+                </div>
+
+                <div class="quote-container">
+                    <div class="quote-display">
+                        <div class="quote-category" id="quoteCategory">Motivation</div>
+                        <div class="quote-text" id="quoteText">
+                            The only way to do great work is to love what you do.
+                        </div>
+                        <div class="quote-author" id="quoteAuthor">- Steve Jobs</div>
+                    </div>
+
+                    <div class="controls">
+                        <div class="category-controls">
+                            <button class="category-btn active" data-category="all">All Quotes</button>
+                            <button class="category-btn" data-category="motivation">Motivation</button>
+                            <button class="category-btn" data-category="success">Success</button>
+                            <button class="category-btn" data-category="life">Life</button>
+                            <button class="category-btn" data-category="wisdom">Wisdom</button>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="action-button" id="newQuoteButton">
+                                <i class="fas fa-sync-alt"></i> New Quote
+                            </button>
+                            <button class="action-button secondary" id="copyQuoteButton">
+                                <i class="fas fa-copy"></i> Copy Quote
+                            </button>
+                            <button class="action-button secondary" id="favoriteQuoteButton">
+                                <i class="fas fa-heart"></i> Favorite
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="favorites-section">
+                    <h3><i class="fas fa-heart"></i> Favorite Quotes</h3>
+                    <div class="favorites-list" id="favoritesList">
+                        <!-- Favorite quotes will be added here -->
+                    </div>
+                    <button class="clear-favorites" id="clearFavorites">Clear Favorites</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">ToolSonics</div>
+                    <p class="footer-tagline">Simplifying your digital life with free online tools.</p>
+                </div>
+                <div class="footer-contact">
+                    <p>Contact us:</p>
+                    <a href="mailto:toolsonics6@gmail.com">toolsonics6@gmail.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ToolSonics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const quoteText = document.getElementById('quoteText');
+            const quoteAuthor = document.getElementById('quoteAuthor');
+            const quoteCategory = document.getElementById('quoteCategory');
+            const newQuoteButton = document.getElementById('newQuoteButton');
+            const copyQuoteButton = document.getElementById('copyQuoteButton');
+            const favoriteQuoteButton = document.getElementById('favoriteQuoteButton');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const favoritesList = document.getElementById('favoritesList');
+            const clearFavoritesButton = document.getElementById('clearFavorites');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+
+            // Current quote and settings
+            let currentQuote = {};
+            let currentCategory = 'all';
+            let favorites = JSON.parse(localStorage.getItem('quoteFavorites')) || [];
+
+            // Quote database
+            const quotes = [
+                {
+                    text: "The only way to do great work is to love what you do.",
+                    author: "Steve Jobs",
+                    category: "motivation"
+                },
+                {
+                    text: "Innovation distinguishes between a leader and a follower.",
+                    author: "Steve Jobs",
+                    category: "success"
+                },
+                {
+                    text: "Your time is limited, so don't waste it living someone else's life.",
+                    author: "Steve Jobs",
+                    category: "life"
+                },
+                {
+                    text: "The future belongs to those who believe in the beauty of their dreams.",
+                    author: "Eleanor Roosevelt",
+                    category: "motivation"
+                },
+                {
+                    text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+                    author: "Winston Churchill",
+                    category: "success"
+                },
+                {
+                    text: "The way to get started is to quit talking and begin doing.",
+                    author: "Walt Disney",
+                    category: "success"
+                },
+                {
+                    text: "Life is what happens to you while you're busy making other plans.",
+                    author: "John Lennon",
+                    category: "life"
+                },
+                {
+                    text: "The only impossible journey is the one you never begin.",
+                    author: "Tony Robbins",
+                    category: "motivation"
+                },
+                {
+                    text: "In the middle of difficulty lies opportunity.",
+                    author: "Albert Einstein",
+                    category: "wisdom"
+                },
+                {
+                    text: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+                    author: "Nelson Mandela",
+                    category: "life"
+                },
+                {
+                    text: "The purpose of our lives is to be happy.",
+                    author: "Dalai Lama",
+                    category: "life"
+                },
+                {
+                    text: "You only live once, but if you do it right, once is enough.",
+                    author: "Mae West",
+                    category: "life"
+                },
+                {
+                    text: "If you want to live a happy life, tie it to a goal, not to people or things.",
+                    author: "Albert Einstein",
+                    category: "wisdom"
+                },
+                {
+                    text: "Never let the fear of striking out keep you from playing the game.",
+                    author: "Babe Ruth",
+                    category: "motivation"
+                },
+                {
+                    text: "Money and success don't change people; they merely amplify what is already there.",
+                    author: "Will Smith",
+                    category: "wisdom"
+                },
+                {
+                    text: "Your time is limited, don't waste it living someone else's life.",
+                    author: "Steve Jobs",
+                    category: "wisdom"
+                },
+                {
+                    text: "The only person you are destined to become is the person you decide to be.",
+                    author: "Ralph Waldo Emerson",
+                    category: "motivation"
+                },
+                {
+                    text: "The mind is everything. What you think you become.",
+                    author: "Buddha",
+                    category: "wisdom"
+                },
+                {
+                    text: "The best time to plant a tree was 20 years ago. The second best time is now.",
+                    author: "Chinese Proverb",
+                    category: "success"
+                },
+                {
+                    text: "You miss 100% of the shots you don't take.",
+                    author: "Wayne Gretzky",
+                    category: "motivation"
+                },
+                {
+                    text: "I have not failed. I've just found 10,000 ways that won't work.",
+                    author: "Thomas Edison",
+                    category: "success"
+                },
+                {
+                    text: "The only limit to our realization of tomorrow will be our doubts of today.",
+                    author: "Franklin D. Roosevelt",
+                    category: "motivation"
+                },
+                {
+                    text: "It does not matter how slowly you go as long as you do not stop.",
+                    author: "Confucius",
+                    category: "success"
+                },
+                {
+                    text: "Everything you've ever wanted is on the other side of fear.",
+                    author: "George Addair",
+                    category: "motivation"
+                },
+                {
+                    text: "Success is walking from failure to failure with no loss of enthusiasm.",
+                    author: "Winston Churchill",
+                    category: "success"
+                }
+            ];
+
+            // Initialize
+            generateRandomQuote();
+            updateFavoritesDisplay();
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+
+            // Close mobile menu when clicking on a link
+            const navLinks = document.querySelectorAll('#nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('show');
+                });
+            });
+
+            // New quote button
+            newQuoteButton.addEventListener('click', generateRandomQuote);
+
+            // Copy quote button
+            copyQuoteButton.addEventListener('click', copyQuoteToClipboard);
+
+            // Favorite quote button
+            favoriteQuoteButton.addEventListener('click', addToFavorites);
+
+            // Category buttons
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update category
+                    currentCategory = this.dataset.category;
+                    
+                    // Generate new quote from selected category
+                    generateRandomQuote();
+                });
+            });
+
+            // Clear favorites button
+            clearFavoritesButton.addEventListener('click', clearFavorites);
+
+            // Functions
+            function generateRandomQuote() {
+                let filteredQuotes = quotes;
+                
+                // Filter by category if not "all"
+                if (currentCategory !== 'all') {
+                    filteredQuotes = quotes.filter(quote => quote.category === currentCategory);
+                }
+                
+                // Get random quote
+                const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
+                currentQuote = filteredQuotes[randomIndex];
+                
+                // Update display
+                quoteText.textContent = currentQuote.text;
+                quoteAuthor.textContent = `- ${currentQuote.author}`;
+                quoteCategory.textContent = currentQuote.category.charAt(0).toUpperCase() + currentQuote.category.slice(1);
+                
+                // Update favorite button state
+                updateFavoriteButtonState();
+            }
+
+            function copyQuoteToClipboard() {
+                const quoteToCopy = `"${currentQuote.text}" - ${currentQuote.author}`;
+                
+                navigator.clipboard.writeText(quoteToCopy).then(() => {
+                    // Show temporary feedback
+                    const originalText = copyQuoteButton.innerHTML;
+                    copyQuoteButton.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    
+                    setTimeout(() => {
+                        copyQuoteButton.innerHTML = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy quote: ', err);
+                });
+            }
+
+            function addToFavorites() {
+                // Check if quote is already in favorites
+                const isAlreadyFavorite = favorites.some(fav => 
+                    fav.text === currentQuote.text && fav.author === currentQuote.author
+                );
+                
+                if (!isAlreadyFavorite) {
+                    favorites.push(currentQuote);
+                    localStorage.setItem('quoteFavorites', JSON.stringify(favorites));
+                    updateFavoritesDisplay();
+                    updateFavoriteButtonState();
+                    
+                    // Show feedback
+                    const originalText = favoriteQuoteButton.innerHTML;
+                    favoriteQuoteButton.innerHTML = '<i class="fas fa-heart"></i> Added!';
+                    
+                    setTimeout(() => {
+                        favoriteQuoteButton.innerHTML = originalText;
+                    }, 2000);
+                }
+            }
+
+            function updateFavoriteButtonState() {
+                const isFavorite = favorites.some(fav => 
+                    fav.text === currentQuote.text && fav.author === currentQuote.author
+                );
+                
+                if (isFavorite) {
+                    favoriteQuoteButton.innerHTML = '<i class="fas fa-heart"></i> Favorited';
+                    favoriteQuoteButton.style.opacity = '0.7';
+                    favoriteQuoteButton.disabled = true;
+                } else {
+                    favoriteQuoteButton.innerHTML = '<i class="fas fa-heart"></i> Favorite';
+                    favoriteQuoteButton.style.opacity = '1';
+                    favoriteQuoteButton.disabled = false;
+                }
+            }
+
+            function updateFavoritesDisplay() {
+                favoritesList.innerHTML = '';
+                
+                if (favorites.length === 0) {
+                    favoritesList.innerHTML = '<div class="favorite-item">No favorite quotes yet</div>';
+                    return;
+                }
+                
+                favorites.forEach((quote, index) => {
+                    const favoriteItem = document.createElement('div');
+                    favoriteItem.className = 'favorite-item';
+                    
+                    favoriteItem.innerHTML = `
+                        <div class="favorite-quote">"${quote.text}"</div>
+                        <div class="favorite-author">- ${quote.author}</div>
+                        <div class="favorite-actions">
+                            <button class="favorite-action copy-favorite" data-index="${index}">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="favorite-action remove-favorite" data-index="${index}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    
+                    favoritesList.appendChild(favoriteItem);
+                });
+                
+                // Add event listeners to new buttons
+                document.querySelectorAll('.copy-favorite').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.dataset.index);
+                        copyFavoriteQuote(index);
+                    });
+                });
+                
+                document.querySelectorAll('.remove-favorite').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.dataset.index);
+                        removeFromFavorites(index);
+                    });
+                });
+            }
+
+            function copyFavoriteQuote(index) {
+                const quote = favorites[index];
+                const quoteToCopy = `"${quote.text}" - ${quote.author}`;
+                
+                navigator.clipboard.writeText(quoteToCopy).then(() => {
+                    // Show temporary feedback
+                    const button = document.querySelector(`.copy-favorite[data-index="${index}"]`);
+                    const originalHTML = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check"></i>';
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalHTML;
+                    }, 2000);
+                });
+            }
+
+            function removeFromFavorites(index) {
+                favorites.splice(index, 1);
+                localStorage.setItem('quoteFavorites', JSON.stringify(favorites));
+                updateFavoritesDisplay();
+                
+                // Update favorite button state if current quote was removed
+                updateFavoriteButtonState();
+            }
+
+            function clearFavorites() {
+                if (favorites.length > 0 && confirm('Are you sure you want to clear all favorite quotes?')) {
+                    favorites = [];
+                    localStorage.setItem('quoteFavorites', JSON.stringify(favorites));
+                    updateFavoritesDisplay();
+                    updateFavoriteButtonState();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
