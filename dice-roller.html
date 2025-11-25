@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller - Free Online Virtual Dice Rolling Tool | ToolSonics</title>
+    <meta name="description" content="Free online dice roller tool. Roll virtual dice for games, decisions, or fun. Multiple dice support, roll history, and no download required. Perfect for board games, RPGs, and decision making.">
+    <meta name="keywords" content="dice roller, virtual dice, online dice, random dice, dice simulator, roll dice, game dice, RPG dice, probability tool, random number">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolsonics.com/dice-roller/">
+    <meta property="og:title" content="Dice Roller - Free Online Virtual Dice Rolling Tool | ToolSonics">
+    <meta property="og:description" content="Free online dice roller tool. Roll virtual dice for games, decisions, or fun. Multiple dice support, roll history, and no download required.">
+    <meta property="og:image" content="https://toolsonics.com/images/dice-roller-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://toolsonics.com/dice-roller/">
+    <meta property="twitter:title" content="Dice Roller - Free Online Virtual Dice Rolling Tool | ToolSonics">
+    <meta property="twitter:description" content="Free online dice roller tool. Roll virtual dice for games, decisions, or fun. Multiple dice support, roll history, and no download required.">
+    <meta property="twitter:image" content="https://toolsonics.com/images/dice-roller-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://toolsonics.com/dice-roller/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Dice Roller",
+      "url": "https://toolsonics.com/dice-roller/",
+      "description": "Free online dice roller tool for rolling virtual dice",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "ToolSonics",
+        "url": "https://toolsonics.com/"
+      },
+      "screenshot": "https://toolsonics.com/images/dice-roller-preview.jpg"
+    }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #f8f9fa;
+            --text: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .contact-link {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px 0;
+            background-color: var(--secondary);
+        }
+
+        .tool-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tool-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tool-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Dice Container */
+        .dice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .dice-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .dice {
+            width: 100px;
+            height: 100px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            position: relative;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+        }
+
+        .dice.rolling {
+            animation: roll 0.5s ease-in-out;
+        }
+
+        @keyframes roll {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            75% { transform: rotate(270deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .dice-result {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .dice-count-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .dice-count-control label {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .dice-count-control select {
+            padding: 8px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--radius);
+            background: var(--white);
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .roll-button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .roll-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .roll-button:active {
+            transform: translateY(0);
+        }
+
+        /* History */
+        .history-section {
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
+        }
+
+        .history-section h3 {
+            margin-bottom: 15px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--radius);
+            padding: 15px;
+            background: var(--secondary);
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-roll {
+            font-weight: 500;
+        }
+
+        .history-total {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .clear-history {
+            background: transparent;
+            border: 1px solid var(--text-light);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .clear-history:hover {
+            background: var(--text-light);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text);
+            color: var(--white);
+            padding: 30px 0 15px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 300px;
+        }
+
+        .footer-contact {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .tool-header h1 {
+                font-size: 2rem;
+            }
+            
+            .dice {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .dice-result {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tool-container {
+                padding: 20px;
+            }
+            
+            .tool-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .dice {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+            
+            .dice-result {
+                font-size: 2rem;
+            }
+            
+            .roll-button {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Tool<span>Sonics</span></a>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#tools">Tools</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="mailto:toolsonics6@gmail.com" class="contact-link">toolsonics6@gmail.com</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h1><i class="fas fa-dice"></i> Dice Roller</h1>
+                    <p>Roll virtual dice for games, decisions, or just for fun!</p>
+                </div>
+
+                <div class="dice-container">
+                    <div class="dice-display" id="diceDisplay">
+                        <!-- Dice will be generated here -->
+                    </div>
+
+                    <div class="dice-result" id="diceResult">
+                        Roll the dice!
+                    </div>
+
+                    <div class="controls">
+                        <div class="dice-count-control">
+                            <label for="diceCount">Number of Dice:</label>
+                            <select id="diceCount">
+                                <option value="1">1 Dice</option>
+                                <option value="2">2 Dice</option>
+                                <option value="3">3 Dice</option>
+                                <option value="4">4 Dice</option>
+                                <option value="5">5 Dice</option>
+                            </select>
+                        </div>
+
+                        <button class="roll-button" id="rollButton">
+                            <i class="fas fa-dice"></i> Roll Dice
+                        </button>
+                    </div>
+                </div>
+
+                <div class="history-section">
+                    <h3><i class="fas fa-history"></i> Roll History</h3>
+                    <div class="history-list" id="historyList">
+                        <!-- History items will be added here -->
+                    </div>
+                    <button class="clear-history" id="clearHistory">Clear History</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">ToolSonics</div>
+                    <p class="footer-tagline">Simplifying your digital life with free online tools.</p>
+                </div>
+                <div class="footer-contact">
+                    <p>Contact us:</p>
+                    <a href="mailto:toolsonics6@gmail.com">toolsonics6@gmail.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ToolSonics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const diceDisplay = document.getElementById('diceDisplay');
+            const diceResult = document.getElementById('diceResult');
+            const rollButton = document.getElementById('rollButton');
+            const diceCountSelect = document.getElementById('diceCount');
+            const historyList = document.getElementById('historyList');
+            const clearHistoryButton = document.getElementById('clearHistory');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+
+            // Roll history
+            let rollHistory = JSON.parse(localStorage.getItem('diceRollerHistory')) || [];
+
+            // Initialize dice display
+            updateDiceDisplay();
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+
+            // Close mobile menu when clicking on a link
+            const navLinks = document.querySelectorAll('#nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('show');
+                });
+            });
+
+            // Update dice display when number of dice changes
+            diceCountSelect.addEventListener('change', updateDiceDisplay);
+
+            // Roll dice button
+            rollButton.addEventListener('click', rollDice);
+
+            // Clear history button
+            clearHistoryButton.addEventListener('click', clearHistory);
+
+            // Update history display
+            updateHistoryDisplay();
+
+            // Functions
+            function updateDiceDisplay() {
+                const diceCount = parseInt(diceCountSelect.value);
+                diceDisplay.innerHTML = '';
+                
+                for (let i = 0; i < diceCount; i++) {
+                    const dice = document.createElement('div');
+                    dice.className = 'dice';
+                    dice.textContent = '•';
+                    diceDisplay.appendChild(dice);
+                }
+            }
+
+            function rollDice() {
+                const diceCount = parseInt(diceCountSelect.value);
+                const diceElements = diceDisplay.querySelectorAll('.dice');
+                let total = 0;
+                const rolls = [];
+
+                // Add rolling animation
+                diceElements.forEach(dice => {
+                    dice.classList.add('rolling');
+                });
+
+                // Remove rolling animation after delay
+                setTimeout(() => {
+                    diceElements.forEach(dice => {
+                        dice.classList.remove('rolling');
+                    });
+                }, 500);
+
+                // Generate random numbers and update display
+                setTimeout(() => {
+                    for (let i = 0; i < diceCount; i++) {
+                        const roll = Math.floor(Math.random() * 6) + 1;
+                        rolls.push(roll);
+                        total += roll;
+                        diceElements[i].textContent = getDiceFace(roll);
+                    }
+
+                    // Update result display
+                    if (diceCount === 1) {
+                        diceResult.textContent = `You rolled: ${total}`;
+                    } else {
+                        diceResult.textContent = `Total: ${total} (${rolls.join(' + ')})`;
+                    }
+
+                    // Add to history
+                    addToHistory(rolls, total);
+                }, 500);
+            }
+
+            function getDiceFace(value) {
+                // Using dots to represent dice faces
+                const diceFaces = {
+                    1: '•',
+                    2: '••',
+                    3: '•••',
+                    4: '••\n••',
+                    5: '••\n•\n••',
+                    6: '••\n••\n••'
+                };
+                return diceFaces[value] || value;
+            }
+
+            function addToHistory(rolls, total) {
+                const timestamp = new Date().toLocaleTimeString();
+                const historyItem = {
+                    rolls: rolls,
+                    total: total,
+                    timestamp: timestamp
+                };
+                
+                rollHistory.unshift(historyItem);
+                
+                // Keep only last 20 rolls
+                if (rollHistory.length > 20) {
+                    rollHistory = rollHistory.slice(0, 20);
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('diceRollerHistory', JSON.stringify(rollHistory));
+                
+                // Update history display
+                updateHistoryDisplay();
+            }
+
+            function updateHistoryDisplay() {
+                historyList.innerHTML = '';
+                
+                if (rollHistory.length === 0) {
+                    historyList.innerHTML = '<div class="history-item">No rolls yet</div>';
+                    return;
+                }
+                
+                rollHistory.forEach(item => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+                    
+                    const rollText = item.rolls.length === 1 ? 
+                        `Roll: ${item.rolls[0]}` : 
+                        `Rolls: ${item.rolls.join(', ')}`;
+                    
+                    historyItem.innerHTML = `
+                        <div class="history-roll">${rollText}</div>
+                        <div class="history-total">Total: ${item.total}</div>
+                        <div class="history-time">${item.timestamp}</div>
+                    `;
+                    
+                    historyList.appendChild(historyItem);
+                });
+            }
+
+            function clearHistory() {
+                rollHistory = [];
+                localStorage.setItem('diceRollerHistory', JSON.stringify(rollHistory));
+                updateHistoryDisplay();
+            }
+        });
+    </script>
+</body>
+</html>
