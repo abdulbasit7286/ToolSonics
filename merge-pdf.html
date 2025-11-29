@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Merge PDF Online Free | Fast & Secure PDF Merger – ToolSonics</title>
+
+    <!-- SEO META DESCRIPTION -->
+    <meta name="description" content="Merge PDF files online for free with ToolSonics. Fast, secure, and easy PDF merger to combine multiple PDF documents into a single file instantly. No signup needed.">
+
+    <meta name="keywords" content="merge pdf, combine pdf, pdf merger, merge pdf online, free pdf merge, toolsonics pdf tools">
+    
+    <meta property="og:title" content="Merge PDF Online Free – ToolSonics">
+    <meta property="og:description" content="Fast and secure PDF merger to combine multiple PDF files into one. No signup required. 100% free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/merge-pdf.html">
+    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/merge-pdf.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; background:#f7f9fc; }
+        h1 { margin-bottom: 5px; }
+        .tool-card { padding: 20px; margin-top: 20px; border: 1px solid #ddd; border-radius: 10px; background:white; }
+        button { padding: 12px 20px; background: royalblue; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #003ec4; }
+        input { padding: 10px; }
+        .seo-text { margin-top: 15px; font-size: 14px; color:#444; }
+        #statusText { margin-top:10px; font-size:14px; }
+    </style>
+</head>
+
+<body>
+    <h1>Merge PDF Files Online</h1>
+    <p><strong>Free PDF Merger</strong> to instantly combine multiple PDF files into one. Fast, secure, and easy to use.</p>
+
+    <!-- LONG SEO DESCRIPTION -->
+    <section class="seo-text">
+        <p>
+            ToolSonics Merge PDF is a clean, fast, and secure online tool that allows you to combine multiple PDF files into a single organized document. 
+            Whether you are a student merging assignments, a professional combining reports, or someone who needs a quick PDF joiner, this tool works instantly 
+            without any signup or software installation. All your PDF files are processed safely on the server and are not stored permanently, which keeps your data private. 
+            This tool works on mobile and desktop browsers, supports multiple files, and keeps the original PDF quality. 
+            With a global-friendly design, users from any country can enjoy high-speed PDF merging for free. Just upload your PDF files, click merge, and download your combined document in a few seconds.
+        </p>
+    </section>
+
+    <div class="tool-card">
+        <h2>Select PDF Files</h2>
+        <p>You can select 2 or more PDF files to merge.</p>
+
+        <input type="file" id="pdfFiles" accept="application/pdf" multiple>
+        <br><br>
+        <button id="mergeBtn">Merge PDFs</button>
+        <p id="statusText"></p>
+    </div>
+
+    <script>
+        // YAHI PE APNA BACKEND URL HAI – isko mat bhoolna
+        const BACKEND_URL = "https://toolsonics-backend.onrender.com/pdf/merge";
+
+        const fileInput = document.getElementById("pdfFiles");
+        const mergeBtn = document.getElementById("mergeBtn");
+        const statusText = document.getElementById("statusText");
+
+        mergeBtn.addEventListener("click", async () => {
+            const files = fileInput.files;
+
+            if (files.length < 2) {
+                statusText.textContent = "Please select at least 2 PDF files.";
+                return;
+            }
+
+            statusText.textContent = "Merging... please wait.";
+
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                formData.append("files", files[i]);
+            }
+
+            try {
+                const response = await fetch(BACKEND_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    let err = {};
+                    try { err = await response.json(); } catch {}
+                    statusText.textContent = "Error: " + (err.error || "Merge failed");
+                    return;
+                }
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "merged.pdf";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+
+                statusText.textContent = "Merge complete! File downloaded.";
+            } catch (e) {
+                statusText.textContent = "Network error. Please try again.";
+            }
+        });
+    </script>
+</body>
+</html>
