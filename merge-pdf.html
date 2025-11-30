@@ -30,6 +30,10 @@
             --shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: "Segoe UI", Arial, sans-serif;
@@ -51,6 +55,7 @@
 
         header p {
             color: var(--text-light);
+            margin: 0;
         }
 
         .container {
@@ -107,6 +112,10 @@
             line-height: 1.6;
         }
 
+        #progressContainer {
+            margin-top: 15px;
+        }
+
         @media (max-width: 600px) {
             header h1 { font-size: 26px; }
             .container { padding: 20px; }
@@ -122,7 +131,7 @@
         <p>Fast • Secure • Free</p>
     </header>
 
-    <!-- 📌 PAGE MAIN TOOL -->
+    <!-- 📌 MAIN TOOL CARD -->
     <div class="container">
         <h2>Select PDF Files</h2>
         <p>You can select 2 or more PDF files to merge.</p>
@@ -132,12 +141,23 @@
         <button id="mergeBtn">Merge PDFs</button>
         <p id="statusText"></p>
 
+        <!-- 🔵 PROGRESS BAR -->
+        <div id="progressContainer" style="display:none;">
+            <div style="background:#dfe8ff; height:12px; border-radius:8px; overflow:hidden;">
+                <div id="progressBar" 
+                     style="height:12px; width:0%; background:#1a73e8; border-radius:8px; transition: width 0.3s;">
+                </div>
+            </div>
+            <p id="progressText" style="font-size:14px; color:#555; margin-top:5px;">0%</p>
+        </div>
+
         <!-- SEO TEXT -->
         <div class="seo-text">
             ToolSonics Merge PDF is a clean, fast, and secure online tool that allows you to combine multiple PDF files 
             into a single organized document. Whether you're a student merging assignments or a professional combining reports, 
-            this tool works instantly without any signup or software installation. Enjoy a smooth, mobile-friendly interface with 
-            fast processing powered by global CDN optimization.
+            this tool works instantly without any signup or software installation. All your files are processed safely on the server 
+            and are not stored permanently, keeping your data private. The interface is mobile-friendly, simple to use, and optimized 
+            for global users so anyone can merge PDFs quickly for free.
         </div>
     </div>
 
@@ -149,6 +169,10 @@
         const mergeBtn = document.getElementById("mergeBtn");
         const statusText = document.getElementById("statusText");
 
+        const progressContainer = document.getElementById("progressContainer");
+        const progressBar = document.getElementById("progressBar");
+        const progressText = document.getElementById("progressText");
+
         mergeBtn.addEventListener("click", async () => {
             const files = fileInput.files;
 
@@ -157,13 +181,38 @@
                 return;
             }
 
-            statusText.textContent = "Merging... please wait.";
+            statusText.textContent = "";
+
+            // 🔵 Show progress bar
+            progressContainer.style.display = "block";
+            progressBar.style.width = "0%";
+            progressText.textContent = "0%";
+
+            // 🔵 Fake smooth progress (0% → ~90%)
+            let fakeProgress = 0;
+            const interval = setInterval(() => {
+                if (fakeProgress < 90) {
+                    fakeProgress += Math.random() * 8; // smooth random increment
+                    const current = Math.min(fakeProgress, 90);
+                    progressBar.style.width = current + "%";
+                    progressText.textContent = Math.floor(current) + "%";
+                }
+            }, 200);
 
             const formData = new FormData();
-            for (let i = 0; i < files.length; i++) formData.append("files", files[i]);
+            for (let i = 0; i < files.length; i++) {
+                formData.append("files", files[i]);
+            }
 
             try {
-                const response = await fetch(BACKEND_URL, { method: "POST", body: formData });
+                const response = await fetch(BACKEND_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                clearInterval(interval);
+                progressBar.style.width = "100%";
+                progressText.textContent = "100%";
 
                 if (!response.ok) {
                     let err = {};
@@ -185,6 +234,7 @@
                 window.URL.revokeObjectURL(url);
                 statusText.textContent = "Merge complete! File downloaded.";
             } catch (e) {
+                clearInterval(interval);
                 statusText.textContent = "Network error. Please try again.";
             }
         });
