@@ -71,13 +71,33 @@
             margin-bottom: 10px;
         }
 
-        input[type="file"] {
-            width: 100%;
-            padding: 14px;
+        /* Custom file input */
+        .file-input-wrapper {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #pdfFiles {
+            display: none; /* hide default input */
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #eef4ff;
             border: 2px dashed var(--primary);
             border-radius: var(--radius);
-            background: #eef4ff;
+            color: var(--primary-dark);
+            font-weight: 600;
             cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+
+        .file-info {
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--text-light);
         }
 
         button {
@@ -136,7 +156,11 @@
         <h2>Select PDF Files</h2>
         <p>You can select 2 or more PDF files to merge.</p>
 
-        <input type="file" id="pdfFiles" accept="application/pdf" multiple>
+        <div class="file-input-wrapper">
+            <label for="pdfFiles" class="file-label">📂 Choose PDF files</label>
+            <input type="file" id="pdfFiles" accept="application/pdf" multiple>
+            <div id="fileInfo" class="file-info">No files selected</div>
+        </div>
 
         <button id="mergeBtn">Merge PDFs</button>
         <p id="statusText"></p>
@@ -166,12 +190,25 @@
         const BACKEND_URL = "https://toolsonics-backend.onrender.com/pdf/merge";
 
         const fileInput = document.getElementById("pdfFiles");
+        const fileInfo = document.getElementById("fileInfo");
         const mergeBtn = document.getElementById("mergeBtn");
         const statusText = document.getElementById("statusText");
 
         const progressContainer = document.getElementById("progressContainer");
         const progressBar = document.getElementById("progressBar");
         const progressText = document.getElementById("progressText");
+
+        // 🟦 Show selected file names / count
+        fileInput.addEventListener("change", () => {
+            const files = fileInput.files;
+            if (!files.length) {
+                fileInfo.textContent = "No files selected";
+            } else if (files.length === 1) {
+                fileInfo.textContent = files[0].name;
+            } else {
+                fileInfo.textContent = files.length + " files selected";
+            }
+        });
 
         mergeBtn.addEventListener("click", async () => {
             const files = fileInput.files;
