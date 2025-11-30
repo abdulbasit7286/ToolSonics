@@ -6,7 +6,6 @@
 
     <!-- SEO META DESCRIPTION -->
     <meta name="description" content="Merge PDF files online for free with ToolSonics. Fast, secure, and easy PDF merger to combine multiple PDF documents into a single file instantly. No signup needed.">
-
     <meta name="keywords" content="merge pdf, combine pdf, pdf merger, merge pdf online, free pdf merge, toolsonics pdf tools">
     
     <meta property="og:title" content="Merge PDF Online Free – ToolSonics">
@@ -17,42 +16,412 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; background:#f7f9fc; }
-        h1 { margin-bottom: 5px; }
-        .tool-card { padding: 20px; margin-top: 20px; border: 1px solid #ddd; border-radius: 10px; background:white; }
-        button { padding: 12px 20px; background: royalblue; color: white; border: none; border-radius: 6px; cursor: pointer; }
-        button:hover { background: #003ec4; }
-        input { padding: 10px; }
-        .seo-text { margin-top: 15px; font-size: 14px; color:#444; }
-        #statusText { margin-top:10px; font-size:14px; }
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --primary-light: #e8f0fe;
+            --secondary: #f8f9fa;
+            --text: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .tool-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-card h2 i {
+            font-size: 1.3rem;
+        }
+
+        .tool-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        /* File Input Styling */
+        .file-input-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .file-input-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #dadce0;
+            border-radius: var(--radius);
+            padding: 40px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: var(--secondary);
+        }
+
+        .file-input-label:hover {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .file-input-label i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .file-input-label h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .file-input-label p {
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Selected Files */
+        .selected-files {
+            margin-top: 20px;
+        }
+
+        .selected-files h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .file-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .file-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: var(--secondary);
+            border-radius: var(--radius);
+            margin-bottom: 8px;
+        }
+
+        .file-list li i {
+            color: var(--primary);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        /* Status Text */
+        #statusText {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .status-success {
+            background-color: #e6f4ea;
+            color: #137333;
+            border: 1px solid #b6e3c2;
+        }
+
+        .status-error {
+            background-color: #fce8e6;
+            color: #c5221f;
+            border: 1px solid #f5b4ab;
+        }
+
+        .status-info {
+            background-color: #e8f0fe;
+            color: var(--primary);
+            border: 1px solid #c6dafc;
+        }
+
+        /* SEO Text Section */
+        .seo-section {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: var(--secondary);
+            border-radius: var(--radius);
+        }
+
+        .seo-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .seo-section p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .seo-section ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .seo-section li {
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 1px solid #e0e0e0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tool-card {
+                padding: 20px;
+            }
+            
+            .file-input-label {
+                padding: 30px 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 15px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .file-input-label h3 {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <h1>Merge PDF Files Online</h1>
-    <p><strong>Free PDF Merger</strong> to instantly combine multiple PDF files into one. Fast, secure, and easy to use.</p>
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">Tool<span>Sonics</span></a>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Tools
+        </a>
+    </header>
 
-    <!-- LONG SEO DESCRIPTION -->
-    <section class="seo-text">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Merge PDF Files Online</h1>
+        <p>Free PDF Merger to instantly combine multiple PDF files into one. Fast, secure, and easy to use.</p>
+    </div>
+
+    <!-- Tool Card -->
+    <div class="tool-card">
+        <h2><i class="fas fa-file-pdf"></i> Select PDF Files</h2>
+        <p>You can select 2 or more PDF files to merge. Files are processed securely and not stored on our servers.</p>
+
+        <div class="file-input-container">
+            <label for="pdfFiles" class="file-input-label">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload PDF Files</h3>
+                <p>Click to browse or drag and drop files here</p>
+                <p>Maximum 10 files, 10MB each</p>
+            </label>
+            <input type="file" id="pdfFiles" accept="application/pdf" multiple>
+        </div>
+
+        <div class="selected-files">
+            <h3>Selected Files:</h3>
+            <ul class="file-list" id="fileList">
+                <li>No files selected</li>
+            </ul>
+        </div>
+
+        <button id="mergeBtn" class="btn" disabled>
+            <i class="fas fa-object-group"></i> Merge PDFs
+        </button>
+        <p id="statusText"></p>
+    </div>
+
+    <!-- SEO Text Section -->
+    <section class="seo-section">
+        <h2>Merge PDF Files Quickly and Securely</h2>
         <p>
             ToolSonics Merge PDF is a clean, fast, and secure online tool that allows you to combine multiple PDF files into a single organized document. 
             Whether you are a student merging assignments, a professional combining reports, or someone who needs a quick PDF joiner, this tool works instantly 
-            without any signup or software installation. All your PDF files are processed safely on the server and are not stored permanently, which keeps your data private. 
+            without any signup or software installation.
+        </p>
+        
+        <h3>Why Use Our PDF Merger?</h3>
+        <ul>
+            <li><strong>100% Free</strong> - No hidden costs or subscription fees</li>
+            <li><strong>Secure Processing</strong> - Your files are processed securely and deleted after merging</li>
+            <li><strong>No Watermarks</strong> - Clean output without any branding or watermarks</li>
+            <li><strong>High Quality</strong> - Maintains original PDF quality and formatting</li>
+            <li><strong>Cross-Platform</strong> - Works on all devices and browsers</li>
+            <li><strong>No Registration</strong> - Use immediately without creating an account</li>
+        </ul>
+        
+        <p>
+            All your PDF files are processed safely on the server and are not stored permanently, which keeps your data private. 
             This tool works on mobile and desktop browsers, supports multiple files, and keeps the original PDF quality. 
             With a global-friendly design, users from any country can enjoy high-speed PDF merging for free. Just upload your PDF files, click merge, and download your combined document in a few seconds.
         </p>
     </section>
 
-    <div class="tool-card">
-        <h2>Select PDF Files</h2>
-        <p>You can select 2 or more PDF files to merge.</p>
-
-        <input type="file" id="pdfFiles" accept="application/pdf" multiple>
-        <br><br>
-        <button id="mergeBtn">Merge PDFs</button>
-        <p id="statusText"></p>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ToolSonics. All rights reserved.</p>
+    </footer>
 
     <script>
         // YAHI PE APNA BACKEND URL HAI – isko mat bhoolna
@@ -61,16 +430,49 @@
         const fileInput = document.getElementById("pdfFiles");
         const mergeBtn = document.getElementById("mergeBtn");
         const statusText = document.getElementById("statusText");
+        const fileList = document.getElementById("fileList");
+
+        // Update file list when files are selected
+        fileInput.addEventListener("change", updateFileList);
+
+        function updateFileList() {
+            const files = fileInput.files;
+            fileList.innerHTML = "";
+
+            if (files.length === 0) {
+                fileList.innerHTML = "<li>No files selected</li>";
+                mergeBtn.disabled = true;
+                return;
+            }
+
+            for (let i = 0; i < files.length; i++) {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<i class="fas fa-file-pdf"></i> ${files[i].name} (${formatFileSize(files[i].size)})`;
+                fileList.appendChild(listItem);
+            }
+
+            // Enable merge button if at least 2 files are selected
+            mergeBtn.disabled = files.length < 2;
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
 
         mergeBtn.addEventListener("click", async () => {
             const files = fileInput.files;
 
             if (files.length < 2) {
-                statusText.textContent = "Please select at least 2 PDF files.";
+                showStatus("Please select at least 2 PDF files.", "error");
                 return;
             }
 
-            statusText.textContent = "Merging... please wait.";
+            showStatus("Merging PDF files... Please wait.", "info");
+            mergeBtn.disabled = true;
 
             const formData = new FormData();
             for (let i = 0; i < files.length; i++) {
@@ -86,7 +488,8 @@
                 if (!response.ok) {
                     let err = {};
                     try { err = await response.json(); } catch {}
-                    statusText.textContent = "Error: " + (err.error || "Merge failed");
+                    showStatus("Error: " + (err.error || "Merge failed. Please try again."), "error");
+                    mergeBtn.disabled = false;
                     return;
                 }
 
@@ -101,11 +504,59 @@
                 a.remove();
                 window.URL.revokeObjectURL(url);
 
-                statusText.textContent = "Merge complete! File downloaded.";
+                showStatus("Merge complete! Your file has been downloaded.", "success");
+                mergeBtn.disabled = false;
             } catch (e) {
-                statusText.textContent = "Network error. Please try again.";
+                showStatus("Network error. Please check your connection and try again.", "error");
+                mergeBtn.disabled = false;
             }
         });
+
+        function showStatus(message, type) {
+            statusText.textContent = message;
+            statusText.className = "";
+            statusText.classList.add(`status-${type}`);
+            statusText.style.display = "block";
+        }
+
+        // Drag and drop functionality
+        const dropArea = document.querySelector('.file-input-label');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight() {
+            dropArea.style.borderColor = var(--primary);
+            dropArea.style.backgroundColor = var(--primary-light);
+        }
+
+        function unhighlight() {
+            dropArea.style.borderColor = '#dadce0';
+            dropArea.style.backgroundColor = var(--secondary);
+        }
+
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            fileInput.files = files;
+            updateFileList();
+        }
     </script>
 </body>
 </html>
