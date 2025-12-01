@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>CSV to Excel & Excel to CSV Converter Online – ToolSonics</title>
+
+    <!-- SEO META DESCRIPTION -->
+    <meta name="description"
+        content="Convert CSV to Excel (XLSX) or Excel to CSV online for free using ToolSonics. Fast, accurate, secure data converter for offices, students, and professionals. No signup required.">
+
+    <!-- SEO KEYWORDS -->
+    <meta name="keywords"
+        content="csv to excel, excel to csv, convert csv, convert excel, xlsx to csv, free csv converter, toolsonics">
+
+    <!-- OG TAGS -->
+    <meta property="og:title" content="CSV ↔ Excel Converter Online | ToolSonics">
+    <meta property="og:description"
+        content="Convert CSV to Excel or Excel to CSV instantly online. 100% free, secure & fast conversion tool.">
+    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/csv-excel.png">
+    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/csv-excel-converter.html">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d57c8;
+            --bg: #f4f8ff;
+            --card: #ffffff;
+            --radius: 14px;
+            --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+            --light: #555;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            padding: 22px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: var(--card);
+            padding: 28px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: var(--light);
+            margin-top: 0;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .file-label {
+            padding: 15px;
+            display: block;
+            background: #e8f0ff;
+            border: 2px dashed var(--primary);
+            border-radius: var(--radius);
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .file-info {
+            margin-top: 6px;
+            color: var(--light);
+            font-size: 14px;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px;
+            margin-top: 16px;
+            border: 2px solid #dce6ff;
+            border-radius: var(--radius);
+            background: #eef4ff;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 17px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+        }
+
+        #progressContainer {
+            display: none;
+            margin-top: 22px;
+        }
+
+        #progressBarWrapper {
+            width: 100%;
+            height: 12px;
+            background: #dbe5ff;
+            border-radius: 10px;
+        }
+
+        #progressBar {
+            height: 12px;
+            width: 0%;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        #progressText {
+            margin-top: 5px;
+            color: var(--light);
+        }
+
+        #statusText {
+            margin-top: 10px;
+            color: var(--light);
+        }
+
+        .seo-text {
+            margin-top: 30px;
+            line-height: 1.6;
+            color: var(--light);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>CSV ↔ Excel Converter</h1>
+    <p class="subtitle">Convert CSV to Excel or Excel to CSV instantly – Fast & Free</p>
+
+    <label class="file-label" for="fileInput">📂 Select CSV or Excel File</label>
+    <input id="fileInput" type="file" accept=".csv, .xlsx" />
+    <div id="fileInfo" class="file-info">No file selected</div>
+
+    <label style="font-weight: 600; margin-top: 15px;">Choose Conversion Type</label>
+    <select id="convertType">
+        <option value="csv-to-excel">CSV → Excel (XLSX)</option>
+        <option value="excel-to-csv">Excel (XLSX) → CSV</option>
+    </select>
+
+    <button id="convertBtn">Convert Now</button>
+
+    <div id="statusText"></div>
+
+    <!-- Progress Bar -->
+    <div id="progressContainer">
+        <div id="progressBarWrapper">
+            <div id="progressBar"></div>
+        </div>
+        <div id="progressText">0%</div>
+    </div>
+
+    <!-- SEO Content -->
+    <div class="seo-text">
+        ToolSonics CSV ↔ Excel Converter is a fast and reliable online tool designed to convert CSV files
+        into Excel (XLSX) or Excel spreadsheets into CSV format within seconds. This free converter is perfect
+        for students, accountants, businesses, data analysts, and office users who work with spreadsheets daily.
+        You can upload any CSV or Excel file and instantly convert it without installing any app or software.
+        All data is processed safely and is never stored permanently on our server. The conversion is accurate,
+        supports large files, and maintains data formatting properly. ToolSonics is designed for global users,
+        mobile-friendly, and completely secure. With just one click, convert your data into the format you need.
+    </div>
+</div>
+
+<script>
+    const CSV_TO_EXCEL_URL = "https://toolsonics-backend.onrender.com/convert/csv-to-excel";
+    const EXCEL_TO_CSV_URL = "https://toolsonics-backend.onrender.com/convert/excel-to-csv";
+
+    const fileInput = document.getElementById("fileInput");
+    const fileInfo = document.getElementById("fileInfo");
+    const convertBtn = document.getElementById("convertBtn");
+    const convertType = document.getElementById("convertType");
+
+    const progressContainer = document.getElementById("progressContainer");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const statusText = document.getElementById("statusText");
+
+    fileInput.addEventListener("change", () => {
+        fileInfo.textContent = fileInput.files.length
+            ? fileInput.files[0].name
+            : "No file selected";
+    });
+
+    convertBtn.addEventListener("click", async () => {
+        const file = fileInput.files[0];
+        const type = convertType.value;
+
+        if (!file) {
+            statusText.textContent = "Please select a file.";
+            return;
+        }
+
+        progressContainer.style.display = "block";
+        progressBar.style.width = "10%";
+        progressText.textContent = "10%";
+
+        let fake = 10;
+        const interval = setInterval(() => {
+            if (fake < 90) {
+                fake += Math.random() * 7;
+                fake = Math.min(fake, 90);
+                progressBar.style.width = fake + "%";
+                progressText.textContent = Math.floor(fake) + "%";
+            }
+        }, 250);
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        let API_URL = type === "csv-to-excel" ? CSV_TO_EXCEL_URL : EXCEL_TO_CSV_URL;
+
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                body: formData
+            });
+
+            clearInterval(interval);
+            progressBar.style.width = "100%";
+            progressText.textContent = "100%";
+
+            if (!response.ok) {
+                const err = await response.json();
+                statusText.textContent =
+                    "Error: " + (err.error || "Something went wrong.");
+                return;
+            }
+
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+
+            a.download =
+                type === "csv-to-excel" ? "converted.xlsx" : "converted.csv";
+
+            a.click();
+
+            statusText.textContent = "File converted successfully ✔";
+        } catch (e) {
+            statusText.textContent = "Network error. Try again.";
+        }
+    });
+</script>
+
+</body>
+
+</html>
