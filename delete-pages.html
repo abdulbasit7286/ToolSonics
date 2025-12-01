@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Pages from PDF Online | Remove PDF Pages – ToolSonics</title>
+
+    <!-- SEO META DESCRIPTION -->
+    <meta name="description" content="Delete pages from PDF online for free with ToolSonics. Remove unwanted PDF pages quickly, securely, and without watermark. No signup required.">
+
+    <meta name="keywords" content="delete pages from pdf, remove pdf pages, pdf page remover, online pdf editor, free pdf tools, toolsonics">
+
+    <meta property="og:title" content="Delete Pages from PDF Online – ToolSonics">
+    <meta property="og:description" content="Fast and secure online tool to delete specific pages from a PDF file. 100% free, no watermark, and mobile-friendly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/delete-pages.html">
+    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/delete-pages.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BLUE-WHITE PROFESSIONAL THEME -->
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0f5bd3;
+            --background: #f5f8ff;
+            --card-bg: #ffffff;
+            --text-dark: #1f1f1f;
+            --text-light: #555;
+            --radius: 12px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--background);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 15px 5px;
+        }
+
+        header h1 {
+            font-size: 30px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 25px auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* FILE INPUT */
+        #pdfFile {
+            display: none;
+        }
+
+        .file-label {
+            display: block;
+            padding: 14px;
+            background: #eef4ff;
+            border: 2px dashed var(--primary);
+            border-radius: var(--radius);
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .file-label:hover {
+            background: #dfe8ff;
+        }
+
+        .file-info {
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            border-radius: var(--radius);
+            border: 2px solid #dce6ff;
+            background: #eef4ff;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            border-radius: var(--radius);
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        #statusText {
+            margin-top: 10px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* PROGRESS BAR */
+        #progressContainer {
+            margin-top: 15px;
+            display: none;
+        }
+
+        #progressBarWrapper {
+            height: 12px;
+            background: #dfe8ff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #progressBar {
+            height: 12px;
+            width: 0%;
+            background: var(--primary);
+            border-radius: 8px;
+            transition: width 0.3s;
+        }
+
+        #progressText {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .seo-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Delete Pages from PDF Online</h1>
+        <p>Remove Unwanted PDF Pages • Fast • Free • Secure</p>
+    </header>
+
+    <div class="container">
+        <h2>Select PDF & Pages to Delete</h2>
+
+        <label for="pdfFile" class="file-label">📂 Choose PDF File</label>
+        <input type="file" id="pdfFile" accept="application/pdf">
+        <div id="fileInfo" class="file-info">No file selected</div>
+
+        <label style="margin-top:15px; font-weight:600;">Pages to delete</label>
+        <input 
+            type="text" 
+            id="pagesInput" 
+            placeholder="e.g. 2, 4, 7-9 (1-based page numbers)"
+        >
+
+        <button id="deleteBtn">Delete Pages</button>
+        <p id="statusText"></p>
+
+        <!-- PROGRESS -->
+        <div id="progressContainer">
+            <div id="progressBarWrapper">
+                <div id="progressBar"></div>
+            </div>
+            <p id="progressText">0%</p>
+        </div>
+
+        <!-- SEO TEXT (global traffic) -->
+        <div class="seo-text">
+            ToolSonics Delete Pages from PDF is a powerful yet simple online tool that helps you remove unwanted pages 
+            from your PDF files in seconds. Instead of editing documents manually or installing heavy software, you can 
+            upload your file, choose which pages to delete, and instantly download a clean, updated PDF. This tool supports 
+            custom page selection like “2, 5, 7-9”, handles documents securely, and does not permanently store your files. 
+            Designed for students, professionals, freelancers, and global users, it works smoothly on both mobile and desktop 
+            browsers. Whether you are cleaning up invoices, reports, ebooks, or scanned documents, ToolSonics makes PDF page 
+            removal fast, private, and completely free to use.
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = "https://toolsonics-backend.onrender.com/pdf/delete-pages";
+
+        const pdfInput = document.getElementById("pdfFile");
+        const fileInfo = document.getElementById("fileInfo");
+        const pagesInput = document.getElementById("pagesInput");
+        const deleteBtn = document.getElementById("deleteBtn");
+        const statusText = document.getElementById("statusText");
+
+        const progressContainer = document.getElementById("progressContainer");
+        const progressBar = document.getElementById("progressBar");
+        const progressText = document.getElementById("progressText");
+
+        pdfInput.addEventListener("change", () => {
+            if (pdfInput.files.length === 0) {
+                fileInfo.textContent = "No file selected";
+            } else {
+                fileInfo.textContent = pdfInput.files[0].name;
+            }
+        });
+
+        deleteBtn.addEventListener("click", async () => {
+            const file = pdfInput.files[0];
+            const pages = pagesInput.value.trim();
+
+            if (!file) {
+                statusText.textContent = "Please choose a PDF file first.";
+                return;
+            }
+            if (!pages) {
+                statusText.textContent = "Please enter pages to delete (e.g. 2,4,7-9).";
+                return;
+            }
+
+            statusText.textContent = "";
+            progressContainer.style.display = "block";
+            progressBar.style.width = "0%";
+            progressText.textContent = "0%";
+
+            // Fake smooth progress
+            let fake = 0;
+            const fakeInterval = setInterval(() => {
+                if (fake < 90) {
+                    fake += Math.random() * 8;
+                    fake = Math.min(fake, 90);
+                    progressBar.style.width = fake + "%";
+                    progressText.textContent = Math.floor(fake) + "%";
+                }
+            }, 200);
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("pages", pages);
+
+            try {
+                const response = await fetch(BACKEND_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                clearInterval(fakeInterval);
+                progressBar.style.width = "100%";
+                progressText.textContent = "100%";
+
+                if (!response.ok) {
+                    let err = {};
+                    try { err = await response.json(); } catch {}
+                    statusText.textContent = "Error: " + (err.error || "Failed to delete pages.");
+                    return;
+                }
+
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "deleted-pages.pdf";
+                a.click();
+
+                statusText.textContent = "Pages deleted successfully! File downloaded.";
+            } catch (e) {
+                statusText.textContent = "Network error. Please try again.";
+            }
+        });
+    </script>
+
+</body>
+</html>
