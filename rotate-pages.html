@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rotate PDF Pages Online | Free PDF Rotator – ToolSonics</title>
+
+    <!-- SEO META DESCRIPTION -->
+    <meta name="description" content="Rotate PDF pages online for free with ToolSonics. Rotate specific pages or the entire PDF by 90°, 180°, or 270°. Fast, secure, mobile-friendly PDF rotation tool. No signup needed.">
+
+    <meta name="keywords" content="rotate pdf, pdf rotator, rotate pdf pages online, rotate pdf free, pdf tools, toolsonics">
+
+    <meta property="og:title" content="Rotate PDF Pages Online – ToolSonics">
+    <meta property="og:description" content="Free online tool to rotate PDF pages by 90°, 180°, or 270°. Rotate all or selected pages quickly and securely.">
+    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/rotate-pdf.png">
+    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/rotate-pdf.html">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BLUE-WHITE TOOLSONICS THEME -->
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d57c8;
+            --bg: #f5f8ff;
+            --card: #ffffff;
+            --text: #222;
+            --light: #555;
+            --radius: 14px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.09);
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: "Segoe UI", Arial, sans-serif;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            color: var(--light);
+            margin-top: 5px;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: var(--card);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* FILE INPUT CUSTOM */
+        #pdfFile { display: none; }
+
+        .file-label {
+            display: block;
+            background: #eef4ff;
+            border: 2px dashed var(--primary);
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            border-radius: var(--radius);
+            color: var(--primary-dark);
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .file-label:hover {
+            background: #dce9ff;
+        }
+
+        .file-info {
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--light);
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 2px solid #dce6ff;
+            border-radius: var(--radius);
+            background: #eef4ff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius);
+            background: var(--primary);
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+        }
+
+        #statusText {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--light);
+        }
+
+        /* PROGRESS BAR */
+        #progressContainer {
+            display: none;
+            margin-top: 15px;
+        }
+
+        #progressBarWrapper {
+            width: 100%;
+            background: #dfe8ff;
+            height: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #progressBar {
+            width: 0%;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 8px;
+        }
+
+        #progressText {
+            margin-top: 5px;
+            font-size: 14px;
+            color: var(--light);
+        }
+
+        .seo-text {
+            margin-top: 25px;
+            font-size: 14px;
+            color: var(--light);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Rotate PDF Pages</h1>
+    <p>Rotate All or Selected Pages • 90° • 180° • 270°</p>
+</header>
+
+<div class="container">
+
+    <!-- FILE INPUT -->
+    <label for="pdfFile" class="file-label">📂 Select PDF File</label>
+    <input type="file" id="pdfFile" accept="application/pdf">
+    <div id="fileInfo" class="file-info">No file selected</div>
+
+    <!-- ROTATION OPTIONS -->
+    <label style="font-weight:600; margin-top:20px;">Rotation Angle</label>
+    <select id="rotationSelect">
+        <option value="90">Rotate 90° (Clockwise)</option>
+        <option value="180">Rotate 180° (Upside Down)</option>
+        <option value="270">Rotate 270°</option>
+    </select>
+
+    <!-- PAGE INPUT -->
+    <label style="font-weight:600; margin-top:20px;">Pages to Rotate (optional)</label>
+    <input type="text" id="pagesInput" placeholder="Leave empty for ALL pages. Or write: 2, 4, 7-9">
+
+    <!-- BUTTON -->
+    <button id="rotateBtn">Rotate PDF</button>
+    <p id="statusText"></p>
+
+    <!-- PROGRESS -->
+    <div id="progressContainer">
+        <div id="progressBarWrapper">
+            <div id="progressBar"></div>
+        </div>
+        <p id="progressText">0%</p>
+    </div>
+
+    <!-- 150 WORD SEO CONTENT -->
+    <div class="seo-text">
+        Rotate PDF by ToolSonics is a fast, free, and secure online tool that allows you to rotate any PDF file 
+        by 90 degrees, 180 degrees, or 270 degrees. You can rotate the entire PDF or just select specific pages 
+        like “2, 5, 8-10”. This tool is extremely useful for fixing upside-down scanned pages, correcting sideways 
+        documents, or adjusting certificates and invoices. All processing is done safely on the server, and your 
+        uploaded files are never stored permanently. The clean, modern interface is fully mobile-friendly, making 
+        it easy to rotate PDF files from any device worldwide. No installation, no signup, and no limitations — 
+        simply upload your document, choose the rotation angle, and download your corrected PDF instantly.
+    </div>
+
+</div>
+
+<script>
+    const BACKEND_URL = "https://toolsonics-backend.onrender.com/pdf/rotate-pages";
+
+    const pdfFile = document.getElementById("pdfFile");
+    const fileInfo = document.getElementById("fileInfo");
+    const rotateBtn = document.getElementById("rotateBtn");
+    const pagesInput = document.getElementById("pagesInput");
+    const rotationSelect = document.getElementById("rotationSelect");
+    const statusText = document.getElementById("statusText");
+
+    const progressContainer = document.getElementById("progressContainer");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    // Show selected file name
+    pdfFile.addEventListener("change", () => {
+        if (pdfFile.files.length === 0) {
+            fileInfo.textContent = "No file selected";
+        } else {
+            fileInfo.textContent = pdfFile.files[0].name;
+        }
+    });
+
+    rotateBtn.addEventListener("click", async () => {
+        const file = pdfFile.files[0];
+        const rotation = rotationSelect.value;
+        const pages = pagesInput.value.trim();
+
+        if (!file) {
+            statusText.textContent = "Please select a PDF file.";
+            return;
+        }
+
+        statusText.textContent = "";
+        progressContainer.style.display = "block";
+        progressBar.style.width = "0%";
+        progressText.textContent = "0%";
+
+        let fake = 0;
+        const interval = setInterval(() => {
+            if (fake < 90) {
+                fake += Math.random() * 8;
+                fake = Math.min(fake, 90);
+                progressBar.style.width = fake + "%";
+                progressText.textContent = Math.floor(fake) + "%";
+            }
+        }, 200);
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("rotation", rotation);
+        formData.append("pages", pages);
+
+        try {
+            const response = await fetch(BACKEND_URL, {
+                method: "POST",
+                body: formData
+            });
+
+            clearInterval(interval);
+            progressBar.style.width = "100%";
+            progressText.textContent = "100%";
+
+            if (!response.ok) {
+                const error = await response.json();
+                statusText.textContent = "Error: " + (error.error || "Failed to rotate PDF");
+                return;
+            }
+
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "rotated.pdf";
+            a.click();
+
+            statusText.textContent = "Rotation complete!";
+        } catch (e) {
+            statusText.textContent = "Network error. Try again.";
+        }
+    });
+</script>
+
+</body>
+</html>
