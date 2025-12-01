@@ -2,19 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Protect PDF with Password | Encrypt PDF – ToolSonics</title>
+    <title>Protect PDF with Password Online | Encrypt PDF Free – ToolSonics</title>
 
-    <!-- SEO -->
-    <meta name="description" content="Protect your PDF with a secure password online for free. ToolSonics lets you encrypt PDF files instantly without signup. Fast, easy and 100% safe.">
-    <meta name="keywords" content="protect pdf, add password pdf, encrypt pdf, lock pdf, secure pdf, toolsonics">
+    <!-- SEO META DESCRIPTION -->
+    <meta name="description" content="Protect your PDF files with a strong password online using ToolSonics. Free PDF encryption tool to secure contracts, documents, invoices, certificates & personal files. Fast, safe, no signup needed.">
 
-    <meta property="og:title" content="Protect PDF with Password – ToolSonics">
-    <meta property="og:description" content="Lock your PDF files with a password online for free. Fast, safe & no signup needed.">
+    <!-- SEO KEYWORDS -->
+    <meta name="keywords" content="protect pdf, add password to pdf, encrypt pdf, secure pdf online, lock pdf, password protect pdf, toolsonics pdf tools">
+
+    <!-- OG SOCIAL TAGS -->
+    <meta property="og:title" content="Protect PDF with Password – Free Online PDF Encryption Tool">
+    <meta property="og:description" content="Encrypt and lock your PDF documents with a password online for free. Fast, secure, mobile-friendly PDF protection with no signup.">
     <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/protect-pdf.png">
     <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/protect-pdf.html">
+    <meta property="og:type" content="website">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- TOOLSONICS THEME -->
     <style>
         :root {
             --primary:#1a73e8;
@@ -129,6 +134,14 @@
             font-size:14px;
             color:var(--light);
         }
+
+        /* SEO TEXT */
+        .seo-text {
+            margin-top:30px;
+            color:var(--light);
+            font-size:14px;
+            line-height:1.6;
+        }
     </style>
 </head>
 <body>
@@ -147,11 +160,26 @@
     <button id="protectBtn">Protect PDF</button>
     <div id="statusText"></div>
 
+    <!-- Progress Bar -->
     <div id="progressContainer">
         <div id="progressBarWrapper">
             <div id="progressBar"></div>
         </div>
         <div id="progressText">0%</div>
+    </div>
+
+    <!-- 🔥 150 Words SEO Optimized Content -->
+    <div class="seo-text">
+        ToolSonics Protect PDF is a powerful and secure online tool that allows you to encrypt and lock
+        your PDF documents with a strong password. Whether you are securing personal files, certificates,
+        invoices, contracts, reports, legal forms, or business documents, this free tool ensures complete
+        privacy and protection. Your files are never stored permanently and are processed securely on our
+        server, making it ideal for students, professionals, and global users. With a clean interface,
+        mobile-friendly layout, and high-speed processing, ToolSonics provides one of the fastest PDF
+        protection services online. Simply upload your PDF, choose a password, confirm it, and download
+        your encrypted PDF instantly. There is no signup required, no watermark, and no complicated steps.
+        ToolSonics is optimized for global SEO, making it easy for users worldwide to secure their important
+        PDF documents with just one click.
     </div>
 </div>
 
@@ -170,7 +198,8 @@
     const statusText = document.getElementById("statusText");
 
     pdfFile.addEventListener("change", () => {
-        fileInfo.textContent = pdfFile.files.length ? pdfFile.files[0].name : "No file selected";
+        fileInfo.textContent = pdfFile.files.length ?
+            pdfFile.files[0].name : "No file selected";
     });
 
     protectBtn.addEventListener("click", async () => {
@@ -178,20 +207,10 @@
         const pass = password.value.trim();
         const confirm = confirmPassword.value.trim();
 
-        if (!file) {
-            statusText.textContent = "Please select a PDF file.";
-            return;
-        }
-        if (!pass || !confirm) {
-            statusText.textContent = "Enter and confirm the password.";
-            return;
-        }
-        if (pass !== confirm) {
-            statusText.textContent = "Passwords do not match!";
-            return;
-        }
+        if (!file) { statusText.textContent = "Please select a PDF file."; return; }
+        if (!pass || !confirm) { statusText.textContent = "Enter and confirm the password."; return; }
+        if (pass !== confirm) { statusText.textContent = "Passwords do not match!"; return; }
 
-        // Show progress
         progressContainer.style.display = "block";
         progressBar.style.width = "10%";
         progressText.textContent = "10%";
@@ -211,10 +230,7 @@
         formData.append("password", pass);
 
         try {
-            const response = await fetch(BACKEND_URL, {
-                method: "POST",
-                body: formData,
-            });
+            const response = await fetch(BACKEND_URL, { method:"POST", body: formData });
 
             clearInterval(loadInterval);
             progressBar.style.width = "100%";
@@ -228,13 +244,12 @@
 
             const blob = await response.blob();
             const url = URL.createObjectURL(blob);
-
             const a = document.createElement("a");
             a.href = url;
             a.download = "protected.pdf";
             a.click();
 
-            statusText.textContent = "PDF protected successfully!";
+            statusText.textContent = "PDF protected successfully ✔";
         } catch (e) {
             statusText.textContent = "Network error. Try again.";
         }
