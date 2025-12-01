@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Page Numbers to PDF Online | Free PDF Page Numbering – ToolSonics</title>
+
+    <!-- SEO META DESCRIPTION -->
+    <meta name="description"
+        content="Add page numbers to PDF files online for free using ToolSonics. Fast, secure and easy-to-use PDF page numbering tool for students, offices and professionals. No signup, no watermark.">
+
+    <!-- KEYWORDS -->
+    <meta name="keywords"
+        content="add page numbers pdf, pdf page numbering, add numbers to pdf pages, free pdf tools, toolsonics">
+
+    <!-- OG TAGS -->
+    <meta property="og:title" content="Add Page Numbers to PDF Online – ToolSonics">
+    <meta property="og:description"
+        content="Fast and free tool to add page numbers to any PDF file online. Secure, accurate and easy-to-use with no signup needed.">
+    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/add-page-numbers.png">
+    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/add-page-numbers.html">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d57c8;
+            --bg: #f4f8ff;
+            --card: #ffffff;
+            --radius: 14px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --text: #1a1a1a;
+            --light: #555;
+        }
+
+        body {
+            background: var(--bg);
+            margin: 0;
+            padding: 20px;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: var(--card);
+            padding: 28px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 6px;
+            color: var(--primary);
+            font-size: 30px;
+        }
+
+        p.subtitle {
+            text-align: center;
+            margin-top: 0;
+            color: var(--light);
+        }
+
+        #pdfFile {
+            display: none;
+        }
+
+        .file-label {
+            display: block;
+            padding: 15px;
+            background: #e8f0ff;
+            border: 2px dashed var(--primary);
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: var(--radius);
+        }
+
+        .file-info {
+            margin-top: 6px;
+            font-size: 14px;
+            color: var(--light);
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 14px;
+            background: #eef4ff;
+            border: 2px solid #dce6ff;
+            border-radius: var(--radius);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 17px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            border-radius: var(--radius);
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+        }
+
+        #progressContainer {
+            display: none;
+            margin-top: 18px;
+        }
+
+        #progressBarWrapper {
+            width: 100%;
+            height: 12px;
+            background: #dbe5ff;
+            border-radius: 10px;
+        }
+
+        #progressBar {
+            height: 12px;
+            width: 0%;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        #progressText {
+            margin-top: 4px;
+            font-size: 14px;
+            color: var(--light);
+        }
+
+        #statusText {
+            margin-top: 10px;
+            color: var(--light);
+            font-size: 14px;
+        }
+
+        .seo-text {
+            margin-top: 30px;
+            color: var(--light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Add Page Numbers to PDF</h1>
+        <p class="subtitle">Free • Fast • Secure – Add page numbers to any PDF</p>
+
+        <label for="pdfFile" class="file-label">📂 Select PDF File</label>
+        <input type="file" id="pdfFile" accept="application/pdf">
+        <div id="fileInfo" class="file-info">No file selected</div>
+
+        <label style="margin-top:15px; font-weight:600;">Select Number Position</label>
+        <select id="position">
+            <option value="bottom-center">Bottom Center (Default)</option>
+            <option value="bottom-left">Bottom Left</option>
+            <option value="bottom-right">Bottom Right</option>
+            <option value="top-center">Top Center</option>
+            <option value="top-left">Top Left</option>
+            <option value="top-right">Top Right</option>
+        </select>
+
+        <button id="addBtn">Add Page Numbers</button>
+
+        <div id="statusText"></div>
+
+        <!-- Progress Bar -->
+        <div id="progressContainer">
+            <div id="progressBarWrapper">
+                <div id="progressBar"></div>
+            </div>
+            <div id="progressText">0%</div>
+        </div>
+
+        <!-- 150-word SEO text -->
+        <div class="seo-text">
+            ToolSonics Add Page Numbers is a powerful and user-friendly online tool that helps you insert
+            page numbers into any PDF document quickly and for free. Whether you are preparing school assignments,
+            business reports, office documents, eBooks, or scanned files, page numbering makes your PDF more organized,
+            professional, and easy to navigate. This tool supports multiple numbering positions such as top, bottom,
+            left, right, and center, giving you complete control over formatting. You don’t need to install any software
+            or create an account—simply upload your PDF, choose a position, and download your numbered PDF instantly.
+            All processing happens securely and your files are never stored permanently, ensuring total privacy. ToolSonics
+            is fully mobile-friendly and optimized for global users looking for fast, free, and reliable PDF solutions.
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = "https://toolsonics-backend.onrender.com/pdf/add-page-numbers";
+
+        const pdfFile = document.getElementById("pdfFile");
+        const fileInfo = document.getElementById("fileInfo");
+        const addBtn = document.getElementById("addBtn");
+        const position = document.getElementById("position");
+
+        const progressContainer = document.getElementById("progressContainer");
+        const progressBar = document.getElementById("progressBar");
+        const progressText = document.getElementById("progressText");
+        const statusText = document.getElementById("statusText");
+
+        pdfFile.addEventListener("change", () => {
+            fileInfo.textContent = pdfFile.files.length ? pdfFile.files[0].name : "No file selected";
+        });
+
+        addBtn.addEventListener("click", async () => {
+            const file = pdfFile.files[0];
+            const pos = position.value;
+
+            if (!file) {
+                statusText.textContent = "Please select a PDF file first.";
+                return;
+            }
+
+            progressContainer.style.display = "block";
+            progressBar.style.width = "10%";
+            progressText.textContent = "10%";
+
+            let fake = 10;
+            const interval = setInterval(() => {
+                if (fake < 90) {
+                    fake += Math.random() * 7;
+                    fake = Math.min(fake, 90);
+                    progressBar.style.width = fake + "%";
+                    progressText.textContent = Math.floor(fake) + "%";
+                }
+            }, 250);
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("position", pos);
+
+            try {
+                const response = await fetch(BACKEND_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                clearInterval(interval);
+                progressBar.style.width = "100%";
+                progressText.textContent = "100%";
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    statusText.textContent = "Error: " + (err.error || "Something went wrong.");
+                    return;
+                }
+
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "page-numbered.pdf";
+                a.click();
+
+                statusText.textContent = "Page numbers added successfully ✔";
+            } catch (e) {
+                statusText.textContent = "Network error. Try again.";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
