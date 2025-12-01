@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Text to PDF Converter Online | Free TXT → PDF Tool – ToolSonics</title>
+
+    <!-- SEO META DESCRIPTION -->
+    <meta name="description"
+        content="Convert text into PDF online for free using ToolSonics. Paste your text or notes and instantly download a clean, high-quality PDF. No signup required. Fast, secure & mobile-friendly.">
+
+    <!-- SEO KEYWORDS -->
+    <meta name="keywords"
+        content="text to pdf, txt to pdf, convert text to pdf, notes to pdf, create pdf online, free text pdf converter, toolsonics">
+
+    <!-- OG TAGS -->
+    <meta property="og:title" content="Text to PDF Converter – Free Online Tool | ToolSonics">
+    <meta property="og:description" content="Turn your text into a professional PDF instantly. 100% free, fast and secure.">
+    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/text-to-pdf.html">
+    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/text-to-pdf.png">
+    <meta property="og:type" content="website">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d57c8;
+            --bg: #f4f8ff;
+            --card: #ffffff;
+            --radius: 14px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --text: #1a1a1a;
+            --light: #555;
+        }
+
+        body {
+            background: var(--bg);
+            margin: 0;
+            padding: 20px;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: var(--card);
+            padding: 28px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: var(--light);
+            margin-top: 0;
+        }
+
+        textarea {
+            width: 100%;
+            height: 250px;
+            padding: 14px;
+            margin-top: 14px;
+            border-radius: var(--radius);
+            border: 2px solid #dce6ff;
+            background: #eef4ff;
+            resize: vertical;
+            font-size: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 14px;
+            border-radius: var(--radius);
+            border: 2px solid #dce6ff;
+            background: #eef4ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 22px;
+            font-size: 17px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+        }
+
+        #progressContainer {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #progressBarWrapper {
+            width: 100%;
+            height: 12px;
+            background: #dce6ff;
+            border-radius: 10px;
+        }
+
+        #progressBar {
+            height: 12px;
+            width: 0%;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        #progressText {
+            margin-top: 5px;
+            color: var(--light);
+            font-size: 14px;
+        }
+
+        #statusText {
+            margin-top: 15px;
+            color: var(--light);
+            font-size: 14px;
+        }
+
+        .seo-text {
+            margin-top: 30px;
+            color: var(--light);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Text to PDF Converter</h1>
+        <p class="subtitle">Paste your text and download a clean PDF instantly – Free & Fast</p>
+
+        <label style="font-weight:600;">Enter Your Text</label>
+        <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+
+        <label style="font-weight:600;">Document Title (Optional)</label>
+        <input id="titleInput" type="text" placeholder="e.g. My Notes">
+
+        <label style="font-weight:600;">Font Size</label>
+        <select id="fontSize">
+            <option value="10">10 px</option>
+            <option value="12" selected>12 px (Default)</option>
+            <option value="14">14 px</option>
+            <option value="16">16 px</option>
+            <option value="18">18 px</option>
+            <option value="20">20 px</option>
+        </select>
+
+        <label style="font-weight:600;">Text Alignment</label>
+        <select id="alignment">
+            <option value="left" selected>Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+        </select>
+
+        <button id="convertBtn">Convert to PDF</button>
+        <div id="statusText"></div>
+
+        <!-- Progress Bar -->
+        <div id="progressContainer">
+            <div id="progressBarWrapper">
+                <div id="progressBar"></div>
+            </div>
+            <div id="progressText">0%</div>
+        </div>
+
+        <!-- SEO TEXT 150 WORDS -->
+        <div class="seo-text">
+            ToolSonics Text to PDF Converter is a fast, secure, and user-friendly online tool that allows
+            you to instantly convert your text, notes, articles, assignments, scripts, stories, or any written
+            content into a high-quality PDF file. Whether you're a student preparing notes, a professional creating
+            documents, or someone who wants to save written content in a clean PDF format, this tool offers the
+            easiest solution. Simply paste your text, choose a title, font size, and alignment, and download your
+            PDF instantly. No installation, no signup, no watermark — just a clean and fast conversion process.
+            Your content is processed securely and never stored permanently. ToolSonics is optimized for global
+            users, mobile-friendly, and designed to deliver the simplest and most reliable text-to-PDF conversion
+            experience online.
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = "https://toolsonics-backend.onrender.com/pdf/text-to-pdf";
+
+        const convertBtn = document.getElementById("convertBtn");
+
+        const textInput = document.getElementById("textInput");
+        const titleInput = document.getElementById("titleInput");
+        const fontSize = document.getElementById("fontSize");
+        const alignment = document.getElementById("alignment");
+
+        const progressContainer = document.getElementById("progressContainer");
+        const progressBar = document.getElementById("progressBar");
+        const progressText = document.getElementById("progressText");
+        const statusText = document.getElementById("statusText");
+
+        convertBtn.addEventListener("click", async () => {
+            const text = textInput.value.trim();
+
+            if (!text) {
+                statusText.textContent = "Please enter some text.";
+                return;
+            }
+
+            progressContainer.style.display = "block";
+            progressBar.style.width = "10%";
+            progressText.textContent = "10%";
+
+            let fake = 10;
+            const interval = setInterval(() => {
+                if (fake < 90) {
+                    fake += Math.random() * 7;
+                    fake = Math.min(fake, 90);
+                    progressBar.style.width = fake + "%";
+                    progressText.textContent = Math.floor(fake) + "%";
+                }
+            }, 250);
+
+            const formData = new FormData();
+            formData.append("text", text);
+            formData.append("title", titleInput.value.trim());
+            formData.append("font_size", fontSize.value);
+            formData.append("alignment", alignment.value);
+
+            try {
+                const response = await fetch(BACKEND_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                clearInterval(interval);
+                progressBar.style.width = "100%";
+                progressText.textContent = "100%";
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    statusText.textContent = "Error: " + (err.error || "Something went wrong.");
+                    return;
+                }
+
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "text.pdf";
+                a.click();
+
+                statusText.textContent = "PDF generated successfully ✔";
+            } catch (e) {
+                statusText.textContent = "Network error. Try again.";
+            }
+        });
+    </script>
+</body>
+
+</html>
