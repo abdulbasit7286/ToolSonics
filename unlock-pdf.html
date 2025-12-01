@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unlock PDF Online | Remove PDF Password Free – ToolSonics</title>
+
+    <!-- SEO META DESCRIPTION -->
+    <meta name="description" content="Unlock PDF online and remove password protection instantly with ToolSonics. Free, safe and easy PDF unlocking tool to access locked documents without any software.">
+
+    <!-- SEO KEYWORDS -->
+    <meta name="keywords" content="unlock pdf, remove pdf password, decrypt pdf, open locked pdf, password remove pdf, free pdf unlocker, toolsonics">
+
+    <!-- OG TAGS -->
+    <meta property="og:title" content="Unlock PDF Online – Remove Password Free | ToolSonics">
+    <meta property="og:description" content="Remove password protection from any PDF instantly. Fast, secure and easy-to-use PDF unlocking tool by ToolSonics.">
+    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/unlock-pdf.png">
+    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/unlock-pdf.html">
+    <meta property="og:type" content="website">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --primary:#1a73e8;
+            --primary-dark:#0d57c8;
+            --bg:#f4f8ff;
+            --card:#ffffff;
+            --radius:14px;
+            --shadow:0 4px 12px rgba(0,0,0,0.08);
+            --text:#1a1a1a;
+            --light:#555;
+        }
+
+        body {
+            background:var(--bg);
+            margin:0;
+            font-family:"Segoe UI", Arial, sans-serif;
+            padding:20px;
+        }
+
+        .container {
+            max-width:850px;
+            margin:auto;
+            background:var(--card);
+            padding:28px;
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+        }
+
+        h1 {
+            text-align:center;
+            color:var(--primary);
+            margin-bottom:8px;
+        }
+
+        p.subtitle {
+            text-align:center;
+            color:var(--light);
+            margin-top:0;
+        }
+
+        #pdfFile { display:none; }
+
+        .file-label {
+            display:block;
+            background:#e8f0ff;
+            border:2px dashed var(--primary);
+            padding:14px;
+            text-align:center;
+            cursor:pointer;
+            font-weight:600;
+            border-radius:var(--radius);
+        }
+
+        .file-info {
+            margin-top:6px;
+            font-size:14px;
+            color:var(--light);
+        }
+
+        input[type="password"] {
+            width:100%;
+            padding:12px;
+            margin-top:12px;
+            border-radius:var(--radius);
+            border:2px solid #dce6ff;
+            background:#eef4ff;
+        }
+
+        button {
+            width:100%;
+            margin-top:18px;
+            padding:14px;
+            font-size:17px;
+            background:var(--primary);
+            color:white;
+            border:none;
+            border-radius:var(--radius);
+            cursor:pointer;
+        }
+
+        button:hover {
+            background:var(--primary-dark);
+        }
+
+        #progressContainer {
+            display:none;
+            margin-top:18px;
+        }
+
+        #progressBarWrapper {
+            width:100%;
+            background:#dbe5ff;
+            height:12px;
+            border-radius:10px;
+        }
+
+        #progressBar {
+            width:0%;
+            height:12px;
+            background:var(--primary);
+            border-radius:10px;
+        }
+
+        #progressText {
+            font-size:14px;
+            margin-top:4px;
+            color:var(--light);
+        }
+
+        #statusText {
+            margin-top:10px;
+            font-size:14px;
+            color:var(--light);
+        }
+
+        .seo-text {
+            margin-top:30px;
+            font-size:14px;
+            color:var(--light);
+            line-height:1.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Unlock PDF (Remove Password)</h1>
+    <p class="subtitle">Open locked PDF files instantly – Fast & Free</p>
+
+    <label for="pdfFile" class="file-label">📂 Choose Locked PDF</label>
+    <input type="file" id="pdfFile" accept="application/pdf">
+    <div id="fileInfo" class="file-info">No file selected</div>
+
+    <input type="password" id="password" placeholder="Enter document password">
+
+    <button id="unlockBtn">Unlock PDF</button>
+    <div id="statusText"></div>
+
+    <!-- Progress Bar -->
+    <div id="progressContainer">
+        <div id="progressBarWrapper">
+            <div id="progressBar"></div>
+        </div>
+        <div id="progressText">0%</div>
+    </div>
+
+    <!-- 150 Word SEO Content -->
+    <div class="seo-text">
+        ToolSonics Unlock PDF is a fast and secure online tool that helps you remove password 
+        protection from locked PDF documents. Whether you are trying to access a contract, report, 
+        notes, school assignment, business file, or any other encrypted PDF, this tool lets you unlock 
+        it instantly without downloading any software. Simply upload the password-protected PDF, enter 
+        the correct password, and download the unlocked PDF in seconds. Your files remain private and are 
+        never stored permanently on our server, ensuring complete confidentiality. The tool is fully free, 
+        mobile-friendly, and optimized for users worldwide looking for a quick and reliable PDF unlocking 
+        solution. With a clean interface and high-speed processing, ToolSonics makes it easier than ever 
+        to access your locked PDF documents online.
+    </div>
+</div>
+
+<script>
+    const BACKEND_URL = "https://toolsonics-backend.onrender.com/pdf/unlock";
+
+    const pdfFile = document.getElementById("pdfFile");
+    const fileInfo = document.getElementById("fileInfo");
+    const password = document.getElementById("password");
+    const unlockBtn = document.getElementById("unlockBtn");
+
+    const progressContainer = document.getElementById("progressContainer");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const statusText = document.getElementById("statusText");
+
+    pdfFile.addEventListener("change", () => {
+        fileInfo.textContent = pdfFile.files.length ?
+            pdfFile.files[0].name : "No file selected";
+    });
+
+    unlockBtn.addEventListener("click", async () => {
+        const file = pdfFile.files[0];
+        const pass = password.value.trim();
+
+        if (!file) { statusText.textContent = "Please select a PDF file."; return; }
+        if (!pass) { statusText.textContent = "Enter the PDF password."; return; }
+
+        progressContainer.style.display = "block";
+        progressBar.style.width = "10%";
+        progressText.textContent = "10%";
+
+        let fake = 10;
+        const interval = setInterval(() => {
+            if (fake < 90) {
+                fake += Math.random() * 8;
+                fake = Math.min(fake, 90);
+                progressBar.style.width = fake + "%";
+                progressText.textContent = Math.floor(fake) + "%";
+            }
+        }, 250);
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("password", pass);
+
+        try {
+            const response = await fetch(BACKEND_URL, {
+                method: "POST",
+                body: formData
+            });
+
+            clearInterval(interval);
+            progressBar.style.width = "100%";
+            progressText.textContent = "100%";
+
+            if (!response.ok) {
+                const err = await response.json();
+                statusText.textContent = "Error: " + (err.error || "Unlock failed.");
+                return;
+            }
+
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "unlocked.pdf";
+            a.click();
+
+            statusText.textContent = "PDF unlocked successfully ✔";
+        } catch (e) {
+            statusText.textContent = "Network error. Try again.";
+        }
+    });
+</script>
+
+</body>
+</html>
