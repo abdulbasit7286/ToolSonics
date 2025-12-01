@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Split PDF Online Free | Extract PDF Pages – ToolSonics</title>
+
+    <!-- SEO META DESCRIPTION -->
+    <meta name="description" content="Split PDF online for free with ToolSonics. Extract specific pages or cut a PDF into smaller documents using this fast, secure, and easy PDF splitter tool. No signup required.">
+
+    <meta name="keywords" content="split pdf, pdf splitter, extract pdf pages, split pdf online, free pdf split, toolsonics pdf tools">
+
+    <meta property="og:title" content="Split PDF Online Free – ToolSonics">
+    <meta property="og:description" content="Free online PDF splitter to extract or cut pages from any PDF file. Fast, secure and simple to use.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/split-pdf.html">
+    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/split-pdf.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; background:#f7f9fc; }
+        h1 { margin-bottom: 5px; }
+        .tool-card { padding: 20px; margin-top: 20px; border: 1px solid #ddd; border-radius: 10px; background:white; }
+        button { padding: 12px 20px; background: royalblue; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #003ec4; }
+        input[type="file"], input[type="number"] { padding: 8px; margin: 5px 0; }
+        .seo-text { margin-top: 15px; font-size: 14px; color:#444; }
+        #statusText { margin-top:10px; font-size:14px; }
+        label { display:block; margin-top:10px; }
+    </style>
+</head>
+
+<body>
+    <h1>Split PDF Online</h1>
+    <p><strong>Free PDF Splitter</strong> to extract selected pages from a PDF and save them as a new document.</p>
+
+    <!-- LONG SEO DESCRIPTION -->
+    <section class="seo-text">
+        <p>
+            ToolSonics Split PDF is a simple and powerful online tool that allows you to cut or extract specific pages from any PDF file. 
+            Whether you want to send only a few pages of a long document, separate chapters from an ebook, or create a smaller PDF from a large file, 
+            this tool makes the process fast and easy. Just upload your PDF, choose a starting page and ending page, and download the new split PDF file in seconds. 
+            No signup, no watermark, and no software installation is required. All processing happens securely on the server and your files are not stored permanently, keeping your data safe. 
+            It works on both mobile and desktop devices, making it perfect for students, professionals, and anyone who works with PDFs.
+        </p>
+    </section>
+
+    <div class="tool-card">
+        <h2>Select PDF and Page Range</h2>
+
+        <label for="pdfFile">Choose PDF file:</label>
+        <input type="file" id="pdfFile" accept="application/pdf">
+
+        <label for="startPage">Start page (e.g. 1):</label>
+        <input type="number" id="startPage" min="1" placeholder="1">
+
+        <label for="endPage">End page (e.g. 3):</label>
+        <input type="number" id="endPage" min="1" placeholder="3">
+
+        <br><br>
+        <button id="splitBtn">Split PDF</button>
+        <p id="statusText"></p>
+    </div>
+
+    <script>
+        // ✅ Yaha backend ka split endpoint URL daalo
+        const BACKEND_URL = "https://abdulbasit7286.github.io/ToolSonics/split-pdf.html";
+
+        const pdfInput = document.getElementById("pdfFile");
+        const startInput = document.getElementById("startPage");
+        const endInput = document.getElementById("endPage");
+        const splitBtn = document.getElementById("splitBtn");
+        const statusText = document.getElementById("statusText");
+
+        splitBtn.addEventListener("click", async () => {
+            const file = pdfInput.files[0];
+            const startPage = parseInt(startInput.value, 10);
+            const endPage = parseInt(endInput.value, 10);
+
+            if (!file) {
+                statusText.textContent = "Please select a PDF file first.";
+                return;
+            }
+            if (!startPage || !endPage || startPage <= 0 || endPage <= 0) {
+                statusText.textContent = "Please enter valid start and end page numbers.";
+                return;
+            }
+            if (startPage > endPage) {
+                statusText.textContent = "Start page cannot be greater than end page.";
+                return;
+            }
+
+            statusText.textContent = "Splitting PDF... please wait.";
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("start_page", startPage);
+            formData.append("end_page", endPage);
+
+            try {
+                const response = await fetch(BACKEND_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    let err = {};
+                    try { err = await response.json(); } catch {}
+                    statusText.textContent = "Error: " + (err.error || "Split failed");
+                    return;
+                }
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "split.pdf";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+
+                statusText.textContent = "Split complete! File downloaded.";
+            } catch (e) {
+                statusText.textContent = "Network error. Please try again.";
+            }
+        });
+    </script>
+</body>
+</html>
