@@ -5,103 +5,125 @@
     <meta charset="UTF-8">
     <title>Merge PDF Online Free | Fast & Secure PDF Merger – ToolSonics</title>
 
-    <!-- SEO DESCRIPTION -->
+    <!-- SEO Meta Description -->
     <meta name="description"
-        content="Merge PDF files online for free with ToolSonics. Fast, secure, and easy PDF merger to combine multiple PDF documents into a single file instantly. No signup needed. Perfect for students, freelancers, offices and global users.">
+        content="Merge PDF files online for free using ToolSonics. Fast, secure and easy PDF merger that combines multiple PDF documents into one. No signup required. Optimized for global users.">
 
-    <!-- SEO KEYWORDS -->
     <meta name="keywords"
-        content="merge pdf, combine pdf, pdf merger, merge pdf online, free pdf merge, fast pdf combining, ToolSonics PDF tools">
+        content="merge pdf, combine pdf, pdf merger online, free pdf merge, toolsonics merge pdf">
 
-    <!-- OG TAGS -->
-    <meta property="og:title" content="Merge PDF Online Free – ToolSonics">
-    <meta property="og:description"
-        content="Fast and secure PDF merger to combine multiple PDF files into one. No signup required. 100% free PDF tool.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/merge-pdf.html">
+    <!-- OG Tags -->
+    <meta property="og:title" content="Merge PDF Online – Free PDF Merger ToolSonics">
+    <meta property="og:description" content="Fastest and secure way to merge PDF files for free. No signup required.">
     <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/merge-pdf.png">
+    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/merge-pdf.html">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            padding: 25px;
-            background: #f4f7ff;
+            padding: 0;
+            background: #eef3ff;
             color: #1a1a1a;
         }
 
         h1 {
+            text-align: center;
             color: #0038ff;
-            margin-bottom: 5px;
+            margin-top: 35px;
+            font-size: 32px;
+        }
+
+        p.center {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #444;
         }
 
         .card {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             max-width: 900px;
-            margin: auto;
-            margin-top: 20px;
-            border: 1px solid #dce4ff;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+            border: 1px solid #d7e1ff;
         }
 
-        .btn {
-            background: #0059ff;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
+        /* Professional Upload Button */
+        .upload-label {
+            display: block;
+            width: 100%;
+            border: 2px dashed #5592ff;
+            background: #f3f7ff;
+            padding: 25px;
+            text-align: center;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            transition: 0.2s;
+            border-radius: 14px;
+            color: #0038ff;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .upload-label:hover {
+            background: #e2eaff;
+            border-color: #0038ff;
+        }
+
+        #pdfFiles {
+            display: none;
+        }
+
+        /* Professional Button */
+        .btn {
+            background: linear-gradient(to right, #0059ff, #0038ff);
+            color: white;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: 0.3s;
         }
 
         .btn:hover {
-            background: #003ecc;
+            opacity: 0.90;
         }
 
-        input[type="file"] {
-            padding: 12px;
-            border: 2px dashed #7da5ff;
-            background: #f0f5ff;
-            width: 100%;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        #statusText {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #333;
-        }
-
-        /* progress bar */
+        /* Progress Bar */
         #progressContainer {
             width: 100%;
-            background: #e4e9ff;
-            height: 10px;
+            height: 12px;
+            background: #dde6ff;
             border-radius: 10px;
-            margin-top: 12px;
+            margin-top: 15px;
             display: none;
         }
 
         #progressBar {
-            height: 10px;
+            height: 100%;
             width: 0%;
             background: #0038ff;
             border-radius: 10px;
-            transition: width 0.3s;
+            transition: width 0.25s ease-in-out;
+        }
+
+        #statusText {
+            margin-top: 10px;
+            font-size: 15px;
+            text-align: center;
         }
 
         .seo-text {
             margin-top: 20px;
             font-size: 14px;
-            line-height: 1.6;
             color: #444;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -109,30 +131,33 @@
 <body>
 
     <h1>Merge PDF Files Online</h1>
-    <p><strong>Free PDF Merger</strong> – Combine multiple PDF files into a single professional document.</p>
-
-    <!-- SEO LONG PARAGRAPH -->
-    <div class="seo-text">
-        ToolSonics Merge PDF is a fast, simple and secure online tool designed for users worldwide. Whether you are a
-        student merging assignments, a business professional combining reports or someone arranging multiple PDF pages
-        into one file, this tool does everything instantly without signup. Files are processed safely, never stored and
-        deleted automatically after processing. ToolSonics supports all devices, including Android, iPhone, Windows and
-        Mac. With a clean user interface, global CDN support and a powerful backend, merging PDFs becomes super easy and
-        lightning fast. Just upload your PDF files, click merge and download your combined document within seconds.
-    </div>
+    <p class="center">Fast & Secure PDF Merger – Combine multiple PDFs in seconds.</p>
 
     <div class="card">
 
-        <h2>Select PDF Files to Merge</h2>
+        <!-- Upload Button -->
+        <label for="pdfFiles" class="upload-label">
+            📄 Click here to select PDF files<br>
+            <small>(You can choose multiple files)</small>
+        </label>
         <input type="file" id="pdfFiles" accept="application/pdf" multiple>
 
         <button class="btn" id="mergeBtn">Merge PDFs</button>
 
+        <!-- Progress Bar -->
         <div id="progressContainer">
             <div id="progressBar"></div>
         </div>
 
         <p id="statusText"></p>
+
+        <div class="seo-text">
+            ToolSonics PDF Merger is designed to give you a fast and seamless experience while combining multiple PDF
+            files into a single organized document. This tool uses a global CDN and a high-speed backend to ensure quick
+            performance for users from any country. No installation or signup required—just upload your PDFs, click merge
+            and download your combined file instantly. Your files remain private, are processed securely, and are deleted
+            after completion.
+        </div>
 
     </div>
 
@@ -147,14 +172,15 @@
 
         mergeBtn.addEventListener("click", async () => {
             const files = fileInput.files;
+
             if (files.length < 2) {
-                statusText.textContent = "Please select at least 2 PDF files.";
+                statusText.textContent = "❗ Please select at least 2 PDF files.";
                 return;
             }
 
-            statusText.textContent = "Starting merge...";
+            statusText.textContent = "Starting...";
             progressContainer.style.display = "block";
-            progressBar.style.width = "10%";
+            progressBar.style.width = "15%";
 
             const formData = new FormData();
             for (let i = 0; i < files.length; i++) {
@@ -162,7 +188,7 @@
             }
 
             try {
-                progressBar.style.width = "40%";
+                progressBar.style.width = "45%";
                 statusText.textContent = "Uploading files...";
 
                 const response = await fetch(BACKEND_URL, {
@@ -171,10 +197,10 @@
                 });
 
                 progressBar.style.width = "70%";
-                statusText.textContent = "Processing...";
+                statusText.textContent = "Processing merge...";
 
                 if (!response.ok) {
-                    statusText.textContent = "Error merging files!";
+                    statusText.textContent = "❌ Error merging files!";
                     progressBar.style.width = "0%";
                     return;
                 }
@@ -183,7 +209,7 @@
                 const url = window.URL.createObjectURL(blob);
 
                 progressBar.style.width = "100%";
-                statusText.textContent = "Merge complete! Downloading file...";
+                statusText.textContent = "✔ Merge complete! Preparing download...";
 
                 const a = document.createElement("a");
                 a.href = url;
@@ -193,7 +219,7 @@
                 window.URL.revokeObjectURL(url);
 
             } catch (e) {
-                statusText.textContent = "Network error! Try again.";
+                statusText.textContent = "❌ Network error. Try again.";
                 progressBar.style.width = "0%";
             }
         });
