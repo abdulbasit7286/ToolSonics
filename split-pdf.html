@@ -1,289 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Split PDF Online Free | Extract PDF Pages – ToolSonics</title>
 
-    <!-- SEO META DESCRIPTION -->
-    <meta name="description" content="Split PDF online for free with ToolSonics. Extract or cut selected PDF pages quickly and securely. Fast, mobile-friendly, global PDF splitter with no signup required.">
+    <!-- SEO DESCRIPTION -->
+    <meta name="description"
+        content="Split PDF files online for free using ToolSonics. Extract specific pages or divide a large PDF into smaller files instantly. Fast, secure and easy-to-use PDF splitter with no signup required. Works on mobile and desktop.">
 
-    <meta name="keywords" content="split pdf, pdf splitter, cut pdf pages, extract pages pdf, online pdf tools, free pdf splitter, toolsonics">
+    <!-- KEYWORDS -->
+    <meta name="keywords" content="split pdf, extract pdf pages, pdf splitter online, free pdf split, toolsonics split pdf">
 
+    <!-- OG TAGS -->
     <meta property="og:title" content="Split PDF Online Free – ToolSonics">
-    <meta property="og:description" content="Fast and secure online PDF splitter to extract or cut specific pages from any PDF file. 100% free and mobile-friendly.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/split-pdf.html">
+    <meta property="og:description" content="Free and fast PDF splitter tool to extract or divide pages from any PDF.">
     <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/split-pdf.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- BLUE-WHITE PROFESSIONAL THEME -->
     <style>
-        :root {
-            --primary: #1a73e8;
-            --primary-dark: #0f5bd3;
-            --background: #f5f8ff;
-            --card-bg: #ffffff;
-            --text-dark: #1f1f1f;
-            --text-light: #555;
-            --radius: 12px;
-            --shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
         body {
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: var(--background);
-            padding: 20px;
+            padding: 0;
+            background: #eef3ff;
         }
 
-        header {
+        h1 {
             text-align: center;
-            padding: 15px 5px;
+            color: #0038ff;
+            margin-top: 35px;
+            font-size: 30px;
+            font-weight: 700;
         }
 
-        header h1 {
-            font-size: 32px;
-            color: var(--primary);
+        p.center {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 25px;
         }
 
-        header p {
-            color: var(--text-light);
-            font-size: 15px;
+        .card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 35px;
+            border-radius: 14px;
+            border: 1px solid #d7e1ff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
 
-        .container {
-            max-width: 800px;
-            margin: 25px auto;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+        /* PREMIUM UPLOAD BOX */
+        .upload-label {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 130px;
+
+            background: #f7f9ff;
+            border: 2px dashed #6c9bff;
+            border-radius: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: 0.3s;
+            text-align: center;
         }
 
-        /* FILE UPLOAD CUSTOM */
+        .upload-label:hover {
+            background: #eaf0ff;
+            border-color: #3c6fff;
+            transform: scale(1.02);
+        }
+
+        .upload-label i {
+            font-size: 38px;
+            color: #0051ff;
+            margin-bottom: 10px;
+        }
+
+        .upload-label span {
+            font-size: 17px;
+            color: #0038ff;
+            font-weight: 600;
+        }
+
+        .upload-label small {
+            font-size: 13px;
+            color: #6b7bb8;
+        }
+
         #pdfFile {
             display: none;
         }
 
-        .file-label {
-            display: block;
-            background: #eef4ff;
-            border: 2px dashed var(--primary);
-            color: var(--primary-dark);
-            padding: 14px;
-            border-radius: var(--radius);
-            text-align: center;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .file-label:hover {
-            background: #dce7ff;
-        }
-
-        .file-info {
-            margin-top: 8px;
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
         input[type="number"] {
             width: 100%;
-            padding: 14px;
-            margin-top: 5px;
-            border-radius: var(--radius);
-            border: 2px solid #dce6ff;
-            background: #eef4ff;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #c9d4ff;
+            margin-top: 16px;
+            font-size: 15px;
         }
 
-        button {
+        /* MAIN BUTTON */
+        .btn {
             width: 100%;
             padding: 14px;
-            background: var(--primary);
-            color: white;
+            background: linear-gradient(to right, #0059ff, #0038ff);
+            color: #fff;
             border: none;
-            border-radius: var(--radius);
-            font-size: 18px;
-            margin-top: 20px;
+            border-radius: 8px;
+            margin-top: 22px;
             cursor: pointer;
-            transition: .2s;
+            font-size: 17px;
+            transition: 0.25s;
         }
 
-        button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+        .btn:hover {
+            opacity: 0.9;
         }
-
-        #statusText { margin-top: 10px; color: var(--text-light); }
 
         /* PROGRESS BAR */
         #progressContainer {
+            width: 100%;
+            height: 10px;
+            background: #dce6ff;
+            border-radius: 8px;
             margin-top: 15px;
             display: none;
         }
-        #progressBarWrapper {
-            height: 12px;
-            background: #dfe8ff;
-            border-radius: 8px;
-            overflow: hidden;
-        }
+
         #progressBar {
-            background: var(--primary);
             width: 0%;
-            height: 12px;
+            height: 100%;
+            background: #0038ff;
             border-radius: 8px;
-            transition: width 0.3s;
-        }
-        #progressText {
-            margin-top: 5px;
-            font-size: 14px;
-            color: var(--text-light);
+            transition: 0.25s;
         }
 
-        /* SEO BLOCK */
-        .seo-text {
+        #statusText {
+            text-align: center;
             font-size: 14px;
-            color: var(--text-light);
+            color: #444;
+            margin-top: 10px;
+        }
+
+        /* SEO LONG TEXT */
+        .seo-text {
+            margin-top: 25px;
             line-height: 1.6;
-            margin-top: 20px;
+            font-size: 14px;
+            color: #444;
+            text-align: justify;
         }
     </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>Split PDF Online</h1>
-        <p>Extract Pages • Fast • Secure • Free</p>
-    </header>
+    <h1>Split PDF Online</h1>
+    <p class="center">Free PDF Splitter – Extract specific pages instantly.</p>
 
-    <div class="container">
-        <h2>Select PDF & Page Range</h2>
+    <div class="card">
 
-        <!-- File Input -->
-        <label for="pdfFile" class="file-label">📂 Choose PDF File</label>
+        <!-- UPLOAD BOX -->
+        <label for="pdfFile" class="upload-label">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>Select PDF File</span>
+            <small>Upload 1 PDF to extract pages</small>
+        </label>
         <input type="file" id="pdfFile" accept="application/pdf">
-        <div id="fileInfo" class="file-info">No file selected</div>
 
-        <!-- Page Range -->
-        <label style="margin-top:15px;">Start Page</label>
-        <input type="number" id="startPage" min="1" placeholder="1">
+        <input type="number" id="startPage" placeholder="Start Page (e.g., 1)">
+        <input type="number" id="endPage" placeholder="End Page (e.g., 5)">
 
-        <label style="margin-top:15px;">End Page</label>
-        <input type="number" id="endPage" min="1" placeholder="3">
+        <button class="btn" id="splitBtn">Split PDF</button>
 
-        <!-- Button -->
-        <button id="splitBtn">Split PDF</button>
+        <div id="progressContainer">
+            <div id="progressBar"></div>
+        </div>
+
         <p id="statusText"></p>
 
-        <!-- Progress Bar -->
-        <div id="progressContainer">
-            <div id="progressBarWrapper">
-                <div id="progressBar"></div>
-            </div>
-            <p id="progressText">0%</p>
+        <!-- 150 WORD SEO CONTENT -->
+        <div class="seo-text">
+            ToolSonics Split PDF is a fast, secure and easy-to-use online tool that allows users to extract pages from
+            any PDF file instantly. Whether you want to remove unwanted pages, extract important chapters, split a large
+            document into smaller files or share only selected parts, this tool makes everything simple. Designed for
+            students, teachers, offices, freelancers and global users, ToolSonics offers high-speed PDF processing with
+            a clean and modern interface. No installations or signups are required—just upload your PDF, enter page
+            numbers, and download your new file in seconds. All documents are processed safely on the server and are
+            deleted automatically after completion to ensure privacy. ToolSonics Split PDF works smoothly on Android,
+            iPhone, Windows and Mac devices, making it one of the most accessible PDF tools available worldwide.
         </div>
 
-        <!-- SEO TEXT (150 Words) -->
-        <div class="seo-text">
-            Split PDF by ToolSonics is a fast, secure, and easy-to-use online tool designed for global users 
-            who need to extract pages from PDF files instantly. Whether you want to remove unwanted pages, 
-            extract selected chapters, or create a smaller document, our PDF splitting engine ensures 
-            high-quality output with lightning-fast performance. This tool is fully mobile-friendly and works 
-            smoothly on all devices without requiring installation or sign-up. Your files are processed securely 
-            and never stored on our servers, keeping your privacy protected. With a clean interface and 
-            powerful backend processing, ToolSonics Split PDF is perfect for students, professionals, 
-            offices, and anyone dealing with PDF editing. Enjoy a reliable, free PDF splitter trusted by global users.
-        </div>
     </div>
 
     <script>
-        const BACKEND_URL = "https://toolsonics-backend.onrender.com/pdf/split";
+        const BACKEND_URL = "https://toolsonics-backend-production.up.railway.app/pdf/split";
 
         const pdfInput = document.getElementById("pdfFile");
-        const fileInfo = document.getElementById("fileInfo");
-        const startPage = document.getElementById("startPage");
-        const endPage = document.getElementById("endPage");
-        const splitBtn = document.getElementById("splitBtn");
+        const startInput = document.getElementById("startPage");
+        const endInput = document.getElementById("endPage");
         const statusText = document.getElementById("statusText");
-
         const progressContainer = document.getElementById("progressContainer");
         const progressBar = document.getElementById("progressBar");
-        const progressText = document.getElementById("progressText");
 
-        // show selected file name
-        pdfInput.addEventListener("change", () => {
-            if (pdfInput.files.length === 0) {
-                fileInfo.textContent = "No file selected";
-            } else {
-                fileInfo.textContent = pdfInput.files[0].name;
-            }
-        });
-
-        splitBtn.addEventListener("click", async () => {
+        document.getElementById("splitBtn").addEventListener("click", async () => {
             const file = pdfInput.files[0];
-            const s = parseInt(startPage.value);
-            const e = parseInt(endPage.value);
+            const start = parseInt(startInput.value);
+            const end = parseInt(endInput.value);
 
-            if (!file) {
-                statusText.textContent = "Please upload a PDF file.";
-                return;
-            }
-            if (!s || !e || s <= 0 || e <= 0) {
-                statusText.textContent = "Enter valid page numbers.";
-                return;
-            }
-            if (s > e) {
-                statusText.textContent = "Start page cannot be greater than end page.";
-                return;
-            }
+            if (!file) return statusText.textContent = "❗ Please upload a PDF file.";
+            if (!start || !end || start > end)
+                return statusText.textContent = "❗ Enter valid start & end page numbers.";
 
-            statusText.textContent = "";
+            statusText.textContent = "Starting split...";
             progressContainer.style.display = "block";
-            progressBar.style.width = "0%";
-            progressText.textContent = "0%";
+            progressBar.style.width = "25%";
 
-            // fake smooth progress
-            let fake = 0;
-            const fakeProgress = setInterval(() => {
-                if (fake < 90) {
-                    fake += Math.random() * 8;
-                    fake = Math.min(fake, 90);
-                    progressBar.style.width = fake + "%";
-                    progressText.textContent = Math.floor(fake) + "%";
-                }
-            }, 200);
-
-            // REAL REQUEST
             const formData = new FormData();
             formData.append("file", file);
-            formData.append("start_page", s);
-            formData.append("end_page", e);
+            formData.append("start_page", start);
+            formData.append("end_page", end);
 
             try {
-                const response = await fetch(BACKEND_URL, { method: "POST", body: formData });
+                progressBar.style.width = "55%";
+                statusText.textContent = "Uploading file...";
 
-                clearInterval(fakeProgress);
-                progressBar.style.width = "100%";
-                progressText.textContent = "100%";
+                const response = await fetch(BACKEND_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                progressBar.style.width = "80%";
+                statusText.textContent = "Processing...";
 
                 if (!response.ok) {
-                    statusText.textContent = "Error splitting PDF.";
+                    statusText.textContent = "❌ Error splitting PDF!";
                     return;
                 }
 
                 const blob = await response.blob();
                 const url = URL.createObjectURL(blob);
 
+                progressBar.style.width = "100%";
+                statusText.textContent = "✔ Done! Downloading...";
+
                 const a = document.createElement("a");
                 a.href = url;
                 a.download = "split.pdf";
                 a.click();
 
-                statusText.textContent = "Split complete! File downloaded.";
-            } catch {
-                statusText.textContent = "Network error. Try again.";
+            } catch (err) {
+                statusText.textContent = "❌ Network error. Try again.";
             }
         });
     </script>
