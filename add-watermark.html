@@ -2,303 +2,282 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Add Watermark to PDF Online | Free PDF Watermark Tool – ToolSonics</title>
+    <meta charset="UTF-8">
+    <title>Add Text Watermark Online | ToolSonics</title>
 
-    <!-- SEO META DESCRIPTION -->
+    <!-- SEO -->
     <meta name="description"
-        content="Add text watermark to your PDF files online for free using ToolSonics. Fast, secure and easy PDF watermark tool for professionals, students and businesses. No signup required.">
+          content="Add text watermark to PDFs online for free using ToolSonics. Fast, secure and high-quality watermark tool to protect documents. No installation required. Works on mobile and desktop.">
 
-    <!-- SEO KEYWORDS -->
     <meta name="keywords"
-        content="add watermark pdf, pdf watermark, text watermark pdf, free pdf tools, toolsonics">
+          content="add watermark pdf, text watermark, pdf watermark online, secure pdf tools, toolsonics">
 
-    <!-- OG TAGS -->
-    <meta property="og:title" content="Add Watermark to PDF Online – ToolSonics">
-    <meta property="og:description" content="Add watermark text to any PDF file online for free. Fast, secure & easy.">
-    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/add-watermark.png">
-    <meta property="og:url" content="https://abdulbasit7286.github.io/ToolSonics/add-watermark.html">
+    <meta property="og:title" content="Add Watermark to PDF – ToolSonics">
+    <meta property="og:description" content="Add text watermark to PDF files instantly. Free, fast, secure, watermark tool.">
+    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/watermark.png">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        :root {
-            --primary: #1a73e8;
-            --primary-dark: #0d57c8;
-            --bg: #f4f8ff;
-            --card: #ffffff;
-            --radius: 14px;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --text: #1a1a1a;
-            --light: #555;
-        }
-
         body {
-            background: var(--bg);
-            font-family: "Segoe UI", Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #eef3ff;
             margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 850px;
-            margin: auto;
-            padding: 28px;
-            background: var(--card);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
         }
 
         h1 {
             text-align: center;
-            color: var(--primary);
-            margin-bottom: 6px;
+            color: #0038ff;
+            margin-top: 35px;
+            font-size: 30px;
         }
 
-        p.subtitle {
+        p.center {
             text-align: center;
-            color: var(--light);
+            color: #555;
+        }
+
+        .card {
+            max-width: 700px;
+            margin: 25px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid #d7e1ff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Upload box */
+        .upload-label {
+            width: 100%;
+            height: 130px;
+            background: #f7f9ff;
+            border: 2px dashed #6c9bff;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: .3s;
+        }
+
+        .upload-label:hover {
+            background: #eaf0ff;
+            border-color: #3c6fff;
+        }
+
+        .upload-label i {
+            font-size: 40px;
+            color: #0051ff;
+        }
+
+        .upload-label span {
+            margin-top: 10px;
+            font-size: 17px;
+            color: #0038ff;
+            font-weight: 600;
         }
 
         #pdfFile {
             display: none;
         }
 
-        .file-label {
-            display: block;
-            padding: 15px;
-            background: #e8f0ff;
-            border: 2px dashed var(--primary);
-            cursor: pointer;
-            font-weight: 600;
-            text-align: center;
-            border-radius: var(--radius);
-            margin-top: 14px;
+        .input {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            margin-top: 18px;
+            border-radius: 8px;
+            border: 1px solid #c9d4ff;
         }
 
-        .file-info {
-            margin-top: 6px;
-            color: var(--light);
-            font-size: 14px;
-        }
-
-        input,
         select {
             width: 100%;
             padding: 12px;
-            margin-top: 14px;
-            border-radius: var(--radius);
-            border: 2px solid #dce6ff;
-            background: #eef4ff;
+            margin-top: 18px;
+            border-radius: 8px;
+            border: 1px solid #c9d4ff;
+            font-size: 15px;
         }
 
-        button {
+        .btn {
             width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            background: var(--primary);
-            color: white;
+            padding: 14px;
+            margin-top: 22px;
+            background: linear-gradient(to right, #0059ff, #0038ff);
             border: none;
-            border-radius: var(--radius);
+            border-radius: 8px;
+            color: white;
             font-size: 17px;
             cursor: pointer;
         }
 
-        button:hover {
-            background: var(--primary-dark);
+        .btn:hover {
+            opacity: 0.9;
         }
 
+        /* Progress bar */
         #progressContainer {
+            width: 100%;
+            height: 10px;
+            background: #dce6ff;
+            border-radius: 8px;
             display: none;
             margin-top: 18px;
         }
 
-        #progressBarWrapper {
-            width: 100%;
-            height: 12px;
-            background: #dbe5ff;
-            border-radius: 10px;
-        }
-
         #progressBar {
-            height: 12px;
             width: 0%;
-            background: var(--primary);
-            border-radius: 10px;
-        }
-
-        #progressText {
-            margin-top: 4px;
-            font-size: 14px;
-            color: var(--light);
+            height: 100%;
+            background: #0038ff;
+            border-radius: 8px;
+            transition: width 0.25s;
         }
 
         #statusText {
+            text-align: center;
             margin-top: 10px;
-            font-size: 14px;
-            color: var(--light);
+            color: #444;
         }
 
         .seo-text {
-            margin-top: 30px;
-            font-size: 14px;
-            color: var(--light);
+            margin-top: 25px;
             line-height: 1.6;
+            font-size: 14px;
+            color: #444;
+            text-align: justify;
         }
     </style>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>Add Watermark to PDF</h1>
-        <p class="subtitle">Add text watermark to any PDF – Fast, Free & Secure</p>
+<h1>Add Watermark to PDF</h1>
+<p class="center">Add custom text watermark to PDFs – Free, Fast & Secure</p>
 
-        <label for="pdfFile" class="file-label">📂 Choose PDF File</label>
-        <input type="file" id="pdfFile" accept="application/pdf">
-        <div id="fileInfo" class="file-info">No file selected</div>
+<div class="card">
 
-        <input type="text" id="watermarkText" placeholder="Enter watermark text (e.g. Confidential)">
+    <label for="pdfFile" class="upload-label">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span>Select PDF File</span>
+    </label>
 
-        <label style="font-weight:600; margin-top:15px;">Select Position</label>
-        <select id="position">
-            <option value="center">Center (Default)</option>
-            <option value="top-left">Top Left</option>
-            <option value="top-right">Top Right</option>
-            <option value="bottom-left">Bottom Left</option>
-            <option value="bottom-right">Bottom Right</option>
-        </select>
+    <input type="file" id="pdfFile" accept="application/pdf">
 
-        <label style="font-weight:600; margin-top:15px;">Opacity</label>
-        <select id="opacity">
-            <option value="0.2">20% (Light)</option>
-            <option value="0.4">40%</option>
-            <option value="0.6">60%</option>
-            <option value="0.8">80%</option>
-            <option value="1">100% (Dark)</option>
-        </select>
+    <input class="input" type="text" id="watermarkText" placeholder="Enter watermark text (e.g., Confidential)">
+    
+    <select id="rotation">
+        <option value="45">Rotate 45° (Recommended)</option>
+        <option value="0">0°</option>
+        <option value="90">90°</option>
+        <option value="180">180°</option>
+    </select>
 
-        <label style="font-weight:600; margin-top:15px;">Rotation</label>
-        <select id="rotation">
-            <option value="0">0°</option>
-            <option value="30">30°</option>
-            <option value="45">45° (Common)</option>
-            <option value="60">60°</option>
-            <option value="90">90°</option>
-        </select>
+    <select id="opacity">
+        <option value="0.4">Opacity 40% (Best)</option>
+        <option value="0.2">Opacity 20%</option>
+        <option value="0.6">Opacity 60%</option>
+        <option value="0.8">Opacity 80%</option>
+    </select>
 
-        <button id="watermarkBtn">Add Watermark</button>
+    <button id="wmBtn" class="btn">Add Watermark</button>
 
-        <div id="statusText"></div>
-
-        <!-- Progress Bar -->
-        <div id="progressContainer">
-            <div id="progressBarWrapper">
-                <div id="progressBar"></div>
-            </div>
-            <div id="progressText">0%</div>
-        </div>
-
-        <!-- SEO TEXT -->
-        <div class="seo-text">
-            ToolSonics Add Watermark is a powerful online tool designed to help you protect your PDF files
-            by adding custom text watermarks instantly. Whether you need to secure business reports,
-            confidential papers, school assignments, office documents or certificates, this free watermark
-            tool allows you to add professional-looking text watermarks without installing any software.
-            Choose the watermark position, transparency, and rotation to match your style. Your files remain
-            private and are processed securely—never stored permanently. ToolSonics is mobile-friendly,
-            globally optimized, and perfect for students, freelancers, offices, businesses and anyone who
-            wants to brand or secure their PDF documents quickly and easily.
-        </div>
+    <div id="progressContainer">
+        <div id="progressBar"></div>
     </div>
 
-    <script>
-        const BACKEND_URL = "https://toolsonics-backend.onrender.com/pdf/watermark";
+    <p id="statusText"></p>
 
-        const pdfFile = document.getElementById("pdfFile");
-        const fileInfo = document.getElementById("fileInfo");
+    <!-- SEO TEXT -->
+    <div class="seo-text">
+        ToolSonics Watermark PDF is a fast, simple and secure online tool that helps you add a visible text watermark to 
+        any PDF document. Whether you want to mark your document as Confidential, Draft, Private, Sample, Company Name 
+        or Copyrighted, this tool makes it extremely easy. Just upload your PDF, enter a watermark text, choose rotation 
+        and opacity, and instantly download your newly watermarked PDF. No signup or installation is required. All files 
+        are processed securely and automatically deleted after conversion, ensuring complete privacy. This tool is useful 
+        for students, businesses, offices, freelancers, designers, lawyers and anyone who needs document protection. It 
+        works perfectly on Android, iPhone, Windows and Mac. ToolSonics offers a global, fast and user-friendly watermark 
+        experience with a clean modern interface.
+    </div>
 
-        const watermarkText = document.getElementById("watermarkText");
-        const position = document.getElementById("position");
-        const opacity = document.getElementById("opacity");
-        const rotation = document.getElementById("rotation");
+</div>
 
-        const watermarkBtn = document.getElementById("watermarkBtn");
+<script>
+    const BACKEND_URL = "https://toolsonics-backend-production-88b3.up.railway.app/pdf/watermark";
 
-        const progressContainer = document.getElementById("progressContainer");
-        const progressBar = document.getElementById("progressBar");
-        const progressText = document.getElementById("progressText");
-        const statusText = document.getElementById("statusText");
+    const fileInput = document.getElementById("pdfFile");
+    const watermarkInput = document.getElementById("watermarkText");
+    const rotationSelect = document.getElementById("rotation");
+    const opacitySelect = document.getElementById("opacity");
 
-        pdfFile.addEventListener("change", () => {
-            fileInfo.textContent = pdfFile.files.length ? pdfFile.files[0].name : "No file selected";
-        });
+    const progressBar = document.getElementById("progressBar");
+    const progressContainer = document.getElementById("progressContainer");
+    const statusText = document.getElementById("statusText");
 
-        watermarkBtn.addEventListener("click", async () => {
-            const file = pdfFile.files[0];
-            const text = watermarkText.value.trim();
+    document.getElementById("wmBtn").addEventListener("click", async () => {
+        
+        const file = fileInput.files[0];
+        const text = watermarkInput.value.trim();
+        const rotation = rotationSelect.value;
+        const opacity = opacitySelect.value;
 
-            if (!file) {
-                statusText.textContent = "Please select a PDF file.";
+        if (!file) {
+            statusText.textContent = "❗ Please upload a PDF file.";
+            return;
+        }
+        if (!text) {
+            statusText.textContent = "❗ Enter watermark text.";
+            return;
+        }
+
+        progressContainer.style.display = "block";
+        progressBar.style.width = "25%";
+        statusText.textContent = "Starting...";
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("text", text);
+        formData.append("rotation", rotation);
+        formData.append("opacity", opacity);
+
+        try {
+            progressBar.style.width = "60%";
+            statusText.textContent = "Processing watermark...";
+
+            const res = await fetch(BACKEND_URL, {
+                method: "POST",
+                body: formData
+            });
+
+            progressBar.style.width = "90%";
+
+            if (!res.ok) {
+                const err = await res.text();
+                statusText.textContent = "❌ Error: " + err;
                 return;
             }
-            if (!text) {
-                statusText.textContent = "Enter watermark text.";
-                return;
-            }
 
-            progressContainer.style.display = "block";
-            progressBar.style.width = "10%";
-            progressText.textContent = "10%";
+            const blob = await res.blob();
+            const url = URL.createObjectURL(blob);
 
-            let fake = 10;
-            const interval = setInterval(() => {
-                if (fake < 90) {
-                    fake += Math.random() * 6;
-                    fake = Math.min(fake, 90);
-                    progressBar.style.width = fake + "%";
-                    progressText.textContent = Math.floor(fake) + "%";
-                }
-            }, 250);
+            progressBar.style.width = "100%";
+            statusText.textContent = "✔ Done! Downloading...";
 
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("text", text);
-            formData.append("position", position.value);
-            formData.append("opacity", opacity.value);
-            formData.append("rotation", rotation.value);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "watermarked.pdf";
+            a.click();
 
-            try {
-                const response = await fetch(BACKEND_URL, {
-                    method: "POST",
-                    body: formData
-                });
-
-                clearInterval(interval);
-                progressBar.style.width = "100%";
-                progressText.textContent = "100%";
-
-                if (!response.ok) {
-                    const err = await response.json();
-                    statusText.textContent = "Error: " + (err.error || "Something went wrong.");
-                    return;
-                }
-
-                const blob = await response.blob();
-                const url = URL.createObjectURL(blob);
-
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "watermarked.pdf";
-                a.click();
-
-                statusText.textContent = "Watermark added successfully ✔";
-            } catch (e) {
-                statusText.textContent = "Network error. Please try again.";
-            }
-        });
-    </script>
+        } catch (e) {
+            statusText.textContent = "❌ Network error.";
+        }
+    });
+</script>
 
 </body>
-
 </html>
