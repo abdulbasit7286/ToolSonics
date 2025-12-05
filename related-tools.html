@@ -1,4 +1,3 @@
-<!-- PREMIUM RELATED TOOLS SECTION -->
 <style>
 .related-section {
     margin-top: 60px;
@@ -17,7 +16,6 @@
     text-shadow: 0 0 10px #00c3ff;
 }
 
-/* Cards */
 .related-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -32,6 +30,7 @@
     color: white;
     transition: 0.3s;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .related-card:hover {
@@ -40,18 +39,15 @@
     box-shadow: 0 0 18px #00c3ff;
 }
 
-/* Icons */
 .related-icon {
     font-size: 30px;
     margin-bottom: 12px;
     color: #00c3ff;
 }
-
 .related-card h4 {
     font-size: 17px;
     margin-bottom: 4px;
 }
-
 .related-card p {
     font-size: 14px;
     opacity: 0.8;
@@ -60,38 +56,114 @@
 
 <div class="related-section">
     <div class="related-title">Related Tools</div>
-
-    <div class="related-grid">
-
-        <a href="/merge-pdf.html" class="related-card">
-            <div class="related-icon"><i class="fas fa-object-group"></i></div>
-            <h4>Merge PDF</h4>
-            <p>Combine multiple PDF files</p>
-        </a>
-
-        <a href="/split-pdf.html" class="related-card">
-            <div class="related-icon"><i class="fas fa-cut"></i></div>
-            <h4>Split PDF</h4>
-            <p>Split a PDF into separate pages</p>
-        </a>
-
-        <a href="/pdf-to-word.html" class="related-card">
-            <div class="related-icon"><i class="fas fa-file-word"></i></div>
-            <h4>PDF to Word</h4>
-            <p>Convert PDF to editable DOCX</p>
-        </a>
-
-        <a href="/image-to-pdf.html" class="related-card">
-            <div class="related-icon"><i class="fas fa-image"></i></div>
-            <h4>Image to PDF</h4>
-            <p>Convert JPG/PNG to PDF</p>
-        </a>
-
-        <a href="/compress-pdf.html" class="related-card">
-            <div class="related-icon"><i class="fas fa-compress"></i></div>
-            <h4>Compress PDF</h4>
-            <p>Reduce PDF file size</p>
-        </a>
-
-    </div>
+    <div id="relatedToolsGrid" class="related-grid"></div>
 </div>
+
+<script>
+const allTools = [
+
+    /* -------------------- PDF / DOCUMENT TOOLS -------------------- */
+    {name:"Merge PDF", icon:"fas fa-object-group", link:"merge-pdf.html", category:"pdf"},
+    {name:"Split PDF", icon:"fas fa-cut", link:"split-pdf.html", category:"pdf"},
+    {name:"Delete Pages", icon:"fas fa-trash-alt", link:"delete-pages.html", category:"pdf"},
+    {name:"Rotate PDF", icon:"fas fa-redo", link:"rotate-pages.html", category:"pdf"},
+    {name:"Reorder Pages", icon:"fas fa-sort", link:"reorder-pages.html", category:"pdf"},
+    {name:"Protect PDF", icon:"fas fa-lock", link:"protect-pdf.html", category:"pdf"},
+    {name:"Unlock PDF", icon:"fas fa-unlock", link:"unlock-pdf.html", category:"pdf"},
+    {name:"Add Page Numbers", icon:"fas fa-sort-numeric-down", link:"add-page-numbers.html", category:"pdf"},
+    {name:"Add Watermark", icon:"fas fa-tint", link:"add-watermark.html", category:"pdf"},
+    {name:"Text to PDF", icon:"fas fa-font", link:"text-to-pdf.html", category:"pdf"},
+    {name:"Images to PDF", icon:"fas fa-images", link:"images-to-pdf.html", category:"pdf"},
+    {name:"CSV ↔ Excel", icon:"fas fa-file-excel", link:"csv-excel-converter.html", category:"pdf"},
+    {name:"PDF to Image", icon:"fas fa-file-image", link:"pdf-to-image.html", category:"pdf"},
+    {name:"Image to PDF", icon:"fas fa-image", link:"image-to-pdf.html", category:"pdf"},
+    {name:"Compress PDF", icon:"fas fa-compress", link:"compress-pdf.html", category:"pdf"},
+    {name:"PDF to Word", icon:"fas fa-file-word", link:"pdf-to-word.html", category:"pdf"},
+    {name:"Word to PDF", icon:"fas fa-file-pdf", link:"word-to-pdf.html", category:"pdf"},
+    {name:"PDF to Excel", icon:"fas fa-file-excel", link:"pdf-to-excel.html", category:"pdf"},
+    {name:"PDF to Audio", icon:"fas fa-headphones", link:"pdf-to-audio.html", category:"pdf"},
+    {name:"Add Password to PDF", icon:"fas fa-key", link:"add-password.html", category:"pdf"},
+    {name:"Handwritten Note → PDF", icon:"fas fa-pen", link:"handwritten-to-pdf.html", category:"pdf"},
+    {name:"Translate PDF", icon:"fas fa-language", link:"translate-pdf.html", category:"pdf"},
+    {name:"Digital Signature PDF", icon:"fas fa-signature", link:"digital-signature.html", category:"pdf"},
+    {name:"PDF to XML", icon:"fas fa-code", link:"pdf-to-xml.html", category:"pdf"},
+    {name:"Flipbook Viewer", icon:"fas fa-book", link:"pdf-flipbook.html", category:"pdf"},
+    {name:"E-Way Bill to PDF", icon:"fas fa-file-invoice", link:"eway-pdf.html", category:"pdf"},
+    {name:"Bank Statement → Excel", icon:"fas fa-file-invoice-dollar", link:"bank-to-excel.html", category:"pdf"},
+    {name:"Tally to Excel", icon:"fas fa-chart-bar", link:"tally-to-excel.html", category:"pdf"},
+    {name:"Excel to Invoice", icon:"fas fa-file-invoice", link:"excel-to-invoice.html", category:"pdf"},
+
+    /* -------------------- IMAGE TOOLS -------------------- */
+    {name:"Image Converter", icon:"fas fa-exchange-alt", link:"image-converter.html", category:"image"},
+    {name:"Merge Image", icon:"fas fa-object-group", link:"merge-image.html", category:"image"},
+    {name:"Image Compressor", icon:"fas fa-compress-alt", link:"image-compressor.html", category:"image"},
+    {name:"Image Resizer", icon:"fas fa-expand-alt", link:"image-resizer.html", category:"image"},
+    {name:"Image Cropper", icon:"fas fa-crop-alt", link:"image-cropper.html", category:"image"},
+    {name:"Image Rotator", icon:"fas fa-sync", link:"image-rotator.html", category:"image"},
+    {name:"Background Remover", icon:"fas fa-eraser", link:"bg-remover.html", category:"image"},
+
+    /* -------------------- CALCULATOR TOOLS -------------------- */
+    {name:"EMI Calculator", icon:"fas fa-money-check-alt", link:"EMI-calculator.html", category:"calc"},
+    {name:"SIP Calculator", icon:"fas fa-chart-line", link:"SIP-calculator.html", category:"calc"},
+    {name:"PPF Calculator", icon:"fas fa-piggy-bank", link:"PPF-calculator.html", category:"calc"},
+    {name:"Tax Calculator", icon:"fas fa-receipt", link:"TAX-calculator.html", category:"calc"},
+    {name:"Currency Converter", icon:"fas fa-exchange-alt", link:"currency-converter.html", category:"calc"},
+    {name:"Compound Interest", icon:"fas fa-chart-area", link:"compound-interest-calculator.html", category:"calc"},
+    {name:"Area Converter", icon:"fas fa-home", link:"area-converter.html", category:"calc"},
+    {name:"Budget Generator", icon:"fas fa-wallet", link:"budget-generator.html", category:"calc"},
+    {name:"Excel EMI Calculator", icon:"fas fa-file-excel", link:"loan-emi-calculator.html", category:"calc"},
+    {name:"Salary Slip Generator", icon:"fas fa-file-invoice", link:"slip-generator.html", category:"calc"},
+    {name:"Age Calculator", icon:"fas fa-birthday-cake", link:"age-calculator.html", category:"calc"},
+    {name:"BMI Calculator", icon:"fas fa-weight", link:"BMI-calculator.html", category:"calc"},
+    {name:"GST Calculator", icon:"fas fa-percent", link:"gst-calculator.html", category:"calc"},
+    {name:"Percentage Calculator", icon:"fas fa-percent", link:"percentage-calculator.html", category:"calc"},
+
+    /* -------------------- UTILITY TOOLS -------------------- */
+    {name:"QR Code Generator", icon:"fas fa-qrcode", link:"qr-code-generator.html", category:"utility"},
+    {name:"Barcode Generator", icon:"fas fa-barcode", link:"barcode-generator.html", category:"utility"},
+    {name:"UUID Generator", icon:"fas fa-fingerprint", link:"uuid-generator.html", category:"utility"},
+    {name:"Unit Converter", icon:"fas fa-ruler-combined", link:"unit-converter.html", category:"utility"},
+    {name:"Time Zone Converter", icon:"fas fa-globe", link:"time-zone-converter.html", category:"utility"},
+    {name:"Password Generator", icon:"fas fa-key", link:"random-no-pass-generator.html", category:"utility"},
+    {name:"World Clock", icon:"fas fa-clock", link:"world-clock.html", category:"utility"},
+    {name:"Stopwatch", icon:"fas fa-stopwatch", link:"stopwatch.html", category:"utility"},
+    {name:"Countdown Timer", icon:"fas fa-hourglass-half", link:"countdown-timer.html", category:"utility"},
+
+    /* -------------------- WEB / DEV TOOLS -------------------- */
+    {name:"HTML/CSS/JS Minifier", icon:"fas fa-file-code", link:"html-css-js-minifier.html", category:"dev"},
+    {name:"JSON Formatter", icon:"fas fa-code", link:"JSON Formatter & Validator.html", category:"dev"},
+    {name:"Base64 Encoder/Decoder", icon:"fas fa-lock", link:"base64.html", category:"dev"},
+    {name:"URL Encoder/Decoder", icon:"fas fa-link", link:"url-encoder-decoder.html", category:"dev"},
+    {name:"Color Picker", icon:"fas fa-palette", link:"color-picker.html", category:"dev"},
+    {name:"Regex Tester", icon:"fas fa-terminal", link:"regex-tester.html", category:"dev"},
+
+    /* -------------------- AI TOOLS -------------------- */
+    {name:"AI PPT Generator", icon:"fas fa-file-powerpoint", link:"ppt-generator.html", category:"ai"},
+    {name:"Resume Builder", icon:"fas fa-file-alt", link:"resume-builder.html", category:"ai"},
+    {name:"Resume Optimizer", icon:"fas fa-search", link:"resume-keyword-optimizer.html", category:"ai"},
+
+    /* -------------------- ENTERTAINMENT -------------------- */
+    {name:"Dice Roller", icon:"fas fa-dice", link:"dice-roller.html", category:"fun"},
+    {name:"Coin Flipper", icon:"fas fa-coins", link:"coin-flipper.html", category:"fun"},
+    {name:"Quote Generator", icon:"fas fa-quote-right", link:"random-quote-generator.html", category:"fun"},
+
+    /* -------------------- EDUCATION -------------------- */
+    {name:"Periodic Table", icon:"fas fa-atom", link:"periodic-table.html", category:"edu"},
+    {name:"Math Formula Calculator", icon:"fas fa-square-root-alt", link:"math-formula-calculator.html", category:"edu"},
+    {name:"Scientific Constants", icon:"fas fa-flask", link:"scientific-constants.html", category:"edu"}
+];
+
+const currentPage = window.location.pathname.split("/").pop();
+
+const currentTool = allTools.find(t => t.link === currentPage);
+const relatedTools = allTools.filter(t => t.category === currentTool.category && t.link !== currentPage);
+
+document.getElementById("relatedToolsGrid").innerHTML =
+    relatedTools.map(t => `
+        <a href="${t.link}" class="related-card">
+            <div class="related-icon"><i class="${t.icon}"></i></div>
+            <h4>${t.name}</h4>
+            <p>Open tool</p>
+        </a>
+    `).join("");
+</script>
