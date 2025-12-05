@@ -3,206 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolSonics – Smart, Fast & Easy-to-Use Tools</title>
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://toolsonics.com/">
+    <title>ToolSonics - Smart, Fast & Easy-to-Use Tools</title>
 
     <!-- SEO -->
-    <meta name="description" content="Smart, Fast & Easy-to-Use Tools trusted worldwide. PDF tools, image tools, calculators, AI tools & more — all in one place. Free, fast and secure.">
-    <meta name="keywords" content="PDF tools, image tools, calculator tools, AI tools, online tools, free tools, convert PDF, compress image, merge PDF">
+    <meta name="description" content="Smart, fast & easy-to-use online tools trusted worldwide. PDF, Image, Office, CA, AI tools & more. All in one place.">
+    <meta name="keywords" content="pdf tools, image tools, convert, compress, online tools, toolsonics, office tools, CA tools">
 
-    <!-- Global Style -->
-    <link rel="stylesheet" href="/global-style.css">
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="global-style.css">
 
-    <!-- Icons -->
+    <!-- Fonts / Icons -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
 
+    <style>
+        /* Make navbar/footer containers visible */
+        #navbar, #footer, #related-tools {
+            width: 100%;
+        }
+    </style>
+
+</head>
 <body>
 
-<!-- NAVBAR (auto-load) -->
-<div id="navbar"></div>
-<script>
-fetch("/navbar.html").then(r=>r.text()).then(d=>navbar.innerHTML=d);
-</script>
+    <!-- NAVBAR AUTO LOAD -->
+    <div id="navbar"></div>
 
-
-<!-- HERO SECTION -->
-<section class="hero">
-    <div class="hero-content">
-        <h1 class="hero-title">Smart, Fast & Easy-to-Use Tools trusted worldwide</h1>
-        <p class="hero-subtitle">50+ Premium tools for PDF, images, calculators, AI & more — all in one place.</p>
-
-        <a href="#tools" class="btn hero-btn">Explore Tools</a>
-
-        <div class="hero-icons">
-            <div class="hero-icon"><i class="fas fa-file-pdf"></i></div>
-            <div class="hero-icon"><i class="fas fa-image"></i></div>
-            <div class="hero-icon"><i class="fas fa-calculator"></i></div>
-            <div class="hero-icon"><i class="fas fa-code"></i></div>
-            <div class="hero-icon"><i class="fas fa-robot"></i></div>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1>Smart, Fast & Easy-to-Use Tools Trusted Worldwide</h1>
+            <p>Convert, compress, edit & simplify your work with 70+ professional online tools.</p>
+            <a href="#tools" class="cta-button">Explore Tools</a>
         </div>
-    </div>
-</section>
+    </section>
 
+    <!-- CATEGORY FILTER -->
+    <section class="category-section">
+        <div class="container">
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">All Tools</button>
+                <button class="category-btn" data-category="document">Document</button>
+                <button class="category-btn" data-category="image">Image</button>
+                <button class="category-btn" data-category="calculator">Calculators</button>
+                <button class="category-btn" data-category="ai">AI Tools</button>
+                <button class="category-btn" data-category="utility">Utility</button>
+                <button class="category-btn" data-category="dev">Web Tools</button>
+            </div>
+        </div>
+    </section>
 
-<!-- SEARCH BAR -->
-<section class="search-area">
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search a tool...">
-        <button><i class="fas fa-search"></i></button>
-    </div>
-</section>
+    <!-- SEARCH -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search Tools...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
 
+    <!-- MAIN TOOLS GRID -->
+    <main class="container" id="tools">
 
-<!-- CATEGORY BUTTONS -->
-<section class="category-area">
-    <h2 class="section-heading">Browse by Category</h2>
+        <h2 class="section-title" style="margin-top:40px;">All Tools</h2>
 
-    <div class="category-buttons">
-        <button class="cat-btn active" data-category="all"><i class="fas fa-th"></i> All Tools</button>
-        <button class="cat-btn" data-category="document"><i class="fas fa-file-alt"></i> Document</button>
-        <button class="cat-btn" data-category="image"><i class="fas fa-image"></i> Image</button>
-        <button class="cat-btn" data-category="calculator"><i class="fas fa-calculator"></i> Calculator</button>
-        <button class="cat-btn" data-category="web"><i class="fas fa-code"></i> Web</button>
-        <button class="cat-btn" data-category="ai"><i class="fas fa-robot "></i> AI</button>
-        <button class="cat-btn" data-category="utility"><i class="fas fa-tools"></i> Utility</button>
-        <button class="cat-btn" data-category="time"><i class="fas fa-clock"></i> Time</button>
-    </div>
-</section>
+        <div class="tools-grid" id="toolGrid">
 
+            <!-- Example — 10 Cards shown -->
+            <!-- (I will generate 70+ cards for you automatically in next step) -->
 
-<!-- POPULAR TOOLS SECTION -->
-<section class="popular-tools">
-    <h2 class="section-heading">Popular Tools</h2>
+            <div class="tool-card" data-category="document">
+                <div class="tool-icon-small"><i class="fas fa-object-group"></i></div>
+                <h3>Merge PDF</h3>
+                <p>Combine multiple PDFs into a single file.</p>
+                <a href="merge-pdf.html" class="tool-button">Use Tool</a>
+            </div>
 
-    <div class="tools-grid">
+            <div class="tool-card" data-category="document">
+                <div class="tool-icon-small"><i class="fas fa-cut"></i></div>
+                <h3>Split PDF</h3>
+                <p>Split one PDF into multiple files.</p>
+                <a href="split-pdf.html" class="tool-button">Use Tool</a>
+            </div>
 
-        <a href="merge-pdf.html" class="tool-card">
-            <i class="fas fa-object-group tool-icon"></i>
-            <h3>Merge PDF</h3>
-            <p>Combine multiple PDFs into one.</p>
-        </a>
+            <div class="tool-card" data-category="image">
+                <div class="tool-icon-small"><i class="fas fa-image"></i></div>
+                <h3>Image Converter</h3>
+                <p>Convert images into different formats.</p>
+                <a href="image-converter.html" class="tool-button">Use Tool</a>
+            </div>
 
-        <a href="image-compressor.html" class="tool-card">
-            <i class="fas fa-compress tool-icon"></i>
-            <h3>Image Compressor</h3>
-            <p>Reduce image size without losing quality.</p>
-        </a>
+            <div class="tool-card" data-category="ai">
+                <div class="tool-icon-small"><i class="fas fa-file-powerpoint"></i></div>
+                <h3>AI PPT Generator</h3>
+                <p>Create stunning PPTs automatically.</p>
+                <a href="ppt-generator.html" class="tool-button">Use Tool</a>
+            </div>
 
-        <a href="image-converter.html" class="tool-card">
-            <i class="fas fa-image tool-icon"></i>
-            <h3>Image Converter</h3>
-            <p>Convert images to any format.</p>
-        </a>
+            <div class="tool-card" data-category="calculator">
+                <div class="tool-icon-small"><i class="fas fa-calculator"></i></div>
+                <h3>EMI Calculator</h3>
+                <p>Instant EMI calculation in seconds.</p>
+                <a href="EMI-calculator.html" class="tool-button">Use Tool</a>
+            </div>
 
-        <a href="ppt-generator.html" class="tool-card">
-            <i class="fas fa-file-powerpoint tool-icon"></i>
-            <h3>AI PPT Generator</h3>
-            <p>Create stunning PPTs with AI.</p>
-        </a>
+        </div>
+    </main>
 
-    </div>
-</section>
+    <!-- RELATED TOOLS AUTO LOAD -->
+    <div id="related-tools"></div>
 
+    <!-- FOOTER AUTO LOAD -->
+    <div id="footer"></div>
 
-<!-- FULL TOOLS LIST -->
-<section id="tools" class="all-tools">
+    <!-- JS AUTO-LOADING SYSTEM -->
+    <script>
+        // Auto-import modular components
+        function loadComponent(id, file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(id).innerHTML = data);
+        }
 
-    <h2 class="section-heading">All Tools</h2>
-    <p class="section-subtext">Explore all categories and tools</p>
+        loadComponent("navbar", "navbar.html");
+        loadComponent("footer", "footer.html");
+        loadComponent("related-tools", "related-tools.html");
 
-    <div class="tools-grid" id="toolList">
+        // Search filter
+        const searchInput = document.getElementById("searchInput");
+        const cards = document.querySelectorAll(".tool-card");
 
-        <!-- Example Card -->
-        <a class="tool-card" data-category="document" href="pdf-to-word.html">
-            <i class="fas fa-file-word tool-icon"></i>
-            <h3>PDF → Word</h3>
-            <p>Convert PDF into editable Word documents.</p>
-        </a>
-
-        <a class="tool-card" data-category="document" href="split-pdf.html">
-            <i class="fas fa-cut tool-icon"></i>
-            <h3>Split PDF</h3>
-            <p>Split one PDF into multiple files.</p>
-        </a>
-
-        <a class="tool-card" data-category="calculator" href="emi-calculator.html">
-            <i class="fas fa-money-check-alt tool-icon"></i>
-            <h3>EMI Calculator</h3>
-            <p>Calculate loan EMI instantly.</p>
-        </a>
-
-        <a class="tool-card" data-category="image" href="image-resizer.html">
-            <i class="fas fa-expand tool-icon"></i>
-            <h3>Image Resizer</h3>
-            <p>Resize images easily.</p>
-        </a>
-
-        <!-- >>> You will paste rest of your tools here (I will help you convert all) <<< -->
-
-    </div>
-</section>
-
-
-<!-- ABOUT SECTION -->
-<section class="about-section">
-    <h2>About ToolSonics</h2>
-    <p>
-        ToolSonics provides 50+ smart online tools that help millions of users with  
-        PDF tasks, image editing, AI assistance, calculations, and daily utilities —  
-        all free, fast, and secure.
-    </p>
-</section>
-
-
-<!-- CONTACT SECTION -->
-<section class="contact-section">
-    <h2>Contact Us</h2>
-    <p>Have a question or suggestion? We’d love to hear from you.</p>
-    <a href="mailto:toolsonics6@gmail.com" class="btn contact-btn">toolsonics6@gmail.com</a>
-</section>
-
-
-<!-- FOOTER (auto-load) -->
-<div id="footer"></div>
-<script>
-fetch("/footer.html").then(r=>r.text()).then(d=>footer.innerHTML=d);
-</script>
-
-
-<!-- TOOL FILTER SCRIPT -->
-<script>
-let search = document.getElementById("searchInput");
-let tools = document.querySelectorAll(".tool-card");
-let buttons = document.querySelectorAll(".cat-btn");
-
-buttons.forEach(btn=>{
-    btn.addEventListener("click",()=>{
-        buttons.forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-
-        let cat = btn.dataset.category;
-
-        tools.forEach(t=>{
-            if(cat==="all" || t.dataset.category===cat){
-                t.style.display="flex";
-            } else {
-                t.style.display="none";
-            }
+        searchInput.addEventListener("input", () => {
+            const val = searchInput.value.toLowerCase();
+            cards.forEach(card => {
+                const title = card.querySelector("h3").innerText.toLowerCase();
+                card.style.display = title.includes(val) ? "block" : "none";
+            });
         });
-    });
-});
-
-search.addEventListener("input",()=>{
-    let val = search.value.toLowerCase();
-    tools.forEach(t=>{
-        let name = t.querySelector("h3").innerText.toLowerCase();
-        t.style.display = name.includes(val) ? "flex" : "none";
-    });
-});
-</script>
+    </script>
 
 </body>
 </html>
