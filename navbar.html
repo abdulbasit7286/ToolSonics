@@ -1,0 +1,84 @@
+<!-- NAVBAR -->
+<style>
+.navbar {
+  width: 100%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 28px;
+  font-weight: 800;
+  color: #00aaff;
+  text-shadow: 0 0 10px #00aaff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.nav-links a {
+  color: #fff;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00c3ff;
+}
+
+.menu-btn {
+  display: none;
+  font-size: 28px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+  }
+  .nav-links.show {
+    display: flex;
+  }
+  .menu-btn {
+    display: block;
+  }
+}
+</style>
+
+<div class="navbar">
+  <div class="nav-logo">ToolSonics</div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="/">Home</a>
+    <a href="/tools.html">Tools</a>
+    <a href="/shop-tools.html">Shop Tools</a>
+    <a href="/about.html">About</a>
+    <a href="mailto:toolsonics6@gmail.com">Contact</a>
+  </div>
+
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</div>
+
+<script>
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
