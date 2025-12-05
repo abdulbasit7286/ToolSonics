@@ -1,248 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
     <meta charset="UTF-8">
-    <title>Merge PDF Online Free | ToolSonics</title>
-
-    <!-- SEO META -->
-    <meta name="description"
-        content="Merge PDF files online for free with ToolSonics. A fast, secure, and easy-to-use PDF merger that helps you combine multiple PDF documents into one single file instantly. No signup required. Perfect for students, professionals, offices, freelancers and global users looking for a reliable PDF merging solution.">
-
-    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/merge-pdf.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge PDF – ToolSonics</title>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="global-style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #eef3ff;
-            color: #1a1a1a;
+        /* WRAPPER */
+        .tool-wrapper {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
         }
 
-        h1 {
+        /* TOOL HEADER */
+        .tool-header {
             text-align: center;
-            color: #0038ff;
-            margin-top: 40px;
-            font-size: 30px;
-            font-weight: 700;
+            margin-bottom: 30px;
         }
 
-        p.center {
-            text-align: center;
+        .tool-header i {
+            font-size: 55px;
+            color: #00c3ff;
+            margin-bottom: 12px;
+            text-shadow: 0 0 15px #00c3ff;
+        }
+
+        .tool-header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .tool-header p {
+            color: #bcd7ff;
             font-size: 16px;
-            color: #555;
-            margin-bottom: 25px;
         }
 
-        .card {
-            max-width: 700px;
-            margin: 0 auto;
-            background: white;
-            padding: 35px;
-            border-radius: 14px;
-            border: 1px solid #d7e1ff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        /* PREMIUM CENTER UPLOAD BUTTON */
-        .upload-label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            width: 100%;
-            height: 130px;
-
-            border: 2px dashed #6c9bff;
-            background: #f7f9ff;
-
-            border-radius: 14px;
-            cursor: pointer;
-            transition: 0.3s;
-
-            margin: 0 auto;
+        /* UPLOAD BOX */
+        .upload-box {
+            margin-top: 30px;
+            padding: 40px;
+            border: 2px dashed #00c3ff;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
             text-align: center;
-
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: 0.3s;
         }
 
-        .upload-label:hover {
-            background: #eaf0ff;
-            border-color: #3c6fff;
-            transform: scale(1.02);
+        .upload-box:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.09);
         }
 
-        .upload-label i {
-            font-size: 38px;
-            color: #0051ff;
-            margin-bottom: 10px;
-        }
-
-        .upload-label span {
-            font-size: 17px;
-            color: #0038ff;
+        .upload-box label {
+            font-size: 18px;
             font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 10px;
+            background: #00c3ff;
+            color: #000;
+            cursor: pointer;
+            display: inline-block;
+            box-shadow: 0 0 15px #00c3ff;
         }
 
-        .upload-label small {
+        .upload-box small {
+            display: block;
+            margin-top: 8px;
+            color: #bcd7ff;
             font-size: 13px;
-            color: #6b7bb8;
         }
 
-        #pdfFiles {
+        .upload-box input {
             display: none;
         }
 
-        /* Main Button */
-        .btn {
-            background: linear-gradient(to right, #0059ff, #0038ff);
-            color: #fff;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            font-size: 17px;
-            cursor: pointer;
-            width: 100%;
+        /* BUTTON */
+        .primary-btn {
             margin-top: 25px;
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            cursor: pointer;
+            color: black;
+            box-shadow: 0 0 18px #00c3ff;
             transition: 0.25s;
         }
 
-        .btn:hover {
-            opacity: 0.92;
+        .primary-btn:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
         }
 
-        /* Progress Bar */
+        /* PROGRESS */
         #progressContainer {
-            width: 100%;
+            margin-top: 20px;
             height: 10px;
-            background: #dce6ff;
-            border-radius: 8px;
-            margin-top: 15px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 6px;
             display: none;
         }
 
         #progressBar {
             height: 100%;
             width: 0%;
-            background: #0038ff;
-            border-radius: 8px;
-            transition: 0.25s;
+            background: #00c3ff;
+            border-radius: 6px;
+            box-shadow: 0 0 12px #00c3ff;
         }
 
         #statusText {
+            color: white;
             text-align: center;
             margin-top: 12px;
-            font-size: 14px;
-            color: #444;
+            font-size: 15px;
         }
 
         /* SEO TEXT */
         .seo-text {
-            margin-top: 25px;
+            margin-top: 30px;
+            color: #d0e6ff;
             font-size: 14px;
-            color: #4b4b4b;
-            line-height: 1.6;
-            text-align: justify;
+            line-height: 1.7;
+            background: rgba(255,255,255,0.04);
+            padding: 18px;
+            border-radius: 12px;
         }
     </style>
-
-    <!-- ICON CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
 
 <body>
 
-    <h1>Merge PDF Files Online</h1>
-    <p class="center">Fast, secure & easy PDF merger – Combine multiple PDFs instantly.</p>
+    <!-- NAVBAR AUTO LOAD -->
+    <div id="navbar"></div>
 
-    <div class="card">
+    <div class="tool-wrapper">
 
-        <!-- PREMIUM UPLOAD BOX -->
-        <label for="pdfFiles" class="upload-label">
-            <i class="fa-solid fa-file-pdf"></i>
-            <span>Choose PDF Files</span>
+        <!-- HEADER -->
+        <div class="tool-header">
+            <i class="fa-solid fa-object-group"></i>
+            <h1>Merge PDF Files</h1>
+            <p>Combine multiple PDF documents into a single, clean file.</p>
+        </div>
+
+        <!-- UPLOAD BOX -->
+        <div class="upload-box">
+            <label for="pdfFiles">Choose PDF Files</label>
+            <input type="file" id="pdfFiles" accept="application/pdf" multiple>
             <small>Select 2 or more PDF files</small>
-        </label>
+        </div>
 
-        <input type="file" id="pdfFiles" accept="application/pdf" multiple>
+        <!-- BUTTON -->
+        <button class="primary-btn" id="mergeBtn">Merge PDFs</button>
 
-        <button class="btn" id="mergeBtn">Merge PDFs</button>
-
+        <!-- PROGRESS -->
         <div id="progressContainer">
             <div id="progressBar"></div>
         </div>
 
         <p id="statusText"></p>
 
-        <!-- 🔥 FULL 150-WORD GLOBAL SEO CONTENT -->
+        <!-- SEO TEXT -->
         <div class="seo-text">
-            ToolSonics Merge PDF is a fast, simple and reliable online tool that allows users to combine multiple PDF
-            files into one clean, organized document. This tool is designed for students, working professionals,
-            teachers, freelancers, accountants and businesses that require easy document merging without installing any
-            software. All processing is done securely on the server, ensuring complete privacy and data protection.
-            Uploaded files are instantly deleted after merging, so your documents remain safe. The tool works smoothly
-            on Android, iPhone, Windows, and Mac devices, providing a globally accessible PDF merging solution. With a
-            clean interface, powerful backend and high-speed CDN delivery, ToolSonics ensures lightning-fast performance
-            for users worldwide. Just upload your PDFs, click merge, and download your combined file within seconds.
+            ToolSonics Merge PDF allows you to quickly combine multiple PDF documents into one organized file. 
+            No signup, no watermark, no limits. Perfect for office work, government forms, student assignments, 
+            CA firms, legal paperwork, invoices, contracts and more. Safe and lightning–fast merging powered by 
+            our optimized backend system.
         </div>
 
+        <!-- RELATED TOOLS -->
+        <div id="related-tools-container"></div>
     </div>
 
+    <!-- FOOTER AUTO LOAD -->
+    <div id="footer"></div>
+
     <script>
+        /* LOAD COMPONENTS */
+        function load(id, file) {
+            fetch(file).then(res => res.text()).then(data => {
+                document.getElementById(id).innerHTML = data;
+            });
+        }
+
+        load("navbar", "navbar.html");
+        load("footer", "footer.html");
+        load("related-tools-container", "related-tools.html?tool=merge-pdf");
+
+        /* BACKEND MERGE FUNCTION */
         const BACKEND_URL = "https://toolsonics-backend-production-88b3.up.railway.app/pdf/merge";
 
-        const fileInput = document.getElementById("pdfFiles");
+        const input = document.getElementById("pdfFiles");
         const mergeBtn = document.getElementById("mergeBtn");
-        const statusText = document.getElementById("statusText");
         const progressContainer = document.getElementById("progressContainer");
         const progressBar = document.getElementById("progressBar");
+        const statusText = document.getElementById("statusText");
 
         mergeBtn.addEventListener("click", async () => {
-            const files = fileInput.files;
-
+            const files = input.files;
             if (files.length < 2) {
                 statusText.textContent = "❗ Please select at least 2 PDF files.";
                 return;
             }
 
-            statusText.textContent = "Starting merge...";
             progressContainer.style.display = "block";
-            progressBar.style.width = "20%";
+            progressBar.style.width = "25%";
+            statusText.textContent = "Uploading files...";
 
             const formData = new FormData();
-            for (let i = 0; i < files.length; i++) formData.append("files", files[i]);
+            [...files].forEach(f => formData.append("files", f));
 
             try {
-                progressBar.style.width = "45%";
-                statusText.textContent = "Uploading files...";
+                const response = await fetch(BACKEND_URL, {
+                    method: "POST",
+                    body: formData
+                });
 
-                const response = await fetch(BACKEND_URL, { method: "POST", body: formData });
-
-                progressBar.style.width = "75%";
-                statusText.textContent = "Processing...";
+                progressBar.style.width = "70%";
+                statusText.textContent = "Merging PDFs...";
 
                 if (!response.ok) {
-                    statusText.textContent = "❌ Error merging files!";
+                    statusText.textContent = "❌ Merge failed.";
                     return;
                 }
 
                 const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
+                const url = URL.createObjectURL(blob);
 
                 progressBar.style.width = "100%";
-                statusText.textContent = "✔ Merge complete! Downloading...";
+                statusText.textContent = "✔ Merge complete! Downloading…";
 
                 const a = document.createElement("a");
                 a.href = url;
                 a.download = "merged.pdf";
                 a.click();
 
-            } catch (error) {
+            } catch (err) {
                 statusText.textContent = "❌ Network error.";
                 progressBar.style.width = "0%";
             }
