@@ -1,136 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us - ToolSonics</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ToolSonics</title>
 
-<!-- Global Style -->
-<link rel="stylesheet" href="global-style.css">
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="global-style.css">
 
-<style>
-    .about-hero {
-        padding: 100px 20px;
-        text-align: center;
-        color: white;
-        background: linear-gradient(135deg, #1a73e8, #0d47a1);
-    }
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            padding: 90px 20px;
+            text-align: center;
+            color: white;
+        }
+        .about-hero h1 {
+            font-size: 2.7rem;
+            font-weight: 700;
+        }
+        .about-container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            line-height: 1.75;
+        }
+        .about-container h2 {
+            color: #1a73e8;
+            margin-top: 30px;
+        }
+        .about-container p {
+            color: #444;
+            margin-bottom: 15px;
+        }
 
-    .about-hero h1 {
-        font-size: 3rem;
-        margin-bottom: 10px;
-        font-weight: 700;
-    }
+        .mission-box {
+            background: #f5f9ff;
+            border-left: 5px solid #1a73e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
 
-    .about-hero p {
-        font-size: 1.2rem;
-        opacity: 0.9;
-    }
-
-    .about-section {
-        max-width: 900px;
-        margin: 40px auto;
-        background: white;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-    }
-
-    .about-section h2 {
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-        color: #1a73e8;
-    }
-
-    .about-section p {
-        font-size: 1.05rem;
-        color: #444;
-        margin-bottom: 20px;
-        line-height: 1.7;
-    }
-
-    .stats-box {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 30px;
-        text-align: center;
-    }
-
-    .stats-box div {
-        background: #f5f7ff;
-        padding: 25px;
-        border-radius: 10px;
-        width: 30%;
-    }
-
-    .stats-box h3 {
-        font-size: 2rem;
-        color: #1a73e8;
-    }
-
-    .stats-box p {
-        color: #555;
-        margin-top: 5px;
-    }
-
-    @media(max-width: 768px) {
-        .stats-box {
-            flex-direction: column;
+        .stats-boxes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
             gap: 20px;
         }
-        .stats-box div {
-            width: 100%;
-        }
-    }
-</style>
 
+        .stat {
+            flex: 1;
+            min-width: 180px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 2rem;
+            color: #1a73e8;
+        }
+
+        .stat p {
+            color: #555;
+            margin-top: 8px;
+        }
+    </style>
 </head>
+
 <body>
 
 <div id="navbar"></div>
 
-<!-- HERO -->
 <section class="about-hero">
     <h1>About ToolSonics</h1>
-    <p>Smart, Fast & Easy-to-Use Tools trusted by users worldwide.</p>
+    <p>Your trusted platform for smart, fast and easy-to-use online tools.</p>
 </section>
 
-<!-- CONTENT -->
-<section class="about-section">
+<section class="about-container">
+
     <h2>Who We Are</h2>
     <p>
-        ToolSonics is a modern all-in-one online tools platform designed to make your digital tasks 
-        simple, fast and reliable. From PDF converters and image editors to calculators, AI tools, 
-        and developer utilities — everything is available in one clean interface.
+        ToolSonics is a modern online platform offering 70+ free tools designed to make 
+        digital tasks easier, faster, and more efficient.  
+        From PDF utilities, image converters, AI tools, calculators, developer tools, 
+        and document utilities — we aim to be your “All-in-One Tools Hub”.
     </p>
 
     <h2>Our Mission</h2>
+    <div class="mission-box">
+        <p>
+            Our mission is simple: <b>Make complex digital tasks simple for everyone.</b>  
+            Whether you are a student, CA, developer, business owner, or everyday user —  
+            ToolSonics provides tools that save your time and boost your productivity.
+        </p>
+    </div>
+
+    <h2>Why ToolSonics?</h2>
+    <p>We focus on 4 core pillars:</p>
+
+    <ul>
+        <li><b>Speed:</b> Our tools work instantly with fast processing.</li>
+        <li><b>Privacy:</b> Your files are never stored. Everything is processed securely.</li>
+        <li><b>Accuracy:</b> Smart algorithms ensure highly accurate results.</li>
+        <li><b>Accessibility:</b> 100% free tools available to everyone, everywhere.</li>
+    </ul>
+
+    <h2>Who Uses ToolSonics?</h2>
+    <p>We serve users across India and worldwide, including:</p>
+
+    <ul>
+        <li>CA Firms & Accountants</li>
+        <li>Corporates & Business Owners</li>
+        <li>Schools & Students</li>
+        <li>Freelancers</li>
+        <li>Online creators & developers</li>
+        <li>Shopkeepers & Retail businesses</li>
+    </ul>
+
+    <h2>Our Vision</h2>
     <p>
-        Our mission is to provide free, high-quality, user-friendly tools that help students, 
-        professionals, developers, accountants, creators and businesses complete their work faster.
+        To build India’s most trusted multi-tool platform and expand globally with 
+        AI-powered tools, document solutions, business utilities, and more.
     </p>
 
-    <h2>Trusted Worldwide</h2>
-    <p>
-        ToolSonics is built for global users — optimized for speed, accuracy and mobile-friendly usage.
-        Whether you are converting documents, generating PDFs, creating resumes or using AI, 
-        ToolSonics works instantly without installations.
-    </p>
-
-    <div class="stats-box">
-        <div>
-            <h3>50+</h3>
+    <div class="stats-boxes">
+        <div class="stat">
+            <h3>70+</h3>
             <p>Online Tools</p>
         </div>
-        <div>
-            <h3>100K+</h3>
-            <p>Monthly Users (Goal)</p>
+        <div class="stat">
+            <h3>50K+</h3>
+            <p>Monthly Users (Growing)</p>
         </div>
-        <div>
-            <h3>100%</h3>
-            <p>Free & Easy-to-Use</p>
+        <div class="stat">
+            <h3>4.9★</h3>
+            <p>User Satisfaction</p>
         </div>
     </div>
+
+    <h2>Contact Us</h2>
+    <p>
+        For business inquiries, partnerships, or support:<br>
+        <b>Email:</b> toolsonics6@gmail.com
+    </p>
 
 </section>
 
