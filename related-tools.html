@@ -1,37 +1,97 @@
+<!-- PREMIUM RELATED TOOLS SECTION -->
 <style>
-.related-box {
-  margin-top: 40px;
-  padding: 20px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 15px;
+.related-section {
+    margin-top: 60px;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(20px);
 }
+
 .related-title {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #00c3ff;
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px #00c3ff;
 }
-.related-list a {
-  display: block;
-  margin: 8px 0;
-  padding: 10px;
-  color: #fff;
-  background: rgba(255,255,255,0.10);
-  border-radius: 10px;
-  transition: 0.3s;
+
+/* Cards */
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
 }
-.related-list a:hover {
-  background: #00aaff;
+
+.related-card {
+    padding: 18px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.related-card:hover {
+    transform: translateY(-6px);
+    border-color: #00c3ff;
+    box-shadow: 0 0 18px #00c3ff;
+}
+
+/* Icons */
+.related-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+    color: #00c3ff;
+}
+
+.related-card h4 {
+    font-size: 17px;
+    margin-bottom: 4px;
+}
+
+.related-card p {
+    font-size: 14px;
+    opacity: 0.8;
 }
 </style>
 
-<div class="related-box">
-  <div class="related-title">Related Tools</div>
+<div class="related-section">
+    <div class="related-title">Related Tools</div>
 
-  <div class="related-list">
-    <a href="/merge-pdf.html">Merge PDF</a>
-    <a href="/split-pdf.html">Split PDF</a>
-    <a href="/compress-pdf.html">Compress PDF</a>
-    <a href="/image-to-pdf.html">Image → PDF</a>
-  </div>
+    <div class="related-grid">
+
+        <a href="/merge-pdf.html" class="related-card">
+            <div class="related-icon"><i class="fas fa-object-group"></i></div>
+            <h4>Merge PDF</h4>
+            <p>Combine multiple PDF files</p>
+        </a>
+
+        <a href="/split-pdf.html" class="related-card">
+            <div class="related-icon"><i class="fas fa-cut"></i></div>
+            <h4>Split PDF</h4>
+            <p>Split a PDF into separate pages</p>
+        </a>
+
+        <a href="/pdf-to-word.html" class="related-card">
+            <div class="related-icon"><i class="fas fa-file-word"></i></div>
+            <h4>PDF to Word</h4>
+            <p>Convert PDF to editable DOCX</p>
+        </a>
+
+        <a href="/image-to-pdf.html" class="related-card">
+            <div class="related-icon"><i class="fas fa-image"></i></div>
+            <h4>Image to PDF</h4>
+            <p>Convert JPG/PNG to PDF</p>
+        </a>
+
+        <a href="/compress-pdf.html" class="related-card">
+            <div class="related-icon"><i class="fas fa-compress"></i></div>
+            <h4>Compress PDF</h4>
+            <p>Reduce PDF file size</p>
+        </a>
+
+    </div>
 </div>
