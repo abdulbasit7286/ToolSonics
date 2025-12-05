@@ -1,70 +1,133 @@
+<!-- PREMIUM GLASS FOOTER -->
 <style>
 .footer {
-  background: #0a0a0a;
-  padding: 50px 30px;
-  color: #ccc;
-  margin-top: 60px;
+    margin-top: 60px;
+    padding: 50px 30px;
+    background: rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(25px);
+    color: #e4e4e4;
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 40px;
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 40px;
 }
 
-.footer h3 {
-  color: #00c3ff;
-  margin-bottom: 15px;
-  font-size: 18px;
+/* Logo Section */
+.footer-logo {
+    font-size: 30px;
+    font-weight: 800;
+    color: #00c3ff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 12px #00c3ff;
 }
 
-.footer a {
-  display: block;
-  margin: 5px 0;
-  color: #aaa;
-  transition: 0.3s;
+.footer-text {
+    color: #cfcfcf;
+    line-height: 1.7;
+    font-size: 15px;
 }
 
-.footer a:hover {
-  color: #00c3ff;
+/* Footer Headings */
+.footer-heading {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
 }
 
+/* Footer Links */
+.footer-links a {
+    display: block;
+    color: #cfcfcf;
+    margin-bottom: 10px;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #00c3ff;
+    text-shadow: 0 0 8px #00c3ff;
+}
+
+/* Social Icons */
+.social-icons a {
+    font-size: 22px;
+    margin-right: 12px;
+    color: #cfcfcf;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #00c3ff;
+    text-shadow: 0 0 10px #00c3ff;
+}
+
+/* Copyright */
 .footer-bottom {
-  border-top: 1px solid #444;
-  margin-top: 35px;
-  padding-top: 20px;
-  text-align: center;
-  color: #777;
+    text-align: center;
+    padding-top: 25px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #bfbfbf;
+    font-size: 14px;
 }
 </style>
 
 <div class="footer">
-  <div class="footer-grid">
+    <div class="footer-container">
 
-    <div>
-      <h3>ToolSonics</h3>
-      <p>Your All-In-One Digital Toolkit.</p>
+        <!-- Column 1 -->
+        <div>
+            <div class="footer-logo">ToolSonics</div>
+            <div class="footer-text">
+                Smart, fast, and easy-to-use tools trusted by users worldwide.  
+                Your all-in-one platform for PDFs, images, office tools & more.
+            </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div>
+            <div class="footer-heading">Quick Links</div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/#tools">All Tools</a>
+                <a href="/about.html">About Us</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+        </div>
+
+        <!-- Column 3 -->
+        <div>
+            <div class="footer-heading">Top Tools</div>
+            <div class="footer-links">
+                <a href="/merge-pdf.html">Merge PDF</a>
+                <a href="/pdf-to-word.html">PDF to Word</a>
+                <a href="/image-compressor.html">Image Compressor</a>
+                <a href="/ppt-generator.html">AI PPT Generator</a>
+            </div>
+        </div>
+
+        <!-- Column 4 -->
+        <div>
+            <div class="footer-heading">Connect</div>
+            <div class="footer-text">toolsonics6@gmail.com</div>
+            
+            <div class="social-icons" style="margin-top: 12px;">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
     </div>
 
-    <div>
-      <h3>Tools</h3>
-      <a href="/pdf-tools.html">PDF Tools</a>
-      <a href="/image-tools.html">Image Tools</a>
-      <a href="/calculator-tools.html">Calculator Tools</a>
-      <a href="/web-tools.html">Web Tools</a>
+    <div class="footer-bottom">
+        © 2025 ToolSonics — All Rights Reserved.
     </div>
-
-    <div>
-      <h3>Company</h3>
-      <a href="/about.html">About Us</a>
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="/terms.html">Terms of Use</a>
-      <a href="mailto:toolsonics6@gmail.com">Contact</a>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    © 2025 ToolSonics — All Rights Reserved.
-  </div>
 </div>
