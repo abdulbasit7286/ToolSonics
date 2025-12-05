@@ -1,216 +1,96 @@
-/* ------------------------------
-   GLOBAL RESET & ROOT VARIABLES
---------------------------------*/
+/* ================================
+   TOOLSONICS PREMIUM GLOBAL CSS
+   (Glassmorphism + Dark Neon Blue)
+================================= */
+
+/* ---------- COLOR SYSTEM ---------- */
+:root {
+    --primary: #00c3ff;
+    --primary-glow: 0 0 18px #00c3ff;
+    --bg-dark: #0d1117;
+    --bg-light: rgba(255,255,255,0.07);
+    --border-light: rgba(255,255,255,0.12);
+    --text-main: #ffffff;
+    --text-light: #cfcfcf;
+    --radius: 14px;
+    --transition: 0.25s ease;
+}
+
+/* ---------- RESET ---------- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: "Segoe UI", sans-serif;
 }
 
-:root {
-    --blue-light: #00c3ff;
-    --blue: #0077ff;
-    --blue-dark: #003d66;
-    --dark-bg: #020b16;
-    --glass: rgba(255,255,255,0.08);
-    --white: #ffffff;
-    --text-light: #d1d1d1;
-    --shadow: 0 0 20px rgba(0,0,0,0.3);
-    --card-shadow: 0 0 15px rgba(0, 163, 255, 0.2);
-    --transition: 0.3s ease;
-}
-
-/* ------------------------------
-   BODY + BACKGROUND
---------------------------------*/
 body {
-    background: linear-gradient(135deg, var(--dark-bg), var(--blue-dark));
-    color: white;
-    overflow-x: hidden;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
 }
 
-/* ------------------------------
-   NAVBAR (Glassmorphism)
---------------------------------*/
-.navbar {
+/* ---------- LINKS ---------- */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ---------- CONTAINER ---------- */
+.container {
     width: 100%;
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(25px);
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    padding: 18px 35px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.nav-logo {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--blue-light);
-    text-shadow: 0 0 12px var(--blue-light);
-}
-
-.nav-links {
-    display: flex;
-    gap: 25px;
-}
-
-.nav-links a {
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    transition: var(--transition);
-}
-
-.nav-links a:hover {
-    color: var(--blue-light);
-    text-shadow: 0 0 8px var(--blue-light);
-}
-
-.menu-btn {
-    display: none;
-    font-size: 28px;
-    color: white;
-}
-
-@media(max-width:768px){
-    .nav-links {
-        display: none;
-        position: absolute;
-        right: 20px;
-        top: 70px;
-        background: rgba(0,0,0,0.8);
-        padding: 20px;
-        border-radius: 12px;
-        flex-direction: column;
-        gap: 15px;
-    }
-    .nav-links.show { display: flex; }
-    .menu-btn { display: block; }
+    max-width: 1200px;
+    padding: 0 22px;
+    margin: auto;
 }
 
 /* ------------------------------
-   HERO SECTION
---------------------------------*/
+   PREMIUM HERO SECTION
+------------------------------- */
 .hero {
-    padding: 120px 20px 80px;
+    padding: 110px 20px 90px;
     text-align: center;
+    background: linear-gradient(
+        135deg,
+        rgba(0,195,255,0.15),
+        rgba(0,0,0,0.8)
+    );
+    border-bottom: 1px solid var(--border-light);
 }
 
-.hero-title {
-    font-size: 2.8rem;
+.hero h1 {
+    font-size: 42px;
     font-weight: 800;
-    color: var(--blue-light);
-    text-shadow: 0 0 15px var(--blue-light);
-    margin-bottom: 18px;
+    text-shadow: var(--primary-glow);
 }
 
-.hero-subtitle {
-    font-size: 1.3rem;
-    color: var(--text-light);
-    max-width: 650px;
-    margin: 0 auto 30px;
-}
-
-.hero-btn {
-    padding: 15px 35px;
-    background: var(--blue);
-    color: white;
-    border-radius: 40px;
-    font-weight: 700;
-    box-shadow: 0 0 15px var(--blue-light);
-    transition: var(--transition);
-}
-
-.hero-btn:hover {
-    background: var(--blue-light);
-    transform: translateY(-4px);
-    box-shadow: 0 0 25px var(--blue-light);
-}
-
-/* Hero Icons */
-.hero-icons {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-}
-
-.hero-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 28px;
-    background: var(--glass);
-    backdrop-filter: blur(15px);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: var(--card-shadow);
-    transition: var(--transition);
-}
-
-.hero-icon:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 25px var(--blue-light);
-}
-
-/* ------------------------------
-   SEARCH AREA
---------------------------------*/
-.search-area {
-    margin-top: -40px;
-    display: flex;
-    justify-content: center;
-}
-
-.search-box {
-    background: var(--glass);
-    padding: 10px;
-    border-radius: 40px;
-    display: flex;
-    gap: 10px;
-    width: 80%;
-    max-width: 600px;
-    backdrop-filter: blur(10px);
-}
-
-.search-box input {
-    flex: 1;
-    padding: 15px;
-    border-radius: 30px;
-    border: none;
-    background: transparent;
-    color: white;
-    font-size: 1rem;
-}
-
-.search-box button {
-    background: var(--blue);
-    border: none;
-    padding: 0 20px;
-    border-radius: 30px;
-    color: white;
+.hero p {
     font-size: 18px;
-    cursor: pointer;
+    margin: 18px auto 30px;
+    max-width: 700px;
+    color: var(--text-light);
 }
 
-/* ------------------------------
-   CATEGORY BUTTONS
---------------------------------*/
-.category-area {
-    text-align: center;
-    padding: 60px 20px 20px;
+/* Hero Button */
+.cta-button {
+    background: var(--primary);
+    color: black;
+    padding: 12px 32px;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: var(--transition);
+    box-shadow: var(--primary-glow);
 }
 
-.section-heading {
-    font-size: 2rem;
-    margin-bottom: 20px;
+.cta-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px #00c3ff;
+}
+
+/* ---------- CATEGORY BUTTONS ---------- */
+.category-section {
+    margin-top: 50px;
+    padding: 25px 0;
 }
 
 .category-buttons {
@@ -220,122 +100,139 @@ body {
     gap: 12px;
 }
 
-.cat-btn {
+.category-btn {
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
     padding: 10px 22px;
     border-radius: 30px;
-    border: 1px solid var(--blue-light);
-    background: var(--glass);
-    color: white;
+    color: var(--text-main);
     font-weight: 600;
-    box-shadow: var(--card-shadow);
     transition: var(--transition);
-    cursor: pointer;
 }
 
-.cat-btn:hover, .cat-btn.active {
-    background: var(--blue-light);
+.category-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    text-shadow: var(--primary-glow);
+}
+
+.category-btn.active {
+    background: var(--primary);
     color: black;
-    box-shadow: 0 0 20px var(--blue-light);
+    font-weight: bold;
 }
 
-/* ------------------------------
-   TOOL CARDS
---------------------------------*/
+/* ---------- SEARCH BOX ---------- */
+.search-box {
+    display: flex;
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin: auto;
+    max-width: 650px;
+    gap: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+}
+
+.search-box button {
+    background: var(--primary);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    color: black;
+    font-size: 18px;
+}
+
+/* ---------- GRID TOOL CARDS ---------- */
 .tools-grid {
-    margin-top: 40px;
-    padding: 20px;
+    margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .tool-card {
-    background: var(--glass);
-    padding: 25px;
-    border-radius: 15px;
-    text-align: left;
-    border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(15px);
-    box-shadow: var(--card-shadow);
+    padding: 22px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
     transition: var(--transition);
-    display: flex;
-    flex-direction: column;
 }
 
 .tool-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 25px var(--blue-light);
+    border-color: var(--primary);
+    box-shadow: var(--primary-glow);
+    transform: translateY(-6px);
 }
 
-.tool-icon {
-    font-size: 2rem;
+.tool-icon-small {
+    font-size: 28px;
+    color: var(--primary);
     margin-bottom: 12px;
-    color: var(--blue-light);
-    text-shadow: 0 0 12px var(--blue-light);
 }
 
 .tool-card h3 {
-    font-size: 1.3rem;
+    font-size: 18px;
     font-weight: 700;
-    margin-bottom: 8px;
 }
 
 .tool-card p {
+    font-size: 14px;
     color: var(--text-light);
-    margin-bottom: 15px;
+    margin: 10px 0 18px;
 }
 
-/* ------------------------------
-   ABOUT & CONTACT
---------------------------------*/
-.about-section, .contact-section {
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.contact-btn {
-    margin-top: 15px;
-    padding: 12px 30px;
-    background: var(--blue);
-    color: white;
-    border-radius: 35px;
-}
-
-/* ------------------------------
-   FOOTER
---------------------------------*/
-.footer {
-    background: rgba(0,0,0,0.7);
-    padding: 60px 30px 30px;
-    margin-top: 50px;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 30px;
-}
-
-.footer h3 {
-    color: var(--blue-light);
-    font-size: 1.2rem;
-}
-
-.footer a {
-    color: var(--text-light);
-    display: block;
-    margin: 6px 0;
+.tool-button {
+    background: var(--primary);
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: black;
+    display: inline-block;
+    font-weight: 700;
     transition: var(--transition);
 }
 
-.footer a:hover {
-    color: var(--blue-light);
+.tool-button:hover {
+    box-shadow: var(--primary-glow);
 }
 
-.footer-bottom {
-    margin-top: 30px;
+/* -----------------------
+   CONTACT + ABOUT SECTION
+------------------------- */
+.contact-section {
+    margin-top: 60px;
+    padding: 50px 20px;
+    background: rgba(255,255,255,0.03);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-light);
+}
+
+.contact-title {
+    font-size: 32px;
+    font-weight: 800;
+    text-align: center;
+    text-shadow: var(--primary-glow);
+}
+
+.contact-description {
+    max-width: 700px;
+    margin: auto;
     text-align: center;
     color: var(--text-light);
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 15px;
+    margin-bottom: 30px;
+}
+
+/* -------- MOBILE FIXES -------- */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .cta-button { padding: 10px 24px; }
+    .tools-grid { grid-template-columns: 1fr; }
 }
