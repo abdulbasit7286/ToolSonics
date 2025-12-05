@@ -2,236 +2,256 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
     <meta charset="UTF-8">
-    <title>Delete Pages from PDF | Remove PDF Pages Online – ToolSonics</title>
-
-    <!-- SEO DESCRIPTION -->
-    <meta name="description"
-        content="Delete pages from any PDF file online for free using ToolSonics. Fast, secure, and easy-to-use PDF page remover tool. Remove unwanted pages from your PDF instantly without signup.">
-
-    <meta name="keywords"
-        content="delete pages pdf, remove pdf pages, pdf page remover, delete page online, edit pdf, toolsonics pdf tools">
-
-    <!-- OG TAGS -->
-    <meta property="og:title" content="Delete Pages from PDF – ToolSonics">
-    <meta property="og:description" content="Remove unwanted PDF pages instantly for free. Fast & secure.">
-    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/delete-pages.png">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete PDF Pages – ToolSonics</title>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="global-style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #eef3ff;
-            margin: 0;
-            padding: 0;
+        .tool-wrapper {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
         }
 
-        h1 {
+        .tool-header {
             text-align: center;
-            color: #0038ff;
-            margin-top: 40px;
-            font-size: 30px;
-            font-weight: 700;
+            margin-bottom: 30px;
         }
 
-        p.center {
+        .tool-header i {
+            font-size: 55px;
+            color: #00c3ff;
+            margin-bottom: 12px;
+            text-shadow: 0 0 15px #00c3ff;
+        }
+
+        .tool-header h1 {
+            color: white;
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .tool-header p {
+            color: #bcd7ff;
+            font-size: 16px;
+        }
+
+        /* UPLOAD BOX */
+        .upload-box {
+            margin-top: 30px;
+            padding: 40px;
+            border: 2px dashed #00c3ff;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
             text-align: center;
-            color: #555;
-            margin-bottom: 25px;
-        }
-
-        .card {
-            background: #fff;
-            max-width: 700px;
-            margin: auto;
-            padding: 35px;
-            border-radius: 14px;
-            border: 1px solid #d7e1ff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
-        }
-
-        /* PREMIUM UPLOAD BOX */
-        .upload-label {
-            width: 100%;
-            height: 130px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-
-            background: #f7f9ff;
-            border: 2px dashed #6c9bff;
-            border-radius: 14px;
-            cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         }
 
-        .upload-label:hover {
-            background: #eaf0ff;
-            border-color: #3c6fff;
-            transform: scale(1.02);
+        .upload-box:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.09);
         }
 
-        .upload-label i {
-            font-size: 40px;
-            color: #0051ff;
-        }
-
-        .upload-label span {
-            margin-top: 8px;
-            font-size: 17px;
-            color: #0038ff;
+        .upload-box label {
+            font-size: 18px;
             font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 10px;
+            background: #00c3ff;
+            color: black;
+            cursor: pointer;
+            box-shadow: 0 0 15px #00c3ff;
         }
 
-        #pdfFile {
+        .upload-box small {
+            display: block;
+            margin-top: 8px;
+            color: #bcd7ff;
+            font-size: 13px;
+        }
+
+        .upload-box input {
             display: none;
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            margin-top: 14px;
-            border-radius: 8px;
-            border: 1px solid #c9d4ff;
-            font-size: 15px;
-        }
-
-        .btn {
+        /* Page input */
+        .page-input {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(to right, #0059ff, #0038ff);
-            color: #fff;
+            border-radius: 10px;
+            border: 1px solid #6cb5ff;
+            margin-top: 16px;
+            font-size: 15px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
+
+        .page-input::placeholder {
+            color: #ddeaff;
+        }
+
+        /* BUTTON */
+        .primary-btn {
+            margin-top: 25px;
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 10px;
             border: none;
-            border-radius: 8px;
-            margin-top: 22px;
+            background: linear-gradient(90deg, #00c3ff, #007bff);
             cursor: pointer;
-            font-size: 17px;
+            color: black;
+            box-shadow: 0 0 18px #00c3ff;
             transition: 0.25s;
         }
 
-        .btn:hover {
-            opacity: 0.92;
+        .primary-btn:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
         }
 
+        /* PROGRESS BAR */
         #progressContainer {
-            width: 100%;
+            margin-top: 20px;
             height: 10px;
-            background: #dce6ff;
-            border-radius: 8px;
-            margin-top: 15px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 6px;
             display: none;
         }
 
         #progressBar {
             height: 100%;
             width: 0%;
-            background: #0038ff;
-            border-radius: 8px;
-            transition: 0.25s;
+            background: #00c3ff;
+            border-radius: 6px;
+            box-shadow: 0 0 12px #00c3ff;
         }
 
         #statusText {
-            margin-top: 12px;
             text-align: center;
-            font-size: 14px;
-            color: #444;
+            margin-top: 12px;
+            color: white;
         }
 
         .seo-text {
-            margin-top: 25px;
+            margin-top: 30px;
+            color: #d0e6ff;
             font-size: 14px;
-            color: #444;
-            line-height: 1.6;
-            text-align: justify;
+            line-height: 1.7;
+            background: rgba(255,255,255,0.04);
+            padding: 18px;
+            border-radius: 12px;
         }
     </style>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
 
 <body>
 
-    <h1>Delete Pages from PDF</h1>
-    <p class="center">Remove unwanted pages instantly – Fast & secure.</p>
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
 
-    <div class="card">
+    <div class="tool-wrapper">
+
+        <!-- HEADER -->
+        <div class="tool-header">
+            <i class="fa-solid fa-trash-alt"></i>
+            <h1>Delete PDF Pages</h1>
+            <p>Remove unwanted pages from your PDF instantly.</p>
+        </div>
 
         <!-- UPLOAD BOX -->
-        <label for="pdfFile" class="upload-label">
-            <i class="fa-solid fa-file-pdf"></i>
-            <span>Choose PDF File</span>
-        </label>
+        <div class="upload-box">
+            <label for="pdfFile">Choose PDF File</label>
+            <input type="file" id="pdfFile" accept="application/pdf">
+            <small>Upload 1 PDF to remove pages</small>
+        </div>
 
-        <input type="file" id="pdfFile" accept="application/pdf">
+        <!-- PAGE INPUT -->
+        <input type="text" id="deletePages" class="page-input"
+            placeholder="Pages to delete (e.g., 1, 3, 5-7)">
 
-        <input type="text" id="pagesInput" placeholder="Pages to delete (e.g., 2, 5, 7 or 3-6)">
+        <!-- BUTTON -->
+        <button class="primary-btn" id="deleteBtn">Delete Pages</button>
 
-        <button class="btn" id="deleteBtn">Delete Pages</button>
-
+        <!-- PROGRESS -->
         <div id="progressContainer">
             <div id="progressBar"></div>
         </div>
 
         <p id="statusText"></p>
 
-        <!-- 150 WORD SEO DESCRIPTION -->
+        <!-- SEO CONTENT -->
         <div class="seo-text">
-            ToolSonics Delete PDF Pages is a quick and secure online tool designed to help you remove unwanted pages
-            from any PDF file with just a few clicks. Whether you need to delete blank pages, extra content, duplicate
-            pages, or confidential information, this tool makes the process simple and efficient. Just upload your PDF,
-            enter the page numbers you want to remove, and download the cleaned file instantly. ToolSonics works
-            directly in your browser—no software installation or account required. Your files are processed securely on
-            the server and automatically deleted after completion to keep your data private. The tool is accessible
-            worldwide, supports mobile and desktop browsing, and ensures high-speed PDF processing for students,
-            offices, freelancers, teachers, business users, and professionals who need fast page removal from PDF
-            documents.
+            ToolSonics Delete Pages tool allows you to remove unwanted pages from any PDF file easily. 
+            Whether you want to delete blank pages, remove sensitive content, shorten a document, or 
+            clean up scanned PDFs, this tool does the job instantly with high accuracy. 
+            Works on all devices worldwide.
         </div>
+
+        <!-- RELATED TOOLS -->
+        <div id="related-tools-container"></div>
 
     </div>
 
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
     <script>
+        /* LOAD NAVBAR + FOOTER + RELATED */
+        function load(id, file) {
+            fetch(file).then(res => res.text()).then(html => {
+                document.getElementById(id).innerHTML = html;
+            });
+        }
+
+        load("navbar", "navbar.html");
+        load("footer", "footer.html");
+        load("related-tools-container", "related-tools.html?tool=delete-pages");
+
+
+        /* BACKEND URL */
         const BACKEND_URL = "https://toolsonics-backend-production-88b3.up.railway.app/pdf/delete-pages";
 
         const pdfInput = document.getElementById("pdfFile");
-        const pagesInput = document.getElementById("pagesInput");
+        const deleteInput = document.getElementById("deletePages");
         const statusText = document.getElementById("statusText");
         const progressContainer = document.getElementById("progressContainer");
         const progressBar = document.getElementById("progressBar");
 
         document.getElementById("deleteBtn").addEventListener("click", async () => {
             const file = pdfInput.files[0];
-            const pages = pagesInput.value.trim();
+            const pages = deleteInput.value.trim();
 
             if (!file) return statusText.textContent = "❗ Please upload a PDF file.";
             if (!pages) return statusText.textContent = "❗ Enter pages to delete.";
 
-            statusText.textContent = "Starting...";
             progressContainer.style.display = "block";
-            progressBar.style.width = "20%";
+            progressBar.style.width = "25%";
+            statusText.textContent = "Uploading PDF...";
 
             const formData = new FormData();
             formData.append("file", file);
             formData.append("pages", pages);
 
             try {
-                progressBar.style.width = "55%";
-                statusText.textContent = "Uploading...";
-
                 const response = await fetch(BACKEND_URL, {
                     method: "POST",
                     body: formData
                 });
 
-                progressBar.style.width = "80%";
+                progressBar.style.width = "75%";
                 statusText.textContent = "Processing...";
 
                 if (!response.ok) {
-                    statusText.textContent = "❌ Error deleting pages!";
+                    statusText.textContent = "❌ Failed to delete pages.";
                     return;
                 }
 
@@ -239,19 +259,18 @@
                 const url = URL.createObjectURL(blob);
 
                 progressBar.style.width = "100%";
-                statusText.textContent = "✔ Done! Downloading...";
+                statusText.textContent = "✔ Done! Downloading…";
 
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = "deleted-pages.pdf";
+                a.download = "pages-deleted.pdf";
                 a.click();
 
-            } catch (error) {
+            } catch (err) {
                 statusText.textContent = "❌ Network error.";
             }
         });
     </script>
 
 </body>
-
 </html>
