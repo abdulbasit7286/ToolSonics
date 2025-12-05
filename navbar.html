@@ -1,101 +1,106 @@
-<!-- NAVBAR PREMIUM GLASSMORPHISM -->
+<!-- NAVBAR -->
 <style>
-.navbar {
-    width: 100%;
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(25px);
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    padding: 18px 35px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-
-/* Logo */
-.nav-logo {
-    font-size: 28px;
-    font-weight: 800;
-    color: #00c3ff;
-    text-shadow: 0 0 12px #00c3ff;
-}
-
-/* Navigation Links */
-.nav-links {
-    display: flex;
-    gap: 25px;
-    align-items: center;
-}
-
-.nav-links a {
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    transition: 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: #00c3ff;
-    text-shadow: 0 0 8px #00c3ff;
-}
-
-/* Mobile Menu */
-.menu-btn {
-    display: none;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        right: 20px;
-        top: 70px;
-        background: rgba(0, 0, 0, 0.85);
-        padding: 20px;
-        border-radius: 12px;
-        gap: 15px;
-        width: 200px;
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255,255,255,0.12);
+    .navbar {
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 12px 0;
+        position: sticky;
+        top: 0;
+        z-index: 999;
     }
-    .nav-links.show {
+
+    .nav-container {
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1a73e8;
+    }
+    .logo span { color: #000; }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 28px;
+        align-items: center;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+
+    nav ul li a:hover {
+        color: #1a73e8;
+    }
+
+    /* MOBILE MENU */
     .menu-btn {
-        display: block;
+        display: none;
+        font-size: 28px;
+        cursor: pointer;
     }
-}
+
+    @media (max-width: 768px) {
+        nav ul {
+            flex-direction: column;
+            background: white;
+            width: 100%;
+            position: absolute;
+            top: 65px;
+            left: 0;
+            display: none;
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        nav ul.show {
+            display: flex;
+        }
+
+        .menu-btn {
+            display: block;
+        }
+    }
 </style>
 
-<!-- NAVBAR HTML STRUCTURE -->
 <div class="navbar">
-    <div class="nav-logo">ToolSonics</div>
+    <div class="nav-container">
 
-    <div class="nav-links" id="navLinks">
-       <nav>
-    <ul>
-        <li><a href="/ToolSonics/index.html#home">Home</a></li>
-        <li><a href="/ToolSonics/index.html#tools">Tools</a></li>
-        <li><a href="/ToolSonics/about.html">About Us</a></li>
-        <li><a href="/ToolSonics/privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="/ToolSonics/terms-of-use.html">Terms of Use</a></li>
-        <li><a href="/ToolSonics/contact.html">Contact</a></li>
-    </ul>
-</nav>
+        <div class="logo">Tool<span>Sonics</span></div>
+
+        <i class="fas fa-bars menu-btn" id="menuBtn"></i>
+
+        <nav>
+            <ul id="navLinks">
+                <li><a href="https://toolsonics.com/#home">Home</a></li>
+                <li><a href="https://toolsonics.com/#tools">Tools</a></li>
+                <li><a href="https://toolsonics.com/about.html">About Us</a></li>
+                <li><a href="https://toolsonics.com/privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="https://toolsonics.com/terms-of-use.html">Terms of Use</a></li>
+                <li><a href="https://toolsonics.com/contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
     </div>
-
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </div>
 
 <script>
-function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("show");
-}
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+    });
 </script>
