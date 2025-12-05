@@ -1,0 +1,62 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Page Background */
+body {
+  background: linear-gradient(135deg, #021526, #003d66);
+  color: #fff;
+  line-height: 1.5;
+}
+
+/* Glow Button */
+.btn {
+  background: linear-gradient(135deg,#00c3ff,#0077ff);
+  padding: 12px 28px;
+  border-radius: 50px;
+  color: white;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 15px #00c3ff;
+  transition: 0.3s;
+}
+.btn:hover {
+  box-shadow: 0 0 25px #00eaff;
+  transform: translateY(-3px);
+}
+
+/* Tool Cards */
+.tool-card {
+  background: rgba(255,255,255,0.08);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: 0.3s;
+}
+.tool-card:hover {
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 20px #00aaff;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #00c3ff;
+  margin: 25px 0;
+}
+
+/* Input */
+input, select {
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
