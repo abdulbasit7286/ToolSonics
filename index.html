@@ -2,90 +2,210 @@
 <html lang="en">
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolSonics - Smart, Fast & Easy Online Tools</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1H0ZEYLH0K');
+    </script>
 
-<link rel="stylesheet" href="global-style.css">
-<link rel="icon" href="favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolSonics - Smart, Fast & Easy Online Tools</title>
 
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="stylesheet" href="global-style.css">
 </head>
+
 <body>
 
 <!-- NAVBAR -->
-<div class="navbar">
-    <div class="container inner">
-        <img src="logo-blue.svg" width="130">
-        <div>
-            <a href="#">Home</a>
-            <a href="#tools">Tools</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+<div id="navbar"></div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="container">
+        <h1>The Smartest Toolkit for Your Daily Tasks</h1>
+        <p>Fast, secure and easy-to-use tools for PDFs, Images, Documents, Calculators, Utilities & more.</p>
+        <a href="#tools" class="cta-button">Explore Tools</a>
+    </div>
+</section>
+
+<!-- CATEGORY FILTER -->
+<section class="category-section">
+    <div class="container">
+        <div class="category-buttons">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="document">Document</button>
+            <button class="category-btn" data-category="image">Image</button>
+            <button class="category-btn" data-category="calculator">Calculator</button>
+            <button class="category-btn" data-category="web">Web / Dev</button>
+            <button class="category-btn" data-category="utility">Utility</button>
+            <button class="category-btn" data-category="ai">AI Tools</button>
+            <button class="category-btn" data-category="education">Education</button>
+            <button class="category-btn" data-category="time">Time</button>
         </div>
     </div>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-    <h1>Smart, Fast & Easy-to-Use Tools</h1>
-    <p>Convert, compress & simplify your daily work with 50+ online tools.</p>
-    <a href="#tools" class="cta-button">Explore Tools</a>
 </section>
 
-<!-- CATEGORY BUTTONS -->
-<div class="category-buttons container">
-    <button class="category-btn active" data-category="all">All Tools</button>
-    <button class="category-btn" data-category="pdf">PDF Tools</button>
-    <button class="category-btn" data-category="image">Image</button>
-    <button class="category-btn" data-category="converter">Converters</button>
-    <button class="category-btn" data-category="calculator">Calculators</button>
-    <button class="category-btn" data-category="utility">Utility</button>
-</div>
-
-<!-- SEARCH -->
-<div class="container">
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search tools...">
-        <button><i class="fas fa-search"></i></button>
+<!-- SEARCH BAR -->
+<section class="search-section">
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search any tool…">
+            <button><i class="fas fa-search"></i></button>
+        </div>
     </div>
-</div>
-
-<!-- TOOLS GRID -->
-<section class="container tools-section" id="tools">
-
-<div class="tools-grid" id="toolGrid">
-
-    <!-- Example tool card -->
-    <div class="tool-card" data-category="pdf">
-        <img src="assets/icons/merge.svg">
-        <h3>Merge PDF</h3>
-        <p>Combine multiple PDFs into one.</p>
-        <a href="merge-pdf.html" class="tool-button">Use Tool</a>
-    </div>
-
-    <div class="tool-card" data-category="pdf">
-        <img src="assets/icons/split.svg">
-        <h3>Split PDF</h3>
-        <p>Split PDF into multiple files.</p>
-        <a href="split-pdf.html" class="tool-button">Use Tool</a>
-    </div>
-
-    <div class="tool-card" data-category="converter">
-        <img src="assets/icons/csv-excel.svg">
-        <h3>CSV ↔ Excel</h3>
-        <p>Convert CSV files to Excel & vice-versa.</p>
-        <a href="csv-excel-converter.html" class="tool-button">Use Tool</a>
-    </div>
-
-    <!-- Tum 50+ tools ke cards yahan same format me add kar sakte ho -->
-
-</div>
 </section>
+
+<!-- ALL TOOLS GRID -->
+<main class="container tools-section" id="tools">
+
+    <h2 class="section-title">All Tools</h2>
+
+    <div class="tools-grid" id="toolGrid">
+
+        <!-- 🔵 DOCUMENT TOOLS -->
+        <script>
+            const tools = [
+
+                /* ========== DOCUMENT TOOLS ========== */
+                {name:"Merge PDF", icon:"merge.svg", desc:"Combine multiple PDFs into one file.", link:"merge-pdf.html", cat:"document"},
+                {name:"Split PDF", icon:"split.svg", desc:"Extract pages and split PDFs easily.", link:"split-pdf.html", cat:"document"},
+                {name:"Delete PDF Pages", icon:"delete.svg", desc:"Remove unwanted pages from PDFs.", link:"delete-pages.html", cat:"document"},
+                {name:"Rotate PDF Pages", icon:"rotate.svg", desc:"Fix page orientation quickly.", link:"rotate-pages.html", cat:"document"},
+                {name:"Reorder PDF Pages", icon:"reorder.svg", desc:"Arrange PDF pages in any order.", link:"reorder-pages.html", cat:"document"},
+                {name:"Protect PDF", icon:"lock.svg", desc:"Add password & secure your PDF.", link:"protect-pdf.html", cat:"document"},
+                {name:"Unlock PDF", icon:"unlock.svg", desc:"Remove password from PDFs.", link:"unlock-pdf.html", cat:"document"},
+                {name:"Add Page Numbers", icon:"numbers.svg", desc:"Insert dynamic page numbering.", link:"add-page-numbers.html", cat:"document"},
+                {name:"Add Watermark", icon:"watermark.svg", desc:"Add text watermark to PDF.", link:"add-watermark.html", cat:"document"},
+                {name:"Text → PDF", icon:"text-pdf.svg", desc:"Convert plain text into PDF.", link:"text-to-pdf.html", cat:"document"},
+                {name:"Images → PDF", icon:"image-pdf.svg", desc:"Convert multiple images into PDF.", link:"images-to-pdf.html", cat:"document"},
+                {name:"CSV ↔ Excel", icon:"csv-excel.svg", desc:"Convert between CSV & Excel.", link:"csv-excel-converter.html", cat:"document"},
+
+                /* ========== IMAGE TOOLS ========== */
+                {name:"Image Converter", icon:"img-convert.svg", desc:"Convert JPG, PNG, WEBP, more.", link:"image-converter.html", cat:"image"},
+                {name:"Merge Images", icon:"img-merge.svg", desc:"Combine images vertically or horizontally.", link:"merge-image.html", cat:"image"},
+                {name:"Image Compressor", icon:"img-compress.svg", desc:"Reduce image size without quality loss.", link:"image-compressor.html", cat:"image"},
+                {name:"Image Resizer", icon:"resize.svg", desc:"Resize images to exact dimensions.", link:"image-resizer.html", cat:"image"},
+                {name:"Image Cropper", icon:"crop.svg", desc:"Crop unwanted parts of images.", link:"image-cropper.html", cat:"image"},
+                {name:"Rotate / Flip Image", icon:"img-rotate.svg", desc:"Rotate or flip images easily.", link:"image-rotator.html", cat:"image"},
+
+                /* ========== CALCULATOR TOOLS ========== */
+                {name:"EMI Calculator", icon:"emi.svg", desc:"Calculate loan EMIs easily.", link:"EMI-calculator.html", cat:"calculator"},
+                {name:"SIP Calculator", icon:"sip.svg", desc:"Estimate returns on SIP.", link:"SIP-calculator.html", cat:"calculator"},
+                {name:"PPF Calculator", icon:"ppf.svg", desc:"Calculate PPF maturity amount.", link:"PPF-calculator.html", cat:"calculator"},
+                {name:"Tax Calculator", icon:"tax.svg", desc:"Income Tax Calculator (India).", link:"TAX-calculator.html", cat:"calculator"},
+                {name:"Compound Interest", icon:"interest.svg", desc:"Compute compound interest.", link:"compound-interest-calculator.html", cat:"calculator"},
+                {name:"House Area Converter", icon:"area.svg", desc:"Convert Sqft ↔ Sqm ↔ Gaj.", link:"area-converter.html", cat:"calculator"},
+                {name:"Budget Generator", icon:"budget.svg", desc:"Plan monthly expenses easily.", link:"budget-generator.html", cat:"calculator"},
+                {name:"Salary Slip Generator", icon:"salary.svg", desc:"Generate professional salary slip.", link:"slip-generator.html", cat:"calculator"},
+                {name:"Age Calculator", icon:"age.svg", desc:"Find exact age in detail.", link:"age-calculator.html", cat:"calculator"},
+                {name:"BMI Calculator", icon:"bmi.svg", desc:"Calculate Body Mass Index.", link:"BMI-calculator.html", cat:"calculator"},
+                {name:"GST Calculator", icon:"gst.svg", desc:"Compute GST quickly.", link:"gst-calculator.html", cat:"calculator"},
+                {name:"Percentage Calculator", icon:"percent.svg", desc:"Solve percentage problems.", link:"percentage-calculator.html", cat:"calculator"},
+                {name:"Currency Converter", icon:"currency.svg", desc:"Convert currencies live.", link:"currency-converter.html", cat:"calculator"},
+                {name:"Excel Loan EMI Calculator", icon:"excel-emi.svg", desc:"Calculate EMIs in Excel format.", link:"loan-emi-calculator.html", cat:"calculator"},
+
+                /* ========== WEB / DEV TOOLS ========== */
+                {name:"HTML/CSS/JS Minifier", icon:"minify.svg", desc:"Minify website code.", link:"html-css-js-minifier.html", cat:"web"},
+                {name:"JSON Formatter", icon:"json.svg", desc:"Format & validate JSON data.", link:"JSON Formatter & Validator.html", cat:"web"},
+                {name:"Base64 Encoder/Decoder", icon:"base64.svg", desc:"Encode/decode Base64 text.", link:"base64.html", cat:"web"},
+                {name:"URL Encoder/Decoder", icon:"url.svg", desc:"Encode/decode URL safe strings.", link:"url-encoder-decoder.html", cat:"web"},
+                {name:"Color Picker", icon:"color.svg", desc:"Pick & convert HEX/RGB/HSL.", link:"color-picker.html", cat:"web"},
+                {name:"Regex Tester", icon:"regex.svg", desc:"Test regular expressions.", link:"regex-tester.html", cat:"web"},
+
+                /* ========== UTILITY TOOLS ========== */
+                {name:"QR Code Generator", icon:"qr.svg", desc:"Generate QR codes easily.", link:"qr-code-generator.html", cat:"utility"},
+                {name:"Barcode Generator", icon:"barcode.svg", desc:"Generate barcodes instantly.", link:"barcode-generator.html", cat:"utility"},
+                {name:"UUID Generator", icon:"uuid.svg", desc:"Generate unique IDs.", link:"uuid-generator.html", cat:"utility"},
+                {name:"Unit Converter", icon:"unit.svg", desc:"Convert length, weight, volume, etc.", link:"unit-converter.html", cat:"utility"},
+                {name:"Time Zone Converter", icon:"timezone.svg", desc:"Convert time zones instantly.", link:"time-zone-converter.html", cat:"utility"},
+                {name:"Password Generator", icon:"password.svg", desc:"Generate secure passwords.", link:"random-no-pass-generator.html", cat:"utility"},
+
+                /* ========== AI TOOLS ========== */
+                {name:"AI PPT Generator", icon:"ppt.svg", desc:"Create presentations using AI.", link:"ppt-generator.html", cat:"ai"},
+                {name:"Resume Builder", icon:"resume.svg", desc:"Create resume professionally.", link:"resume-builder.html", cat:"ai"},
+                {name:"Resume ATS Optimizer", icon:"ats.svg", desc:"Optimize resume for ATS.", link:"resume-keyword-optimizer.html", cat:"ai"},
+
+                /* ========== EDUCATION TOOLS ========== */
+                {name:"Periodic Table", icon:"periodic.svg", desc:"Interactive periodic table.", link:"periodic-table.html", cat:"education"},
+                {name:"Math Formula Calculator", icon:"math.svg", desc:"Calculate math formulas.", link:"math-formula-calculator.html", cat:"education"},
+                {name:"Scientific Constants", icon:"science.svg", desc:"Important scientific values.", link:"scientific-constants.html", cat:"education"},
+
+                /* ========== TIME TOOLS ========== */
+                {name:"World Clock", icon:"clock.svg", desc:"Check global time zones.", link:"world-clock.html", cat:"time"},
+                {name:"Countdown Timer", icon:"countdown.svg", desc:"Track countdown events.", link:"countdown-timer.html", cat:"time"},
+                {name:"Stopwatch", icon:"stopwatch.svg", desc:"Track lap timings easily.", link:"stopwatch.html", cat:"time"},
+                {name:"Date Difference Calculator", icon:"datediff.svg", desc:"Calculate days between dates.", link:"date-difference-calculator.html", cat:"time"},
+
+            ];
+        </script>
+
+        <!-- AUTO-GENERATED TOOL CARDS -->
+        <script>
+            const grid = document.getElementById("toolGrid");
+
+            tools.forEach(t => {
+                grid.innerHTML += `
+                <div class="tool-card" data-category="${t.cat}">
+                    <img class="tool-icon" src="assets/icons/${t.icon}" alt="${t.name}">
+                    <h3>${t.name}</h3>
+                    <p>${t.desc}</p>
+                    <a href="${t.link}" class="tool-button">Open Tool</a>
+                </div>`;
+            });
+        </script>
+
+    </div>
+</main>
 
 <!-- FOOTER -->
-<div class="footer">
-    © 2025 ToolSonics — All Rights Reserved.
-</div>
+<div id="footer"></div>
+
+<!-- JS for Navbar/Footer Load + Filters -->
+<script>
+function loadComponent(id, file) {
+    fetch(file).then(res => res.text()).then(html => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = html;
+    });
+}
+
+loadComponent("navbar", "navbar.html");
+loadComponent("footer", "footer.html");
+
+document.addEventListener("DOMContentLoaded", () => {
+    const categoryButtons = document.querySelectorAll(".category-btn");
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".tool-card");
+
+    let activeCategory = "all";
+
+    function applyFilters() {
+        const searchText = searchInput.value.toLowerCase();
+
+        cards.forEach(card => {
+            const catMatch = activeCategory === "all" || card.dataset.category === activeCategory;
+            const searchMatch = card.innerText.toLowerCase().includes(searchText);
+            card.style.display = (catMatch && searchMatch) ? "block" : "none";
+        });
+    }
+
+    categoryButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            categoryButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeCategory = btn.dataset.category;
+            applyFilters();
+        });
+    });
+
+    searchInput.addEventListener("input", applyFilters);
+});
+</script>
 
 </body>
 </html>
