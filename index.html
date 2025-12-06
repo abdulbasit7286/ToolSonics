@@ -1,275 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-1H0ZEYLH0K');
-    </script>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolSonics - Smart, Fast & Easy Online Tools</title>
 
-    <title>ToolSonics – Smart, Fast & Easy-to-Use Online Tools</title>
-
-    <!-- SEO -->
-    <meta name="description" content="Use 50+ smart, fast, and easy online tools for PDF, Images, Conversions, Calculations, Utilities, and more. ToolSonics is your all-in-one solution.">
-    <meta name="keywords" content="pdf tools, image tools, calculators, convert tools, merge pdf, split pdf, image converter, sip calculator, emi calculator">
-
-    <link rel="stylesheet" href="global-style.css">
+<link rel="stylesheet" href="global-style.css">
+<link rel="icon" href="favicon-16x16.png">
 
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <div id="navbar"></div>
-
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="container">
-            <h1>Smart, Fast & Easy-to-Use Online Tools</h1>
-            <p>Convert, compress, calculate & simplify your daily work with 50+ powerful tools.</p>
-            <a href="#tools" class="cta-button">Explore Tools</a>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="container inner">
+        <img src="logo-blue.svg" width="130">
+        <div>
+            <a href="#">Home</a>
+            <a href="#tools">Tools</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- CATEGORY FILTER -->
-    <section class="category-section">
-        <div class="container">
-            <div class="category-buttons">
-                <button class="category-btn active" data-category="all">All Tools</button>
-                <button class="category-btn" data-category="pdf">PDF Tools</button>
-                <button class="category-btn" data-category="image">Image Tools</button>
-                <button class="category-btn" data-category="converter">Converters</button>
-                <button class="category-btn" data-category="calculator">Calculators</button>
-                <button class="category-btn" data-category="utility">Utility</button>
-                <button class="category-btn" data-category="ai">AI</button>
-                <button class="category-btn" data-category="time">Time Tools</button>
-            </div>
-        </div>
-    </section>
+<!-- HERO -->
+<section class="hero">
+    <h1>Smart, Fast & Easy-to-Use Tools</h1>
+    <p>Convert, compress & simplify your daily work with 50+ online tools.</p>
+    <a href="#tools" class="cta-button">Explore Tools</a>
+</section>
 
-    <!-- SEARCH BOX -->
-    <section>
-        <div class="container">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search a tool...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-        </div>
-    </section>
+<!-- CATEGORY BUTTONS -->
+<div class="category-buttons container">
+    <button class="category-btn active" data-category="all">All Tools</button>
+    <button class="category-btn" data-category="pdf">PDF Tools</button>
+    <button class="category-btn" data-category="image">Image</button>
+    <button class="category-btn" data-category="converter">Converters</button>
+    <button class="category-btn" data-category="calculator">Calculators</button>
+    <button class="category-btn" data-category="utility">Utility</button>
+</div>
 
-    <!-- TOOL GRID -->
-    <main class="container" id="tools">
-        <h2 style="margin-top:40px;font-size:28px;">All Tools</h2>
-        <p style="color:#cfcfcf;margin-bottom:20px;">Explore all 50+ ToolSonics utilities below.</p>
+<!-- SEARCH -->
+<div class="container">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search tools...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+</div>
 
-        <div class="tools-grid" id="toolGrid">
+<!-- TOOLS GRID -->
+<section class="container tools-section" id="tools">
 
-            <!-- ========== PDF TOOLS ========== -->
+<div class="tools-grid" id="toolGrid">
 
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/merge.svg" class="tool-icon-img">
-                <h3>Merge PDF</h3>
-                <p>Combine multiple PDF files into one.</p>
-                <a href="merge-pdf.html" class="tool-button">Use Tool</a>
-            </div>
+    <!-- Example tool card -->
+    <div class="tool-card" data-category="pdf">
+        <img src="assets/icons/merge.svg">
+        <h3>Merge PDF</h3>
+        <p>Combine multiple PDFs into one.</p>
+        <a href="merge-pdf.html" class="tool-button">Use Tool</a>
+    </div>
 
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/split.svg" class="tool-icon-img">
-                <h3>Split PDF</h3>
-                <p>Split a PDF file into smaller parts.</p>
-                <a href="split-pdf.html" class="tool-button">Use Tool</a>
-            </div>
+    <div class="tool-card" data-category="pdf">
+        <img src="assets/icons/split.svg">
+        <h3>Split PDF</h3>
+        <p>Split PDF into multiple files.</p>
+        <a href="split-pdf.html" class="tool-button">Use Tool</a>
+    </div>
 
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/delete.svg" class="tool-icon-img">
-                <h3>Delete PDF Pages</h3>
-                <p>Remove unwanted pages from your PDF.</p>
-                <a href="delete-pages.html" class="tool-button">Use Tool</a>
-            </div>
+    <div class="tool-card" data-category="converter">
+        <img src="assets/icons/csv-excel.svg">
+        <h3>CSV ↔ Excel</h3>
+        <p>Convert CSV files to Excel & vice-versa.</p>
+        <a href="csv-excel-converter.html" class="tool-button">Use Tool</a>
+    </div>
 
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/rotate.svg" class="tool-icon-img">
-                <h3>Rotate PDF Pages</h3>
-                <p>Rotate PDF pages left or right.</p>
-                <a href="rotate-pages.html" class="tool-button">Use Tool</a>
-            </div>
+    <!-- Tum 50+ tools ke cards yahan same format me add kar sakte ho -->
 
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/reorder.svg" class="tool-icon-img">
-                <h3>Reorder PDF</h3>
-                <p>Change the page order of a PDF file.</p>
-                <a href="reorder-pages.html" class="tool-button">Use Tool</a>
-            </div>
+</div>
+</section>
 
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/lock.svg" class="tool-icon-img">
-                <h3>Protect PDF</h3>
-                <p>Add a password to your PDF.</p>
-                <a href="protect-pdf.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/unlock.svg" class="tool-icon-img">
-                <h3>Unlock PDF</h3>
-                <p>Remove password protection.</p>
-                <a href="unlock-pdf.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/pagenum.svg" class="tool-icon-img">
-                <h3>Add Page Numbers</h3>
-                <p>Add page numbering to PDF files.</p>
-                <a href="add-page-numbers.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/watermark.svg" class="tool-icon-img">
-                <h3>Add Watermark</h3>
-                <p>Insert text watermarks.</p>
-                <a href="add-watermark.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/textpdf.svg" class="tool-icon-img">
-                <h3>Text → PDF</h3>
-                <p>Convert plain text into a PDF file.</p>
-                <a href="text-to-pdf.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="pdf">
-                <img src="assets/icons/imagepdf.svg" class="tool-icon-img">
-                <h3>Images → PDF</h3>
-                <p>Convert images to a single PDF file.</p>
-                <a href="images-to-pdf.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="converter">
-                <img src="assets/icons/csv.svg" class="tool-icon-img">
-                <h3>CSV ↔ Excel Converter</h3>
-                <p>Convert CSV files to Excel & vice versa.</p>
-                <a href="csv-excel-converter.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <!-- ========== IMAGE TOOLS ========== -->
-
-            <div class="tool-card" data-category="image">
-                <img src="assets/icons/image.svg" class="tool-icon-img">
-                <h3>Image Converter</h3>
-                <p>Convert JPG, PNG, WEBP & more.</p>
-                <a href="image-converter.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="image">
-                <img src="assets/icons/resize.svg" class="tool-icon-img">
-                <h3>Image Resizer</h3>
-                <p>Resize your images instantly.</p>
-                <a href="image-resizer.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="image">
-                <img src="assets/icons/compress.svg" class="tool-icon-img">
-                <h3>Image Compressor</h3>
-                <p>Reduce image size without losing quality.</p>
-                <a href="image-compressor.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="image">
-                <img src="assets/icons/crop.svg" class="tool-icon-img">
-                <h3>Image Cropper</h3>
-                <p>Crop unwanted parts of the image.</p>
-                <a href="image-cropper.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="image">
-                <img src="assets/icons/rotateimg.svg" class="tool-icon-img">
-                <h3>Rotate / Flip Image</h3>
-                <p>Rotate or flip images easily.</p>
-                <a href="image-rotator.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <!-- ========== CALCULATORS ========== -->
-            <div class="tool-card" data-category="calculator">
-                <img src="assets/icons/emi.svg" class="tool-icon-img">
-                <h3>EMI Calculator</h3>
-                <p>Calculate your monthly loan EMI.</p>
-                <a href="EMI-calculator.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="calculator">
-                <img src="assets/icons/sip.svg" class="tool-icon-img">
-                <h3>SIP Calculator</h3>
-                <p>Estimate SIP returns easily.</p>
-                <a href="SIP-calculator.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <div class="tool-card" data-category="calculator">
-                <img src="assets/icons/ppf.svg" class="tool-icon-img">
-                <h3>PPF Calculator</h3>
-                <p>Calculate PPF maturity value.</p>
-                <a href="PPF-calculator.html" class="tool-button">Use Tool</a>
-            </div>
-
-            <!-- ========== UTILITY, AI, TIME TOOLS ALSO INCLUDED... ========== -->
-            <!-- (If you want I will add full list of all 50 tool cards) -->
-
-        </div>
-    </main>
-
-    <!-- FOOTER -->
-    <div id="footer"></div>
-
-    <!-- LOAD NAVBAR & FOOTER -->
-    <script>
-        function loadComponent(id, file) {
-            fetch(file)
-                .then(res => res.text())
-                .then(html => document.getElementById(id).innerHTML = html);
-        }
-
-        loadComponent("navbar", "navbar.html");
-        loadComponent("footer", "footer.html");
-    </script>
-
-    <!-- SEARCH + CATEGORY FILTER -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const searchInput = document.getElementById("searchInput");
-            const cards = document.querySelectorAll(".tool-card");
-            const categoryButtons = document.querySelectorAll(".category-btn");
-
-            let active = "all";
-
-            function filter() {
-                const keyword = searchInput.value.toLowerCase();
-
-                cards.forEach(card => {
-                    const title = card.querySelector("h3").innerText.toLowerCase();
-                    const cat = card.dataset.category;
-
-                    const matchCategory = (active === "all" || cat === active);
-                    const matchSearch = title.includes(keyword);
-
-                    card.style.display = (matchCategory && matchSearch) ? "block" : "none";
-                });
-            }
-
-            categoryButtons.forEach(btn => {
-                btn.addEventListener("click", () => {
-                    categoryButtons.forEach(b => b.classList.remove("active"));
-                    btn.classList.add("active");
-                    active = btn.dataset.category;
-                    filter();
-                });
-            });
-
-            searchInput.addEventListener("input", filter);
-        });
-    </script>
+<!-- FOOTER -->
+<div class="footer">
+    © 2025 ToolSonics — All Rights Reserved.
+</div>
 
 </body>
 </html>
