@@ -1,136 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - ToolSonics</title>
-
-    <!-- Global CSS -->
+    <title>Privacy Policy – ToolSonics</title>
     <link rel="stylesheet" href="global-style.css">
-
-    <style>
-        .policy-hero {
-            background: linear-gradient(135deg, #1a73e8, #0d47a1);
-            padding: 90px 20px;
-            text-align: center;
-            color: white;
-        }
-        .policy-hero h1 {
-            font-size: 2.7rem;
-            font-weight: 700;
-        }
-        .policy-container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-            line-height: 1.7;
-        }
-        .policy-container h2 {
-            color: #1a73e8;
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-        .policy-container p {
-            color: #444;
-            margin-bottom: 15px;
-        }
-        ul {
-            margin-left: 20px;
-        }
-    </style>
+    <link rel="icon" href="favicon-16x16.png">
 </head>
 
 <body>
-
 <div id="navbar"></div>
 
-<section class="policy-hero">
-    <h1>Privacy Policy</h1>
-    <p>Your privacy is our top priority.</p>
-</section>
+<section class="container" style="margin-top:60px;">
+    <h1 style="font-size:34px; font-weight:800; text-shadow:var(--primary-glow);">Privacy Policy</h1>
 
-<section class="policy-container">
-
-    <h2>Introduction</h2>
-    <p>
-        ToolSonics (“we”, “our”, “us”) is committed to protecting your privacy. This Privacy Policy 
-        explains how we collect, use, and safeguard your information when you use our online tools.
+    <p style="margin-top:16px; color:var(--text-light); max-width:900px;">
+        ToolSonics respects your privacy. We do not store, share, sell, or reuse any of your files or data. 
+        All processing (PDF, images, conversions, calculators, etc.) happens securely and temporarily.
     </p>
 
-    <h2>Information We Do NOT Collect</h2>
-    <p>ToolSonics is built for privacy. We do <strong>NOT</strong> collect:</p>
-    <ul>
-        <li>No personal data</li>
-        <li>No file storage on our servers</li>
-        <li>No login or account creation</li>
-        <li>No selling or sharing user data</li>
+    <h2 style="margin-top:30px;">1. Information We Do Not Collect</h2>
+    <p style="color:var(--text-light);">We do NOT collect:</p>
+    <ul style="color:var(--text-light); line-height:1.8;">
+        <li>✘ Uploaded PDF or image files</li>
+        <li>✘ Personal data</li>
+        <li>✘ IP address tracking</li>
+        <li>✘ Account creation or login details</li>
     </ul>
 
-    <h2>How Your Files Are Handled</h2>
-    <p>
-        All files you upload (PDF, images, documents, etc.) are processed in real-time.  
-        Files are:
-    </p>
-    <ul>
-        <li>Processed instantly</li>
-        <li>Not stored on our server</li>
-        <li>Deleted automatically after conversion/task</li>
-    </ul>
-
-    <h2>Analytics</h2>
-    <p>
-        We use anonymous analytics tools to understand website performance and improve user experience. 
-        No personal information is collected.
+    <h2 style="margin-top:30px;">2. File Processing & Security</h2>
+    <p style="color:var(--text-light); max-width:900px;">
+        All files uploaded to ToolSonics are processed temporarily in memory (RAM) and 
+        deleted automatically after the task is completed. No file is stored on any server.
     </p>
 
-    <h2>Third-Party Services</h2>
-    <p>
-        In some cases (example: OCR, translation, AI tools), we may use secure third-party APIs.  
-        These services do not store your personal files.
+    <h2 style="margin-top:30px;">3. Cookies</h2>
+    <p style="color:var(--text-light);">
+        We use minimal analytics cookies (Google Analytics) to understand website performance only.
     </p>
 
-    <h2>Cookies</h2>
-    <p>
-        ToolSonics uses minimal cookies only for performance and user experience improvement.  
-        We do not use any advertising cookies.
+    <h2 style="margin-top:30px;">4. Third-Party Services</h2>
+    <p style="color:var(--text-light);">
+        Our website may include links or tools that use trusted third-party APIs only for processing.
     </p>
 
-    <h2>Your Rights</h2>
-    <p>You have full control over your data. You may request:</p>
-    <ul>
-        <li>Information about how your files were processed</li>
-        <li>Removal of any analytics data related to your visit</li>
-    </ul>
-
-    <h2>Updates to this Policy</h2>
-    <p>
-        We may update this Privacy Policy occasionally. Updates will be posted on this page.
+    <h2 style="margin-top:30px;">5. Your Consent</h2>
+    <p style="color:var(--text-light);">
+        By using ToolSonics, you consent to our privacy policy.
     </p>
 
-    <h2>Contact Us</h2>
-    <p>
-        If you have any questions, you can contact us at:<br>
-        <b>toolsonics6@gmail.com</b>
+    <h2 style="margin-top:30px;">6. Contact</h2>
+    <p style="color:var(--text-light);">
+        For any questions, contact us at: <b>support@toolsonics.com</b>
     </p>
-
 </section>
 
 <div id="footer"></div>
 
 <script>
-    fetch("navbar.html").then(r=>r.text()).then(d=>navbar.innerHTML=d);
-    fetch("footer.html").then(r=>r.text()).then(d=>footer.innerHTML=d);
+    fetch("navbar.html").then(res=>res.text()).then(d=>navbar.innerHTML=d);
+    fetch("footer.html").then(res=>res.text()).then(d=>footer.innerHTML=d);
 </script>
 
 </body>
