@@ -1,131 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Use - ToolSonics</title>
-
-    <!-- Global CSS -->
+    <title>Terms of Use – ToolSonics</title>
     <link rel="stylesheet" href="global-style.css">
-
-    <style>
-        .terms-hero {
-            background: linear-gradient(135deg, #1a73e8, #0d47a1);
-            padding: 90px 20px;
-            text-align: center;
-            color: white;
-        }
-        .terms-hero h1 {
-            font-size: 2.7rem;
-            font-weight: 700;
-        }
-        .terms-container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-            line-height: 1.7;
-        }
-        .terms-container h2 {
-            color: #1a73e8;
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-        .terms-container p {
-            color: #444;
-            margin-bottom: 15px;
-        }
-        ul {
-            margin-left: 20px;
-        }
-    </style>
+    <link rel="icon" href="favicon-16x16.png">
 </head>
 
 <body>
 
 <div id="navbar"></div>
 
-<section class="terms-hero">
-    <h1>Terms of Use</h1>
-    <p>Please read these terms carefully before using our website.</p>
-</section>
+<section class="container" style="margin-top:60px;">
+    <h1 style="font-size:34px; font-weight:800; text-shadow:var(--primary-glow);">Terms of Use</h1>
 
-<section class="terms-container">
-
-    <h2>1. Acceptance of Terms</h2>
-    <p>
-        By accessing or using ToolSonics (“we”, “our”, “the website”), you agree to these Terms of Use.  
-        If you do not agree, please stop using the website immediately.
+    <p style="margin-top:16px; color:var(--text-light); max-width:900px;">
+        By accessing and using ToolSonics, you agree to the following terms of use.
     </p>
 
-    <h2>2. Services We Provide</h2>
-    <p>
-        ToolSonics offers free and premium online tools including PDF converters, 
-        image editors, calculators, AI tools, document utilities, and more.
-    </p>
-
-    <h2>3. User Responsibilities</h2>
-    <p>You agree that:</p>
-    <ul>
-        <li>You will not misuse the tools for illegal activities.</li>
-        <li>You will upload only files that you own or have permission to use.</li>
-        <li>You will not attempt to hack, damage, or overload our servers.</li>
+    <h2 style="margin-top:30px;">1. Allowed Use</h2>
+    <ul style="color:var(--text-light); line-height:1.8;">
+        <li>✔ Personal and commercial use allowed</li>
+        <li>✔ Unlimited conversions and tools usage</li>
+        <li>✔ No login required</li>
     </ul>
 
-    <h2>4. File Processing Policy</h2>
-    <p>
-        All files uploaded to our tools are processed instantly and not stored permanently.  
-        We do not keep backups of user files.
-    </p>
-
-    <h2>5. No Warranty</h2>
-    <p>
-        ToolSonics is provided “as is”.  
-        We do not guarantee:
-    </p>
-    <ul>
-        <li>100% uptime</li>
-        <li>Zero errors</li>
-        <li>Perfect accuracy for every tool</li>
+    <h2 style="margin-top:30px;">2. Prohibited Use</h2>
+    <ul style="color:var(--text-light); line-height:1.8;">
+        <li>✘ Uploading harmful, illegal or copyrighted content</li>
+        <li>✘ Attempting to hack or overload the server</li>
+        <li>✘ Reselling ToolSonics tools without permission</li>
     </ul>
 
-    <h2>6. Limitation of Liability</h2>
-    <p>
-        We are not responsible for:
-    </p>
-    <ul>
-        <li>Data loss while converting files</li>
-        <li>Incorrect results from tools</li>
-        <li>Third-party API failures</li>
-        <li>User misuse of tools</li>
-    </ul>
-
-    <h2>7. Third-Party Tools and APIs</h2>
-    <p>
-        Some features (example: OCR, translation, AI generation) may rely on 
-        trusted third-party APIs. Their usage is subject to their own policies.
+    <h2 style="margin-top:30px;">3. No File Storage Guarantee</h2>
+    <p style="color:var(--text-light); max-width:900px;">
+        ToolSonics does not store any files. All processing is done temporarily in memory.
     </p>
 
-    <h2>8. Updates to Terms</h2>
-    <p>
-        We may update these Terms at any time. Changes will be posted on this page.  
-        Continued use means you accept the updated Terms.
+    <h2 style="margin-top:30px;">4. Limitation of Liability</h2>
+    <p style="color:var(--text-light);">
+        ToolSonics is not responsible for any data loss, damages, or misuse caused by user actions.
     </p>
 
-    <h2>9. Contact Us</h2>
-    <p>
-        For questions or legal concerns, contact us at:<br>
-        <b>toolsonics6@gmail.com</b>
+    <h2 style="margin-top:30px;">5. Updates</h2>
+    <p style="color:var(--text-light);">
+        ToolSonics may update these terms anytime without prior notice.
     </p>
 
 </section>
@@ -133,8 +53,8 @@
 <div id="footer"></div>
 
 <script>
-    fetch("navbar.html").then(r=>r.text()).then(d=>navbar.innerHTML=d);
-    fetch("footer.html").then(r=>r.text()).then(d=>footer.innerHTML=d);
+    fetch("navbar.html").then(res=>res.text()).then(d=>navbar.innerHTML=d);
+    fetch("footer.html").then(res=>res.text()).then(d=>footer.innerHTML=d);
 </script>
 
 </body>
