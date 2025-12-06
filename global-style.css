@@ -1,221 +1,253 @@
 /* ================================
-   TOOLSONICS — ILOVEPDF STYLE BLUE THEME
-   GLOBAL THEME CSS (FINAL)
+   TOOLSONICS PREMIUM GLOBAL STYLE
+   iLovePDF Inspired – Blue Gradient Theme
 ================================= */
 
+/* ---------- COLOR SYSTEM ---------- */
 :root {
     --primary: #007bff;
-    --primary-soft: #e3f0ff;
-    --bg: #f7faff;
-    --card-bg: #ffffff;
-    --card-border: #d6e4ff;
-    --text-dark: #1a1a1a;
-    --text-mid: #555;
+    --primary-light: #4da3ff;
+    --primary-glow: 0 0 18px rgba(0,123,255,0.8);
+
+    --bg-dark: #0e1320;
+    --bg-card: rgba(255,255,255,0.06);
+    --bg-hover: rgba(255,255,255,0.12);
+
+    --text-main: #ffffff;
+    --text-light: #c7d3e3;
+
     --radius: 14px;
-    --transition: .25s ease;
-    --shadow: 0 4px 20px rgba(0,0,0,0.05);
+    --transition: 0.25s ease-in-out;
 }
 
-/* RESET */
+/* ---------- RESET ---------- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-    background: var(--bg);
-    color: var(--text-dark);
+    background: linear-gradient(145deg, #0e1320, #0b1b3f 60%);
+    color: var(--text-main);
+    min-height: 100vh;
 }
 
-/* CONTAINER */
+/* ---------- LINKS ---------- */
+a { text-decoration: none; color: inherit; }
+
+/* ---------- CONTAINER ---------- */
 .container {
     width: 100%;
     max-width: 1200px;
-    padding: 0 18px;
+    padding: 0 22px;
     margin: auto;
 }
 
-/* NAVBAR */
+/* ------------------------------
+   NAVBAR
+------------------------------- */
 .navbar {
     width: 100%;
-    background: #ffffff;
-    border-bottom: 1px solid #d8e3ff;
-    box-shadow: var(--shadow);
+    background: rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(14px);
     padding: 14px 0;
 }
 
-.navbar .inner {
+.navbar-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.navbar a {
-    text-decoration: none;
-    color: var(--text-dark);
-    font-weight: 600;
-    margin-left: 20px;
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* HERO SECTION */
+.logo-area img {
+    height: 34px;
+}
+
+.logo-area span {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.nav-links a {
+    margin-left: 22px;
+    font-size: 16px;
+    color: var(--text-light);
+}
+
+.nav-links a:hover {
+    color: var(--primary-light);
+    text-shadow: var(--primary-glow);
+}
+
+/* ------------------------------
+   HERO SECTION
+------------------------------- */
 .hero {
+    padding: 80px 20px 60px;
     text-align: center;
-    padding: 70px 20px 60px;
-    background: linear-gradient(135deg, #e8f2ff, #ffffff);
 }
 
 .hero h1 {
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 800;
-    color: #00308F;
+    text-shadow: var(--primary-glow);
 }
 
 .hero p {
-    margin-top: 12px;
-    font-size: 16px;
-    color: var(--text-mid);
+    margin-top: 10px;
+    font-size: 18px;
+    color: var(--text-light);
+    max-width: 600px;
+    margin-inline: auto;
 }
 
 .cta-button {
-    margin-top: 25px;
-    padding: 12px 26px;
+    margin-top: 22px;
+    padding: 12px 32px;
     background: var(--primary);
-    color: #fff;
+    color: black;
     border-radius: 30px;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 700;
+    font-weight: bold;
+    box-shadow: var(--primary-glow);
     transition: var(--transition);
 }
-
 .cta-button:hover {
-    background: #0056cc;
+    transform: translateY(-3px);
 }
 
-/* CATEGORY BUTTONS */
+/* ------------------------------
+   CATEGORY FILTERS
+------------------------------- */
 .category-buttons {
-    margin-top: 28px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 10px;
     gap: 10px;
 }
 
 .category-btn {
-    padding: 8px 18px;
-    border-radius: 25px;
-    background: var(--primary-soft);
-    border: 1px solid var(--card-border);
-    font-size: 14px;
+    padding: 8px 20px;
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 30px;
+    color: var(--text-main);
     cursor: pointer;
     transition: var(--transition);
 }
 
+.category-btn:hover {
+    background: var(--bg-hover);
+}
+
 .category-btn.active {
     background: var(--primary);
-    color: white;
+    color: black;
+    font-weight: bold;
 }
 
-.category-btn:hover {
-    background: var(--primary);
-    color: white;
-}
-
-/* SEARCH BOX */
+/* ------------------------------
+   SEARCH BAR
+------------------------------- */
 .search-box {
-    margin: 25px auto;
-    max-width: 600px;
+    margin: 20px auto;
+    max-width: 650px;
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 10px 16px;
     display: flex;
-    background: #fff;
-    padding: 12px 16px;
-    border-radius: var(--radius);
-    border: 1px solid var(--card-border);
+    align-items: center;
 }
 
 .search-box input {
     flex: 1;
+    background: transparent;
     border: none;
     outline: none;
-    font-size: 16px;
+    color: var(--text-main);
 }
 
-.search-box button {
-    background: var(--primary);
-    border: none;
-    color: white;
-    padding: 10px 18px;
-    border-radius: 6px;
-}
-
-/* TOOLS GRID */
+/* ------------------------------
+   TOOLS GRID
+------------------------------- */
 .tools-grid {
-    margin-top: 26px;
+    margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 22px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .tool-card {
-    background: var(--card-bg);
-    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: var(--radius);
-    border: 1px solid var(--card-border);
-    box-shadow: var(--shadow);
+    padding: 20px;
     transition: var(--transition);
 }
 
 .tool-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     border-color: var(--primary);
+    box-shadow: var(--primary-glow);
 }
 
-.tool-card img {
-    width: 42px;
+.tool-icon {
     height: 42px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .tool-card h3 {
     font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .tool-card p {
-    color: var(--text-mid);
     font-size: 14px;
-    margin-bottom: 16px;
+    color: var(--text-light);
+    margin-bottom: 14px;
 }
 
 .tool-button {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 10px 20px;
     background: var(--primary);
-    color: #fff;
+    color: black;
     border-radius: 8px;
-    font-weight: 600;
+    font-weight: 700;
     transition: var(--transition);
 }
 
 .tool-button:hover {
-    background: #0056cc;
+    box-shadow: var(--primary-glow);
 }
 
-/* FOOTER */
+/* ------------------------------
+   FOOTER
+------------------------------- */
 .footer {
-    margin-top: 60px;
-    background: #eef5ff;
-    padding: 30px 20px;
+    margin-top: 70px;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.1);
     text-align: center;
-    color: #444;
-    border-top: 1px solid #d4e2ff;
+    color: var(--text-light);
 }
 
-/* MOBILE */
+.footer a {
+    color: var(--primary-light);
+}
+
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 26px;
-    }
+    .hero h1 { font-size: 28px; }
 }
