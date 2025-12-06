@@ -1,29 +1,79 @@
-<div class="footer">
-    <div class="container">
+<!-- ============================
+       TOOLSONICS FOOTER
+============================= -->
 
-        <h2 style="font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px;">
-            ToolSonics
-        </h2>
+<style>
+    .ts-footer {
+        margin-top: 70px;
+        padding: 40px 20px;
+        background: rgba(255,255,255,0.03);
+        border-top: 1px solid rgba(255,255,255,0.12);
+    }
 
-        <p style="max-width: 650px; margin: auto; margin-bottom: 20px; color: #c7d3e3;">
-            ToolSonics is a modern platform offering fast, secure and easy-to-use tools
-            for PDF, Images, Documents, Calculators, Utilities and more.  
-            Built for students, office users, developers, and daily workflow productivity.
+    .ts-footer-container {
+        max-width: 1200px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .ts-footer h2 {
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 14px;
+        color: var(--primary);
+        text-shadow: 0 0 12px var(--primary);
+    }
+
+    .ts-footer p {
+        color: var(--text-light);
+        max-width: 700px;
+        margin: auto;
+        font-size: 15px;
+    }
+
+    .footer-links {
+        margin-top: 24px;
+        display: flex;
+        gap: 22px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-links a {
+        color: var(--text-light);
+        font-weight: 600;
+        transition: 0.25s;
+    }
+
+    .footer-links a:hover {
+        color: var(--primary);
+    }
+
+    .footer-bottom {
+        margin-top: 25px;
+        font-size: 14px;
+        color: #bbb;
+    }
+</style>
+
+<footer class="ts-footer">
+    <div class="ts-footer-container">
+
+        <h2>ToolSonics</h2>
+        <p>
+            The fastest and smartest online toolkit for PDFs, Images, Calculators,
+            Utilities, AI tools and more — built to simplify your daily work.
         </p>
 
-        <!-- FOOTER LINKS -->
-        <div style="margin: 20px 0;">
-            <a href="index.html">Home</a> •
-            <a href="#tools">Tools</a> •
-            <a href="about.html">About</a> •
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="#tools">Tools</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="about.html">About Us</a>
             <a href="contact.html">Contact</a>
         </div>
 
-        <hr style="border-color: rgba(255,255,255,0.12); margin: 18px 0;">
-
-        <p style="color: #9bb4d4; font-size: 14px;">
-            © 2025 ToolSonics. All Rights Reserved.
-        </p>
-
+        <div class="footer-bottom">© 2025 ToolSonics. All Rights Reserved.</div>
     </div>
-</div>
+</footer>
