@@ -1,21 +1,26 @@
-/* ================================
-   TOOLSONICS CLEAN WHITE THEME
-   Premium SaaS (iLovePDF Style)
-================================ */
+/* =====================================================
+   TOOLSONICS — Premium Global CSS (iLovePDF Inspired)
+   Floating Glass UI + Multicolor Icons
+===================================================== */
 
 /* ---------- COLOR SYSTEM ---------- */
 :root {
-    --blue: #007bff;
-    --blue-light: #4da3ff;
-    --bg: #ffffff;
-    --bg-light: #f7f9fc;
-    --text: #1a1a1a;
-    --text-light: #6b7280;
-    --border: #e5e7eb;
+    --primary: #007bff;
+    --primary-light: #4da8ff;
+    --danger: #ff3b3b;
+    --success: #28c76f;
+    --warning: #ffb100;
+    --purple: #8c52ff;
 
-    --radius: 14px;
+    --bg-dark: #0d1117;
+    --bg-card: rgba(255, 255, 255, 0.08);
+    --border-light: rgba(255, 255, 255, 0.15);
+
+    --text-main: #ffffff;
+    --text-light: #cfd6e1;
+
+    --radius: 16px;
     --transition: 0.25s ease;
-    --shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
 /* ---------- RESET ---------- */
@@ -27,69 +32,103 @@
 }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-}
-
-/* ---------- LINKS ---------- */
-a {
-    color: inherit;
-    text-decoration: none;
+    background: var(--bg-dark);
+    color: var(--text-main);
 }
 
 /* ---------- CONTAINER ---------- */
 .container {
+    width: 100%;
     max-width: 1200px;
     padding: 0 20px;
     margin: auto;
 }
 
-/* ------------------------------
-      HERO SECTION
-------------------------------- */
+/* ===============================
+   NAVBAR
+=============================== */
+.navbar {
+    width: 100%;
+    padding: 14px 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.navbar .nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo img {
+    height: 34px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-light);
+}
+
+/* ===============================
+   HERO SECTION
+=============================== */
 .hero {
-    padding: 90px 20px 65px;
+    padding: 110px 20px 90px;
+    background: linear-gradient(135deg, rgba(0,123,255,0.18), rgba(0,0,0,0.8));
     text-align: center;
 }
 
 .hero h1 {
     font-size: 42px;
     font-weight: 800;
-    color: var(--blue);
+    text-shadow: 0 0 15px rgba(0,123,255,0.5);
 }
 
 .hero p {
     font-size: 18px;
-    margin: 14px auto 20px;
-    max-width: 650px;
+    margin: 15px auto 30px;
+    max-width: 700px;
     color: var(--text-light);
 }
 
-/* Hero Button */
 .cta-button {
-    background: var(--blue);
-    color: white;
-    padding: 12px 32px;
-    border-radius: 32px;
+    padding: 12px 28px;
+    border-radius: 40px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: bold;
     border: none;
-    font-weight: 600;
     cursor: pointer;
-    font-size: 17px;
     transition: var(--transition);
 }
 
 .cta-button:hover {
-    background: var(--blue-light);
     transform: translateY(-3px);
+    background: var(--primary-light);
 }
 
-/* ---------- CATEGORY BUTTONS ---------- */
-.category-section {
-    margin-top: 20px;
-}
-
+/* ===============================
+   CATEGORY BUTTONS
+=============================== */
 .category-buttons {
+    margin-top: 35px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -97,135 +136,146 @@ a {
 }
 
 .category-btn {
-    background: var(--bg-light);
-    border: 1px solid var(--border);
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
     padding: 10px 22px;
     border-radius: 30px;
+    color: var(--text-main);
     font-weight: 600;
-    color: var(--text);
+    cursor: pointer;
     transition: var(--transition);
 }
 
-.category-btn:hover,
-.category-btn.active {
-    background: var(--blue);
-    color: white;
+.category-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary-light);
 }
 
-/* ---------- SEARCH BOX ---------- */
+.category-btn.active {
+    background: var(--primary);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* ===============================
+   SEARCH BOX
+=============================== */
 .search-box {
+    max-width: 700px;
+    margin: 25px auto 0;
     display: flex;
-    background: var(--bg-light);
-    border: 1px solid var(--border);
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
     border-radius: var(--radius);
     padding: 12px 16px;
-    margin: 30px auto 0;
-    max-width: 650px;
     gap: 10px;
 }
 
 .search-box input {
     flex: 1;
-    background: transparent;
+    background: none;
     border: none;
     outline: none;
-    font-size: 15px;
+    color: var(--text-main);
 }
 
-/* ---------- GRID TOOL CARDS ---------- */
-.tool-card-grid {
+.search-box button {
+    background: var(--primary);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    color: #fff;
+}
+
+/* ===============================
+   TOOL GRID CARDS
+=============================== */
+.tools-grid {
+    margin-top: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 25px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .tool-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
+    padding: 22px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--border-light);
     border-radius: var(--radius);
-    padding: 25px;
+    backdrop-filter: blur(10px);
     transition: var(--transition);
-    box-shadow: var(--shadow);
 }
 
 .tool-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    border-color: var(--primary);
+    transform: translateY(-6px);
+    box-shadow: 0 0 18px rgba(0,123,255,0.3);
 }
 
-.tool-card-icon {
-    font-size: 38px;
-    color: var(--blue);
-    margin-bottom: 10px;
-}
-
-.tool-card-title {
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.tool-card-desc {
-    font-size: 14px;
-    color: var(--text-light);
-    margin: 10px 0 16px;
-}
-
-.tool-card-btn {
-    background: var(--blue);
-    padding: 10px 18px;
-    border-radius: 8px;
-    color: white;
-    font-weight: 700;
-    transition: var(--transition);
-}
-
-.tool-card-btn:hover {
-    background: var(--blue-light);
-}
-
-/* ---------- FOOTER ---------- */
-footer {
-    background: var(--bg-light);
-    padding: 50px 20px;
-    border-top: 1px solid var(--border);
-    margin-top: 60px;
-}
-
-.footer-columns {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-    margin-bottom: 25px;
-}
-
-.footer-title {
-    font-weight: 700;
-    color: var(--text);
+.tool-icon-img {
+    width: 48px;
+    height: 48px;
     margin-bottom: 12px;
 }
 
-.footer-links a {
-    display: block;
-    font-size: 14px;
-    color: var(--text-light);
-    margin-bottom: 6px;
+.tool-card h3 {
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.footer-links a:hover {
-    color: var(--blue);
+.tool-card p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin: 10px 0 18px;
+}
+
+.tool-button {
+    background: var(--primary);
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.tool-button:hover {
+    background: var(--primary-light);
+}
+
+/* ===============================
+   FOOTER
+=============================== */
+.footer {
+    margin-top: 60px;
+    padding: 40px 20px;
+    background: #f7f7f7;
+    color: #333;
+    border-top: 1px solid #ddd;
+}
+
+.footer h3 {
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.footer a {
+    color: #333;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
 }
 
 .footer-bottom {
     text-align: center;
+    margin-top: 20px;
+    color: #444;
     font-size: 14px;
-    color: var(--text-light);
-    padding-top: 18px;
-    border-top: 1px solid var(--border);
 }
 
-/* ---------- MOBILE FIXES ---------- */
-@media(max-width: 768px){
+/* ===============================
+   MOBILE FIXES
+=============================== */
+@media (max-width: 768px) {
     .hero h1 { font-size: 30px; }
-    .tool-card-grid { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: 1fr; }
 }
