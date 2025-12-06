@@ -1,113 +1,26 @@
-<!-- NAVBAR (ToolSonics) -->
-<style>
-    .navbar {
-        width: 100%;
-        background: #fff;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        padding: 14px 0;
-        position: sticky;
-        top: 0;
-        z-index: 999;
-    }
+<nav style="
+    width:100%; 
+    background:white; 
+    padding:12px 0; 
+    border-bottom:1px solid #e5e7eb;
+    position:sticky;
+    top:0;
+    z-index:1000;">
+    
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+        
+        <!-- LOGO -->
+        <a href="index.html" style="font-size:22px; font-weight:800; color:#007bff;">
+            ToolSonics
+        </a>
 
-    .nav-container {
-        max-width: 1200px;
-        margin: auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 20px;
-    }
-
-    .logo {
-        font-size: 24px;
-        font-weight: 700;
-        color: #1a73e8;
-    }
-    .logo span {
-        color: #000;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 25px;
-        list-style: none;
-    }
-    .nav-links li a {
-        text-decoration: none;
-        font-size: 15px;
-        color: #333;
-        font-weight: 500;
-        transition: 0.3s;
-    }
-    .nav-links li a:hover {
-        color: #1a73e8;
-    }
-
-    /* MOBILE */
-    .menu-btn {
-        display: none;
-        font-size: 26px;
-        cursor: pointer;
-    }
-
-    @media(max-width: 768px) {
-        .nav-links {
-            position: absolute;
-            top: 65px;
-            right: 0;
-            background: white;
-            width: 100%;
-            flex-direction: column;
-            padding: 20px;
-            gap: 15px;
-            display: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .nav-links.show {
-            display: flex;
-        }
-        .menu-btn {
-            display: block;
-        }
-    }
-</style>
-
-<nav class="navbar">
-    <div class="nav-container">
-
-        <!-- Logo -->
-        <a href="index.html" class="logo">Tool<span>Sonics</span></a>
-
-        <!-- Menu Button -->
-        <div class="menu-btn" id="menuBtn">
-            <i class="fas fa-bars"></i>
+        <!-- MENU -->
+        <div class="nav-links" style="display:flex; gap:22px;">
+            <a href="index.html" style="color:#1a1a1a; font-weight:600;">Home</a>
+            <a href="#tools" style="color:#1a1a1a; font-weight:600;">All Tools</a>
+            <a href="contact.html" style="color:#1a1a1a; font-weight:600;">Contact</a>
+            <a href="about.html" style="color:#1a1a1a; font-weight:600;">About</a>
         </div>
 
-        <!-- NAV LINKS -->
-        <ul class="nav-links" id="navLinks">
-
-            <!-- IMPORTANT: no leading slash -->
-            <li><a href="index.html#home">Home</a></li>
-            <li><a href="index.html#tools">Tools</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="terms-of-use.html">Terms of Use</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
     </div>
 </nav>
-
-<script>
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
-
-    menuBtn.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-    });
-
-    // Auto close menu on link click (mobile)
-    document.querySelectorAll(".nav-links a").forEach(a => {
-        a.addEventListener("click", () => navLinks.classList.remove("show"));
-    });
-</script>
