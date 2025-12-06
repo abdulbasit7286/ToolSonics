@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-1H0ZEYLH0K');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-1H0ZEYLH0K');
     </script>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolSonics - Smart, Fast & Easy Online Tools</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="favicon-16x16.png">
+    <title>ToolSonics - Smart, Fast & Easy-to-Use Online Tools</title>
+
+    <meta name="description" content="Smart, fast & easy-to-use online tools. PDF tools, image tools, calculators, AI & utilities — all in one place.">
+    <meta name="keywords" content="toolsonics, pdf tools, calculators, online tools, free tools">
+
+    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+
+    <!-- Global CSS -->
     <link rel="stylesheet" href="global-style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
@@ -43,9 +52,9 @@
             <button class="category-btn" data-category="calculator">Calculator</button>
             <button class="category-btn" data-category="web">Web / Dev</button>
             <button class="category-btn" data-category="utility">Utility</button>
-            <button class="category-btn" data-category="ai">AI Tools</button>
+            <button class="category-btn" data-category="ai">AI</button>
             <button class="category-btn" data-category="education">Education</button>
-            <button class="category-btn" data-category="time">Time</button>
+            <button class="category-btn" data-category="time">Time Tools</button>
         </div>
     </div>
 </section>
@@ -54,157 +63,447 @@
 <section class="search-section">
     <div class="container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search any tool…">
+            <input type="text" id="searchInput" placeholder="Search a tool..." />
             <button><i class="fas fa-search"></i></button>
         </div>
     </div>
 </section>
 
-<!-- ALL TOOLS GRID -->
-<main class="container tools-section" id="tools">
-
-    <h2 class="section-title">All Tools</h2>
+<!-- TOOLS GRID -->
+<main class="container" id="tools">
+    <h2 style="margin-top: 40px;">All Tools</h2>
+    <p style="color: var(--text-light); margin-bottom: 20px;">Explore all ToolSonics tools in one place.</p>
 
     <div class="tools-grid" id="toolGrid">
 
-        <!-- 🔵 DOCUMENT TOOLS -->
-        <script>
-            const tools = [
+        <!-- DOCUMENT TOOLS -->
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-object-group"></i></div>
+            <h3>Merge PDF</h3>
+            <p>Combine multiple PDF files into one.</p>
+            <a href="merge-pdf.html" class="tool-button">Open Tool</a>
+        </div>
 
-                /* ========== DOCUMENT TOOLS ========== */
-                {name:"Merge PDF", icon:"merge.svg", desc:"Combine multiple PDFs into one file.", link:"merge-pdf.html", cat:"document"},
-                {name:"Split PDF", icon:"split.svg", desc:"Extract pages and split PDFs easily.", link:"split-pdf.html", cat:"document"},
-                {name:"Delete PDF Pages", icon:"delete.svg", desc:"Remove unwanted pages from PDFs.", link:"delete-pages.html", cat:"document"},
-                {name:"Rotate PDF Pages", icon:"rotate.svg", desc:"Fix page orientation quickly.", link:"rotate-pages.html", cat:"document"},
-                {name:"Reorder PDF Pages", icon:"reorder.svg", desc:"Arrange PDF pages in any order.", link:"reorder-pages.html", cat:"document"},
-                {name:"Protect PDF", icon:"lock.svg", desc:"Add password & secure your PDF.", link:"protect-pdf.html", cat:"document"},
-                {name:"Unlock PDF", icon:"unlock.svg", desc:"Remove password from PDFs.", link:"unlock-pdf.html", cat:"document"},
-                {name:"Add Page Numbers", icon:"numbers.svg", desc:"Insert dynamic page numbering.", link:"add-page-numbers.html", cat:"document"},
-                {name:"Add Watermark", icon:"watermark.svg", desc:"Add text watermark to PDF.", link:"add-watermark.html", cat:"document"},
-                {name:"Text → PDF", icon:"text-pdf.svg", desc:"Convert plain text into PDF.", link:"text-to-pdf.html", cat:"document"},
-                {name:"Images → PDF", icon:"image-pdf.svg", desc:"Convert multiple images into PDF.", link:"images-to-pdf.html", cat:"document"},
-                {name:"CSV ↔ Excel", icon:"csv-excel.svg", desc:"Convert between CSV & Excel.", link:"csv-excel-converter.html", cat:"document"},
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-cut"></i></div>
+            <h3>Split PDF</h3>
+            <p>Extract pages and split PDFs easily.</p>
+            <a href="split-pdf.html" class="tool-button">Open Tool</a>
+        </div>
 
-                /* ========== IMAGE TOOLS ========== */
-                {name:"Image Converter", icon:"img-convert.svg", desc:"Convert JPG, PNG, WEBP, more.", link:"image-converter.html", cat:"image"},
-                {name:"Merge Images", icon:"img-merge.svg", desc:"Combine images vertically or horizontally.", link:"merge-image.html", cat:"image"},
-                {name:"Image Compressor", icon:"img-compress.svg", desc:"Reduce image size without quality loss.", link:"image-compressor.html", cat:"image"},
-                {name:"Image Resizer", icon:"resize.svg", desc:"Resize images to exact dimensions.", link:"image-resizer.html", cat:"image"},
-                {name:"Image Cropper", icon:"crop.svg", desc:"Crop unwanted parts of images.", link:"image-cropper.html", cat:"image"},
-                {name:"Rotate / Flip Image", icon:"img-rotate.svg", desc:"Rotate or flip images easily.", link:"image-rotator.html", cat:"image"},
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-trash"></i></div>
+            <h3>Delete PDF Pages</h3>
+            <p>Remove specific pages from PDFs.</p>
+            <a href="delete-pages.html" class="tool-button">Open Tool</a>
+        </div>
 
-                /* ========== CALCULATOR TOOLS ========== */
-                {name:"EMI Calculator", icon:"emi.svg", desc:"Calculate loan EMIs easily.", link:"EMI-calculator.html", cat:"calculator"},
-                {name:"SIP Calculator", icon:"sip.svg", desc:"Estimate returns on SIP.", link:"SIP-calculator.html", cat:"calculator"},
-                {name:"PPF Calculator", icon:"ppf.svg", desc:"Calculate PPF maturity amount.", link:"PPF-calculator.html", cat:"calculator"},
-                {name:"Tax Calculator", icon:"tax.svg", desc:"Income Tax Calculator (India).", link:"TAX-calculator.html", cat:"calculator"},
-                {name:"Compound Interest", icon:"interest.svg", desc:"Compute compound interest.", link:"compound-interest-calculator.html", cat:"calculator"},
-                {name:"House Area Converter", icon:"area.svg", desc:"Convert Sqft ↔ Sqm ↔ Gaj.", link:"area-converter.html", cat:"calculator"},
-                {name:"Budget Generator", icon:"budget.svg", desc:"Plan monthly expenses easily.", link:"budget-generator.html", cat:"calculator"},
-                {name:"Salary Slip Generator", icon:"salary.svg", desc:"Generate professional salary slip.", link:"slip-generator.html", cat:"calculator"},
-                {name:"Age Calculator", icon:"age.svg", desc:"Find exact age in detail.", link:"age-calculator.html", cat:"calculator"},
-                {name:"BMI Calculator", icon:"bmi.svg", desc:"Calculate Body Mass Index.", link:"BMI-calculator.html", cat:"calculator"},
-                {name:"GST Calculator", icon:"gst.svg", desc:"Compute GST quickly.", link:"gst-calculator.html", cat:"calculator"},
-                {name:"Percentage Calculator", icon:"percent.svg", desc:"Solve percentage problems.", link:"percentage-calculator.html", cat:"calculator"},
-                {name:"Currency Converter", icon:"currency.svg", desc:"Convert currencies live.", link:"currency-converter.html", cat:"calculator"},
-                {name:"Excel Loan EMI Calculator", icon:"excel-emi.svg", desc:"Calculate EMIs in Excel format.", link:"loan-emi-calculator.html", cat:"calculator"},
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-rotate-right"></i></div>
+            <h3>Rotate PDF Pages</h3>
+            <p>Rotate PDF pages left or right.</p>
+            <a href="rotate-pages.html" class="tool-button">Open Tool</a>
+        </div>
 
-                /* ========== WEB / DEV TOOLS ========== */
-                {name:"HTML/CSS/JS Minifier", icon:"minify.svg", desc:"Minify website code.", link:"html-css-js-minifier.html", cat:"web"},
-                {name:"JSON Formatter", icon:"json.svg", desc:"Format & validate JSON data.", link:"JSON Formatter & Validator.html", cat:"web"},
-                {name:"Base64 Encoder/Decoder", icon:"base64.svg", desc:"Encode/decode Base64 text.", link:"base64.html", cat:"web"},
-                {name:"URL Encoder/Decoder", icon:"url.svg", desc:"Encode/decode URL safe strings.", link:"url-encoder-decoder.html", cat:"web"},
-                {name:"Color Picker", icon:"color.svg", desc:"Pick & convert HEX/RGB/HSL.", link:"color-picker.html", cat:"web"},
-                {name:"Regex Tester", icon:"regex.svg", desc:"Test regular expressions.", link:"regex-tester.html", cat:"web"},
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-sort"></i></div>
+            <h3>Reorder PDF Pages</h3>
+            <p>Arrange pages in any order.</p>
+            <a href="reorder-pages.html" class="tool-button">Open Tool</a>
+        </div>
 
-                /* ========== UTILITY TOOLS ========== */
-                {name:"QR Code Generator", icon:"qr.svg", desc:"Generate QR codes easily.", link:"qr-code-generator.html", cat:"utility"},
-                {name:"Barcode Generator", icon:"barcode.svg", desc:"Generate barcodes instantly.", link:"barcode-generator.html", cat:"utility"},
-                {name:"UUID Generator", icon:"uuid.svg", desc:"Generate unique IDs.", link:"uuid-generator.html", cat:"utility"},
-                {name:"Unit Converter", icon:"unit.svg", desc:"Convert length, weight, volume, etc.", link:"unit-converter.html", cat:"utility"},
-                {name:"Time Zone Converter", icon:"timezone.svg", desc:"Convert time zones instantly.", link:"time-zone-converter.html", cat:"utility"},
-                {name:"Password Generator", icon:"password.svg", desc:"Generate secure passwords.", link:"random-no-pass-generator.html", cat:"utility"},
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-lock"></i></div>
+            <h3>Protect PDF</h3>
+            <p>Add password to secure PDF.</p>
+            <a href="protect-pdf.html" class="tool-button">Open Tool</a>
+        </div>
 
-                /* ========== AI TOOLS ========== */
-                {name:"AI PPT Generator", icon:"ppt.svg", desc:"Create presentations using AI.", link:"ppt-generator.html", cat:"ai"},
-                {name:"Resume Builder", icon:"resume.svg", desc:"Create resume professionally.", link:"resume-builder.html", cat:"ai"},
-                {name:"Resume ATS Optimizer", icon:"ats.svg", desc:"Optimize resume for ATS.", link:"resume-keyword-optimizer.html", cat:"ai"},
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-unlock"></i></div>
+            <h3>Unlock PDF</h3>
+            <p>Remove password from PDFs.</p>
+            <a href="unlock-pdf.html" class="tool-button">Open Tool</a>
+        </div>
 
-                /* ========== EDUCATION TOOLS ========== */
-                {name:"Periodic Table", icon:"periodic.svg", desc:"Interactive periodic table.", link:"periodic-table.html", cat:"education"},
-                {name:"Math Formula Calculator", icon:"math.svg", desc:"Calculate math formulas.", link:"math-formula-calculator.html", cat:"education"},
-                {name:"Scientific Constants", icon:"science.svg", desc:"Important scientific values.", link:"scientific-constants.html", cat:"education"},
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-sort-numeric-up"></i></div>
+            <h3>Add Page Numbers</h3>
+            <p>Insert dynamic numbering.</p>
+            <a href="add-page-numbers.html" class="tool-button">Open Tool</a>
+        </div>
 
-                /* ========== TIME TOOLS ========== */
-                {name:"World Clock", icon:"clock.svg", desc:"Check global time zones.", link:"world-clock.html", cat:"time"},
-                {name:"Countdown Timer", icon:"countdown.svg", desc:"Track countdown events.", link:"countdown-timer.html", cat:"time"},
-                {name:"Stopwatch", icon:"stopwatch.svg", desc:"Track lap timings easily.", link:"stopwatch.html", cat:"time"},
-                {name:"Date Difference Calculator", icon:"datediff.svg", desc:"Calculate days between dates.", link:"date-difference-calculator.html", cat:"time"},
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-water"></i></div>
+            <h3>Add Watermark</h3>
+            <p>Add text watermark to PDF.</p>
+            <a href="add-watermark.html" class="tool-button">Open Tool</a>
+        </div>
 
-            ];
-        </script>
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-font"></i></div>
+            <h3>Text → PDF</h3>
+            <p>Convert plain text into PDF.</p>
+            <a href="text-to-pdf.html" class="tool-button">Open Tool</a>
+        </div>
 
-        <!-- AUTO-GENERATED TOOL CARDS -->
-        <script>
-            const grid = document.getElementById("toolGrid");
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-images"></i></div>
+            <h3>Images → PDF</h3>
+            <p>Merge multiple images into one PDF.</p>
+            <a href="images-to-pdf.html" class="tool-button">Open Tool</a>
+        </div>
 
-            tools.forEach(t => {
-                grid.innerHTML += `
-                <div class="tool-card" data-category="${t.cat}">
-                    <img class="tool-icon" src="assets/icons/${t.icon}" alt="${t.name}">
-                    <h3>${t.name}</h3>
-                    <p>${t.desc}</p>
-                    <a href="${t.link}" class="tool-button">Open Tool</a>
-                </div>`;
-            });
-        </script>
+        <div class="tool-card" data-category="document">
+            <div class="tool-icon-small"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <h3>CSV ↔ Excel</h3>
+            <p>Convert CSV ↔ Excel instantly.</p>
+            <a href="csv-excel-converter.html" class="tool-button">Open Tool</a>
+        </div>
 
+        <!-- IMAGE TOOLS -->
+        <div class="tool-card" data-category="image">
+            <div class="tool-icon-small"><i class="fa-solid fa-image"></i></div>
+            <h3>Image Converter</h3>
+            <p>Convert JPG, PNG, WEBP & more.</p>
+            <a href="image-converter.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="image">
+            <div class="tool-icon-small"><i class="fa-solid fa-object-group"></i></div>
+            <h3>Merge Images</h3>
+            <p>Combine multiple images.</p>
+            <a href="merge-image.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="image">
+            <div class="tool-icon-small"><i class="fa-solid fa-compress"></i></div>
+            <h3>Image Compressor</h3>
+            <p>Reduce image file size.</p>
+            <a href="image-compressor.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="image">
+            <div class="tool-icon-small"><i class="fa-solid fa-expand"></i></div>
+            <h3>Image Resizer</h3>
+            <p>Resize images instantly.</p>
+            <a href="image-resizer.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="image">
+            <div class="tool-icon-small"><i class="fa-solid fa-crop"></i></div>
+            <h3>Image Cropper</h3>
+            <p>Crop unwanted areas.</p>
+            <a href="image-cropper.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="image">
+            <div class="tool-icon-small"><i class="fa-solid fa-sync"></i></div>
+            <h3>Rotate / Flip Image</h3>
+            <p>Rotate or flip images.</p>
+            <a href="image-rotator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <!-- CALCULATOR TOOLS -->
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-percent"></i></div>
+            <h3>GST Calculator</h3>
+            <p>Compute GST quickly.</p>
+            <a href="gst-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-money-check-alt"></i></div>
+            <h3>EMI Calculator</h3>
+            <p>Calculate loan EMIs.</p>
+            <a href="EMI-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-chart-line"></i></div>
+            <h3>SIP Calculator</h3>
+            <p>Estimate SIP returns.</p>
+            <a href="SIP-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-piggy-bank"></i></div>
+            <h3>PPF Calculator</h3>
+            <p>Calculate PPF maturity.</p>
+            <a href="PPF-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-receipt"></i></div>
+            <h3>Tax Calculator</h3>
+            <p>Income tax (India).</p>
+            <a href="TAX-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-chart-area"></i></div>
+            <h3>Compound Interest</h3>
+            <p>Calculate compound interest.</p>
+            <a href="compound-interest-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-birthday-cake"></i></div>
+            <h3>Age Calculator</h3>
+            <p>Find exact age.</p>
+            <a href="age-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-weight"></i></div>
+            <h3>BMI Calculator</h3>
+            <p>Check body mass index.</p>
+            <a href="BMI-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-file-invoice"></i></div>
+            <h3>Salary Slip Generator</h3>
+            <p>Create salary slip.</p>
+            <a href="slip-generator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-ruler"></i></div>
+            <h3>House Area Converter</h3>
+            <p>Sqft ↔ Sqm ↔ Gaj.</p>
+            <a href="area-converter.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-wallet"></i></div>
+            <h3>Budget Generator</h3>
+            <p>Plan monthly expenses.</p>
+            <a href="budget-generator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-dollar-sign"></i></div>
+            <h3>Currency Converter</h3>
+            <p>Convert currencies live.</p>
+            <a href="currency-converter.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-calculator"></i></div>
+            <h3>Percentage Calculator</h3>
+            <p>Solve percentage problems.</p>
+            <a href="percentage-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <!-- WEB / DEV TOOLS -->
+        <div class="tool-card" data-category="web">
+            <div class="tool-icon-small"><i class="fa-solid fa-file-code"></i></div>
+            <h3>HTML/CSS/JS Minifier</h3>
+            <p>Minify website code.</p>
+            <a href="html-css-js-minifier.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="web">
+            <div class="tool-icon-small"><i class="fa-solid fa-code"></i></div>
+            <h3>JSON Formatter</h3>
+            <p>Format & validate JSON.</p>
+            <a href="JSON Formatter & Validator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="web">
+            <div class="tool-icon-small"><i class="fa-solid fa-lock"></i></div>
+            <h3>Base64 Encoder</h3>
+            <p>Encode or decode Base64 text.</p>
+            <a href="base64.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="web">
+            <div class="tool-icon-small"><i class="fa-solid fa-link"></i></div>
+            <h3>URL Encoder / Decoder</h3>
+            <p>Convert URL safe strings.</p>
+            <a href="url-encoder-decoder.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="web">
+            <div class="tool-icon-small"><i class="fa-solid fa-palette"></i></div>
+            <h3>Color Picker</h3>
+            <p>Pick & convert HEX/RGB/HSL.</p>
+            <a href="color-picker.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="web">
+            <div class="tool-icon-small"><i class="fa-solid fa-terminal"></i></div>
+            <h3>Regex Tester</h3>
+            <p>Test regular expressions.</p>
+            <a href="regex-tester.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <!-- UTILITY TOOLS -->
+        <div class="tool-card" data-category="utility">
+            <div class="tool-icon-small"><i class="fa-solid fa-qrcode"></i></div>
+            <h3>QR Code Generator</h3>
+            <p>Create QR codes easily.</p>
+            <a href="qr-code-generator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="utility">
+            <div class="tool-icon-small"><i class="fa-solid fa-barcode"></i></div>
+            <h3>Barcode Generator</h3>
+            <p>Generate barcodes.</p>
+            <a href="barcode-generator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="utility">
+            <div class="tool-icon-small"><i class="fa-solid fa-fingerprint"></i></div>
+            <h3>UUID Generator</h3>
+            <p>Create unique IDs.</p>
+            <a href="uuid-generator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="utility">
+            <div class="tool-icon-small"><i class="fa-solid fa-ruler-combined"></i></div>
+            <h3>Unit Converter</h3>
+            <p>Convert length, weight, volume.</p>
+            <a href="unit-converter.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="utility">
+            <div class="tool-icon-small"><i class="fa-solid fa-clock"></i></div>
+            <h3>Time Zone Converter</h3>
+            <p>Convert world time zones.</p>
+            <a href="time-zone-converter.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="utility">
+            <div class="tool-icon-small"><i class="fa-solid fa-key"></i></div>
+            <h3>Password Generator</h3>
+            <p>Strong password creator.</p>
+            <a href="random-no-pass-generator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <!-- AI TOOLS -->
+        <div class="tool-card" data-category="ai">
+            <div class="tool-icon-small"><i class="fa-solid fa-file-powerpoint"></i></div>
+            <h3>AI PPT Generator</h3>
+            <p>Create PPT slides using AI.</p>
+            <a href="ppt-generator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="ai">
+            <div class="tool-icon-small"><i class="fa-solid fa-file-alt"></i></div>
+            <h3>Resume Builder</h3>
+            <p>Create a professional resume.</p>
+            <a href="resume-builder.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="ai">
+            <div class="tool-icon-small"><i class="fa-solid fa-search"></i></div>
+            <h3>Resume ATS Optimizer</h3>
+            <p>Optimize resume for ATS.</p>
+            <a href="resume-keyword-optimizer.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="tool-card" data-category="education">
+            <div class="tool-icon-small"><i class="fa-solid fa-atom"></i></div>
+            <h3>Periodic Table</h3>
+            <p>Interactive periodic table.</p>
+            <a href="periodic-table.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="education">
+            <div class="tool-icon-small"><i class="fa-solid fa-flask"></i></div>
+            <h3>Scientific Constants</h3>
+            <p>Important scientific values.</p>
+            <a href="scientific-constants.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="education">
+            <div class="tool-icon-small"><i class="fa-solid fa-square-root-alt"></i></div>
+            <h3>Math Formula Calculator</h3>
+            <p>Solve math formulas.</p>
+            <a href="math-formula-calculator.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <!-- TIME TOOLS -->
+        <div class="tool-card" data-category="time">
+            <div class="tool-icon-small"><i class="fa-solid fa-globe"></i></div>
+            <h3>World Clock</h3>
+            <p>Check global time zones.</p>
+            <a href="world-clock.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="time">
+            <div class="tool-icon-small"><i class="fa-solid fa-hourglass-half"></i></div>
+            <h3>Countdown Timer</h3>
+            <p>Track countdown events.</p>
+            <a href="countdown-timer.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="time">
+            <div class="tool-icon-small"><i class="fa-solid fa-stopwatch"></i></div>
+            <h3>Stopwatch</h3>
+            <p>Track lap timings.</p>
+            <a href="stopwatch.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="time">
+            <div class="tool-icon-small"><i class="fa-solid fa-calendar"></i></div>
+            <h3>Date Difference Calculator</h3>
+            <p>Calculate days between dates.</p>
+            <a href="date-difference-calculator.html" class="tool-button">Open Tool</a>
+        </div>
     </div>
 </main>
 
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- JS for Navbar/Footer Load + Filters -->
+<!-- JS (Navbar + Footer Load + Filter + Search) -->
 <script>
-function loadComponent(id, file) {
-    fetch(file).then(res => res.text()).then(html => {
-        const el = document.getElementById(id);
-        if (el) el.innerHTML = html;
-    });
-}
-
-loadComponent("navbar", "navbar.html");
-loadComponent("footer", "footer.html");
-
-document.addEventListener("DOMContentLoaded", () => {
-    const categoryButtons = document.querySelectorAll(".category-btn");
-    const searchInput = document.getElementById("searchInput");
-    const cards = document.querySelectorAll(".tool-card");
-
-    let activeCategory = "all";
-
-    function applyFilters() {
-        const searchText = searchInput.value.toLowerCase();
-
-        cards.forEach(card => {
-            const catMatch = activeCategory === "all" || card.dataset.category === activeCategory;
-            const searchMatch = card.innerText.toLowerCase().includes(searchText);
-            card.style.display = (catMatch && searchMatch) ? "block" : "none";
-        });
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(res => res.text())
+            .then(html => document.getElementById(id).innerHTML = html);
     }
 
-    categoryButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            categoryButtons.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            activeCategory = btn.dataset.category;
-            applyFilters();
-        });
-    });
+    loadComponent("navbar", "navbar.html");
+    loadComponent("footer", "footer.html");
 
-    searchInput.addEventListener("input", applyFilters);
-});
+    // CATEGORY + SEARCH
+    document.addEventListener("DOMContentLoaded", () => {
+        const categoryButtons = document.querySelectorAll(".category-btn");
+        const searchInput = document.getElementById("searchInput");
+        const cards = document.querySelectorAll(".tool-card");
+
+        let activeCategory = "all";
+
+        function applyFilters() {
+            const search = searchInput.value.toLowerCase();
+
+            cards.forEach(card => {
+                const title = card.querySelector("h3").innerText.toLowerCase();
+                const desc = card.querySelector("p").innerText.toLowerCase();
+                const categoryMatch = activeCategory === "all" || card.dataset.category === activeCategory;
+                const searchMatch = title.includes(search) || desc.includes(search);
+
+                card.style.display = categoryMatch && searchMatch ? "block" : "none";
+            });
+        }
+
+        categoryButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                categoryButtons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                activeCategory = btn.dataset.category;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener("input", applyFilters);
+        applyFilters();
+    });
 </script>
 
 </body>
