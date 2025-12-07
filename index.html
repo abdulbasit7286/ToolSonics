@@ -5,7 +5,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag(){ dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-1H0ZEYLH0K');
     </script>
@@ -13,21 +13,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ToolSonics – Free Online PDF, Image & Utility Tools</title>
+    <title>ToolSonics - Smart Online PDF & Image Tools</title>
+    <meta name="description" content="ToolSonics offers fast, secure and easy-to-use PDF tools, image tools, converters, calculators and web utilities — all in one place. Free and unlimited.">
+    <meta name="keywords" content="pdf tools, merge pdf, split pdf, online tools, toolsonics, image tools">
 
-    <meta name="description"
-          content="ToolSonics offers fast and easy online tools including PDF tools, image tools, converters, calculators, AI utilities, and more. Free, secure, no login required.">
-    <meta name="keywords"
-          content="toolsonics, pdf tools, merge pdf, image converter, calculator, online tools">
-
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
 
     <!-- Global CSS -->
     <link rel="stylesheet" href="global-style.css">
 
-    <!-- Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <!-- Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        /* -------------------------------------------
+           iLovePDF STYLE HOMEPAGE (WHITE THEME)
+        -------------------------------------------- */
+        
+        body {
+            background: #ffffff !important;
+            color: #000 !important;
+        }
+
+        .hero-home {
+            background: #ffffff;
+            text-align: center;
+            padding: 90px 20px 60px;
+        }
+
+        .hero-home h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #003d66;
+            margin-bottom: 15px;
+        }
+
+        .hero-home p {
+            max-width: 650px;
+            margin: auto;
+            font-size: 17px;
+            color: #4a4a4a;
+        }
+
+        .blue-btn {
+            margin-top: 25px;
+            padding: 12px 32px;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            color: #fff;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .blue-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-3px);
+        }
+
+        /* CATEGORY FILTER WHITE STYLE */
+        .category-section {
+            background: #ffffff;
+            padding: 15px 0;
+            border-top: 1px solid #e7e7e7;
+            border-bottom: 1px solid #e7e7e7;
+            margin-top: 20px;
+        }
+
+        .category-btn {
+            background: #f3f8ff;
+            border: 1px solid #c8e7ff;
+            color: #007bff;
+        }
+
+        .category-btn.active {
+            background: #007bff;
+            color: #fff;
+        }
+
+        /* TOOL CARDS WHITE THEME */
+        .tools-title {
+            margin-top: 50px;
+            font-size: 30px;
+            font-weight: 800;
+            color: #003d66;
+        }
+
+        .tool-card {
+            background: #ffffff !important;
+            border: 1px solid #e3e3e3 !important;
+        }
+
+        .tool-card:hover {
+            border-color: #00c3ff !important;
+            box-shadow: 0 0 18px rgba(0,195,255,0.4) !important;
+            transform: translateY(-5px);
+        }
+
+        .tool-icon-small {
+            color: #007bff !important;
+        }
+
+        .tool-button {
+            background: #007bff !important;
+            color: #fff !important;
+            font-weight: 700;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -36,22 +130,10 @@
 <div id="navbar"></div>
 
 <!-- HERO SECTION -->
-<section class="hero">
-    <div class="container">
-        <h1>Smart Online Tools for Your Daily Work</h1>
-        <p>Fast, secure & easy solutions for PDFs, Images, Documents, Calculators, Utilities & AI tools.</p>
-        <a href="#tools" class="cta-button">Browse Tools</a>
-    </div>
-</section>
-
-<!-- SEARCH BAR -->
-<section class="search-section">
-    <div class="container">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search a tool...">
-            <button><i class="fas fa-search"></i></button>
-        </div>
-    </div>
+<section class="hero-home">
+    <h1>The Smartest Toolkit for Your Daily Work</h1>
+    <p>Fast, secure & easy-to-use tools for PDF management, image processing, converters, calculators, utilities & more.</p>
+    <a href="#tools" class="blue-btn">Explore All Tools</a>
 </section>
 
 <!-- CATEGORY FILTER -->
@@ -69,153 +151,168 @@
     </div>
 </section>
 
-<!-- TOOLS -->
+<!-- SEARCH BOX -->
+<section class="search-section">
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search a tool...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</section>
+
+<!-- TOOLS GRID -->
 <main class="container" id="tools">
-    <h2 style="margin-top:40px;">All Tools</h2>
-    <p style="color:#555;margin-bottom:20px;">Explore all free online tools by ToolSonics.</p>
+    <h2 class="tools-title">All Tools</h2>
+    <p style="color:#4a4a4a; margin-bottom:20px;">Explore all ToolSonics tools in one place.</p>
 
     <div class="tools-grid" id="toolGrid">
 
         <!-- DOCUMENT TOOLS -->
+        
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-object-group"></i></div>
             <h3>Merge PDF</h3>
-            <p>Join multiple PDFs into a single file.</p>
+            <p>Combine multiple PDF files into one.</p>
             <a href="merge-pdf.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-cut"></i></div>
             <h3>Split PDF</h3>
-            <p>Extract or split specific PDF pages.</p>
+            <p>Extract pages and split PDFs easily.</p>
             <a href="split-pdf.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-trash"></i></div>
             <h3>Delete PDF Pages</h3>
-            <p>Remove unwanted pages from PDFs.</p>
+            <p>Remove pages from your PDF.</p>
             <a href="delete-pages.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-rotate-right"></i></div>
             <h3>Rotate PDF Pages</h3>
-            <p>Rotate PDF pages left or right.</p>
+            <p>Rotate pages left or right.</p>
             <a href="rotate-pages.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-sort"></i></div>
             <h3>Reorder PDF Pages</h3>
-            <p>Rearrange PDF pages easily.</p>
+            <p>Arrange PDF pages as you want.</p>
             <a href="reorder-pages.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-lock"></i></div>
             <h3>Protect PDF</h3>
-            <p>Secure PDFs with password.</p>
+            <p>Password protect your PDF.</p>
             <a href="protect-pdf.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-unlock"></i></div>
             <h3>Unlock PDF</h3>
-            <p>Remove PDF password instantly.</p>
+            <p>Remove password from PDFs.</p>
             <a href="unlock-pdf.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-sort-numeric-up"></i></div>
             <h3>Add Page Numbers</h3>
-            <p>Insert page numbering in PDFs.</p>
+            <p>Insert dynamic page numbers.</p>
             <a href="add-page-numbers.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-water"></i></div>
             <h3>Add Watermark</h3>
-            <p>Add text watermark to PDF files.</p>
+            <p>Watermark any PDF.</p>
             <a href="add-watermark.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-font"></i></div>
             <h3>Text → PDF</h3>
-            <p>Convert text into a PDF.</p>
+            <p>Convert text into a formatted PDF.</p>
             <a href="text-to-pdf.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-images"></i></div>
             <h3>Images → PDF</h3>
-            <p>Combine images into one PDF.</p>
+            <p>Merge images into a single PDF.</p>
             <a href="images-to-pdf.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="document">
             <div class="tool-icon-small"><i class="fa-solid fa-arrows-rotate"></i></div>
             <h3>CSV ↔ Excel</h3>
-            <p>Convert CSV and Excel files.</p>
+            <p>Convert CSV to Excel & Excel to CSV.</p>
             <a href="csv-excel-converter.html" class="tool-button">Open Tool</a>
         </div>
 
+
         <!-- IMAGE TOOLS -->
+        
         <div class="tool-card" data-category="image">
             <div class="tool-icon-small"><i class="fa-solid fa-image"></i></div>
             <h3>Image Converter</h3>
-            <p>Convert JPG, PNG, WebP, etc.</p>
+            <p>Convert JPG, PNG, WEBP & more.</p>
             <a href="image-converter.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="image">
             <div class="tool-icon-small"><i class="fa-solid fa-object-group"></i></div>
             <h3>Merge Images</h3>
-            <p>Merge two or more images.</p>
+            <p>Combine multiple images.</p>
             <a href="merge-image.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="image">
             <div class="tool-icon-small"><i class="fa-solid fa-compress"></i></div>
             <h3>Image Compressor</h3>
-            <p>Reduce image size online.</p>
+            <p>Reduce image size instantly.</p>
             <a href="image-compressor.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="image">
             <div class="tool-icon-small"><i class="fa-solid fa-expand"></i></div>
             <h3>Image Resizer</h3>
-            <p>Resize images instantly.</p>
+            <p>Resize images online.</p>
             <a href="image-resizer.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="image">
             <div class="tool-icon-small"><i class="fa-solid fa-crop"></i></div>
             <h3>Image Cropper</h3>
-            <p>Crop unwanted areas.</p>
+            <p>Crop your images easily.</p>
             <a href="image-cropper.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="image">
             <div class="tool-icon-small"><i class="fa-solid fa-sync"></i></div>
             <h3>Rotate / Flip Image</h3>
-            <p>Rotate or flip any image.</p>
+            <p>Rotate or flip images.</p>
             <a href="image-rotator.html" class="tool-button">Open Tool</a>
         </div>
 
-        <!-- CALCULATORS -->
+
+        <!-- CALCULATOR TOOLS -->
+
         <div class="tool-card" data-category="calculator">
             <div class="tool-icon-small"><i class="fa-solid fa-percent"></i></div>
             <h3>GST Calculator</h3>
-            <p>Calculate GST amount.</p>
+            <p>Calculate GST quickly.</p>
             <a href="gst-calculator.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="calculator">
             <div class="tool-icon-small"><i class="fa-solid fa-money-check-alt"></i></div>
             <h3>EMI Calculator</h3>
-            <p>Compute loan EMIs.</p>
+            <p>Calculate monthly EMIs.</p>
             <a href="EMI-calculator.html" class="tool-button">Open Tool</a>
         </div>
 
@@ -229,35 +326,35 @@
         <div class="tool-card" data-category="calculator">
             <div class="tool-icon-small"><i class="fa-solid fa-piggy-bank"></i></div>
             <h3>PPF Calculator</h3>
-            <p>PPF maturity calculator.</p>
+            <p>Calculate PPF maturity value.</p>
             <a href="PPF-calculator.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="calculator">
             <div class="tool-icon-small"><i class="fa-solid fa-receipt"></i></div>
             <h3>Tax Calculator</h3>
-            <p>Income tax calculator.</p>
+            <p>Income tax calculation (India).</p>
             <a href="TAX-calculator.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="calculator">
             <div class="tool-icon-small"><i class="fa-solid fa-chart-area"></i></div>
             <h3>Compound Interest</h3>
-            <p>Interest calculator.</p>
+            <p>Compound interest calculator.</p>
             <a href="compound-interest-calculator.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="calculator">
             <div class="tool-icon-small"><i class="fa-solid fa-birthday-cake"></i></div>
             <h3>Age Calculator</h3>
-            <p>Check your age.</p>
+            <p>Calculate your exact age.</p>
             <a href="age-calculator.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="calculator">
             <div class="tool-icon-small"><i class="fa-solid fa-weight"></i></div>
             <h3>BMI Calculator</h3>
-            <p>Body mass index.</p>
+            <p>Check body mass index.</p>
             <a href="BMI-calculator.html" class="tool-button">Open Tool</a>
         </div>
 
@@ -271,65 +368,76 @@
         <div class="tool-card" data-category="calculator">
             <div class="tool-icon-small"><i class="fa-solid fa-ruler"></i></div>
             <h3>House Area Converter</h3>
-            <p>Convert Sqft, Sqm, Gaj.</p>
+            <p>Sqft ↔ Sqm ↔ Gaj.</p>
             <a href="area-converter.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="calculator">
             <div class="tool-icon-small"><i class="fa-solid fa-wallet"></i></div>
-            <h3>Budget Planner</h3>
-            <p>Manage monthly budget.</p>
+            <h3>Budget Generator</h3>
+            <p>Create budget planning.</p>
             <a href="budget-generator.html" class="tool-button">Open Tool</a>
         </div>
 
-        <!-- WEB / DEV -->
+        <div class="tool-card" data-category="calculator">
+            <div class="tool-icon-small"><i class="fa-solid fa-dollar-sign"></i></div>
+            <h3>Currency Converter</h3>
+            <p>Live currency conversion.</p>
+            <a href="currency-converter.html" class="tool-button">Open Tool</a>
+        </div>
+
+
+        <!-- WEB TOOLS -->
+
         <div class="tool-card" data-category="web">
             <div class="tool-icon-small"><i class="fa-solid fa-file-code"></i></div>
-            <h3>HTML / CSS / JS Minifier</h3>
-            <p>Minify web code.</p>
+            <h3>HTML/CSS/JS Minifier</h3>
+            <p>Minify website code.</p>
             <a href="html-css-js-minifier.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="web">
             <div class="tool-icon-small"><i class="fa-solid fa-code"></i></div>
             <h3>JSON Formatter</h3>
-            <p>Format JSON instantly.</p>
+            <p>Format & validate JSON.</p>
             <a href="JSON Formatter & Validator.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="web">
             <div class="tool-icon-small"><i class="fa-solid fa-lock"></i></div>
             <h3>Base64 Encoder</h3>
-            <p>Encode / decode Base64.</p>
+            <p>Encode or decode Base64 text.</p>
             <a href="base64.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="web">
             <div class="tool-icon-small"><i class="fa-solid fa-link"></i></div>
             <h3>URL Encoder / Decoder</h3>
-            <p>Convert URLs safely.</p>
+            <p>Convert URL safe strings.</p>
             <a href="url-encoder-decoder.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="web">
             <div class="tool-icon-small"><i class="fa-solid fa-palette"></i></div>
             <h3>Color Picker</h3>
-            <p>Pick HEX, RGB, HSL.</p>
+            <p>Pick & convert HEX/RGB/HSL.</p>
             <a href="color-picker.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="web">
             <div class="tool-icon-small"><i class="fa-solid fa-terminal"></i></div>
             <h3>Regex Tester</h3>
-            <p>Test regex patterns.</p>
+            <p>Test regular expressions.</p>
             <a href="regex-tester.html" class="tool-button">Open Tool</a>
         </div>
 
-        <!-- UTILITY -->
+
+        <!-- UTILITY TOOLS -->
+
         <div class="tool-card" data-category="utility">
             <div class="tool-icon-small"><i class="fa-solid fa-qrcode"></i></div>
             <h3>QR Code Generator</h3>
-            <p>Create QR codes.</p>
+            <p>Create QR codes easily.</p>
             <a href="qr-code-generator.html" class="tool-button">Open Tool</a>
         </div>
 
@@ -343,15 +451,22 @@
         <div class="tool-card" data-category="utility">
             <div class="tool-icon-small"><i class="fa-solid fa-fingerprint"></i></div>
             <h3>UUID Generator</h3>
-            <p>Create random UUIDs.</p>
+            <p>Generate unique IDs.</p>
             <a href="uuid-generator.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="utility">
             <div class="tool-icon-small"><i class="fa-solid fa-ruler-combined"></i></div>
             <h3>Unit Converter</h3>
-            <p>Convert units easily.</p>
+            <p>Convert length, weight, volume.</p>
             <a href="unit-converter.html" class="tool-button">Open Tool</a>
+        </div>
+
+        <div class="tool-card" data-category="utility">
+            <div class="tool-icon-small"><i class="fa-solid fa-clock"></i></div>
+            <h3>Time Zone Converter</h3>
+            <p>World time conversion.</p>
+            <a href="time-zone-converter.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="utility">
@@ -361,7 +476,9 @@
             <a href="random-no-pass-generator.html" class="tool-button">Open Tool</a>
         </div>
 
-        <!-- AI -->
+
+        <!-- AI TOOLS -->
+
         <div class="tool-card" data-category="ai">
             <div class="tool-icon-small"><i class="fa-solid fa-file-powerpoint"></i></div>
             <h3>AI PPT Generator</h3>
@@ -372,14 +489,14 @@
         <div class="tool-card" data-category="ai">
             <div class="tool-icon-small"><i class="fa-solid fa-file-alt"></i></div>
             <h3>Resume Builder</h3>
-            <p>Create professional CV.</p>
+            <p>Create a professional resume.</p>
             <a href="resume-builder.html" class="tool-button">Open Tool</a>
         </div>
 
         <div class="tool-card" data-category="ai">
             <div class="tool-icon-small"><i class="fa-solid fa-search"></i></div>
             <h3>Resume ATS Optimizer</h3>
-            <p>Optimize resume keywords.</p>
+            <p>Optimize resume for ATS.</p>
             <a href="resume-keyword-optimizer.html" class="tool-button">Open Tool</a>
         </div>
 
@@ -389,22 +506,22 @@
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- JS FOR NAVBAR + FOOTER + FILTERS -->
+<!-- JS -->
 <script>
     function loadComponent(id, file) {
         fetch(file)
             .then(res => res.text())
-            .then(data => document.getElementById(id).innerHTML = data);
+            .then(html => document.getElementById(id).innerHTML = html);
     }
 
     loadComponent("navbar", "navbar.html");
     loadComponent("footer", "footer.html");
 
-    // FILTER & SEARCH
+    /* CATEGORY + SEARCH FILTER */
     document.addEventListener("DOMContentLoaded", () => {
         const categoryButtons = document.querySelectorAll(".category-btn");
-        const cards = document.querySelectorAll(".tool-card");
         const searchInput = document.getElementById("searchInput");
+        const cards = document.querySelectorAll(".tool-card");
 
         let activeCategory = "all";
 
@@ -414,12 +531,10 @@
             cards.forEach(card => {
                 const title = card.querySelector("h3").innerText.toLowerCase();
                 const desc = card.querySelector("p").innerText.toLowerCase();
-                const matchesCategory =
-                    activeCategory === "all" || card.dataset.category === activeCategory;
-                const matchesSearch =
-                    title.includes(search) || desc.includes(search);
+                const categoryMatch = activeCategory === "all" || card.dataset.category === activeCategory;
+                const searchMatch = title.includes(search) || desc.includes(search);
 
-                card.style.display = (matchesCategory && matchesSearch) ? "block" : "none";
+                card.style.display = categoryMatch && searchMatch ? "block" : "none";
             });
         }
 
