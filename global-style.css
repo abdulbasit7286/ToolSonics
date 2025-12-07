@@ -1,327 +1,223 @@
-/* ============================
-   TOOLSONICS GLOBAL WHITE THEME
-   (iLovePDF style + Blue Brand)
-===============================*/
+/* ===========================================
+   TOOLSONICS GLOBAL WHITE + BLUE THEME (v4)
+   Clean UI inspired by iLovePDF + Blue Accent
+=========================================== */
+
+/* COLORS */
+:root {
+    --primary: #0061ff;
+    --primary-light: #e8f0ff;
+    --primary-dark: #0046c2;
+
+    --text-dark: #222;
+    --text-light: #555;
+
+    --bg-white: #ffffff;
+    --bg-light: #f7f9fc;
+
+    --radius: 14px;
+    --shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
 
 /* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-    background: #ffffff;
-    color: #222;
-    line-height: 1.6;
+    background: var(--bg-white);
+    color: var(--text-dark);
 }
 
-/* LINKS */
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* CONTAINER */
-.container {
-    width: 95%;
-    max-width: 1150px;
-    margin: 0 auto;
-}
-
-/* ============================
+/* ------------------------------
    NAVBAR
-===============================*/
+------------------------------ */
 .navbar {
-    background: #ffffff;
-    border-bottom: 1px solid #eeeeee;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-
-.nav-inner {
+    width: 100%;
+    background: white;
+    padding: 15px 20px;
+    box-shadow: var(--shadow);
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 14px 0;
+    align-items: center;
 }
 
-.logo-text {
-    font-size: 24px;
-    font-weight: 800;
-    color: #0d8ce0; /* blue brand */
+.navbar-left img {
+    height: 40px;
 }
 
-.logo-dot {
-    color: #e53935;
+.navbar-links a {
+    margin-left: 22px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
 }
 
-.nav-links {
-    display: flex;
-    gap: 22px;
-    font-size: 15px;
-    font-weight: 500;
+.navbar-links a:hover {
+    color: var(--primary);
 }
 
-.nav-links a {
-    color: #555;
-}
-
-.nav-links a:hover {
-    color: #0d8ce0;
-}
-
-/* ============================
-   PAGE HEADER (Tool title area)
-===============================*/
-.page-header {
+/* ------------------------------
+   HERO SECTION
+------------------------------ */
+.hero {
     text-align: center;
-    padding: 40px 0 20px;
+    padding: 90px 20px 70px;
+    background: var(--bg-light);
 }
 
-.page-header-icon {
-    margin-bottom: 14px;
-}
-
-.tool-big-icon {
-    width: 80px;
-    height: 80px;
-}
-
-/* Main H1 */
-.page-header h1 {
-    font-size: 32px;
+.hero h1 {
+    font-size: 42px;
     font-weight: 800;
-    color: #222;
 }
 
-.page-header p {
-    margin-top: 8px;
-    color: #555;
-    font-size: 16px;
+.hero p {
+    margin-top: 14px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    color: var(--text-light);
 }
 
-/* ============================
-   TOOL WRAPPER + BOX
-===============================*/
-.tool-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 16px 40px;
-}
-
-.tool-box {
+.cta-button {
     margin-top: 24px;
-    padding: 35px;
-    border-radius: 14px;
-    border: 2px dashed #e0e0e0;
-    background: #fafafa;
-    text-align: center;
-    transition: 0.2s;
-}
-
-.tool-box:hover {
-    border-color: #0d8ce0;
-    background: #f5fbff;
-}
-
-/* Upload label */
-.upload-label {
     display: inline-block;
-    padding: 14px 28px;
-    background: #0d8ce0;
-    color: #fff;
+    background: var(--primary);
+    color: white;
+    padding: 12px 26px;
     border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.tool-box small {
-    display: block;
-    margin-top: 10px;
-    color: #777;
-    font-size: 13px;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-/* Action button */
-.primary-btn {
-    margin-top: 22px;
-    width: 100%;
-    padding: 14px;
-    border-radius: 8px;
-    border: none;
-    background: #0d8ce0;
-    color: #fff;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
+    box-shadow: var(--shadow);
+    font-weight: 700;
     transition: 0.2s;
 }
 
-.primary-btn:hover {
-    background: #0a78bd;
+.cta-button:hover {
+    background: var(--primary-dark);
 }
 
-/* Progress bar */
-#progressContainer {
-    display: none;
-    margin-top: 18px;
-    width: 100%;
-    height: 10px;
-    background: #e6e6e6;
-    border-radius: 999px;
-    overflow: hidden;
-}
-
-#progressBar {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #0d8ce0, #00c3ff);
-    border-radius: 999px;
-    transition: width 0.2s;
-}
-
-#statusText {
-    margin-top: 10px;
-    text-align: center;
-    font-size: 14px;
-    color: #555;
-}
-
-/* ============================
-   SEO TEXT BLOCK
-===============================*/
-.seo-text {
-    margin-top: 28px;
-    font-size: 14px;
-    color: #555;
-    background: #fafafa;
-    border-radius: 10px;
-    padding: 16px;
-}
-
-/* ============================
-   FOOTER
-===============================*/
-.footer {
-    border-top: 1px solid #eeeeee;
-    background: #fafafa;
-    margin-top: 40px;
-    padding: 26px 0 18px;
-    font-size: 14px;
-    color: #666;
-}
-
-.footer-links {
+/* ------------------------------
+   SEARCH BAR
+------------------------------ */
+.search-box {
+    margin: 40px auto 20px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px;
-    margin-bottom: 8px;
+    max-width: 600px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+    padding: 10px 16px;
 }
 
-.footer-links a {
-    color: #555;
+.search-box input {
+    border: none;
+    flex: 1;
+    outline: none;
+    font-size: 16px;
 }
 
-.footer-links a:hover {
-    color: #0d8ce0;
+.search-box button {
+    background: var(--primary);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
 }
 
-.footer-bottom {
-    text-align: center;
-    color: #999;
-}
-
-/* ============================
-   HOME: TOOLS GRID
-===============================*/
-.tools-section {
-    padding: 30px 0 50px;
-}
-
-.section-title {
-    font-size: 26px;
-    font-weight: 800;
-    margin-bottom: 6px;
-}
-
-.section-subtitle {
-    color: #666;
-    margin-bottom: 18px;
-}
-
+/* ------------------------------
+   TOOL CARDS GRID
+------------------------------ */
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 18px;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin-top: 40px;
 }
 
 .tool-card {
-    border-radius: 12px;
-    border: 1px solid #e5e5e5;
-    padding: 16px 16px 14px;
-    background: #fff;
-    transition: box-shadow 0.2s, transform 0.2s;
+    background: white;
+    padding: 22px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: 0.25s;
 }
 
 .tool-card:hover {
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
 }
 
-.tool-card-top {
+.tool-icon-small {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: var(--primary-light);
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
+    justify-content: center;
+    margin-bottom: 14px;
 }
 
-.tool-card-top img {
-    width: 30px;
-    height: 30px;
+.tool-icon-small i {
+    font-size: 26px;
+    color: var(--primary);
 }
 
 .tool-card h3 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
+    margin-bottom: 8px;
 }
 
 .tool-card p {
-    font-size: 13px;
-    color: #666;
-    margin: 6px 0 10px;
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 15px;
 }
 
-.tool-link {
-    font-size: 13px;
+.tool-button {
+    background: var(--primary);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
     font-weight: 600;
-    color: #0d8ce0;
+    text-decoration: none;
+    display: inline-block;
 }
 
-/* ============================
+.tool-button:hover {
+    background: var(--primary-dark);
+}
+
+/* ------------------------------
+   FOOTER
+------------------------------ */
+footer {
+    margin-top: 70px;
+    background: var(--bg-light);
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-light);
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------
    RESPONSIVE
-===============================*/
+------------------------------ */
 @media (max-width: 768px) {
-    .nav-inner {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-    }
-    .page-header {
-        padding: 26px 0 18px;
-    }
-    .page-header h1 {
-        font-size: 24px;
-    }
-    .tool-box {
-        padding: 26px 18px;
+    .hero h1 {
+        font-size: 30px;
     }
 }
