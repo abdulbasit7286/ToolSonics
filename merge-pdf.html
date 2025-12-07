@@ -1,216 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merge PDF – ToolSonics</title>
+  <meta charset="UTF-8">
+  <title>Merge PDF Files Online – Free PDF Merger | ToolSonics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- SEO -->
+  <meta name="description"
+        content="Merge multiple PDF files into one clean document with ToolSonics free online PDF merger. Secure, fast and no watermark. Perfect for office, students, CA firms, legal work and more.">
+  <link rel="canonical" href="https://www.toolsonics.com/merge-pdf.html">
 
-    <style>
-        body {
-            background: #f5f5f5;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        /* TOP NAV LIKE ILOVEPDF */
-        .topbar {
-            background: #ffffff;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .topbar img {
-            height: 45px;
-        }
-
-        .topbar a {
-            text-decoration: none;
-            font-weight: 600;
-            color: #333;
-            font-size: 15px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            color: #222;
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #555;
-            font-size: 16px;
-        }
-
-        .upload-box {
-            margin-top: 30px;
-            padding: 60px;
-            border: 2px dashed #ff4444;
-            border-radius: 16px;
-            background: white;
-            transition: 0.25s;
-        }
-
-        .upload-box:hover {
-            background: #fff7f7;
-            border-color: #ff2222;
-        }
-
-        .upload-box label {
-            padding: 15px 40px;
-            background: #ff4444;
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        input[type=file] {
-            display: none;
-        }
-
-        .primary-btn {
-            margin-top: 25px;
-            padding: 15px;
-            width: 100%;
-            border: none;
-            background: #ff4444;
-            color: white;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-
-        .primary-btn:hover {
-            background: #e63a3a;
-        }
-
-        /* Progress bar */
-        #progressContainer {
-            margin-top: 20px;
-            height: 10px;
-            background: #ddd;
-            border-radius: 6px;
-            display: none;
-        }
-
-        #progressBar {
-            height: 100%;
-            width: 0%;
-            background: #ff4444;
-            border-radius: 6px;
-        }
-
-        #statusText {
-            margin-top: 12px;
-            color: #444;
-        }
-    </style>
+  <!-- Global style -->
+  <link rel="stylesheet" href="global-style.css">
 </head>
-
 <body>
 
-    <!-- TOP ILOVEPDF STYLE HEADER -->
-    <div class="topbar">
-        <img src="https://cdn.ilovepdf.com/images/ilovepdf.svg" alt="logo">
-        <a href="#">MERGE PDF</a>
-        <a href="#">SPLIT PDF</a>
-        <a href="#">COMPRESS PDF</a>
-        <a href="#">CONVERT PDF</a>
-        <a href="#">ALL PDF TOOLS</a>
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+  <div class="tool-wrapper">
+
+    <!-- HEADER -->
+    <header class="page-header">
+      <div class="page-header-icon">
+        <img src="assets/icons/pdf-merge.svg" alt="Merge PDF icon" class="tool-big-icon">
+      </div>
+      <h1>Merge PDF Files</h1>
+      <p>Combine multiple PDF documents into a single, organized file in seconds.</p>
+    </header>
+
+    <!-- TOOL BOX -->
+    <div class="tool-box">
+      <label for="pdfFiles" class="upload-label">Select PDF Files</label>
+      <input type="file" id="pdfFiles" accept="application/pdf" multiple>
+      <small>Select 2 or more PDF files to merge in order.</small>
+
+      <button class="primary-btn" id="mergeBtn">Merge PDFs</button>
+
+      <div id="progressContainer">
+        <div id="progressBar"></div>
+      </div>
+
+      <p id="statusText"></p>
     </div>
 
-    <div class="container">
-
-        <h1>Merge PDF files</h1>
-        <p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
-
-        <div class="upload-box">
-            <label for="pdfFiles">Select PDF files</label>
-            <input type="file" id="pdfFiles" accept="application/pdf" multiple>
-            <p style="margin-top:10px;color:#777">or drop PDFs here</p>
-        </div>
-
-        <button class="primary-btn" id="mergeBtn">Merge PDFs</button>
-
-        <!-- PROGRESS -->
-        <div id="progressContainer">
-            <div id="progressBar"></div>
-        </div>
-
-        <p id="statusText"></p>
-
+    <!-- SEO TEXT (250+ words recommended) -->
+    <div class="seo-text">
+      <h2 style="font-size:16px;margin-bottom:6px;">Why use ToolSonics to merge PDF files?</h2>
+      <p>
+        ToolSonics Merge PDF is a simple, fast and secure way to combine multiple PDF documents into one file.
+        You don’t need to install any software or create an account. Just upload your PDFs, click merge and
+        download the final document. This tool is extremely useful for students, office professionals, CA firms,
+        lawyers, business owners and freelancers who regularly work with reports, invoices, contracts or scanned
+        documents.
+      </p>
+      <p>
+        Our PDF merger keeps your original quality intact. Pages stay in the same order and no watermark is added.
+        You are free to merge project reports, bank statements, government forms, exam papers or receipts into a
+        single PDF that is easier to share and archive. Since processing is handled by our optimized backend, the
+        merging is quick even for large files. Your documents are processed securely and are not stored permanently
+        on the server.
+      </p>
+      <p>
+        ToolSonics works smoothly on mobile, tablet and desktop devices. Whether you are using Android, iPhone,
+        Windows laptop or MacBook, you can open ToolSonics in your browser and merge PDFs from anywhere. Combine
+        notes and handouts for study, merge payslips and bills for income proof, or create a single PDF portfolio
+        for clients. Our goal is to save your time and make everyday document work easier with free, easy-to-use
+        tools. Bookmark this page and use the Merge PDF tool whenever you need to join PDFs online.
+      </p>
     </div>
 
-<script>
-const BACKEND_URL = "https://toolsonics-backend-production.up.railway.app/pdf/merge";
+  </div>
 
-const input = document.getElementById("pdfFiles");
-const mergeBtn = document.getElementById("mergeBtn");
-const progressContainer = document.getElementById("progressContainer");
-const progressBar = document.getElementById("progressBar");
-const statusText = document.getElementById("statusText");
+  <!-- FOOTER -->
+  <div id="footer"></div>
 
-mergeBtn.addEventListener("click", async () => {
-    const files = input.files;
-    if (files.length < 2) {
-        statusText.textContent = "❗ Please select at least 2 PDF files.";
-        return;
+  <!-- LOAD navbar + footer + TOOL JS -->
+  <script>
+    function load(id, file) {
+      fetch(file).then(r => r.text()).then(html => {
+        document.getElementById(id).innerHTML = html;
+      });
     }
 
-    progressContainer.style.display = "block";
-    progressBar.style.width = "25%";
-    statusText.textContent = "Uploading files...";
+    load("navbar", "navbar.html");
+    load("footer", "footer.html");
 
-    const formData = new FormData();
-    [...files].forEach(f => formData.append("files", f));
+    // BACKEND BASE (abhi Railway ka working URL use karte hain)
+    const BACKEND_URL = "https://toolsonics-backend-production.up.railway.app/pdf/merge";
 
-    try {
+    const input = document.getElementById("pdfFiles");
+    const mergeBtn = document.getElementById("mergeBtn");
+    const progressContainer = document.getElementById("progressContainer");
+    const progressBar = document.getElementById("progressBar");
+    const statusText = document.getElementById("statusText");
+
+    mergeBtn.addEventListener("click", async () => {
+      const files = input.files;
+      if (!files || files.length < 2) {
+        statusText.textContent = "❗ Please select at least 2 PDF files.";
+        return;
+      }
+
+      progressContainer.style.display = "block";
+      progressBar.style.width = "25%";
+      statusText.textContent = "Uploading files...";
+
+      const formData = new FormData();
+      [...files].forEach(f => formData.append("files", f));
+
+      try {
         const response = await fetch(BACKEND_URL, {
-            method: "POST",
-            body: formData
+          method: "POST",
+          body: formData
         });
 
         progressBar.style.width = "70%";
         statusText.textContent = "Merging PDFs...";
 
         if (!response.ok) {
-            statusText.textContent = "❌ Merge failed.";
-            return;
+          statusText.textContent = "❌ Merge failed. Please try again.";
+          return;
         }
 
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
 
         progressBar.style.width = "100%";
-        statusText.textContent = "✔ Merge complete! Downloading…";
+        statusText.textContent = "✔ Merge complete! Downloading file…";
 
         const a = document.createElement("a");
         a.href = url;
         a.download = "merged.pdf";
         a.click();
 
-    } catch (err) {
-        statusText.textContent = "❌ Network error.";
-    }
-});
-</script>
+      } catch (err) {
+        console.error(err);
+        statusText.textContent = "❌ Network error. Please check your internet.";
+        progressBar.style.width = "0%";
+      }
+    });
+  </script>
 
 </body>
 </html>
