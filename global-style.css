@@ -1,223 +1,73 @@
-/* ===========================================
-   TOOLSONICS GLOBAL WHITE + BLUE THEME (v4)
-   Clean UI inspired by iLovePDF + Blue Accent
-=========================================== */
-
-/* COLORS */
-:root {
-    --primary: #0061ff;
-    --primary-light: #e8f0ff;
-    --primary-dark: #0046c2;
-
-    --text-dark: #222;
-    --text-light: #555;
-
-    --bg-white: #ffffff;
-    --bg-light: #f7f9fc;
-
-    --radius: 14px;
-    --shadow: 0 4px 18px rgba(0,0,0,0.08);
+/* ===============================
+   PREMIUM WHITE FOOTER (iLovePDF Style)
+================================*/
+.ts-footer {
+    background: #ffffff;
+    color: #333;
+    padding: 50px 20px 20px;
+    border-top: 1px solid #eaeaea;
+    margin-top: 60px;
 }
 
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Arial, sans-serif;
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+    gap: 40px;
 }
 
-body {
-    background: var(--bg-white);
-    color: var(--text-dark);
-}
-
-/* ------------------------------
-   NAVBAR
------------------------------- */
-.navbar {
-    width: 100%;
-    background: white;
-    padding: 15px 20px;
-    box-shadow: var(--shadow);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar-left img {
-    height: 40px;
-}
-
-.navbar-links a {
-    margin-left: 22px;
-    text-decoration: none;
-    color: var(--text-dark);
-    font-weight: 600;
-}
-
-.navbar-links a:hover {
-    color: var(--primary);
-}
-
-/* ------------------------------
-   HERO SECTION
------------------------------- */
-.hero {
-    text-align: center;
-    padding: 90px 20px 70px;
-    background: var(--bg-light);
-}
-
-.hero h1 {
-    font-size: 42px;
-    font-weight: 800;
-}
-
-.hero p {
-    margin-top: 14px;
-    max-width: 620px;
-    margin-left: auto;
-    margin-right: auto;
+.footer-col h3 {
     font-size: 18px;
-    color: var(--text-light);
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #0032a8;
 }
 
-.cta-button {
-    margin-top: 24px;
-    display: inline-block;
-    background: var(--primary);
-    color: white;
-    padding: 12px 26px;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    font-weight: 700;
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin: 8px 0;
+}
+
+.footer-col ul li a {
+    color: #333;
     transition: 0.2s;
 }
 
-.cta-button:hover {
-    background: var(--primary-dark);
+.footer-col ul li a:hover {
+    color: #007bff;
 }
 
-/* ------------------------------
-   SEARCH BAR
------------------------------- */
-.search-box {
-    margin: 40px auto 20px;
-    display: flex;
-    max-width: 600px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: var(--radius);
-    padding: 10px 16px;
+.footer-logo {
+    width: 160px;
+    margin-bottom: 12px;
 }
 
-.search-box input {
-    border: none;
-    flex: 1;
-    outline: none;
-    font-size: 16px;
-}
-
-.search-box button {
-    background: var(--primary);
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 8px;
-}
-
-/* ------------------------------
-   TOOL CARDS GRID
------------------------------- */
-.tools-grid {
-    display: grid;
-    gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    margin-top: 40px;
-}
-
-.tool-card {
-    background: white;
-    padding: 22px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: 0.25s;
-}
-
-.tool-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
-}
-
-.tool-icon-small {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background: var(--primary-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 14px;
-}
-
-.tool-icon-small i {
-    font-size: 26px;
-    color: var(--primary);
-}
-
-.tool-card h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.tool-card p {
+.footer-about {
     font-size: 14px;
-    color: var(--text-light);
-    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #666;
 }
 
-.tool-button {
-    background: var(--primary);
-    color: white;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
+.footer-social a {
+    margin-right: 12px;
+    font-size: 20px;
+    color: #007bff;
+    transition: 0.2s;
 }
 
-.tool-button:hover {
-    background: var(--primary-dark);
+.footer-social a:hover {
+    opacity: 0.7;
 }
 
-/* ------------------------------
-   FOOTER
------------------------------- */
-footer {
-    margin-top: 70px;
-    background: var(--bg-light);
-    padding: 40px 20px;
+.footer-bottom {
     text-align: center;
-    color: var(--text-light);
-}
-
-footer a {
-    text-decoration: none;
-    color: var(--primary);
-    font-weight: 600;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* ------------------------------
-   RESPONSIVE
------------------------------- */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 30px;
-    }
+    margin-top: 30px;
+    padding-top: 10px;
+    font-size: 14px;
+    color: #555;
+    border-top: 1px solid #eaeaea;
 }
