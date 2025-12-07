@@ -1,16 +1,122 @@
-<div class="navbar">
-  <div class="container nav-inner">
-    <a href="index.html" class="logo-text">
-      ToolSonics<span class="logo-dot">.</span>
+<!-- NAVBAR — ToolSonics White Theme -->
+<header class="ts-nav">
+
+    <!-- LOGO -->
+    <a href="index.html" class="ts-logo">
+        <img src="assets/logo-blue.svg" alt="ToolSonics" />
+        <span>ToolSonics</span>
     </a>
 
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="index.html#pdf-tools">PDF Tools</a>
-      <a href="index.html#other-tools">All Tools</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="contact.html">Contact</a>
+    <!-- MENU ICON (Mobile) -->
+    <div class="ts-menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
     </div>
-  </div>
-</div>
+
+    <!-- NAV LINKS -->
+    <nav class="ts-links" id="tsNavLinks">
+        <a href="index.html">Home</a>
+        <a href="#tools">Tools</a>
+        <a href="about.html">About</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+<style>
+/* NAVBAR WRAPPER */
+.ts-nav {
+    width: 100%;
+    background: #ffffff;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e6e6e6;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+/* LOGO */
+.ts-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.ts-logo img {
+    width: 34px;
+}
+
+.ts-logo span {
+    font-size: 22px;
+    font-weight: 700;
+    color: #007bff;
+}
+
+/* NAV LINKS */
+.ts-links {
+    display: flex;
+    gap: 22px;
+}
+
+.ts-links a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.25s;
+}
+
+.ts-links a:hover {
+    color: #007bff;
+}
+
+/* MOBILE MENU */
+.ts-menu-icon {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .ts-menu-icon {
+        display: block;
+    }
+
+    .ts-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: white;
+        width: 200px;
+        display: none;
+        flex-direction: column;
+        padding: 12px;
+        border-left: 2px solid #eaeaea;
+        border-bottom: 2px solid #eaeaea;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .ts-links a {
+        padding: 12px 8px;
+        border-radius: 5px;
+    }
+
+    .ts-links.show {
+        display: flex;
+    }
+}
+</style>
+
+<script>
+function toggleMenu() {
+    document.getElementById("tsNavLinks").classList.toggle("show");
+}
+</script>
