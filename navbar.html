@@ -1,97 +1,16 @@
-<!-- ============================
-     TOOLSONICS NAVBAR (FINAL)
-============================= -->
+<div class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-text">
+      ToolSonics<span class="logo-dot">.</span>
+    </a>
 
-<style>
-    .ts-navbar {
-        width: 100%;
-        background: rgba(0, 0, 0, 0.45);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255,255,255,0.12);
-        position: sticky;
-        top: 0;
-        z-index: 999;
-    }
-
-    .ts-nav-container {
-        max-width: 1200px;
-        margin: auto;
-        padding: 14px 22px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .ts-logo {
-        font-size: 26px;
-        font-weight: 900;
-        letter-spacing: 1px;
-        color: var(--primary);
-        text-shadow: 0 0 10px var(--primary);
-    }
-
-    .ts-nav-links {
-        display: flex;
-        gap: 18px;
-    }
-
-    .ts-nav-links a {
-        color: var(--text-light);
-        font-weight: 600;
-        padding: 6px 10px;
-        transition: 0.25s;
-        border-radius: 6px;
-    }
-
-    .ts-nav-links a:hover {
-        color: var(--primary);
-        text-shadow: 0 0 12px var(--primary);
-    }
-
-    /* Mobile Toggle */
-    .menu-btn {
-        display: none;
-        font-size: 26px;
-        color: var(--primary);
-        cursor: pointer;
-    }
-
-    @media(max-width: 768px){
-        .ts-nav-links {
-            display: none;
-            flex-direction: column;
-            background: rgba(0,0,0,0.7);
-            padding: 18px;
-            margin-top: 14px;
-            border-radius: 12px;
-        }
-
-        .ts-nav-links.active {
-            display: flex;
-        }
-
-        .menu-btn {
-            display: block;
-        }
-    }
-</style>
-
-<nav class="ts-navbar">
-    <div class="ts-nav-container">
-        
-        <div class="ts-logo">ToolSonics</div>
-
-        <div class="menu-btn" onclick="document.querySelector('.ts-nav-links').classList.toggle('active')">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-
-        <div class="ts-nav-links">
-            <a href="index.html">Home</a>
-            <a href="#tools">Tools</a>
-            <a href="about.html">About</a>
-            <a href="privacy-policy.html">Privacy</a>
-            <a href="contact.html">Contact</a>
-        </div>
-
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#pdf-tools">PDF Tools</a>
+      <a href="index.html#other-tools">All Tools</a>
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="contact.html">Contact</a>
     </div>
-</nav>
+  </div>
+</div>
