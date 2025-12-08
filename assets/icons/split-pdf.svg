@@ -1,32 +1,7 @@
-<!-- File: assets/icons/pdf-split.svg -->
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none"
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none"
      xmlns="http://www.w3.org/2000/svg">
-  <!-- Light rounded background -->
-  <rect x="6" y="6" width="52" height="52" rx="12" fill="#F5F7FF"/>
-
-  <!-- Left PDF page -->
-  <rect x="14" y="14" width="16" height="24" rx="3" fill="#ffffff" stroke="#387BFF" stroke-width="1.4"/>
-  <path d="M17 20h10" stroke="#B4C4FF" stroke-width="1.2" stroke-linecap="round"/>
-  <path d="M17 24h8" stroke="#B4C4FF" stroke-width="1.2" stroke-linecap="round"/>
-  <path d="M17 28h6" stroke="#B4C4FF" stroke-width="1.2" stroke-linecap="round"/>
-
-  <!-- Right PDF page -->
-  <rect x="34" y="14" width="16" height="24" rx="3" fill="#ffffff" stroke="#387BFF" stroke-width="1.4"/>
-  <path d="M37 20h10" stroke="#B4C4FF" stroke-width="1.2" stroke-linecap="round"/>
-  <path d="M37 24h8" stroke="#B4C4FF" stroke-width="1.2" stroke-linecap="round"/>
-  <path d="M37 28h6" stroke="#B4C4FF" stroke-width="1.2" stroke-linecap="round"/>
-
-  <!-- Center dotted split line -->
-  <path d="M32 16v30" stroke="#387BFF" stroke-width="1.5" stroke-linecap="round"
-        stroke-dasharray="2.5 4"/>
-
-  <!-- Scissors -->
-  <!-- left circle -->
-  <circle cx="26" cy="40" r="2.4" fill="#ffffff" stroke="#387BFF" stroke-width="1.4"/>
-  <!-- right circle -->
-  <circle cx="38" cy="40" r="2.4" fill="#ffffff" stroke="#387BFF" stroke-width="1.4"/>
-  <!-- upper blade -->
-  <path d="M29 37L33 32L37 37" stroke="#387BFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- lower blade -->
-  <path d="M29 43L33 38L37 43" stroke="#387BFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="9" y="8" width="30" height="32" rx="2" stroke="#387bff" stroke-width="2"/>
+  <line x1="24" y1="10" x2="24" y2="38" stroke="#387bff" stroke-width="2" stroke-dasharray="3 2"/>
+  <path d="M18 16L14 20L18 24" stroke="#387bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M30 16L34 20L30 24" stroke="#387bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
