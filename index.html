@@ -22,14 +22,14 @@
 
     <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
 
-    <!-- Global CSS (already on your site) -->
+    <!-- Global CSS -->
     <link rel="stylesheet" href="global-style.css">
 
     <!-- Icons -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <!-- Home page specific styling (does NOT touch navbar/footer) -->
+    <!-- Home page styling -->
     <style>
         body {
             background: #f5f7fb;
@@ -91,7 +91,7 @@
         }
 
         .hero-cta-btn {
-            background: #ff4b4b;
+            background: #387bff !important; /* BLUE as you wanted */
             color: #fff;
             padding: 11px 22px;
             border-radius: 999px;
@@ -102,11 +102,7 @@
             border: none;
             cursor: pointer;
             text-decoration: none;
-            box-shadow: 0 8px 18px rgba(255, 75, 75, 0.35);
-        }
-
-        .hero-cta-btn i {
-            font-size: 14px;
+            box-shadow: 0 8px 18px rgba(56,123,255,0.35);
         }
 
         .hero-note {
@@ -114,7 +110,7 @@
             color: #6b7590;
         }
 
-        /* CATEGORY TABS */
+        /* CATEGORY BUTTONS */
         .category-section {
             margin-top: 10px;
         }
@@ -171,114 +167,6 @@
             cursor: pointer;
             color: #7b84a2;
         }
-
-        /* SECTION TITLE */
-        .tools-header {
-            margin-top: 26px;
-            margin-bottom: 12px;
-        }
-
-        .tools-header h2 {
-            font-size: 22px;
-            margin-bottom: 4px;
-            color: #242a3b;
-        }
-
-        .tools-header p {
-            font-size: 14px;
-            color: #6b7590;
-        }
-
-        /* GRID */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 16px;
-        }
-
-        .tool-card {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 16px 16px 14px;
-            border: 1px solid #e0e6ff;
-            box-shadow: 0 4px 10px rgba(46, 61, 120, 0.04);
-        }
-
-        .tool-top {
-            display: flex;
-            gap: 10px;
-        }
-
-        .tool-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: #fff6f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .tool-icon img {
-            width: 26px;
-            height: 26px;
-            object-fit: contain;
-        }
-
-        .tool-info h3 {
-            font-size: 15px;
-            margin-bottom: 3px;
-            color: #252b3b;
-        }
-
-        .tool-info p {
-            font-size: 13px;
-            color: #757f96;
-        }
-
-        .tool-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2px;
-        }
-
-        .tool-badge {
-            font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 999px;
-            background: #f5f7ff;
-            color: #55608a;
-        }
-
-        .tool-button {
-            font-size: 13px;
-            padding: 7px 14px;
-            border-radius: 999px;
-            border: none;
-            background: #387bff;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .tool-button:hover {
-            background: #2667e5;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .home-hero {
-                padding: 26px 18px;
-            }
-            .home-hero h1 {
-                font-size: 24px;
-            }
-        }
     </style>
 </head>
 
@@ -288,10 +176,11 @@
 <div id="navbar"></div>
 
 <div class="page-wrapper">
-    <!-- HERO -->
+
+    <!-- HERO SECTION -->
     <section class="home-hero">
         <h1>Smart, Fast & Easy Online Tools</h1>
-        <p>Convert, compress and calculate with 50+ free tools. Merge PDFs, resize images, compute EMI, format JSON, generate QR codes and more – all in one place.</p>
+        <p>Convert, compress and calculate with 50+ free tools — all in one place.</p>
 
         <div class="hero-badges">
             <span class="hero-badge">No signup</span>
@@ -321,7 +210,7 @@
         </div>
     </section>
 
-    <!-- SEARCH -->
+    <!-- SEARCH BAR -->
     <section class="search-section">
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search a tool (e.g. Merge PDF, EMI, JSON)..." />
@@ -329,7 +218,7 @@
         </div>
     </section>
 
-    <!-- TOOLS GRID -->
+    <!-- TOOLS GRID START -->
     <main id="tools">
         <div class="tools-header">
             <h2>All Tools</h2>
@@ -342,7 +231,7 @@
             <div class="tool-card" data-category="document">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/pdf-merge.svg" alt="Merge PDF icon">
+                        <img src="assets/icons/pdf-merge.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Merge PDF</h3>
@@ -358,11 +247,11 @@
             <div class="tool-card" data-category="document">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/pdf-split.svg" alt="Split PDF icon">
+                        <img src="assets/icons/pdf-split.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Split PDF</h3>
-                        <p>Extract pages and split PDFs easily.</p>
+                        <p>Extract and split PDF pages easily.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -374,7 +263,7 @@
             <div class="tool-card" data-category="document">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/pdf-delete.svg" alt="Delete PDF pages icon">
+                        <img src="assets/icons/pdf-delete.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Delete PDF Pages</h3>
@@ -390,7 +279,7 @@
             <div class="tool-card" data-category="document">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/pdf-rotate.svg" alt="Rotate PDF pages icon">
+                        <img src="assets/icons/pdf-rotate.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Rotate PDF Pages</h3>
@@ -406,7 +295,7 @@
             <div class="tool-card" data-category="document">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/pdf-reorder.svg" alt="Reorder PDF pages icon">
+                        <img src="assets/icons/pdf-reorder.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Reorder PDF Pages</h3>
@@ -422,11 +311,11 @@
             <div class="tool-card" data-category="document">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/pdf-protect.svg" alt="Protect PDF icon">
+                        <img src="assets/icons/pdf-protect.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Protect PDF</h3>
-                        <p>Add password & secure your PDF.</p>
+                        <p>Add password to secure your PDF.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -438,7 +327,7 @@
             <div class="tool-card" data-category="document">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/pdf-unlock.svg" alt="Unlock PDF icon">
+                        <img src="assets/icons/pdf-unlock.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Unlock PDF</h3>
@@ -451,95 +340,15 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/pdf-number.svg" alt="Add page numbers icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Add Page Numbers</h3>
-                        <p>Insert smart page numbering into your PDF.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">PDF</span>
-                    <a href="add-page-numbers.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="document">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/pdf-watermark.svg" alt="Add watermark icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Add Watermark</h3>
-                        <p>Add text watermark to important documents.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">PDF</span>
-                    <a href="add-watermark.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="document">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/pdf-text.svg" alt="Text to PDF icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Text → PDF</h3>
-                        <p>Convert plain text into a formatted PDF file.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">PDF</span>
-                    <a href="text-to-pdf.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="document">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/pdf-images.svg" alt="Images to PDF icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Images → PDF</h3>
-                        <p>Combine multiple images into a single PDF.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">PDF</span>
-                    <a href="images-to-pdf.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="document">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/csv-excel.svg" alt="CSV Excel converter icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>CSV ↔ Excel</h3>
-                        <p>Convert CSV to Excel and Excel to CSV.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Convert</span>
-                    <a href="csv-excel-converter.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <!-- ============ IMAGE TOOLS ============ -->
+            <!-- IMAGE TOOLS -->
             <div class="tool-card" data-category="image">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/img-convert.svg" alt="Image converter icon">
+                        <img src="assets/icons/img-convert.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Image Converter</h3>
-                        <p>Convert JPG, PNG, WEBP and more formats.</p>
+                        <p>Convert JPG, PNG, WEBP & more.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -551,27 +360,11 @@
             <div class="tool-card" data-category="image">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/img-merge.svg" alt="Merge images icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Merge Images</h3>
-                        <p>Combine multiple images vertically or horizontally.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Image</span>
-                    <a href="merge-image.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="image">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/img-compress.svg" alt="Image compressor icon">
+                        <img src="assets/icons/img-compress.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Image Compressor</h3>
-                        <p>Reduce image size without losing visible quality.</p>
+                        <p>Reduce image size without quality loss.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -583,11 +376,11 @@
             <div class="tool-card" data-category="image">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/img-resize.svg" alt="Image resizer icon">
+                        <img src="assets/icons/img-resize.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Image Resizer</h3>
-                        <p>Resize images to exact dimensions in pixels.</p>
+                        <p>Resize images to exact pixels.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -599,11 +392,11 @@
             <div class="tool-card" data-category="image">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/img-crop.svg" alt="Image cropper icon">
+                        <img src="assets/icons/img-crop.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Image Cropper</h3>
-                        <p>Crop unwanted parts from your images.</p>
+                        <p>Crop any part of an image easily.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -615,11 +408,11 @@
             <div class="tool-card" data-category="image">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/img-rotate.svg" alt="Rotate flip image icon">
+                        <img src="assets/icons/img-rotate.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Rotate / Flip Image</h3>
-                        <p>Rotate or flip images in one click.</p>
+                        <p>Rotate or flip images instantly.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -627,12 +420,11 @@
                     <a href="image-rotator.html" class="tool-button">Open tool</a>
                 </div>
             </div>
-
             <!-- ============ CALCULATOR TOOLS ============ -->
             <div class="tool-card" data-category="calculator">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/gst.svg" alt="GST calculator icon">
+                        <img src="assets/icons/gst.svg">
                     </div>
                     <div class="tool-info">
                         <h3>GST Calculator</h3>
@@ -648,7 +440,7 @@
             <div class="tool-card" data-category="calculator">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/emi.svg" alt="EMI calculator icon">
+                        <img src="assets/icons/emi.svg">
                     </div>
                     <div class="tool-info">
                         <h3>EMI Calculator</h3>
@@ -664,11 +456,11 @@
             <div class="tool-card" data-category="calculator">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/sip.svg" alt="SIP calculator icon">
+                        <img src="assets/icons/sip.svg">
                     </div>
                     <div class="tool-info">
                         <h3>SIP Calculator</h3>
-                        <p>Estimate future value of SIP investments.</p>
+                        <p>Estimate future investment value.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -680,11 +472,11 @@
             <div class="tool-card" data-category="calculator">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/ppf.svg" alt="PPF calculator icon">
+                        <img src="assets/icons/ppf.svg">
                     </div>
                     <div class="tool-info">
                         <h3>PPF Calculator</h3>
-                        <p>Calculate PPF maturity amount accurately.</p>
+                        <p>Calculate PPF maturity amount.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -696,11 +488,11 @@
             <div class="tool-card" data-category="calculator">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/tax.svg" alt="Tax calculator icon">
+                        <img src="assets/icons/tax.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Tax Calculator</h3>
-                        <p>Income Tax calculation (India) made simple.</p>
+                        <p>Income Tax calculation (India).</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -712,11 +504,11 @@
             <div class="tool-card" data-category="calculator">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/compound.svg" alt="Compound interest calculator icon">
+                        <img src="assets/icons/compound.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Compound Interest</h3>
-                        <p>Compute compound interest & growth.</p>
+                        <p>Compute interest & growth.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -728,11 +520,11 @@
             <div class="tool-card" data-category="calculator">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/age.svg" alt="Age calculator icon">
+                        <img src="assets/icons/age.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Age Calculator</h3>
-                        <p>Find exact age in years, months and days.</p>
+                        <p>Find exact age in years & months.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -744,11 +536,11 @@
             <div class="tool-card" data-category="calculator">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/bmi.svg" alt="BMI calculator icon">
+                        <img src="assets/icons/bmi.svg">
                     </div>
                     <div class="tool-info">
                         <h3>BMI Calculator</h3>
-                        <p>Check your Body Mass Index instantly.</p>
+                        <p>Check Body Mass Index instantly.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -757,95 +549,15 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="calculator">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/salary-slip.svg" alt="Salary slip generator icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Salary Slip Generator</h3>
-                        <p>Create professional salary slips in PDF.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Office</span>
-                    <a href="slip-generator.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="calculator">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/area.svg" alt="House area converter icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>House Area Converter</h3>
-                        <p>Convert Sqft ↔ Sqm ↔ Gaj and more units.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Converter</span>
-                    <a href="area-converter.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="calculator">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/budget.svg" alt="Budget generator icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Budget Generator</h3>
-                        <p>Plan and track monthly expenses easily.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Finance</span>
-                    <a href="budget-generator.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="calculator">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/currency.svg" alt="Currency converter icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Currency Converter</h3>
-                        <p>Live currency conversion for 150+ currencies.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Finance</span>
-                    <a href="currency-converter.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="calculator">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/percentage.svg" alt="Percentage calculator icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Percentage Calculator</h3>
-                        <p>Solve percentage problems quickly.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Math</span>
-                    <a href="percentage-calculator.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <!-- ============ WEB / DEV TOOLS ============ -->
+            <!-- ========= WEB / DEV TOOLS ========= -->
             <div class="tool-card" data-category="web">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/minifier.svg" alt="HTML CSS JS minifier icon">
+                        <img src="assets/icons/minifier.svg">
                     </div>
                     <div class="tool-info">
                         <h3>HTML/CSS/JS Minifier</h3>
-                        <p>Minify website HTML, CSS and JavaScript code.</p>
+                        <p>Minify web code instantly.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -857,11 +569,11 @@
             <div class="tool-card" data-category="web">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/json.svg" alt="JSON formatter icon">
+                        <img src="assets/icons/json.svg">
                     </div>
                     <div class="tool-info">
                         <h3>JSON Formatter</h3>
-                        <p>Format and validate JSON data for APIs.</p>
+                        <p>Format & validate JSON.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -873,11 +585,11 @@
             <div class="tool-card" data-category="web">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/base64.svg" alt="Base64 encoder icon">
+                        <img src="assets/icons/base64.svg">
                     </div>
                     <div class="tool-info">
-                        <h3>Base64 Encoder / Decoder</h3>
-                        <p>Encode or decode data using Base64.</p>
+                        <h3>Base64 Encoder</h3>
+                        <p>Encode & decode Base64.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -889,11 +601,11 @@
             <div class="tool-card" data-category="web">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/url.svg" alt="URL encoder icon">
+                        <img src="assets/icons/url.svg">
                     </div>
                     <div class="tool-info">
-                        <h3>URL Encoder / Decoder</h3>
-                        <p>Encode or decode URL safe strings.</p>
+                        <h3>URL Encoder</h3>
+                        <p>Encode & decode URL strings.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -902,47 +614,15 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="web">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/color.svg" alt="Color picker icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Color Picker</h3>
-                        <p>Pick and convert HEX, RGB and HSL colors.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Design</span>
-                    <a href="color-picker.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="web">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/regex.svg" alt="Regex tester icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Regex Tester</h3>
-                        <p>Test and debug regular expressions.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Dev</span>
-                    <a href="regex-tester.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <!-- ============ UTILITY TOOLS ============ -->
+            <!-- ========= UTILITY TOOLS ========= -->
             <div class="tool-card" data-category="utility">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/qr.svg" alt="QR code generator icon">
+                        <img src="assets/icons/qr.svg">
                     </div>
                     <div class="tool-info">
                         <h3>QR Code Generator</h3>
-                        <p>Create custom QR codes for links & text.</p>
+                        <p>Create custom QR codes.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -954,11 +634,11 @@
             <div class="tool-card" data-category="utility">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/barcode.svg" alt="Barcode generator icon">
+                        <img src="assets/icons/barcode.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Barcode Generator</h3>
-                        <p>Generate barcodes for products and labels.</p>
+                        <p>Create product barcodes.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -970,11 +650,11 @@
             <div class="tool-card" data-category="utility">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/uuid.svg" alt="UUID generator icon">
+                        <img src="assets/icons/uuid.svg">
                     </div>
                     <div class="tool-info">
                         <h3>UUID Generator</h3>
-                        <p>Generate secure random UUIDs / GUIDs.</p>
+                        <p>Generate unique secure IDs.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -983,63 +663,15 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="utility">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/unit.svg" alt="Unit converter icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Unit Converter</h3>
-                        <p>Convert length, weight, volume and more.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Utility</span>
-                    <a href="unit-converter.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="utility">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/time-zone.svg" alt="Time zone converter icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Time Zone Converter</h3>
-                        <p>Convert time across multiple time zones.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Utility</span>
-                    <a href="time-zone-converter.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="utility">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/password.svg" alt="Password generator icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Password Generator</h3>
-                        <p>Create strong random passwords instantly.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">Security</span>
-                    <a href="random-no-pass-generator.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <!-- ============ AI TOOLS ============ -->
+            <!-- ========= AI TOOLS ========= -->
             <div class="tool-card" data-category="ai">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/ai-ppt.svg" alt="AI PPT generator icon">
+                        <img src="assets/icons/ai-ppt.svg">
                     </div>
                     <div class="tool-info">
                         <h3>AI PPT Generator</h3>
-                        <p>Create presentation slides using AI prompts.</p>
+                        <p>Create slides using AI prompts.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
@@ -1051,32 +683,16 @@
             <div class="tool-card" data-category="ai">
                 <div class="tool-top">
                     <div class="tool-icon">
-                        <img src="assets/icons/resume.svg" alt="Resume builder icon">
+                        <img src="assets/icons/resume.svg">
                     </div>
                     <div class="tool-info">
                         <h3>Resume Builder</h3>
-                        <p>Create ATS-friendly professional resumes.</p>
+                        <p>Create ATS-friendly resumes.</p>
                     </div>
                 </div>
                 <div class="tool-bottom">
                     <span class="tool-badge">AI</span>
                     <a href="resume-builder.html" class="tool-button">Open tool</a>
-                </div>
-            </div>
-
-            <div class="tool-card" data-category="ai">
-                <div class="tool-top">
-                    <div class="tool-icon">
-                        <img src="assets/icons/resume-ats.svg" alt="Resume ATS optimizer icon">
-                    </div>
-                    <div class="tool-info">
-                        <h3>Resume ATS Optimizer</h3>
-                        <p>Optimize your resume keywords for ATS.</p>
-                    </div>
-                </div>
-                <div class="tool-bottom">
-                    <span class="tool-badge">AI</span>
-                    <a href="resume-keyword-optimizer.html" class="tool-button">Open tool</a>
                 </div>
             </div>
 
@@ -1087,51 +703,52 @@
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- JS: load navbar/footer + filter + search -->
+<!-- JS: navbar + footer + FILTER + SEARCH (FIXED VERSION) -->
 <script>
-    function loadComponent(id, file) {
-        fetch(file)
-            .then(res => res.text())
-            .then(html => document.getElementById(id).innerHTML = html);
+function loadComponent(id, file) {
+    fetch(file)
+        .then(res => res.text())
+        .then(html => document.getElementById(id).innerHTML = html);
+}
+
+loadComponent("navbar", "navbar.html");
+loadComponent("footer", "footer.html");
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const cards = document.querySelectorAll(".tool-card");
+    const searchInput = document.getElementById("searchInput");
+    const categoryBtns = document.querySelectorAll(".category-btn");
+
+    let activeCategory = "all";
+
+    function applyFilter() {
+        const s = searchInput.value.toLowerCase();
+
+        cards.forEach(card => {
+            const title = card.querySelector("h3").innerText.toLowerCase();
+            const desc = card.querySelector("p").innerText.toLowerCase();
+            const catMatch = activeCategory === "all" || card.dataset.category === activeCategory;
+            const searchMatch = title.includes(s) || desc.includes(s);
+
+            card.style.display = (catMatch && searchMatch) ? "block" : "none";
+        });
     }
 
-    loadComponent("navbar", "navbar.html");
-    loadComponent("footer", "footer.html");
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const categoryButtons = document.querySelectorAll(".category-btn");
-        const searchInput = document.getElementById("searchInput");
-        const cards = document.querySelectorAll(".tool-card");
-
-        let activeCategory = "all";
-
-        function applyFilters() {
-            const search = searchInput.value.toLowerCase();
-
-            cards.forEach(card => {
-                const title = card.querySelector("h3").innerText.toLowerCase();
-                const desc = card.querySelector("p").innerText.toLowerCase();
-                const categoryMatch =
-                    activeCategory === "all" || card.dataset.category === activeCategory;
-                const searchMatch = title.includes(search) || desc.includes(search);
-
-                card.style.display = (categoryMatch && searchMatch) ? "block" : "none";
-            });
-        }
-
-        categoryButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                categoryButtons.forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                activeCategory = btn.dataset.category;
-                applyFilters();
-            });
+    categoryBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            categoryBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeCategory = btn.dataset.category;
+            applyFilter();
         });
-
-        searchInput.addEventListener("input", applyFilters);
-        applyFilters();
     });
+
+    searchInput.addEventListener("input", applyFilter);
+
+    applyFilter();
+});
 </script>
 
 </body>
-</html>                                                                                                                                                                   bro is wale code me search kaam nhi kr rha hai or explore all tools wale button ko blue kro or svg wale codes bhi add krdo or kuch mat change krna or pura code fir se likh krdo
+</html>
