@@ -2,162 +2,176 @@
 <html lang="en">
 
 <head>
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-1H0ZEYLH0K');
+    </script>
 
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete PDF Pages – ToolSonics</title>
 
-    <!-- Global Styles -->
+    <title>Delete PDF Pages Online – Remove PDF Pages Free | ToolSonics</title>
+
+    <meta name="description"
+          content="Delete pages from PDF online for free using ToolSonics. Remove blank pages, confidential pages, or unwanted sections instantly. Fast, secure, no watermark, no signup needed.">
+
+    <link rel="canonical" href="https://www.toolsonics.com/delete-pages.html">
+
+    <link rel="icon" href="favicon-16x16.png">
     <link rel="stylesheet" href="global-style.css">
-
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        body { background: #f5f7fb; }
+
         .tool-wrapper {
-            max-width: 900px;
+            max-width: 850px;
             margin: 40px auto;
-            padding: 20px;
+            background: white;
+            border-radius: 18px;
+            padding: 35px 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border: 1px solid #e1e8ff;
         }
 
         .tool-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        .tool-header i {
-            font-size: 55px;
-            color: #00c3ff;
-            margin-bottom: 12px;
-            text-shadow: 0 0 15px #00c3ff;
+        .tool-header-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: #ffecec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .tool-header-icon i {
+            font-size: 34px;
+            color: #ff3b30;
         }
 
         .tool-header h1 {
-            color: white;
-            font-size: 32px;
+            font-size: 30px;
+            margin-top: 12px;
+            color: #1f2d4a;
             font-weight: 800;
         }
 
         .tool-header p {
-            color: #bcd7ff;
-            font-size: 16px;
+            color: #5d6785;
+            font-size: 15px;
+            margin-top: 4px;
         }
 
-        /* UPLOAD BOX */
+        /* Upload Box */
         .upload-box {
-            margin-top: 30px;
-            padding: 40px;
-            border: 2px dashed #00c3ff;
-            border-radius: 16px;
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(12px);
+            margin-top: 25px;
+            padding: 28px;
+            border: 2px dashed #c4d4ff;
+            background: #f8fbff;
+            border-radius: 14px;
             text-align: center;
-            transition: 0.3s;
+            transition: .25s;
         }
 
         .upload-box:hover {
-            border-color: white;
-            background: rgba(255,255,255,0.09);
+            border-color: #387bff;
+            background: #f1f5ff;
         }
 
         .upload-box label {
-            font-size: 18px;
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 10px;
-            background: #00c3ff;
-            color: black;
+            padding: 12px 28px;
+            background: #387bff;
+            color: white;
+            border-radius: 999px;
             cursor: pointer;
-            box-shadow: 0 0 15px #00c3ff;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 6px 14px rgba(56,123,255,0.25);
         }
 
         .upload-box small {
             display: block;
-            margin-top: 8px;
-            color: #bcd7ff;
+            margin-top: 10px;
+            color: #7e8aac;
             font-size: 13px;
         }
 
-        .upload-box input {
-            display: none;
-        }
+        .upload-box input { display: none; }
 
-        /* Page input */
+        /* Input Field */
         .page-input {
             width: 100%;
             padding: 14px;
-            border-radius: 10px;
-            border: 1px solid #6cb5ff;
             margin-top: 16px;
+            border: 1px solid #d0dcff;
+            border-radius: 12px;
+            background: #f7f9ff;
+            outline: none;
             font-size: 15px;
-            background: rgba(255,255,255,0.15);
-            color: white;
         }
 
-        .page-input::placeholder {
-            color: #ddeaff;
-        }
-
-        /* BUTTON */
+        /* Button */
         .primary-btn {
-            margin-top: 25px;
             width: 100%;
             padding: 14px;
+            margin-top: 22px;
+            border: none;
+            border-radius: 12px;
+            color: white;
             font-size: 18px;
             font-weight: 600;
-            border-radius: 10px;
-            border: none;
-            background: linear-gradient(90deg, #00c3ff, #007bff);
+            background: #387bff;
             cursor: pointer;
-            color: black;
-            box-shadow: 0 0 18px #00c3ff;
-            transition: 0.25s;
+            box-shadow: 0 8px 18px rgba(56,123,255,0.35);
+            transition: .25s;
         }
 
         .primary-btn:hover {
-            transform: scale(1.03);
-            opacity: 0.9;
+            background: #2667e5;
+            transform: translateY(-2px);
         }
 
-        /* PROGRESS BAR */
+        /* Progress */
         #progressContainer {
-            margin-top: 20px;
             height: 10px;
-            background: rgba(255,255,255,0.15);
+            margin-top: 20px;
             border-radius: 6px;
             display: none;
+            background: #eef3ff;
         }
 
         #progressBar {
             height: 100%;
             width: 0%;
-            background: #00c3ff;
+            background: #387bff;
             border-radius: 6px;
-            box-shadow: 0 0 12px #00c3ff;
         }
 
         #statusText {
+            margin-top: 10px;
             text-align: center;
-            margin-top: 12px;
-            color: white;
+            font-size: 14px;
+            color: #445075;
         }
 
         .seo-text {
             margin-top: 30px;
-            color: #d0e6ff;
-            font-size: 14px;
+            background: #f4f7ff;
+            padding: 20px;
+            border-radius: 14px;
+            font-size: 15px;
             line-height: 1.7;
-            background: rgba(255,255,255,0.04);
-            padding: 18px;
-            border-radius: 12px;
+            color: #4d5670;
         }
     </style>
 </head>
@@ -171,41 +185,55 @@
 
         <!-- HEADER -->
         <div class="tool-header">
-            <i class="fa-solid fa-trash-alt"></i>
+            <div class="tool-header-icon">
+                <i class="fa-solid fa-trash"></i>
+            </div>
             <h1>Delete PDF Pages</h1>
-            <p>Remove unwanted pages from your PDF instantly.</p>
+            <p>Remove unwanted or extra pages from your PDF instantly.</p>
         </div>
 
-        <!-- UPLOAD BOX -->
+        <!-- UPLOAD -->
         <div class="upload-box">
             <label for="pdfFile">Choose PDF File</label>
             <input type="file" id="pdfFile" accept="application/pdf">
-            <small>Upload 1 PDF to remove pages</small>
+            <small>Upload a PDF to remove pages</small>
         </div>
 
         <!-- PAGE INPUT -->
         <input type="text" id="deletePages" class="page-input"
-            placeholder="Pages to delete (e.g., 1, 3, 5-7)">
+               placeholder="Pages to delete (Example: 1, 3, 5-7)">
 
         <!-- BUTTON -->
         <button class="primary-btn" id="deleteBtn">Delete Pages</button>
 
         <!-- PROGRESS -->
-        <div id="progressContainer">
-            <div id="progressBar"></div>
-        </div>
+        <div id="progressContainer"><div id="progressBar"></div></div>
 
         <p id="statusText"></p>
 
-        <!-- SEO CONTENT -->
+        <!-- SEO TEXT -->
         <div class="seo-text">
-            ToolSonics Delete Pages tool allows you to remove unwanted pages from any PDF file easily. 
-            Whether you want to delete blank pages, remove sensitive content, shorten a document, or 
-            clean up scanned PDFs, this tool does the job instantly with high accuracy. 
-            Works on all devices worldwide.
+            <h3 style="font-size:17px;margin-bottom:6px;">Why use ToolSonics Delete PDF Pages?</h3>
+
+            ToolSonics Delete PDF Pages tool is designed for anyone who needs to clean, shorten, or correct PDF
+            documents quickly. Whether you want to remove blank pages, delete scanned pages, clean up unnecessary
+            content, or remove a sensitive page before sharing, this tool helps you do it instantly — without
+            installing any software or creating an account.
+
+            <br><br>
+            Many professionals including students, lawyers, office workers, teachers, CA firms, business owners,
+            and freelancers regularly handle long PDFs. Sometimes, documents contain unwanted pages due to scanning
+            errors, repeated pages, mixed chapters, or auto-generated blank pages. With ToolSonics, you can remove
+            exactly the pages you don’t want — using simple page numbers or ranges like "2, 4-6".
+
+            <br><br>
+            The tool works on all devices including Android, iPhone, Windows, and Mac. Your PDF is processed securely
+            and is never stored permanently. The final file maintains full quality without any watermark.
+
+            <br><br>
+            If you regularly work with PDFs, bookmark this tool for fast, reliable, and watermark-free page removal.
         </div>
 
-        <!-- RELATED TOOLS -->
         <div id="related-tools-container"></div>
 
     </div>
@@ -214,7 +242,6 @@
     <div id="footer"></div>
 
     <script>
-        /* LOAD NAVBAR + FOOTER + RELATED */
         function load(id, file) {
             fetch(file).then(res => res.text()).then(html => {
                 document.getElementById(id).innerHTML = html;
@@ -225,58 +252,53 @@
         load("footer", "footer.html");
         load("related-tools-container", "related-tools.html?tool=delete-pages");
 
-
-        /* BACKEND URL */
         const BACKEND_URL = "https://api.toolsonics.com/pdf/delete-pages";
 
-        const pdfInput = document.getElementById("pdfFile");
-        const deleteInput = document.getElementById("deletePages");
-        const statusText = document.getElementById("statusText");
-        const progressContainer = document.getElementById("progressContainer");
-        const progressBar = document.getElementById("progressBar");
+        const inputFile = document.getElementById("pdfFile");
+        const inputPages = document.getElementById("deletePages");
+        const status = document.getElementById("statusText");
+        const progressBox = document.getElementById("progressContainer");
+        const bar = document.getElementById("progressBar");
 
         document.getElementById("deleteBtn").addEventListener("click", async () => {
-            const file = pdfInput.files[0];
-            const pages = deleteInput.value.trim();
+            const file = inputFile.files[0];
+            const pages = inputPages.value.trim();
 
-            if (!file) return statusText.textContent = "❗ Please upload a PDF file.";
-            if (!pages) return statusText.textContent = "❗ Enter pages to delete.";
+            if (!file) return status.textContent = "❗ Please upload a PDF file.";
+            if (!pages) return status.textContent = "❗ Enter pages to delete.";
 
-            progressContainer.style.display = "block";
-            progressBar.style.width = "25%";
-            statusText.textContent = "Uploading PDF...";
+            progressBox.style.display = "block";
+            bar.style.width = "25%";
+            status.textContent = "Uploading…";
 
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("pages", pages);
+            const form = new FormData();
+            form.append("file", file);
+            form.append("pages", pages);
 
             try {
-                const response = await fetch(BACKEND_URL, {
-                    method: "POST",
-                    body: formData
-                });
+                const res = await fetch(BACKEND_URL, { method: "POST", body: form });
 
-                progressBar.style.width = "75%";
-                statusText.textContent = "Processing...";
+                bar.style.width = "75%";
+                status.textContent = "Processing…";
 
-                if (!response.ok) {
-                    statusText.textContent = "❌ Failed to delete pages.";
+                if (!res.ok) {
+                    status.textContent = "❌ Failed to delete pages.";
                     return;
                 }
 
-                const blob = await response.blob();
+                const blob = await res.blob();
                 const url = URL.createObjectURL(blob);
 
-                progressBar.style.width = "100%";
-                statusText.textContent = "✔ Done! Downloading…";
+                bar.style.width = "100%";
+                status.textContent = "✔ Done! Download starting…";
 
                 const a = document.createElement("a");
                 a.href = url;
                 a.download = "pages-deleted.pdf";
                 a.click();
 
-            } catch (err) {
-                statusText.textContent = "❌ Network error.";
+            } catch (e) {
+                status.textContent = "❌ Network error.";
             }
         });
     </script>
