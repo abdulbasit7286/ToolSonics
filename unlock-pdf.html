@@ -2,260 +2,312 @@
 <html lang="en">
 
 <head>
+    <!-- Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-1H0ZEYLH0K');
+    </script>
 
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
     <meta charset="UTF-8">
     <title>Unlock PDF Online | Remove PDF Password – ToolSonics</title>
 
     <!-- SEO -->
     <meta name="description"
-          content="Unlock PDF online and remove password instantly. ToolSonics provides a free and secure PDF unlocker that removes password protection from any PDF file without installing any software.">
+          content="Unlock PDF files instantly by removing password protection using ToolSonics. Free, fast and secure PDF unlocker online. No signup, no software required. Supports mobile & desktop.">
+    <link rel="canonical" href="https://www.toolsonics.com/unlock-pdf.html">
 
-    <meta name="keywords"
-          content="unlock pdf, remove pdf password, decrypt pdf, pdf unlocker online, toolsonics pdf tools">
-
-    <meta property="og:title" content="Unlock PDF Online – ToolSonics">
-    <meta property="og:description" content="Remove password from PDF files instantly. Free, fast and secure PDF unlocker.">
+    <!-- OG Tags -->
+    <meta property="og:title" content="Unlock PDF Online – Remove PDF Password">
+    <meta property="og:description" content="Remove password from PDF instantly. Free and secure ToolSonics PDF Unlocker.">
     <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/unlock-pdf.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Global Theme -->
+    <link rel="stylesheet" href="global-style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body { 
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background:#eef3ff;
-            margin:0;
+
+        body { background: #f5f7fb; }
+
+        .tool-wrapper {
+            max-width: 850px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 35px 25px;
+            border-radius: 20px;
+            border: 1px solid #e2e8ff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
 
-        h1 {
-            text-align:center;
-            color:#0038ff;
-            margin-top:35px;
-            font-size:30px;
+        /* Header */
+        .tool-header {
+            text-align: center;
+            margin-bottom: 24px;
         }
 
-        p.center {
-            text-align:center;
-            color:#555;
-            margin-bottom:20px;
-        }
-
-        .card {
-            max-width:700px;
-            margin:30px auto;
-            background:#fff;
-            padding:30px;
-            border-radius:14px;
-            border:1px solid #d7e1ff;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
-        }
-
-        /* Upload Box */
-        .upload-label {
-            width:100%;
-            height:130px;
-            border:2px dashed #6c9bff;
-            border-radius:14px;
-            background:#f7f9ff;
-            cursor:pointer;
-
+        .tool-header-icon {
+            width: 70px;
+            height: 70px;
+            background: #e5efff;
+            border-radius: 18px;
+            margin: auto;
             display:flex;
             justify-content:center;
             align-items:center;
-            flex-direction:column;
-            transition:.3s;
         }
 
-        .upload-label:hover {
-            background:#eaf0ff;
-            border-color:#3c6fff;
+        .tool-header-icon i {
+            font-size: 34px;
+            color: #387bff;
         }
 
-        .upload-label i {
-            font-size:40px;
-            color:#0051ff;
+        .tool-header h1 {
+            font-size: 30px;
+            margin-top: 12px;
+            font-weight: 800;
+            color: #1f2d4a;
         }
 
-        .upload-label span {
-            margin-top:10px;
-            font-size:17px;
-            color:#0038ff;
+        .tool-header p {
+            color: #5d6785;
+        }
+
+        /* Upload Box */
+        .upload-box {
+            text-align:center;
+            padding: 25px;
+            border: 2px dashed #c4d4ff;
+            border-radius: 14px;
+            background: #f8fbff;
+            cursor:pointer;
+            transition: .25s;
+            margin-top: 25px;
+        }
+
+        .upload-box:hover {
+            background:#f1f5ff;
+            border-color:#387bff;
+        }
+
+        .upload-box label {
+            padding: 12px 30px;
+            background: #387bff;
+            color:white;
+            border-radius: 999px;
             font-weight:600;
+            cursor:pointer;
+            box-shadow: 0 6px 14px rgba(56,123,255,0.3);
+        }
+
+        .upload-box small {
+            display:block;
+            margin-top:10px;
+            font-size:13px;
+            color:#7b86a7;
         }
 
         #pdfFile { display:none; }
 
-        input[type="password"] {
-            width:100%;
-            padding:12px;
-            border-radius:8px;
-            border:1px solid #c9d4ff;
-            margin-top:20px;
-            font-size:15px;
-        }
-
-        .btn {
+        /* Password Input */
+        .page-input {
             width:100%;
             padding:14px;
-            background:linear-gradient(to right, #0059ff, #0038ff);
-            border:none;
-            color:white;
-            font-size:17px;
-            border-radius:8px;
-            cursor:pointer;
+            border-radius:12px;
+            background:#f7f9ff;
+            border:1px solid #d0dcff;
             margin-top:20px;
+            font-size:16px;
         }
-        .btn:hover { opacity:.9; }
 
-        #progressContainer {
-            display:none;
+        /* Button */
+        .primary-btn {
             width:100%;
-            height:10px;
-            background:#dce6ff;
-            border-radius:8px;
+            padding:14px;
+            margin-top:22px;
+            background:#387bff;
+            color:white;
+            font-weight:600;
+            font-size:18px;
+            border:none;
+            border-radius:12px;
+            cursor:pointer;
+            box-shadow:0 8px 18px rgba(56,123,255,0.35);
+            transition:.25s;
+        }
+
+        .primary-btn:hover {
+            background:#2c6df0;
+            transform:translateY(-2px);
+        }
+
+        /* Progress */
+        #progressContainer {
             margin-top:18px;
+            height:10px;
+            background:#eef3ff;
+            border-radius:6px;
+            display:none;
         }
 
         #progressBar {
             width:0%;
             height:100%;
-            background:#0038ff;
-            border-radius:8px;
-            transition:width .25s;
+            background:#387bff;
+            border-radius:6px;
+            transition:.3s;
         }
 
         #statusText {
             text-align:center;
-            margin-top:10px;
-            color:#444;
+            color:#47516b;
+            margin-top:12px;
         }
 
+        /* SEO Text */
         .seo-text {
-            margin-top:25px;
-            line-height:1.6;
-            color:#444;
-            text-align:justify;
-            font-size:14px;
+            margin-top: 30px;
+            padding: 20px;
+            background:#f3f6ff;
+            border-radius:14px;
+            color:#4d5670;
+            line-height:1.7;
+            font-size:15px;
         }
-    </style>
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </style>
 
 </head>
 
 <body>
 
-<h1>Unlock PDF (Remove Password)</h1>
-<p class="center">Remove PDF password instantly – Safe, Fast, Free</p>
+<!-- NAVBAR -->
+<div id="navbar"></div>
 
-<div class="card">
+<div class="tool-wrapper">
 
-    <!-- Upload -->
-    <label for="pdfFile" class="upload-label">
-        <i class="fa-solid fa-file-pdf"></i>
-        <span>Select Locked PDF</span>
-    </label>
-
-    <input type="file" id="pdfFile" accept="application/pdf">
-
-    <!-- Password -->
-    <input type="password" id="passwordInput" placeholder="Enter PDF Password">
-
-    <button id="unlockBtn" class="btn">Unlock PDF</button>
-
-    <!-- Progress -->
-    <div id="progressContainer">
-        <div id="progressBar"></div>
+    <div class="tool-header">
+        <div class="tool-header-icon">
+            <i class="fa-solid fa-unlock-keyhole"></i>
+        </div>
+        <h1>Unlock PDF (Remove Password)</h1>
+        <p>Remove password protection from PDF instantly.</p>
     </div>
 
+    <!-- Upload -->
+    <div class="upload-box">
+        <label for="pdfFile">Select Locked PDF</label>
+        <input type="file" id="pdfFile" accept="application/pdf">
+        <small>Upload the password-protected PDF</small>
+    </div>
+
+    <!-- Password Input -->
+    <input type="password" id="passwordInput" class="page-input" placeholder="Enter PDF Password">
+
+    <!-- Button -->
+    <button id="unlockBtn" class="primary-btn">Unlock PDF</button>
+
+    <!-- Progress -->
+    <div id="progressContainer"><div id="progressBar"></div></div>
     <p id="statusText"></p>
 
-    <!-- SEO -->
+    <!-- SEO TEXT -->
     <div class="seo-text">
-        ToolSonics Unlock PDF is a fast, safe and user-friendly solution designed to remove password protection from PDF 
-        files instantly. Many PDFs, including office reports, bank statements, ID documents, agreements and scanned files, 
-        are encrypted with security passwords. With this tool, you can unlock such PDFs online without installing any 
-        software or creating an account. Simply upload your locked PDF, enter the correct password, and download your 
-        unlocked version instantly. Your files are processed securely on the server and automatically deleted after 
-        completion, ensuring full privacy and data protection. This tool works seamlessly on Android, iPhone, Windows 
-        and Mac. Whether you're a student, professional, banker, accountant, freelancer or office worker, ToolSonics 
-        provides a global and secure PDF unlocking experience with a clean, modern interface and high-speed performance.
+        <h3 style="font-size:17px;margin-bottom:6px;">Why use ToolSonics to Unlock Your PDF?</h3>
+
+        ToolSonics Unlock PDF tool helps users remove password protection from secured PDF files quickly
+        and safely. Many documents such as bank statements, legal agreements, employment forms,
+        financial reports, scanned PDFs and office files often contain restricted access for privacy reasons.
+        When you legally own the file but need to remove the password for easy reuse, sharing or printing,
+        ToolSonics provides a fast and reliable solution.
+
+        <br><br>
+        Our tool does not require any software installation, account creation or complicated setup.
+        Simply upload your locked PDF, enter the correct password, and download the unlocked version
+        instantly. Your file quality remains unchanged and no watermark is added.
+
+        <br><br>
+        ToolSonics processes your document securely and deletes it automatically after completion.
+        Your privacy remains fully protected. This tool works smoothly on mobile devices,
+        tablets, Windows, Mac and all modern browsers. With a clean interface and
+        high-speed backend, ToolSonics ensures the best unlocking experience for users worldwide.
     </div>
 
 </div>
 
+<!-- FOOTER -->
+<div id="footer"></div>
+
 <script>
+
+    function load(id, file) {
+        fetch(file).then(r => r.text()).then(html => {
+            document.getElementById(id).innerHTML = html;
+        });
+    }
+
+    load("navbar", "navbar.html");
+    load("footer", "footer.html");
+
     const BACKEND_URL = "https://api.toolsonics.com/pdf/remove-password";
 
-    const fileInput = document.getElementById("pdfFile");
-    const passwordInput = document.getElementById("passwordInput");
-    const progressBar = document.getElementById("progressBar");
-    const progressContainer = document.getElementById("progressContainer");
-    const statusText = document.getElementById("statusText");
-
     document.getElementById("unlockBtn").addEventListener("click", async () => {
-        
-        const file = fileInput.files[0];
-        const password = passwordInput.value.trim();
 
-        if (!file) {
-            statusText.textContent = "❗ Please upload a PDF file.";
-            return;
-        }
-        if (!password) {
-            statusText.textContent = "❗ Enter password to unlock.";
-            return;
-        }
+        const file = document.getElementById("pdfFile").files[0];
+        const password = document.getElementById("passwordInput").value.trim();
+        const bar = document.getElementById("progressBar");
+        const box = document.getElementById("progressContainer");
+        const status = document.getElementById("statusText");
 
-        progressContainer.style.display = "block";
-        progressBar.style.width = "25%";
-        statusText.textContent = "Starting...";
+        if (!file) return status.textContent = "❗ Please select a PDF file.";
+        if (!password) return status.textContent = "❗ Enter the correct password.";
 
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("password", password);
+        box.style.display = "block";
+        bar.style.width = "25%";
+        status.textContent = "Starting…";
 
         try {
-            progressBar.style.width = "55%";
-            statusText.textContent = "Uploading...";
+            const form = new FormData();
+            form.append("file", file);
+            form.append("password", password);
 
-            const res = await fetch(BACKEND_URL, {
-                method: "POST",
-                body: formData
-            });
+            bar.style.width = "55%";
+            status.textContent = "Uploading…";
 
-            progressBar.style.width = "80%";
-            statusText.textContent = "Decrypting PDF...";
+            const res = await fetch(BACKEND_URL, { method: "POST", body: form });
+
+            bar.style.width = "80%";
+            status.textContent = "Decrypting…";
 
             if (!res.ok) {
-                const err = await res.text();
-                statusText.textContent = "❌ Error: " + err;
+                const msg = await res.text();
+                status.textContent = "❌ Error: " + msg;
                 return;
             }
 
             const blob = await res.blob();
             const url = URL.createObjectURL(blob);
 
-            progressBar.style.width = "100%";
-            statusText.textContent = "✔ Done! Downloading...";
+            bar.style.width = "100%";
+            status.textContent = "✔ Done! Downloading…";
 
             const a = document.createElement("a");
             a.href = url;
             a.download = "unlocked.pdf";
             a.click();
 
-        } catch (e) {
-            statusText.textContent = "❌ Network error.";
+        } catch (err) {
+            status.textContent = "❌ Network error.";
         }
     });
+
 </script>
 
 </body>
