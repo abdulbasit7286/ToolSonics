@@ -1,252 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
 
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+    <!-- Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-1H0ZEYLH0K');
+    </script>
+
     <meta charset="UTF-8">
     <title>Protect PDF Online | Add Password to PDF – ToolSonics</title>
 
     <!-- SEO -->
-    <meta name="description"
-          content="Protect your PDF online by adding a secure password. ToolSonics provides a fast, free and secure PDF password protection tool. Add password to PDF instantly without any software or signup.">
+    <meta name="description" content="Protect your PDF online by adding a strong password using ToolSonics free secure PDF lock tool. Fast, safe, no signup, no watermark. Encrypt your PDF instantly on mobile and desktop.">
+    <link rel="canonical" href="https://www.toolsonics.com/protect-pdf.html">
 
-    <meta name="keywords"
-          content="protect pdf, add password pdf, secure pdf, encrypt pdf, lock pdf, pdf password protection, toolsonics">
-
-    <meta property="og:title" content="Protect PDF Online – ToolSonics">
-    <meta property="og:description" content="Add password to PDF securely and download instantly. 100% free PDF protection tool.">
+    <!-- OG Tags -->
+    <meta property="og:title" content="Protect PDF Online – Add Password | ToolSonics">
+    <meta property="og:description" content="Encrypt PDF with password online. Free, fast and secure — no watermark, no signup.">
     <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/protect-pdf.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Styles -->
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #eef3ff;
-            margin: 0;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 30px;
-            color: #0038ff;
-            margin-top: 35px;
-        }
-
-        p.center {
-            text-align: center;
-            color: #444;
-        }
-
-        .card {
-            max-width: 700px;
-            margin: 25px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 14px;
-            border: 1px solid #d7e1ff;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
-
-        .upload-label {
-            width: 100%;
-            height: 130px;
-            background: #f7f9ff;
-            border: 2px dashed #6c9bff;
-            border-radius: 14px;
-            cursor: pointer;
-
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            transition:.3s;
-        }
-
-        .upload-label:hover {
-            background:#eaf0ff;
-            border-color:#3c6fff;
-        }
-
-        .upload-label i {
-            font-size:40px;
-            color:#0051ff;
-        }
-
-        .upload-label span {
-            margin-top:10px;
-            font-size:17px;
-            font-weight:600;
-            color:#0038ff;
-        }
-
-        #pdfFile { display:none; }
-
-        input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #c9d4ff;
-            margin-top: 18px;
-            font-size: 15px;
-        }
-
-        .btn {
-            width:100%;
-            padding:14px;
-            margin-top:22px;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-            background:linear-gradient(to right, #0059ff, #0038ff);
-            color:white;
-            font-size:17px;
-        }
-
-        .btn:hover { opacity: .9; }
-
-        #progressContainer {
-            display:none;
-            width:100%;
-            height:10px;
-            background:#dce6ff;
-            border-radius:8px;
-            margin-top:18px;
-        }
-
-        #progressBar {
-            width:0%;
-            height:100%;
-            background:#0038ff;
-            border-radius:8px;
-            transition:width .25s;
-        }
-
-        #statusText {
-            text-align:center;
-            margin-top:12px;
-            color:#444;
-            font-size:14px;
-        }
-
-        .seo-text {
-            margin-top:25px;
-            line-height:1.6;
-            color:#444;
-            text-align:justify;
-            font-size:14px;
-        }
-    </style>
+    <!-- Global Style -->
+    <link rel="stylesheet" href="global-style.css">
 
     <!-- Icons -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <style>
+
+        body { background: #f5f7fb; }
+
+        .tool-wrapper {
+            max-width: 850px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 35px 25px;
+            border: 1px solid #e2e8ff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        /* Header */
+        .tool-header {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .tool-header-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: #e5efff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin:auto;
+        }
+
+        .tool-header-icon i {
+            font-size: 32px;
+            color: #387bff;
+        }
+
+        .tool-header h1 {
+            margin-top: 12px;
+            font-size: 30px;
+            font-weight: 800;
+            color: #1f2d4a;
+        }
+
+        .tool-header p {
+            color: #5d6785;
+            margin-top: 5px;
+        }
+
+        /* Upload Box */
+        .upload-box {
+            padding: 28px;
+            margin-top: 25px;
+            border: 2px dashed #c4d4ff;
+            background: #f8fbff;
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .upload-box:hover {
+            background: #f1f5ff;
+            border-color: #387bff;
+        }
+
+        .upload-box label {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #387bff;
+            color: white;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(56,123,255,0.25);
+        }
+
+        .upload-box small {
+            margin-top: 10px;
+            display: block;
+            font-size: 13px;
+            color: #7e8aac;
+        }
+
+        #pdfFile { display: none; }
+
+        /* Password Input */
+        .page-input {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            border-radius: 12px;
+            border: 1px solid #d0dcff;
+            background: #f7f9ff;
+            font-size: 16px;
+        }
+
+        /* Button */
+        .primary-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: #387bff;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(56,123,255,0.35);
+            transition: .25s;
+        }
+
+        .primary-btn:hover {
+            background: #2667e5;
+            transform: translateY(-2px);
+        }
+
+        /* Progress */
+        #progressContainer {
+            display: none;
+            height: 10px;
+            background: #eef3ff;
+            margin-top: 18px;
+            border-radius: 6px;
+        }
+
+        #progressBar {
+            width: 0%;
+            height: 100%;
+            background: #387bff;
+            border-radius: 6px;
+            transition: .25s;
+        }
+
+        #statusText {
+            text-align:center;
+            margin-top: 12px;
+            color: #4a5370;
+            font-size: 14px;
+        }
+
+        /* SEO Box */
+        .seo-text {
+            margin-top: 28px;
+            background: #f3f6ff;
+            padding: 20px;
+            border-radius: 14px;
+            color: #4d5670;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-<h1>Protect PDF (Add Password)</h1>
-<p class="center">Secure your PDF with a strong password – Free & Fast</p>
+<!-- NAVBAR -->
+<div id="navbar"></div>
 
-<div class="card">
+<div class="tool-wrapper">
 
-    <label for="pdfFile" class="upload-label">
-        <i class="fa-solid fa-file-pdf"></i>
-        <span>Select PDF File</span>
-    </label>
-
-    <input type="file" id="pdfFile" accept="application/pdf">
-
-    <input type="password" id="passwordInput" placeholder="Enter password">
-
-    <button id="protectBtn" class="btn">Protect PDF</button>
-
-    <div id="progressContainer">
-        <div id="progressBar"></div>
+    <!-- Header -->
+    <div class="tool-header">
+        <div class="tool-header-icon">
+            <i class="fa-solid fa-lock"></i>
+        </div>
+        <h1>Protect PDF (Add Password)</h1>
+        <p>Secure your PDF with a strong password in one click.</p>
     </div>
 
+    <!-- Upload -->
+    <div class="upload-box">
+        <label for="pdfFile">Choose PDF File</label>
+        <input type="file" id="pdfFile" accept="application/pdf">
+        <small>Upload a PDF to encrypt with password</small>
+    </div>
+
+    <!-- Password Input -->
+    <input type="password" id="passwordInput" class="page-input" placeholder="Enter password">
+
+    <!-- Button -->
+    <button class="primary-btn" id="protectBtn">Protect PDF</button>
+
+    <!-- Progress -->
+    <div id="progressContainer"><div id="progressBar"></div></div>
     <p id="statusText"></p>
 
-    <!-- 150 Word SEO -->
+    <!-- SEO Content -->
     <div class="seo-text">
-        ToolSonics Protect PDF is a secure, fast and user-friendly tool that allows you to lock your PDF files 
-        with a strong password in just a few seconds. Whether you want to protect your financial documents, ID 
-        proofs, contracts, business files, school assignments or any private PDF, this tool ensures your data stays 
-        safe and inaccessible to unauthorized users. Simply upload your PDF, enter your desired password and download the 
-        newly encrypted PDF instantly—no signup, no software installation and no complex settings. ToolSonics processes 
-        your files securely and deletes them automatically after conversion, ensuring complete privacy and security. 
-        It works smoothly on Android, iPhone, Windows and Mac, making it perfect for students, professionals, bankers, 
-        accountants, freelancers and office workers across the world. Enjoy high-speed, secure PDF password protection 
-        with a clean and modern interface.
+        <h3 style="font-size:17px;margin-bottom:6px;">Why Protect Your PDF with ToolSonics?</h3>
+
+        ToolSonics Protect PDF tool helps you quickly secure your PDF files with a strong password.
+        Whether you need to protect financial reports, ID documents, business contracts, school
+        assignments, or confidential office files, this tool ensures your data remains private and safe.
+        You don’t need to install any software — everything works instantly in your browser.
+
+        <br><br>
+        Your uploaded PDF is encrypted securely, maintaining full quality with no watermark.
+        ToolSonics never stores your documents; files are deleted automatically after processing.
+        This makes it perfect for banks, CA firms, lawyers, businesses, students, freelancers,
+        teachers, and government documentation.
+
+        <br><br>
+        Our interface is clean, fast, mobile-friendly, and works smoothly on Android, iPhone,
+        Windows, and Mac. With a powerful backend and global optimization, ToolSonics provides
+        a reliable, secure, and easy PDF protection solution that saves your time and keeps your
+        sensitive documents private.
     </div>
 
 </div>
 
-<script>
-    const BACKEND_URL = "https://api.toolsonics.com/pdf/add-password";
+<!-- FOOTER -->
+<div id="footer"></div>
 
-    const fileInput = document.getElementById("pdfFile");
-    const passwordInput = document.getElementById("passwordInput");
-    const statusText = document.getElementById("statusText");
-    const progressContainer = document.getElementById("progressContainer");
-    const progressBar = document.getElementById("progressBar");
+<script>
+
+    function load(id, file) {
+        fetch(file).then(r => r.text()).then(html => {
+            document.getElementById(id).innerHTML = html;
+        });
+    }
+
+    load("navbar", "navbar.html");
+    load("footer", "footer.html");
+
+    const BACKEND_URL = "https://api.toolsonics.com/pdf/add-password";
 
     document.getElementById("protectBtn").addEventListener("click", async () => {
 
-        const file = fileInput.files[0];
-        const password = passwordInput.value.trim();
+        const file = document.getElementById("pdfFile").files[0];
+        const password = document.getElementById("passwordInput").value.trim();
+        const bar = document.getElementById("progressBar");
+        const box = document.getElementById("progressContainer");
+        const status = document.getElementById("statusText");
 
-        if (!file) {
-            statusText.textContent = "❗ Please select a PDF file.";
-            return;
-        }
+        if (!file) return status.textContent = "❗ Please select a PDF file.";
+        if (!password) return status.textContent = "❗ Enter a password.";
 
-        if (!password) {
-            statusText.textContent = "❗ Please enter a password.";
-            return;
-        }
-
-        statusText.textContent = "Starting...";
-        progressContainer.style.display = "block";
-        progressBar.style.width = "20%";
-
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("password", password);
+        box.style.display = "block";
+        bar.style.width = "25%";
+        status.textContent = "Uploading PDF…";
 
         try {
-            progressBar.style.width = "50%";
-            statusText.textContent = "Uploading file...";
+            const form = new FormData();
+            form.append("file", file);
+            form.append("password", password);
 
-            const response = await fetch(BACKEND_URL, {
+            bar.style.width = "55%";
+
+            const res = await fetch(BACKEND_URL, {
                 method: "POST",
-                body: formData
+                body: form
             });
 
-            progressBar.style.width = "80%";
-            statusText.textContent = "Encrypting PDF...";
+            bar.style.width = "85%";
+            status.textContent = "Encrypting PDF…";
 
-            if (!response.ok) {
-                const err = await response.text();
-                statusText.textContent = "❌ Error: " + err;
+            if (!res.ok) {
+                status.textContent = "❌ Failed to protect PDF.";
                 return;
             }
 
-            const blob = await response.blob();
+            const blob = await res.blob();
             const url = URL.createObjectURL(blob);
 
-            progressBar.style.width = "100%";
-            statusText.textContent = "✔ Done! Downloading...";
+            bar.style.width = "100%";
+            status.textContent = "✔ Done! Downloading…";
 
             const a = document.createElement("a");
             a.href = url;
@@ -254,8 +308,9 @@
             a.click();
 
         } catch (err) {
-            statusText.textContent = "❌ Network Error.";
+            status.textContent = "❌ Network error.";
         }
+
     });
 </script>
 
