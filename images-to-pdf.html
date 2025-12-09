@@ -2,176 +2,189 @@
 <html lang="en">
 
 <head>
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1H0ZEYLH0K');
+    </script>
 
     <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+
     <meta charset="UTF-8">
     <title>Images to PDF Online | Convert Photos to PDF – ToolSonics</title>
 
     <!-- SEO -->
     <meta name="description"
-        content="Convert images to PDF online for free using ToolSonics. Upload multiple images (JPG, PNG), reorder them easily, and generate a clean single PDF instantly. Fast, secure and mobile-friendly.">
+          content="Convert multiple images (JPG, PNG) into a single PDF online for free using ToolSonics. Fast, secure, mobile-friendly image to PDF converter with instant download. No signup required.">
+    <link rel="canonical" href="https://www.toolsonics.com/images-to-pdf.html">
 
-    <meta name="keywords"
-        content="images to pdf, photo to pdf, convert jpg to pdf, png to pdf, image pdf creator, toolsonics">
-
+    <!-- OG -->
     <meta property="og:title" content="Images to PDF Converter – ToolSonics">
-    <meta property="og:description" content="Convert multiple images into a single PDF instantly. Free and secure.">
+    <meta property="og:description" content="Convert JPG and PNG images into a single PDF instantly. Free, safe, fast.">
     <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/images-to-pdf.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- GLOBAL THEME -->
+    <link rel="stylesheet" href="global-style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #eef3ff;
-            margin: 0;
+        body { background:#f5f7fb; }
+
+        .tool-wrapper {
+            max-width: 850px;
+            margin: 40px auto;
+            background:white;
+            padding:35px 25px;
+            border-radius:20px;
+            border:1px solid #e2e8ff;
+            box-shadow:0 8px 18px rgba(0,0,0,0.06);
         }
 
-        h1 {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 30px;
-            color: #0038ff;
+        .tool-header { text-align:center; margin-bottom:25px; }
+
+        .tool-header-icon {
+            width:70px; height:70px;
+            background:#e5efff;
+            border-radius:18px;
+            margin:auto;
+            display:flex; justify-content:center; align-items:center;
         }
 
-        p.center {
-            text-align: center;
-            color: #555;
+        .tool-header-icon i {
+            font-size:32px;
+            color:#387bff;
         }
 
-        .card {
-            max-width: 750px;
-            margin: 25px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid #d7e1ff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        .tool-header h1 {
+            font-size:28px;
+            font-weight:800;
+            margin-top:12px;
+            color:#1f2d4a;
         }
 
-        /* upload box */
-        .upload-label {
-            width: 100%;
-            height: 150px;
-            background: #f7f9ff;
-            border: 2px dashed #6c9bff;
-            border-radius: 14px;
-            cursor: pointer;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-
-            transition: .3s;
+        .tool-header p {
+            color:#5d6785;
+            font-size:15px;
         }
 
-        .upload-label:hover {
-            background: #eaf0ff;
-            border-color: #3c6fff;
+        /* Upload Box */
+        .upload-box {
+            width:100%;
+            height:160px;
+            border:2px dashed #9bb9ff;
+            border-radius:14px;
+            background:#f7f9ff;
+            display:flex; justify-content:center; align-items:center;
+            flex-direction:column;
+            cursor:pointer;
+            transition:.25s;
+        }
+        .upload-box:hover {
+            background:#eef4ff;
+            border-color:#4d7dff;
+        }
+        .upload-box i {
+            font-size:42px;
+            color:#387bff;
+        }
+        .upload-box span {
+            margin-top:8px;
+            color:#2d4aff;
+            font-weight:600;
+            font-size:17px;
         }
 
-        .upload-label i {
-            font-size: 45px;
-            color: #0051ff;
+        #imgFiles { display:none; }
+
+        /* Button */
+        .primary-btn {
+            margin-top:25px;
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            font-size:18px;
+            font-weight:600;
+            background:#387bff;
+            color:white;
+            cursor:pointer;
+            box-shadow:0 8px 18px rgba(56,123,255,0.35);
+            transition:.2s;
+        }
+        .primary-btn:hover {
+            background:#2f6ef3;
+            transform:translateY(-2px);
         }
 
-        .upload-label span {
-            margin-top: 10px;
-            font-size: 17px;
-            color: #0038ff;
-            font-weight: 600;
-        }
-
-        #imgFiles {
-            display: none;
-        }
-
-        select, input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 18px;
-            border-radius: 8px;
-            border: 1px solid #c9d4ff;
-            font-size: 15px;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 14px;
-            margin-top: 22px;
-            background: linear-gradient(to right, #0059ff, #0038ff);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        /* progress bar */
+        /* Progress */
         #progressContainer {
-            display: none;
-            width: 100%;
-            height: 10px;
-            background: #dce6ff;
-            border-radius: 8px;
-            margin-top: 18px;
+            margin-top:18px;
+            height:10px;
+            background:#eef3ff;
+            border-radius:6px;
+            display:none;
         }
-
         #progressBar {
-            width: 0%;
-            height: 100%;
-            background: #0038ff;
-            border-radius: 8px;
-            transition: width .25s;
+            height:100%;
+            width:0%;
+            background:#387bff;
+            border-radius:6px;
+            transition:.3s;
         }
 
         #statusText {
-            text-align: center;
-            margin-top: 12px;
-            color: #444;
+            margin-top:12px;
+            text-align:center;
+            color:#47516b;
+            font-size:14px;
         }
 
+        /* SEO */
         .seo-text {
-            margin-top: 25px;
-            font-size: 14px;
-            color: #444;
-            line-height: 1.6;
-            text-align: justify;
+            background:#f3f6ff;
+            padding:20px;
+            border-radius:14px;
+            margin-top:30px;
+            color:#4d5670;
+            line-height:1.7;
         }
     </style>
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
-<h1>Images to PDF Converter</h1>
-<p class="center">Convert multiple images into a single PDF instantly – Free & Fast</p>
+<!-- NAVBAR -->
+<div id="navbar"></div>
 
-<div class="card">
+<div class="tool-wrapper">
 
-    <label for="imgFiles" class="upload-label">
+    <!-- HEADER -->
+    <div class="tool-header">
+        <div class="tool-header-icon">
+            <i class="fa-solid fa-images"></i>
+        </div>
+        <h1>Images to PDF Converter</h1>
+        <p>Combine multiple photos into a single high-quality PDF instantly.</p>
+    </div>
+
+    <!-- Upload Box -->
+    <label for="imgFiles" class="upload-box">
         <i class="fa-solid fa-image"></i>
         <span>Select Images (JPG / PNG)</span>
     </label>
 
     <input type="file" id="imgFiles" accept="image/*" multiple>
 
-    <button id="convertBtn" class="btn">Convert to PDF</button>
+    <button id="convertBtn" class="primary-btn">Convert to PDF</button>
 
     <!-- Progress -->
     <div id="progressContainer">
@@ -180,77 +193,92 @@
 
     <p id="statusText"></p>
 
-    <!-- SEO Text -->
+    <!-- SEO TEXT -->
     <div class="seo-text">
-        ToolSonics Images to PDF is a powerful online tool that helps you convert multiple images such as JPG, PNG or
-        photos into a clean and high-quality PDF document. Whether you want to combine scanned pages, receipts,
-        documents, assignments, ID cards, notes, product images, gallery photos, or any picture, this tool converts them
-        instantly into a single well-formatted PDF. You don’t need to install any app or software — everything works
-        online with one click. Just upload your images, arrange them if needed, and download the PDF within seconds. All
-        processing happens securely on the server, and your files are automatically removed afterwards, ensuring your
-        privacy. This tool is perfect for students, office workers, designers, freelancers and anyone who works with
-        images daily. ToolSonics delivers a fast, mobile-friendly and global experience for easy image-to-PDF
-        conversion.
+        <h3 style="font-size:17px;margin-bottom:6px;">Why use ToolSonics Images to PDF?</h3>
+        ToolSonics Images to PDF is a fast, secure and extremely easy-to-use tool that helps you convert multiple
+        images—such as JPG, PNG, scanned pages or photos—into a single organized PDF file. Whether you're converting
+        scanned notes, receipts, ID cards, assignments, certificates, product images, gallery photos or business
+        documents, this tool ensures clean and high-quality output every time.
+
+        <br><br>
+        There is no need to install heavy apps or use complicated software. Just upload your images, arrange them in
+        your desired order, and generate a PDF instantly. Your files are processed securely and automatically removed
+        after completion, ensuring full privacy and safety.
+
+        <br><br>
+        ToolSonics works smoothly on Android, iPhone, Windows, Mac and tablets. It's perfect for students, teachers,
+        office workers, freelancers, designers, shop owners and anyone who works with digital images. With lightning-fast
+        processing and a clean modern interface, ToolSonics makes image-to-PDF conversion effortless.
     </div>
 
 </div>
 
+<!-- FOOTER -->
+<div id="footer"></div>
+
 <script>
+    function load(id, file) {
+        fetch(file).then(r => r.text()).then(html => {
+            document.getElementById(id).innerHTML = html;
+        });
+    }
+    load("navbar", "navbar.html");
+    load("footer", "footer.html");
+
+    /* BACKEND API */
     const BACKEND_URL = "https://api.toolsonics.com/pdf/image-to-pdf";
 
-    const imgInput = document.getElementById("imgFiles");
-    const progressBar = document.getElementById("progressBar");
-    const progressContainer = document.getElementById("progressContainer");
-    const statusText = document.getElementById("statusText");
+    const fileInput = document.getElementById("imgFiles");
+    const bar = document.getElementById("progressBar");
+    const box = document.getElementById("progressContainer");
+    const status = document.getElementById("statusText");
 
     document.getElementById("convertBtn").addEventListener("click", async () => {
 
-        const files = imgInput.files;
+        const files = fileInput.files;
 
         if (!files.length) {
-            statusText.textContent = "❗ Please select at least 1 image.";
+            status.textContent = "❗ Please select at least 1 image.";
             return;
         }
 
-        progressContainer.style.display = "block";
-        progressBar.style.width = "25%";
-        statusText.textContent = "Preparing images...";
+        box.style.display = "block";
+        bar.style.width = "25%";
+        status.textContent = "Preparing images...";
 
-        const formData = new FormData();
-        for (let i = 0; i < files.length; i++) {
-            formData.append("images", files[i]);
-        }
+        const form = new FormData();
+        [...files].forEach(f => form.append("images", f));
 
         try {
-            progressBar.style.width = "60%";
-            statusText.textContent = "Uploading...";
+            bar.style.width = "60%";
+            status.textContent = "Uploading...";
 
             const res = await fetch(BACKEND_URL, {
-                method: "POST",
-                body: formData
+                method:"POST",
+                body:form
             });
 
-            progressBar.style.width = "90%";
+            bar.style.width = "90%";
 
             if (!res.ok) {
-                const err = await res.text();
-                statusText.textContent = "❌ Error: " + err;
+                status.textContent = "❌ Error creating PDF.";
                 return;
             }
 
             const blob = await res.blob();
             const url = URL.createObjectURL(blob);
 
-            progressBar.style.width = "100%";
-            statusText.textContent = "✔ PDF Ready! Downloading...";
+            bar.style.width = "100%";
+            status.textContent = "✔ PDF Ready! Downloading…";
 
             const a = document.createElement("a");
             a.href = url;
             a.download = "images.pdf";
             a.click();
 
-        } catch (e) {
-            statusText.textContent = "❌ Network error.";
+        } catch (err) {
+            status.textContent = "❌ Network error.";
         }
     });
 </script>
