@@ -2,13 +2,14 @@
 <html lang="en">
 
 <head>
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1H0ZEYLH0K');
+    </script>
 
     <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
     <meta charset="UTF-8">
@@ -16,129 +17,165 @@
 
     <!-- SEO -->
     <meta name="description"
-        content="Convert text to PDF online for free using ToolSonics. Fast, clean and secure text-to-pdf converter with title, alignment, and font-size options. Works on mobile and desktop. No sign-up needed.">
+        content="Convert text to PDF online for free using ToolSonics. Clean, fast and secure text-to-pdf converter with title, alignment, and font-size options. Mobile-friendly, no signup.">
+    <link rel="canonical" href="https://www.toolsonics.com/text-to-pdf.html">
 
-    <meta name="keywords"
-        content="text to pdf, convert text pdf, notepad to pdf, write to pdf, free pdf tools, toolsonics">
-
+    <!-- OG TAGS -->
     <meta property="og:title" content="Text to PDF Converter – ToolSonics">
-    <meta property="og:description" content="Easily convert text documents to PDF online without installing software.">
+    <meta property="og:description" content="Type or paste text and convert it into a clean professional PDF instantly.">
     <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/text-to-pdf.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Global Theme -->
+    <link rel="stylesheet" href="global-style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #eef3ff;
-            margin: 0;
+        body { background:#f5f7fb; }
+
+        .tool-wrapper {
+            max-width: 850px;
+            margin: 40px auto;
+            background:white;
+            padding:35px 25px;
+            border-radius:20px;
+            border:1px solid #e2e8ff;
+            box-shadow:0 8px 18px rgba(0,0,0,0.06);
         }
 
-        h1 {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 30px;
-            color: #0038ff;
+        .tool-header {
+            text-align:center;
+            margin-bottom:25px;
+        }
+        .tool-header-icon {
+            width:70px;
+            height:70px;
+            background:#e5efff;
+            border-radius:18px;
+            margin:auto;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .tool-header-icon i {
+            font-size:32px;
+            color:#387bff;
+        }
+        .tool-header h1 {
+            font-size:28px;
+            font-weight:800;
+            margin-top:12px;
+            color:#1f2d4a;
+        }
+        .tool-header p {
+            color:#5d6785;
+            font-size:15px;
         }
 
-        p.center {
-            text-align: center;
-            color: #555;
+        .input-box {
+            margin-top:20px;
         }
 
-        .card {
-            max-width: 750px;
-            margin: 25px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid #d7e1ff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        .input, textarea, select {
+            width:100%;
+            padding:14px;
+            border-radius:12px;
+            border:1px solid #d0dcff;
+            background:#f7f9ff;
+            font-size:15px;
+            margin-top:18px;
         }
 
-        .input,
-        select,
         textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 18px;
-            border-radius: 8px;
-            border: 1px solid #c9d4ff;
-            font-size: 15px;
+            height:230px;
+            resize:vertical;
         }
 
-        textarea {
-            height: 200px;
-            resize: vertical;
+        .primary-btn {
+            margin-top:25px;
+            width:100%;
+            padding:14px;
+            font-size:18px;
+            font-weight:600;
+            border-radius:12px;
+            background:#387bff;
+            color:white;
+            border:none;
+            cursor:pointer;
+            box-shadow:0 8px 18px rgba(56,123,255,0.35);
+            transition:.2s;
+        }
+        .primary-btn:hover {
+            background:#2f6ef3;
+            transform:translateY(-2px);
         }
 
-        .btn {
-            width: 100%;
-            padding: 14px;
-            margin-top: 22px;
-            background: linear-gradient(to right, #0059ff, #0038ff);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Progress bar */
+        /* Progress */
         #progressContainer {
-            display: none;
-            width: 100%;
-            height: 10px;
-            background: #dce6ff;
-            border-radius: 8px;
-            margin-top: 18px;
+            margin-top:18px;
+            height:10px;
+            background:#eef3ff;
+            border-radius:6px;
+            display:none;
         }
-
         #progressBar {
-            width: 0%;
-            height: 100%;
-            background: #0038ff;
-            border-radius: 8px;
-            transition: width .25s;
+            height:100%;
+            width:0%;
+            background:#387bff;
+            border-radius:6px;
+            transition:.3s;
         }
 
         #statusText {
-            text-align: center;
-            margin-top: 12px;
-            color: #444;
+            text-align:center;
+            margin-top:12px;
+            color:#47516b;
+            font-size:14px;
         }
 
         .seo-text {
-            margin-top: 25px;
-            line-height: 1.6;
-            color: #444;
-            font-size: 14px;
-            text-align: justify;
+            margin-top:30px;
+            background:#f3f6ff;
+            padding:20px;
+            border-radius:14px;
+            color:#4d5670;
+            line-height:1.7;
         }
     </style>
+
 </head>
 
 <body>
 
-<h1>Text to PDF Converter</h1>
-<p class="center">Convert text into a clean and professional PDF instantly</p>
+<!-- NAVBAR -->
+<div id="navbar"></div>
 
-<div class="card">
+<div class="tool-wrapper">
 
-    <input class="input" type="text" id="title" placeholder="Enter PDF Title (optional)">
-    
+    <!-- HEADER -->
+    <div class="tool-header">
+        <div class="tool-header-icon">
+            <i class="fa-solid fa-file-lines"></i>
+        </div>
+        <h1>Text to PDF Converter</h1>
+        <p>Turn your written text into a clean, professional PDF instantly.</p>
+    </div>
+
+    <!-- INPUTS -->
+    <input type="text" id="title" class="input" placeholder="Enter PDF title (optional)">
+
     <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
 
     <select id="fontSize">
-        <option value="12">Font Size: 12 (Default)</option>
-        <option value="14">Font Size: 14</option>
-        <option value="16">Font Size: 16</option>
-        <option value="18">Font Size: 18</option>
-        <option value="20">Font Size: 20</option>
+        <option value="12">Font Size – 12 (Default)</option>
+        <option value="14">Font Size – 14</option>
+        <option value="16">Font Size – 16</option>
+        <option value="18">Font Size – 18</option>
+        <option value="20">Font Size – 20</option>
     </select>
 
     <select id="alignment">
@@ -147,87 +184,107 @@
         <option value="right">Right Align</option>
     </select>
 
-    <button id="convertBtn" class="btn">Convert to PDF</button>
+    <button id="convertBtn" class="primary-btn">Convert to PDF</button>
 
+    <!-- Progress -->
     <div id="progressContainer">
         <div id="progressBar"></div>
     </div>
 
     <p id="statusText"></p>
 
-    <!-- SEO Text -->
+    <!-- SEO TEXT -->
     <div class="seo-text">
-        ToolSonics Text to PDF is a powerful online tool that allows you to convert written text into a clean and
-        professional PDF document with complete control over formatting. Whether you're writing notes, assignments,
-        business content, letters, stories, code snippets, descriptions, resumes, blog drafts or educational material,
-        this converter provides a fast and simple way to turn your text into a high-quality PDF. You can add a title,
-        choose your preferred font size, and set alignment such as left, center or right. The tool works instantly with
-        just one click and does not require any software installation or login. All files are processed securely and
-        removed automatically, ensuring data privacy. ToolSonics works smoothly on Android, iPhone, Windows and Mac,
-        making it the perfect global solution for students, freelancers, writers, teachers and professionals needing
-        quick text-to-PDF conversion anytime.
+        <h3 style="font-size:17px;margin-bottom:6px;">Why use ToolSonics Text to PDF Converter?</h3>
+        ToolSonics Text to PDF tool provides a fast, clean and efficient way to convert your text into a beautifully
+        formatted PDF file. Whether you are writing notes, drafting a document, preparing study material, creating
+        scripts, writing stories, preparing resumes, or saving important information, this tool instantly turns your
+        content into a professional-looking PDF. You can add a custom title, choose font size, and set text alignment
+        for full formatting control.
+
+        <br><br>
+        ToolSonics is designed for students, writers, teachers, freelancers, office professionals, creators and anyone
+        who needs quick text-to-PDF conversion without installing software. Your text is processed securely and never
+        stored on the server, giving you 100% privacy. The tool works smoothly on Android, iPhone, Windows, Mac and all
+        major browsers.
+
+        <br><br>
+        Whether it’s official notes, educational content, story drafts, business letters, scripts or creative writing,
+        ToolSonics Text to PDF delivers high-quality output with a smooth experience every time.
     </div>
 
 </div>
 
+<!-- FOOTER -->
+<div id="footer"></div>
+
 <script>
+    function load(id, file) {
+        fetch(file).then(r => r.text()).then(html => {
+            document.getElementById(id).innerHTML = html;
+        });
+    }
+
+    load("navbar", "navbar.html");
+    load("footer", "footer.html");
+
+    /* BACKEND */
     const BACKEND_URL = "https://api.toolsonics.com/pdf/text-to-pdf";
 
-    const progressBar = document.getElementById("progressBar");
-    const progressContainer = document.getElementById("progressContainer");
-    const statusText = document.getElementById("statusText");
+    const bar = document.getElementById("progressBar");
+    const box = document.getElementById("progressContainer");
+    const status = document.getElementById("statusText");
 
     document.getElementById("convertBtn").addEventListener("click", async () => {
 
         const text = document.getElementById("textInput").value.trim();
         const title = document.getElementById("title").value.trim();
-        const fontSize = document.getElementById("fontSize").value;
-        const alignment = document.getElementById("alignment").value;
+        const size = document.getElementById("fontSize").value;
+        const align = document.getElementById("alignment").value;
 
         if (!text) {
-            statusText.textContent = "❗ Please enter some text.";
+            status.textContent = "❗ Please enter some text.";
             return;
         }
 
-        progressContainer.style.display = "block";
-        progressBar.style.width = "25%";
-        statusText.textContent = "Creating PDF...";
+        box.style.display = "block";
+        bar.style.width = "25%";
+        status.textContent = "Creating PDF…";
 
-        const formData = new FormData();
-        formData.append("text", text);
-        formData.append("title", title);
-        formData.append("font_size", fontSize);
-        formData.append("alignment", alignment);
+        const form = new FormData();
+        form.append("text", text);
+        form.append("title", title);
+        form.append("font_size", size);
+        form.append("alignment", align);
 
         try {
-            progressBar.style.width = "60%";
+            bar.style.width = "60%";
 
             const res = await fetch(BACKEND_URL, {
-                method: "POST",
-                body: formData
+                method:"POST",
+                body:form
             });
 
-            progressBar.style.width = "90%";
+            bar.style.width = "90%";
 
             if (!res.ok) {
-                const err = await res.text();
-                statusText.textContent = "❌ Error: " + err;
+                status.textContent = "❌ Error converting PDF.";
                 return;
             }
 
             const blob = await res.blob();
             const url = URL.createObjectURL(blob);
 
-            progressBar.style.width = "100%";
-            statusText.textContent = "✔ PDF Ready! Downloading...";
+            bar.style.width = "100%";
+            status.textContent = "✔ PDF Ready! Downloading…";
 
             const a = document.createElement("a");
             a.href = url;
             a.download = "text.pdf";
             a.click();
 
-        } catch (e) {
-            statusText.textContent = "❌ Network error.";
+        } catch (err) {
+            status.textContent = "❌ Network error.";
         }
     });
 </script>
