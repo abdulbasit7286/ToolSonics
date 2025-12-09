@@ -1,199 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
 
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+<head>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-1H0ZEYLH0K');
+    </script>
+
     <meta charset="UTF-8">
     <title>Reorder PDF Pages Online | ToolSonics</title>
 
     <meta name="description"
-          content="Reorder PDF pages online for free using ToolSonics. Arrange your PDF pages in any custom order such as 3,1,2,4. Fast, secure, mobile-friendly and no signup required. Perfect for students, offices and professionals.">
+          content="Reorder PDF pages online for free using ToolSonics. Arrange PDF pages in any order such as 3,1,2,4. Fast, secure, mobile-friendly, no watermark and no signup required.">
+    <link rel="canonical" href="https://www.toolsonics.com/reorder-pdf.html">
 
-    <meta name="keywords"
-          content="reorder pdf, arrange pdf pages, pdf page order tool, pdf arranger, rearrange pdf, toolsonics">
-
-    <meta property="og:title" content="Reorder PDF Pages Online">
-    <meta property="og:description" content="Arrange PDF pages in any custom order using ToolSonics. Free, fast and secure PDF tools.">
+    <meta property="og:title" content="Reorder PDF Pages Online – ToolSonics">
+    <meta property="og:description"
+          content="Arrange PDF pages in any custom order online. Free, secure and fast PDF arranger tool.">
     <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/reorder-pdf.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="global-style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #eef3ff;
-            margin: 0; padding: 0;
-        }
-        h1 { text-align: center; margin-top: 30px; color: #0038ff; }
-        p.center { text-align: center; color: #555; }
 
-        .card {
-            max-width: 700px; margin: auto; background: white;
-            padding: 25px; border-radius: 12px;
-            border: 1px solid #d7e1ff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        body { background: #f5f7fb; }
+
+        .tool-wrapper {
+            max-width: 850px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 18px;
+            padding: 35px 25px;
+            border: 1px solid #e1e8ff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        /* Header */
+        .tool-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .tool-header-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: #e5efff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .tool-header-icon i {
+            font-size: 34px;
+            color: #387bff;
+        }
+
+        .tool-header h1 {
+            margin-top: 12px;
+            font-size: 30px;
+            font-weight: 800;
+            color: #1f2d4a;
+        }
+
+        .tool-header p {
+            color: #5d6785;
+            font-size: 15px;
+        }
+
+        /* Upload Box */
+        .upload-box {
+            padding: 28px;
             margin-top: 25px;
+            border: 2px dashed #c4d4ff;
+            background: #f8fbff;
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: .25s;
         }
 
-        .upload-label {
-            width: 100%; height: 130px; background: #f7f9ff;
-            border: 2px dashed #6c9bff; border-radius: 12px;
-            cursor: pointer; display:flex; justify-content:center;
-            align-items:center; flex-direction:column;
-            text-align:center; transition: .3s;
-        }
-        .upload-label:hover { background:#eaf0ff; border-color:#3c6fff; }
-        .upload-label i { font-size:40px; color:#0051ff; }
-        .upload-label span { margin-top:10px; font-size:16px; font-weight:600; color:#0038ff; }
-
-        #pdfFile { display:none; }
-
-        input[type="text"] {
-            width:100%; padding:12px; margin-top:18px;
-            border-radius:8px; border:1px solid #c9d4ff;
+        .upload-box:hover {
+            background: #f1f5ff;
+            border-color: #387bff;
         }
 
-        .btn {
-            width:100%; padding:14px; margin-top:20px;
-            border:none; border-radius:8px; cursor:pointer;
-            background:linear-gradient(to right, #0059ff, #0038ff);
-            color:white; font-size:16px;
+        .upload-box label {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #387bff;
+            color: white;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(56,123,255,0.25);
         }
-        .btn:hover { opacity:.9; }
 
+        .upload-box small {
+            margin-top: 10px;
+            display: block;
+            font-size: 13px;
+            color: #7e8aac;
+        }
+
+        #pdfFile { display: none; }
+
+        /* Order Input */
+        .page-input {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            border-radius: 12px;
+            border: 1px solid #d0dcff;
+            background: #f7f9ff;
+            font-size: 16px;
+        }
+
+        .page-input::placeholder {
+            color: #8a96b3;
+        }
+
+        /* Button */
+        .primary-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: #387bff;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(56,123,255,0.35);
+            transition: .25s;
+        }
+
+        .primary-btn:hover {
+            background: #2667e5;
+            transform: translateY(-2px);
+        }
+
+        /* Progress */
         #progressContainer {
-            width:100%; height:10px; background:#dce6ff;
-            border-radius:8px; margin-top:20px; display:none;
+            display: none;
+            margin-top: 15px;
+            height: 10px;
+            background: #eef3ff;
+            border-radius: 6px;
         }
+
         #progressBar {
-            height:100%; width:0%; background:#0038ff;
-            border-radius:8px; transition:width .25s;
+            width: 0%;
+            height: 100%;
+            background: #387bff;
+            border-radius: 6px;
+            transition: .25s;
         }
 
-        #statusText { text-align:center; margin-top:12px; color:#444; }
+        #statusText {
+            margin-top: 10px;
+            text-align: center;
+            color: #445075;
+            font-size: 14px;
+        }
 
+        /* SEO Text */
         .seo-text {
-            margin-top:25px; color:#444; font-size:14px; line-height:1.6; text-align:justify;
+            margin-top: 30px;
+            background: #f4f7ff;
+            padding: 20px;
+            border-radius: 14px;
+            font-size: 15px;
+            color: #4d5670;
+            line-height: 1.7;
         }
+
     </style>
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
-<h1>Reorder PDF Pages</h1>
-<p class="center">Arrange PDF pages in any custom sequence such as 3,1,2,5</p>
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
 
-<div class="card">
+    <div class="tool-wrapper">
 
-    <label for="pdfFile" class="upload-label">
-        <i class="fa-solid fa-file-pdf"></i>
-        <span>Select PDF File</span>
-    </label>
+        <!-- HEADER -->
+        <div class="tool-header">
+            <div class="tool-header-icon">
+                <i class="fa-solid fa-list-ol"></i>
+            </div>
+            <h1>Reorder PDF Pages</h1>
+            <p>Arrange your PDF pages in any custom sequence like 3,1,2,5.</p>
+        </div>
 
-    <input type="file" id="pdfFile" accept="application/pdf">
+        <!-- UPLOAD BOX -->
+        <div class="upload-box">
+            <label for="pdfFile">Choose PDF File</label>
+            <input type="file" id="pdfFile" accept="application/pdf">
+            <small>Upload a PDF to rearrange pages</small>
+        </div>
 
-    <input type="text" id="orderInput" placeholder="Enter page order (e.g., 3,1,2,5)">
+        <!-- ORDER INPUT -->
+        <input type="text" id="orderInput" class="page-input"
+               placeholder="Enter page order (e.g., 3,1,2,5 or 5,4,3,2,1)">
 
-    <button id="reorderBtn" class="btn">Reorder PDF</button>
+        <!-- BUTTON -->
+        <button class="primary-btn" id="reorderBtn">Reorder PDF</button>
 
-    <div id="progressContainer">
-        <div id="progressBar"></div>
+        <!-- PROGRESS BAR -->
+        <div id="progressContainer"><div id="progressBar"></div></div>
+        <p id="statusText"></p>
+
+        <!-- SEO TEXT -->
+        <div class="seo-text">
+            <h3 style="font-size:17px;margin-bottom:6px;">Why use ToolSonics Reorder PDF?</h3>
+
+            ToolSonics Reorder PDF tool allows you to rearrange PDF pages in any order you choose. 
+            Whether your scanned documents are mixed up, your project pages are out of order, or you 
+            simply want to reorganize content, this tool makes it extremely simple. Just upload your 
+            PDF, type the new order (like 3,1,2,5), and download your new arranged PDF instantly.
+
+            <br><br>
+            This tool is widely used by students, teachers, corporate offices, CA firms, legal 
+            professionals, and freelancers. Your files are processed securely and never stored. 
+            ToolSonics works smoothly on Android, iPhone, Windows, and Mac, providing a fast and 
+            reliable global PDF solution.
+
+            <br><br>
+            Whether you're preparing assignments, organizing scanned books, reordering invoices, or 
+            restructuring business documents, ToolSonics helps you save time with a clean, fast and 
+            intuitive interface.
+        </div>
+
     </div>
 
-    <p id="statusText"></p>
+    <!-- FOOTER -->
+    <div id="footer"></div>
 
-    <!-- SEO Content -->
-    <div class="seo-text">
-        ToolSonics Reorder PDF is a powerful yet simple tool designed to help users rearrange the
-        pages of any PDF file in a custom sequence. Whether your PDF pages were scanned in the wrong order,
-        or you simply want to reorganize chapters, assignments, invoices or notes, this tool makes it quick
-        and effortless. Just upload your PDF, enter the new page order using comma-separated numbers like
-        3,1,2,4 or 5,4,3,2,1, and download your perfectly rearranged PDF file instantly. ToolSonics never
-        stores your files permanently—your documents are processed securely and deleted automatically
-        after completion. This makes it safe for office files, school documents, ID PDFs and professional reports.
-        Works smoothly on Android, iPhone, Windows and Mac. ToolSonics ensures a global, fast and secure PDF
-        editing experience with a clean and user-friendly interface.
-    </div>
-
-</div>
-
-<script>
-    const BACKEND_URL = "https://api.toolsonics.com/pdf/reorder";
-
-    const pdfInput = document.getElementById("pdfFile");
-    const orderInput = document.getElementById("orderInput");
-    const statusText = document.getElementById("statusText");
-    const progressContainer = document.getElementById("progressContainer");
-    const progressBar = document.getElementById("progressBar");
-
-    document.getElementById("reorderBtn").addEventListener("click", async () => {
-
-        const file = pdfInput.files[0];
-        const order = orderInput.value.trim();
-
-        if (!file) {
-            statusText.textContent = "Please upload a PDF file.";
-            return;
-        }
-
-        if (!order) {
-            statusText.textContent = "Enter page order.";
-            return;
-        }
-
-        statusText.textContent = "Starting reorder...";
-        progressContainer.style.display = "block";
-        progressBar.style.width = "25%";
-
-        const form = new FormData();
-        form.append("file", file);
-        form.append("order", order);
-
-        try {
-            progressBar.style.width = "55%";
-            statusText.textContent = "Uploading...";
-
-            const res = await fetch(BACKEND_URL, {
-                method: "POST",
-                body: form
+    <script>
+        function load(id, file) {
+            fetch(file).then(r => r.text()).then(html => {
+                document.getElementById(id).innerHTML = html;
             });
-
-            progressBar.style.width = "80%";
-            statusText.textContent = "Processing...";
-
-            if (!res.ok) {
-                const err = await res.text();
-                statusText.textContent = "❌ Error: " + err;
-                return;
-            }
-
-            const blob = await res.blob();
-            const url = URL.createObjectURL(blob);
-
-            progressBar.style.width = "100%";
-            statusText.textContent = "✔ Done! Downloading...";
-
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "reordered.pdf";
-            a.click();
-
-        } catch (err) {
-            statusText.textContent = "❌ Network error.";
         }
-    });
 
-</script>
+        load("navbar", "navbar.html");
+        load("footer", "footer.html");
+
+        const BACKEND_URL = "https://api.toolsonics.com/pdf/reorder";
+
+        document.getElementById("reorderBtn").addEventListener("click", async () => {
+
+            const file = document.getElementById("pdfFile").files[0];
+            const order = document.getElementById("orderInput").value.trim();
+            const bar = document.getElementById("progressBar");
+            const container = document.getElementById("progressContainer");
+            const status = document.getElementById("statusText");
+
+            if (!file) return status.textContent = "❗ Please upload a PDF file.";
+            if (!order) return status.textContent = "❗ Enter a valid page order.";
+
+            container.style.display = "block";
+            bar.style.width = "25%";
+            status.textContent = "Uploading…";
+
+            try {
+                const form = new FormData();
+                form.append("file", file);
+                form.append("order", order);
+
+                bar.style.width = "60%";
+
+                const res = await fetch(BACKEND_URL, { method: "POST", body: form });
+
+                bar.style.width = "85%";
+                status.textContent = "Processing…";
+
+                if (!res.ok) {
+                    status.textContent = "❌ Failed to reorder PDF.";
+                    return;
+                }
+
+                const blob = await res.blob();
+                const url = URL.createObjectURL(blob);
+
+                bar.style.width = "100%";
+                status.textContent = "✔ Done! Downloading…";
+
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "reordered.pdf";
+                a.click();
+
+            } catch (error) {
+                status.textContent = "❌ Network error.";
+            }
+        });
+
+    </script>
 
 </body>
 </html>
