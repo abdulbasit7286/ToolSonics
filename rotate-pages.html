@@ -2,269 +2,306 @@
 <html lang="en">
 
 <head>
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-1H0ZEYLH0K');
+    </script>
 
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
     <meta charset="UTF-8">
     <title>Rotate PDF Pages Online | Free PDF Rotator – ToolSonics</title>
 
-    <!-- SEO DESCRIPTION -->
     <meta name="description"
-        content="Rotate PDF pages online for free using ToolSonics. Rotate any PDF 90°, 180°, or 270° instantly. Fast, secure, high-speed PDF rotation tool with no signup required. Works on mobile and desktop.">
+        content="Rotate PDF pages online for free with ToolSonics. Fix sideways PDFs by rotating pages 90°, 180° or 270°. Fast, secure, no watermark, no signup. Works on mobile & desktop.">
 
-    <meta name="keywords"
-        content="rotate pdf, rotate pages pdf, pdf rotation online, rotate pdf free, toolsonics rotate pdf">
-
-    <!-- OG TAGS -->
-    <meta property="og:title" content="Rotate PDF Pages – ToolSonics">
-    <meta property="og:description"
-        content="Rotate PDF pages easily and download the corrected PDF instantly. Free & secure.">
-    <meta property="og:image" content="https://abdulbasit7286.github.io/ToolSonics/assets/rotate-pdf.png">
-
+    <link rel="canonical" href="https://www.toolsonics.com/rotate-pdf.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- GLOBAL STYLE -->
+    <link rel="stylesheet" href="global-style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #eef3ff;
-            margin: 0;
+        body { background: #f5f7fb; }
+
+        .tool-wrapper {
+            max-width: 850px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 18px;
+            padding: 35px 25px;
+            border: 1px solid #e1e8ff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
         }
 
-        h1 {
+        /* Header */
+        .tool-header {
             text-align: center;
-            color: #0038ff;
-            margin-top: 35px;
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-        p.center {
-            text-align: center;
-            color: #555;
             margin-bottom: 25px;
         }
 
-        .card {
-            max-width: 700px;
-            margin: auto;
-            background: #fff;
-            padding: 35px;
-            border-radius: 14px;
-            border: 1px solid #d7e1ff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        .upload-label {
-            width: 100%;
-            height: 130px;
-            background: #f7f9ff;
-            border: 2px dashed #6c9bff;
-            border-radius: 14px;
-            cursor: pointer;
-
+        .tool-header-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: #e5efff;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-
-            transition: 0.3s;
+            margin: auto;
         }
 
-        .upload-label:hover {
-            background: #eaf0ff;
-            transform: scale(1.02);
-            border-color: #3c6fff;
+        .tool-header-icon i {
+            font-size: 34px;
+            color: #387bff;
         }
 
-        .upload-label i {
-            font-size: 40px;
-            color: #0051ff;
-            margin-bottom: 8px;
+        .tool-header h1 {
+            margin-top: 12px;
+            font-size: 30px;
+            font-weight: 800;
+            color: #1f2d4a;
         }
 
-        .upload-label span {
-            font-size: 17px;
+        .tool-header p {
+            color: #5d6785;
+            font-size: 15px;
+        }
+
+        /* Upload Box */
+        .upload-box {
+            padding: 28px;
+            margin-top: 25px;
+            border: 2px dashed #c4d4ff;
+            background: #f8fbff;
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .upload-box:hover {
+            background: #f1f5ff;
+            border-color: #387bff;
+        }
+
+        .upload-box label {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #387bff;
+            color: white;
+            border-radius: 999px;
             font-weight: 600;
-            color: #0038ff;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(56,123,255,0.25);
         }
 
-        #pdfFile {
-            display: none;
+        .upload-box small {
+            margin-top: 10px;
+            display: block;
+            font-size: 13px;
+            color: #7e8aac;
         }
 
+        #pdfFile { display: none; }
+
+        /* Select Box */
         select {
             width: 100%;
-            padding: 12px;
             margin-top: 18px;
-            border-radius: 8px;
-            border: 1px solid #c9d4ff;
-            font-size: 16px;
-        }
-
-        .btn {
-            width: 100%;
             padding: 14px;
-            background: linear-gradient(to right, #0059ff, #0038ff);
-            border: none;
-            margin-top: 22px;
-            color: white;
-            font-size: 17px;
-            border-radius: 8px;
-            cursor: pointer;
+            border-radius: 12px;
+            border: 1px solid #d0dcff;
+            font-size: 16px;
+            background: #f7f9ff;
         }
 
-        .btn:hover {
-            opacity: .9;
-        }
-
-        #progressContainer {
+        /* Button */
+        .primary-btn {
             width: 100%;
-            height: 10px;
-            background: #dce6ff;
-            border-radius: 8px;
-            margin-top: 15px;
+            margin-top: 22px;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: #387bff;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(56,123,255,0.35);
+            transition: .25s;
+        }
+
+        .primary-btn:hover {
+            background: #2667e5;
+            transform: translateY(-2px);
+        }
+
+        /* Progress */
+        #progressContainer {
             display: none;
+            margin-top: 15px;
+            height: 10px;
+            background: #eef3ff;
+            border-radius: 6px;
         }
 
         #progressBar {
             width: 0%;
             height: 100%;
-            background: #0038ff;
+            background: #387bff;
+            border-radius: 6px;
             transition: .25s;
-            border-radius: 8px;
         }
 
         #statusText {
-            text-align: center;
             margin-top: 10px;
+            text-align: center;
+            color: #445075;
             font-size: 14px;
-            color: #444;
         }
 
+        /* SEO Box */
         .seo-text {
-            margin-top: 25px;
-            font-size: 14px;
-            color: #444;
-            text-align: justify;
-            line-height: 1.6;
+            margin-top: 30px;
+            background: #f4f7ff;
+            padding: 20px;
+            border-radius: 14px;
+            font-size: 15px;
+            color: #4d5670;
+            line-height: 1.7;
         }
     </style>
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
 
 <body>
 
-    <h1>Rotate PDF Pages</h1>
-    <p class="center">Rotate PDF 90°, 180°, or 270° – Instantly & Free</p>
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
 
-    <div class="card">
+    <div class="tool-wrapper">
 
-        <label for="pdfFile" class="upload-label">
-            <i class="fa-solid fa-file-pdf"></i>
-            <span>Select PDF File</span>
-        </label>
+        <!-- HEADER -->
+        <div class="tool-header">
+            <div class="tool-header-icon">
+                <i class="fa-solid fa-rotate"></i>
+            </div>
+            <h1>Rotate PDF Pages</h1>
+            <p>Fix sideways or upside-down PDF pages in seconds.</p>
+        </div>
 
-        <input type="file" id="pdfFile" accept="application/pdf">
+        <!-- UPLOAD BOX -->
+        <div class="upload-box">
+            <label for="pdfFile">Choose PDF File</label>
+            <input type="file" id="pdfFile" accept="application/pdf">
+            <small>Upload a PDF to rotate</small>
+        </div>
 
+        <!-- ROTATION SELECT -->
         <select id="rotation">
             <option value="90">Rotate 90°</option>
             <option value="180">Rotate 180°</option>
             <option value="270">Rotate 270°</option>
         </select>
 
-        <button id="rotateBtn" class="btn">Rotate PDF</button>
+        <!-- BUTTON -->
+        <button class="primary-btn" id="rotateBtn">Rotate PDF</button>
 
-        <div id="progressContainer">
-            <div id="progressBar"></div>
-        </div>
+        <!-- PROGRESS BAR -->
+        <div id="progressContainer"><div id="progressBar"></div></div>
 
         <p id="statusText"></p>
 
-        <!-- 150 WORD SEO -->
+        <!-- SEO TEXT -->
         <div class="seo-text">
-            ToolSonics Rotate PDF is a simple, fast and secure online tool designed to fix PDF orientation problems in
-            seconds. Whether your PDF pages are sideways, upside-down, or incorrectly scanned, you can rotate them
-            instantly without installing any software. Just upload your PDF, choose the rotation angle (90°, 180° or
-            270°), and download your corrected file immediately. This tool is perfect for students, teachers,
-            professionals, lawyers, office workers, and anyone who frequently works with PDFs. Your files are processed
-            securely on the server and deleted automatically after completion to keep your documents private. ToolSonics
-            works smoothly on Android, iPhone, Windows, and Mac, offering a fast global PDF rotation experience. With a
-            clean interface and high-speed backend, this tool ensures reliable performance for users worldwide.
+            <h3 style="font-size:17px;margin-bottom:6px;">Why use ToolSonics Rotate PDF?</h3>
+
+            ToolSonics Rotate PDF tool allows you to correct the orientation of any PDF file instantly. 
+            Whether your document pages are sideways, upside-down, or incorrectly scanned, you can fix 
+            them with a single click. This tool supports rotation angles of 90°, 180°, and 270°, offering 
+            full flexibility for both single-page and multi-page PDFs.
+
+            <br><br>
+            Students, professionals, teachers, CA firms, lawyers, designers, and office workers often face 
+            PDF orientation issues when scanning documents. With ToolSonics, you don’t need any software — 
+            simply upload your PDF, select a rotation angle, and download your corrected document 
+            immediately.
+
+            <br><br>
+            All files are processed securely and deleted automatically after processing. ToolSonics works 
+            smoothly on Android, iPhone, Windows, and Mac, making it one of the fastest online PDF rotation 
+            tools globally. Bookmark this page for quick and reliable PDF rotation anytime!
         </div>
 
     </div>
 
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
     <script>
+        function load(id, file) {
+            fetch(file).then(r => r.text()).then(html => {
+                document.getElementById(id).innerHTML = html;
+            });
+        }
+
+        load("navbar", "navbar.html");
+        load("footer", "footer.html");
+
         const BACKEND_URL = "https://api.toolsonics.com/pdf/rotate";
 
-        const pdfInput = document.getElementById("pdfFile");
-        const rotationSelect = document.getElementById("rotation");
-        const progressContainer = document.getElementById("progressContainer");
-        const progressBar = document.getElementById("progressBar");
-        const statusText = document.getElementById("statusText");
-
         document.getElementById("rotateBtn").addEventListener("click", async () => {
+            const file = document.getElementById("pdfFile").files[0];
+            const rotation = document.getElementById("rotation").value;
+            const status = document.getElementById("statusText");
+            const bar = document.getElementById("progressBar");
+            const container = document.getElementById("progressContainer");
 
-            const file = pdfInput.files[0];
-            const rotation = rotationSelect.value;
+            if (!file) return status.textContent = "❗ Please upload a PDF file.";
 
-            if (!file) {
-                statusText.textContent = "❗ Please upload a PDF file.";
-                return;
-            }
-
-            statusText.textContent = "Starting rotation...";
-            progressContainer.style.display = "block";
-            progressBar.style.width = "20%";
-
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("rotation", rotation);
+            container.style.display = "block";
+            bar.style.width = "20%";
+            status.textContent = "Uploading…";
 
             try {
-                progressBar.style.width = "55%";
-                statusText.textContent = "Uploading file...";
+                const form = new FormData();
+                form.append("file", file);
+                form.append("rotation", rotation);
 
-                const response = await fetch(BACKEND_URL, {
-                    method: "POST",
-                    body: formData
-                });
+                bar.style.width = "60%";
 
-                progressBar.style.width = "80%";
-                statusText.textContent = "Processing...";
+                const res = await fetch(BACKEND_URL, { method: "POST", body: form });
 
-                if (!response.ok) {
-                    const text = await response.text();
-                    statusText.textContent = "❌ Error: " + text;
+                bar.style.width = "85%";
+                status.textContent = "Processing…";
+
+                if (!res.ok) {
+                    status.textContent = "❌ Error rotating PDF.";
                     return;
                 }
 
-                const blob = await response.blob();
+                const blob = await res.blob();
                 const url = URL.createObjectURL(blob);
 
-                progressBar.style.width = "100%";
-                statusText.textContent = "✔ Done! Downloading...";
+                bar.style.width = "100%";
+                status.textContent = "✔ Done! Downloading…";
 
                 const a = document.createElement("a");
                 a.href = url;
                 a.download = "rotated.pdf";
                 a.click();
 
-            } catch (error) {
-                statusText.textContent = "❌ Network error.";
+            } catch (err) {
+                status.textContent = "❌ Network error.";
             }
         });
     </script>
 
 </body>
-
 </html>
