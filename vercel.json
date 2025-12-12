@@ -8,7 +8,7 @@
     { "source": "/protect-pdf", "destination": "/protect-pdf.html" },
     { "source": "/unlock-pdf", "destination": "/unlock-pdf.html" },
     { "source": "/add-page-numbers", "destination": "/add-page-numbers.html" },
-    { "source": "/add-watermark", "destination": "/add-watermark.html" },
+    { "source": "/watermark-pdf", "destination": "/watermark-pdf.html" },
     { "source": "/text-to-pdf", "destination": "/text-to-pdf.html" },
     { "source": "/csv-excel-converter", "destination": "/csv-excel-converter.html" },
     { "source": "/images-to-pdf", "destination": "/images-to-pdf.html" }
