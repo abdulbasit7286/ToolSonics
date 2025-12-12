@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    { "source": "/merge-pdf", "destination": "/merge-pdf.html" },
+    { "source": "/split-pdf", "destination": "/split-pdf.html" },
+    { "source": "/rotate-pages", "destination": "/rotate-pages.html" },
+    { "source": "/delete-pages", "destination": "/delete-pages.html" },
+    { "source": "/reorder-pages", "destination": "/reorder-pages.html" },
+    { "source": "/protect-pdf", "destination": "/protect-pdf.html" },
+    { "source": "/unlock-pdf", "destination": "/unlock-pdf.html" },
+    { "source": "/add-page-numbers", "destination": "/add-page-numbers.html" },
+    { "source": "/add-watermark", "destination": "/add-watermark.html" },
+    { "source": "/text-to-pdf", "destination": "/text-to-pdf.html" },
+    { "source": "/csv-excel-converter", "destination": "/csv-excel-converter.html" },
+    { "source": "/images-to-pdf", "destination": "/images-to-pdf.html" }
+  ]
+}
