@@ -288,6 +288,7 @@
 
     mergeBtn.addEventListener("click", async () => {
         const files = input.files;
+        const originalName = files[0].name.replace(/\.pdf$/i, "");
 
         if (!files || files.length < 2) {
             statusText.textContent = "❗ Please select at least 2 PDF files.";
