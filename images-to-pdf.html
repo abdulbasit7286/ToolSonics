@@ -274,8 +274,12 @@
 
             const a = document.createElement("a");
             a.href = url;
-            a.download = "images.pdf";
+            a.download = "toolsonics-images-to-pdf.pdf"; // FIXED NAME
+            document.body.appendChild(a);
             a.click();
+
+            URL.revokeObjectURL(url); // 🔥 MEMORY FIX
+            a.remove();
 
         } catch (err) {
             status.textContent = "❌ Network error.";
