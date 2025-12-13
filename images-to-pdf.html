@@ -272,13 +272,15 @@
             bar.style.width = "100%";
             status.textContent = "✔ PDF Ready! Downloading…";
 
+            const firstImageName = files[0].name.replace(/\.[^/.]+$/, "");
+
             const a = document.createElement("a");
             a.href = url;
-            a.download = "toolsonics-images-to-pdf.pdf"; // FIXED NAME
+            a.download = firstImageName + ".pdf";
             document.body.appendChild(a);
             a.click();
 
-            URL.revokeObjectURL(url); // 🔥 MEMORY FIX
+            URL.revokeObjectURL(url);
             a.remove();
 
         } catch (err) {
