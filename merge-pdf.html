@@ -325,11 +325,14 @@
 
             const a = document.createElement("a");
             a.href = url;
-            a.download = "merged.pdf";
+            a.download = originalName + "-merged.pdf";
+
             document.body.appendChild(a);
             a.click();
-            a.remove();
+
             URL.revokeObjectURL(url);
+            a.remove();
+
         } catch (err) {
             console.error(err);
             statusText.textContent = "❌ Network error. Please check your internet and try again.";
