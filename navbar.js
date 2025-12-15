@@ -1,5 +1,4 @@
 function initNavbar() {
-
   const toolsMenu = document.getElementById("toolsMenu");
   const infoMenu = document.getElementById("infoMenu");
   const toolsContainer = document.getElementById("toolsContainer");
@@ -8,38 +7,36 @@ function initNavbar() {
   const closeToolsBtn = document.getElementById("closeToolsMenu");
   const openInfoBtn = document.getElementById("openInfoMenu");
 
-  if (!toolsMenu || !openToolsBtn) {
-    console.warn("Navbar not ready yet");
-    return;
-  }
+  if (!toolsMenu || !openToolsBtn) return;
 
-  /* OPEN ALL TOOLS */
+  /* OPEN / CLOSE MENUS */
   openToolsBtn.onclick = () => {
     toolsMenu.style.display = "flex";
     document.body.style.overflow = "hidden";
   };
 
-  /* CLOSE ALL TOOLS */
   closeToolsBtn.onclick = () => {
     toolsMenu.style.display = "none";
     document.body.style.overflow = "auto";
   };
 
-  /* INFO MENU */
   openInfoBtn.onclick = () => {
     infoMenu.style.display =
       infoMenu.style.display === "block" ? "none" : "block";
   };
 
-  /* LOAD TOOLS */
+  /* 🔥 AUTO LOAD TOOLS — ONLY ON HOME PAGE */
+  if (!toolsContainer) return;
+
   const cards = document.querySelectorAll(".tool-card");
+
+  if (cards.length === 0) return; // 👈 TOOL PAGE SAFETY
 
   toolsContainer.innerHTML = "";
 
   cards.forEach(card => {
     const title = card.querySelector("h3");
     const btn = card.querySelector("a.tool-button");
-
     if (!title || !btn) return;
 
     const link = document.createElement("a");
@@ -50,5 +47,5 @@ function initNavbar() {
   });
 }
 
-/* ⏳ WAIT UNTIL NAVBAR IS LOADED */
+/* WAIT FOR NAVBAR TO LOAD */
 setTimeout(initNavbar, 300);
