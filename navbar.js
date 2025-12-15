@@ -1,51 +1,44 @@
-function initNavbar() {
-  const toolsMenu = document.getElementById("toolsMenu");
-  const infoMenu = document.getElementById("infoMenu");
-  const toolsContainer = document.getElementById("toolsContainer");
+(function () {
 
-  const openToolsBtn = document.getElementById("openToolsMenu");
-  const closeToolsBtn = document.getElementById("closeToolsMenu");
-  const openInfoBtn = document.getElementById("openInfoMenu");
+  function ready(fn) {
+    if (document.readyState !== "loading") {
+      fn();
+    } else {
+      document.addEventListener("DOMContentLoaded", fn);
+    }
+  }
 
-  if (!toolsMenu || !openToolsBtn) return;
+  ready(() => {
 
-  /* OPEN / CLOSE MENUS */
-  openToolsBtn.onclick = () => {
-    toolsMenu.style.display = "flex";
-    document.body.style.overflow = "hidden";
-  };
+    const openToolsBtn = document.getElementById("openToolsMenu");
+    const closeToolsBtn = document.getElementById("closeToolsMenu");
+    const toolsMenu = document.getElementById("toolsMenu");
 
-  closeToolsBtn.onclick = () => {
-    toolsMenu.style.display = "none";
-    document.body.style.overflow = "auto";
-  };
+    const openInfoBtn = document.getElementById("openInfoMenu");
+    const infoMenu = document.getElementById("infoMenu");
 
-  openInfoBtn.onclick = () => {
-    infoMenu.style.display =
-      infoMenu.style.display === "block" ? "none" : "block";
-  };
+    if (!openToolsBtn || !toolsMenu) {
+      console.warn("Navbar not loaded yet");
+      return;
+    }
 
-  /* 🔥 AUTO LOAD TOOLS — ONLY ON HOME PAGE */
-  if (!toolsContainer) return;
+    /* ALL TOOLS */
+    openToolsBtn.onclick = () => {
+      toolsMenu.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    };
 
-  const cards = document.querySelectorAll(".tool-card");
+    closeToolsBtn.onclick = () => {
+      toolsMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
 
-  if (cards.length === 0) return; // 👈 TOOL PAGE SAFETY
+    /* INFO MENU */
+    openInfoBtn.onclick = () => {
+      infoMenu.style.display =
+        infoMenu.style.display === "block" ? "none" : "block";
+    };
 
-  toolsContainer.innerHTML = "";
-
-  cards.forEach(card => {
-    const title = card.querySelector("h3");
-    const btn = card.querySelector("a.tool-button");
-    if (!title || !btn) return;
-
-    const link = document.createElement("a");
-    link.href = btn.href;
-    link.textContent = title.textContent;
-
-    toolsContainer.appendChild(link);
   });
-}
 
-/* WAIT FOR NAVBAR TO LOAD */
-setTimeout(initNavbar, 300);
+})();
