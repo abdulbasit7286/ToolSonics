@@ -1,33 +1,25 @@
 <header class="ts-navbar">
+  <button class="mobile-menu-btn" id="openMobile">☰</button>
 
-  <!-- LOGO -->
   <a href="/" class="nav-logo">Toolsonics</a>
 
-  <!-- DESKTOP LINKS -->
   <nav class="nav-links">
     <div class="nav-item">
       <span>PDF Tools</span>
       <div class="dropdown">
-        <a href="/merge-pdf.html">Merge PDF</a>
-        <a href="/split-pdf.html">Split PDF</a>
-        <a href="/compress-pdf.html">Compress PDF</a>
+        <a href="merge-pdf.html">Merge PDF</a>
+        <a href="split-pdf.html">Split PDF</a>
       </div>
     </div>
 
     <div class="nav-item">
       <span>Image Tools</span>
       <div class="dropdown">
-        <a href="/image-compressor.html">Compress Image</a>
-        <a href="/image-resizer.html">Resize Image</a>
+        <a href="image-compressor.html">Image Compressor</a>
+        <a href="image-resizer.html">Image Resizer</a>
       </div>
     </div>
-
-    <a href="/blog.html" class="nav-item">Blog</a>
-    <a href="/contact.html" class="nav-item">Contact</a>
   </nav>
-
-  <!-- MOBILE BUTTON -->
-  <button class="mobile-menu-btn" id="openMobile">☰</button>
 </header>
 
 <!-- MOBILE MENU -->
@@ -35,26 +27,10 @@
   <button class="close-mobile" id="closeMobile">✕</button>
 
   <h4>PDF Tools</h4>
-  <a href="/merge-pdf.html">Merge PDF</a>
-  <a href="/split-pdf.html">Split PDF</a>
+  <a href="merge-pdf.html">Merge PDF</a>
+  <a href="split-pdf.html">Split PDF</a>
 
   <h4>Image Tools</h4>
-  <a href="/image-compressor.html">Compress Image</a>
-  <a href="/image-resizer.html">Resize Image</a>
-
-  <h4>More</h4>
-  <a href="/blog.html">Blog</a>
-  <a href="/contact.html">Contact</a>
+  <a href="image-compressor.html">Image Compressor</a>
+  <a href="image-resizer.html">Image Resizer</a>
 </div>
-
-<script>
-document.getElementById("openMobile").onclick = () => {
-  document.getElementById("mobileMenu").style.display = "block";
-  document.body.style.overflow = "hidden";
-};
-
-document.getElementById("closeMobile").onclick = () => {
-  document.getElementById("mobileMenu").style.display = "none";
-  document.body.style.overflow = "auto";
-};
-</script>
