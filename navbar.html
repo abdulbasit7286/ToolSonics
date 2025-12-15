@@ -1,31 +1,33 @@
-<!-- TOP NAVBAR -->
+<!-- TOOLSONICS NAVBAR -->
 <header class="ts-navbar">
   <!-- LEFT : ALL TOOLS -->
-  <button class="nav-btn" id="openToolsMenu">☰</button>
+  <button class="nav-btn" id="openToolsMenu" aria-label="All tools">
+    ☰
+  </button>
 
   <!-- CENTER : LOGO -->
   <a href="/" class="nav-logo">Toolsonics</a>
 
   <!-- RIGHT : INFO -->
-  <button class="nav-btn" id="openInfoMenu">⋮⋮⋮</button>
+  <button class="nav-btn" id="openInfoMenu" aria-label="Menu">
+    ⋮⋮⋮
+  </button>
 </header>
 
 <!-- ALL TOOLS FULL SCREEN MENU -->
-<div class="ts-menu" id="toolsMenu">
+<div class="ts-menu" id="toolsMenu" aria-hidden="true">
   <div class="ts-menu-header">
     <span>All Tools</span>
-    <button id="closeToolsMenu">✕</button>
+    <button id="closeToolsMenu" aria-label="Close">✕</button>
   </div>
 
-  <div class="ts-menu-content">
-    <!-- IMPORTANT:
-         YAHAN HUM AUTO LOAD KARENGE
-         index.html ke tool cards se -->
+  <div class="ts-menu-content" id="toolsContainer">
+    <!-- 🔥 48 tools yahan JS se auto-load honge -->
   </div>
 </div>
 
-<!-- INFO MENU -->
-<div class="ts-info-menu" id="infoMenu">
+<!-- INFO MENU (HIDDEN BY DEFAULT) -->
+<div class="ts-info-menu" id="infoMenu" aria-hidden="true">
   <a href="/features.html">Features</a>
   <a href="/security.html">Security</a>
   <a href="/about.html">About Us</a>
