@@ -1,17 +1,19 @@
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-  const openBtn = document.getElementById("openMobile");
-  const closeBtn = document.getElementById("closeMobile");
-  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("allToolsBtn");
+  const dropdown = document.getElementById("allToolsDropdown");
 
-  if (!openBtn || !closeBtn || !menu) return;
+  if (!btn || !dropdown) return;
 
-  openBtn.onclick = () => {
-    menu.style.display = "block";
-    document.body.style.overflow = "hidden";
-  };
+  // Toggle on click
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle("show");
+  });
 
-  closeBtn.onclick = () => {
-    menu.style.display = "none";
-    document.body.style.overflow = "auto";
-  };
+  // Close when clicking outside
+  document.addEventListener("click", () => {
+    dropdown.classList.remove("show");
+  });
 });
+</script>
