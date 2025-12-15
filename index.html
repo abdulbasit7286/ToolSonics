@@ -24,6 +24,7 @@
 
     <!-- Global CSS -->
     <link rel="stylesheet" href="global-style.css">
+    <link rel="stylesheet" href="navbar.css">
 
     <!-- Icons -->
     <link rel="stylesheet"
@@ -1085,46 +1086,9 @@
     </main>
 </div>
 
-<!-- NAVBAR -->
-<div id="navbar"></div>
 
 <!-- FOOTER -->
 <div id="footer"></div>
-
-<script>
-function initNavbar() {
-    const openBtn = document.getElementById("openMobile");
-    const closeBtn = document.getElementById("closeMobile");
-    const menu = document.getElementById("mobileMenu");
-
-    if (!openBtn || !closeBtn || !menu) return;
-
-    openBtn.onclick = () => {
-        menu.style.display = "block";
-        document.body.style.overflow = "hidden";
-    };
-
-    closeBtn.onclick = () => {
-        menu.style.display = "none";
-        document.body.style.overflow = "auto";
-    };
-}
-
-// LOAD NAVBAR
-fetch("navbar.html")
-  .then(res => res.text())
-  .then(html => {
-      document.getElementById("navbar").innerHTML = html;
-      initNavbar(); // 🔥 MOST IMPORTANT
-  });
-
-// LOAD FOOTER
-fetch("footer.html")
-  .then(res => res.text())
-  .then(html => {
-      document.getElementById("footer").innerHTML = html;
-  });
-</script>
 
 <script>
 function initNavbar() {
@@ -1132,7 +1096,10 @@ function initNavbar() {
   const closeBtn = document.getElementById("closeMobile");
   const menu = document.getElementById("mobileMenu");
 
-  if (!openBtn || !closeBtn || !menu) return;
+  if (!openBtn || !closeBtn || !menu) {
+    console.log("Navbar elements missing");
+    return;
+  }
 
   openBtn.onclick = () => {
     menu.style.display = "block";
@@ -1145,11 +1112,19 @@ function initNavbar() {
   };
 }
 
+// LOAD NAVBAR
 fetch("navbar.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("navbar").innerHTML = html;
-    initNavbar();
+    initNavbar(); // 🔥 YAHI MAIN POINT HAI
+  });
+
+// LOAD FOOTER
+fetch("footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
   });
 </script>
 
