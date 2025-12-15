@@ -1,44 +1,27 @@
-(function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-  function ready(fn) {
-    if (document.readyState !== "loading") {
-      fn();
-    } else {
-      document.addEventListener("DOMContentLoaded", fn);
-    }
-  }
+  const openTools = document.getElementById("openToolsMenu");
+  const closeTools = document.getElementById("closeToolsMenu");
+  const toolsMenu = document.getElementById("toolsMenu");
 
-  ready(() => {
+  const openInfo = document.getElementById("openInfoMenu");
+  const infoMenu = document.getElementById("infoMenu");
 
-    const openToolsBtn = document.getElementById("openToolsMenu");
-    const closeToolsBtn = document.getElementById("closeToolsMenu");
-    const toolsMenu = document.getElementById("toolsMenu");
+  if (!openTools || !toolsMenu) return;
 
-    const openInfoBtn = document.getElementById("openInfoMenu");
-    const infoMenu = document.getElementById("infoMenu");
-
-    if (!openToolsBtn || !toolsMenu) {
-      console.warn("Navbar not loaded yet");
-      return;
-    }
-
-    /* ALL TOOLS */
-    openToolsBtn.onclick = () => {
-      toolsMenu.style.display = "flex";
-      document.body.style.overflow = "hidden";
-    };
-
-    closeToolsBtn.onclick = () => {
-      toolsMenu.style.display = "none";
-      document.body.style.overflow = "auto";
-    };
-
-    /* INFO MENU */
-    openInfoBtn.onclick = () => {
-      infoMenu.style.display =
-        infoMenu.style.display === "block" ? "none" : "block";
-    };
-
+  openTools.addEventListener("click", () => {
+    toolsMenu.style.display = "flex";
+    document.body.style.overflow = "hidden";
   });
 
-})();
+  closeTools.addEventListener("click", () => {
+    toolsMenu.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+
+  openInfo.addEventListener("click", () => {
+    infoMenu.style.display =
+      infoMenu.style.display === "block" ? "none" : "block";
+  });
+
+});
