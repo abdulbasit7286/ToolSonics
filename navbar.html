@@ -1,35 +1,48 @@
-<!-- TOOLSONICS NAVBAR -->
 <header class="ts-navbar">
-  <!-- LEFT : ALL TOOLS -->
-  <button class="nav-btn" id="openToolsMenu" aria-label="All tools">
-    ☰
-  </button>
+  <button class="nav-btn" id="openToolsMenu">☰</button>
 
-  <!-- CENTER : LOGO -->
   <a href="/" class="nav-logo">Toolsonics</a>
 
-  <!-- RIGHT : INFO -->
-  <button class="nav-btn" id="openInfoMenu" aria-label="Menu">
-    ⋮⋮⋮
-  </button>
+  <button class="nav-btn" id="openInfoMenu">⋮⋮⋮</button>
 </header>
 
-<!-- ALL TOOLS FULL SCREEN MENU -->
-<div class="ts-menu" id="toolsMenu" aria-hidden="true">
+<div class="ts-menu" id="toolsMenu">
   <div class="ts-menu-header">
     <span>All Tools</span>
-    <button id="closeToolsMenu" aria-label="Close">✕</button>
+    <button id="closeToolsMenu">✕</button>
   </div>
 
-  <div class="ts-menu-content" id="toolsContainer">
-    <!-- 🔥 48 tools yahan JS se auto-load honge -->
+  <div class="ts-menu-content">
+    <a href="/merge-pdf.html">Merge PDF</a>
+    <a href="/split-pdf.html">Split PDF</a>
+    <a href="/image-compressor.html">Image Compressor</a>
+    <a href="/emi-calculator.html">EMI Calculator</a>
+    <a href="/gst-calculator.html">GST Calculator</a>
+    <!-- baaki tools baad me -->
   </div>
 </div>
 
-<!-- INFO MENU (HIDDEN BY DEFAULT) -->
-<div class="ts-info-menu" id="infoMenu" aria-hidden="true">
+<div class="ts-info-menu" id="infoMenu">
   <a href="/features.html">Features</a>
   <a href="/security.html">Security</a>
   <a href="/about.html">About Us</a>
   <a href="/contact.html">Contact</a>
 </div>
+
+<script>
+const toolsMenu = document.getElementById("toolsMenu");
+const infoMenu = document.getElementById("infoMenu");
+
+document.getElementById("openToolsMenu").onclick = () => {
+  toolsMenu.style.display = "flex";
+};
+
+document.getElementById("closeToolsMenu").onclick = () => {
+  toolsMenu.style.display = "none";
+};
+
+document.getElementById("openInfoMenu").onclick = () => {
+  infoMenu.style.display =
+    infoMenu.style.display === "block" ? "none" : "block";
+};
+</script>
