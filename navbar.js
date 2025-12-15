@@ -5,14 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!openBtn || !closeBtn || !menu) return;
 
-  openBtn.addEventListener("click", () => {
+  openBtn.onclick = () => {
     menu.style.display = "block";
     document.body.style.overflow = "hidden";
-  });
+  };
 
-  closeBtn.addEventListener("click", () => {
+  closeBtn.onclick = () => {
     menu.style.display = "none";
     document.body.style.overflow = "auto";
-  });
+  };
 });
-
