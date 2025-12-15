@@ -69,9 +69,14 @@
   background: #f3f6ff;
 }
 
-.nav-item:hover .dropdown {
+.dropdown {
+  display: none;
+}
+
+.dropdown.show {
   display: block;
 }
+
 
 /* ================= MOBILE BUTTON ================= */
 .mobile-menu-btn {
