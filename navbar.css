@@ -1,22 +1,14 @@
-/* NAVBAR BASE */
 .ts-navbar {
   position: sticky;
   top: 0;
   z-index: 9999;
-  height: 64px;
   background: #fff;
-  border-bottom: 1px solid #e5e7eb;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-}
-
-/* LEFT */
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .nav-logo {
@@ -26,7 +18,7 @@
   text-decoration: none;
 }
 
-/* DESKTOP NAV */
+/* DESKTOP */
 .nav-links {
   display: flex;
   gap: 28px;
@@ -34,93 +26,54 @@
 
 .nav-item {
   position: relative;
-  font-size: 15px;
-  cursor: pointer;
 }
 
 .nav-item span {
-  color: #111;
-  font-weight: 500;
+  cursor: pointer;
 }
 
-/* DROPDOWN */
 .dropdown {
   display: none;
   position: absolute;
-  top: 38px;
+  top: 36px;
   left: 0;
   background: #fff;
-  min-width: 190px;
-  border-radius: 12px;
-  box-shadow: 0 14px 35px rgba(0,0,0,.12);
-  padding: 8px 0;
-}
-
-.dropdown a {
-  display: block;
-  padding: 10px 16px;
-  font-size: 14px;
-  color: #111;
-  text-decoration: none;
-}
-
-.dropdown a:hover {
-  background: #f3f6ff;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.15);
 }
 
 .nav-item:hover .dropdown {
   display: block;
 }
 
-/* MOBILE BUTTON */
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
+.dropdown a {
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #111;
 }
 
-/* MOBILE MENU */
+/* MOBILE */
+.mobile-menu-btn {
+  display: none;
+  font-size: 22px;
+  border: none;
+  background: none;
+}
+
 .mobile-menu {
   display: none;
   position: fixed;
   inset: 0;
   background: #fff;
+  padding: 20px;
   z-index: 10000;
-  padding: 16px;
-  overflow-y: auto;
-}
-
-.mobile-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  font-size: 18px;
-  font-weight: 600;
 }
 
 .close-mobile {
   font-size: 22px;
   border: none;
   background: none;
-  cursor: pointer;
-}
-
-.mobile-menu h4 {
-  margin: 18px 0 8px;
-  font-size: 14px;
-  color: #555;
-}
-
-.mobile-menu a {
-  display: block;
-  padding: 10px 0;
-  font-size: 15px;
-  color: #111;
-  text-decoration: none;
-  border-bottom: 1px solid #eee;
 }
 
 /* RESPONSIVE */
@@ -128,7 +81,6 @@
   .nav-links {
     display: none;
   }
-
   .mobile-menu-btn {
     display: block;
   }
