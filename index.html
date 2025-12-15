@@ -1089,7 +1089,74 @@
 
 <!-- FOOTER -->
 <div id="footer"></div>
+<!-- ================= NAVBAR ================= -->
+<header class="ts-navbar">
+  <button class="mobile-menu-btn" id="openMobile">☰</button>
 
+  <a href="/" class="nav-logo">Toolsonics</a>
+
+  <nav class="nav-links">
+    <div class="nav-item">
+      <button class="nav-btn" id="allToolsBtn">All Tools ▾</button>
+
+      <div class="dropdown" id="allToolsDropdown">
+        <a href="merge-pdf.html">Merge PDF</a>
+        <a href="split-pdf.html">Split PDF</a>
+        <a href="compress-pdf.html">Compress PDF</a>
+        <a href="image-converter.html">Image Converter</a>
+        <a href="emi-calculator.html">EMI Calculator</a>
+      </div>
+    </div>
+
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+  </nav>
+</header>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-mobile" id="closeMobile">✕</button>
+
+  <h4>All Tools</h4>
+  <a href="merge-pdf.html">Merge PDF</a>
+  <a href="split-pdf.html">Split PDF</a>
+  <a href="compress-pdf.html">Compress PDF</a>
+  <a href="image-converter.html">Image Converter</a>
+  <a href="emi-calculator.html">EMI Calculator</a>
+
+  <h4>Pages</h4>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="ts-footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>Toolsonics</h3>
+      <p>Smart, fast & easy online tools for PDF, images, calculators & AI.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Popular Tools</h3>
+      <a href="merge-pdf.html">Merge PDF</a><br>
+      <a href="image-compressor.html">Image Compressor</a><br>
+      <a href="emi-calculator.html">EMI Calculator</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Company</h3>
+      <a href="about.html">About</a><br>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Toolsonics. All rights reserved.
+  </div>
+</footer>
+
+<!-- ================= JS (NAVBAR + FOOTER SAME PLACE) ================= -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const allToolsBtn = document.getElementById("allToolsBtn");
@@ -1125,6 +1192,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+
 
 </body>
 </html>
