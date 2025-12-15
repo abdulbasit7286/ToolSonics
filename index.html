@@ -1092,42 +1092,32 @@
 
 <script>
 function initNavbar() {
-  const openBtn = document.getElementById("openMobile");
-  const closeBtn = document.getElementById("closeMobile");
-  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("allToolsBtn");
+  const dropdown = document.getElementById("allToolsDropdown");
 
-  if (!openBtn || !closeBtn || !menu) {
-    console.log("Navbar elements missing");
+  if (!btn || !dropdown) {
+    console.log("All Tools elements missing");
     return;
   }
 
-  openBtn.onclick = () => {
-    menu.style.display = "block";
-    document.body.style.overflow = "hidden";
-  };
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle("show");
+  });
 
-  closeBtn.onclick = () => {
-    menu.style.display = "none";
-    document.body.style.overflow = "auto";
-  };
+  document.addEventListener("click", () => {
+    dropdown.classList.remove("show");
+  });
 }
 
-// LOAD NAVBAR
+// NAVBAR LOAD
 fetch("navbar.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("navbar").innerHTML = html;
-    initNavbar(); // 🔥 YAHI MAIN POINT HAI
-  });
-
-// LOAD FOOTER
-fetch("footer.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("footer").innerHTML = html;
+    initNavbar(); // 🔥 YAHI SABSE IMPORTANT
   });
 </script>
-
 
 </body>
 </html>
