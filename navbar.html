@@ -1,17 +1,10 @@
-<!-- NAVBAR -->
 <header class="ts-navbar">
-  <!-- LEFT (MOBILE MENU BUTTON) -->
-  <button class="mobile-menu-btn" id="openMobile" aria-label="Open menu">
-    ☰
-  </button>
-
-  <!-- CENTER LOGO -->
   <a href="/" class="nav-logo">Toolsonics</a>
 
-  <!-- DESKTOP MENU -->
   <nav class="nav-links">
-    <div class="nav-item">
+    <div class="nav-item" id="allToolsBtn">
       <span>All Tools</span>
+
       <div class="dropdown" id="allToolsDropdown">
         <a href="/merge-pdf.html">Merge PDF</a>
         <a href="/split-pdf.html">Split PDF</a>
@@ -21,30 +14,9 @@
       </div>
     </div>
 
-    <div class="nav-item">
-      <a href="/blog.html">Blog</a>
-    </div>
-
-    <div class="nav-item">
-      <a href="/contact.html">Contact</a>
-    </div>
+    <div class="nav-item"><a href="/blog.html">Blog</a></div>
+    <div class="nav-item"><a href="/contact.html">Contact</a></div>
   </nav>
+
+  <button class="mobile-menu-btn" id="openMobile">☰</button>
 </header>
-
-<!-- MOBILE FULLSCREEN MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close-mobile" id="closeMobile" aria-label="Close menu">
-    ✕
-  </button>
-
-  <h4>All Tools</h4>
-  <a href="/merge-pdf.html">Merge PDF</a>
-  <a href="/split-pdf.html">Split PDF</a>
-  <a href="/compress-pdf.html">Compress PDF</a>
-  <a href="/image-converter.html">Image Converter</a>
-  <a href="/emi-calculator.html">EMI Calculator</a>
-
-  <h4>Pages</h4>
-  <a href="/">Blog</a>
-  <a href="/contact.html">Contact</a>
-</div>
