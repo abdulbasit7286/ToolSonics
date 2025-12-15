@@ -74,8 +74,9 @@
   position: fixed;
   inset: 0;
   background: #fff;
-  padding: 20px;
+  padding: 16px;
   z-index: 10000;
+  overflow-y: auto;
 }
 
 .close-mobile {
@@ -86,18 +87,21 @@
 }
 
 .mobile-menu a {
-  display: block;
-  padding: 8px 0;
-  text-decoration: none;
-  color: #111;
+  padding: 12px 0;
+  font-size: 15px;
+  border-bottom: 1px solid #eee;
 }
+
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .nav-links {
-    display: none;
+  .ts-navbar {
+    justify-content: space-between;
   }
-  .mobile-menu-btn {
-    display: block;
+
+  .nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
