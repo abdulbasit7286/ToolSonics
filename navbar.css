@@ -1,0 +1,75 @@
+.ts-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.nav-logo {
+  font-weight: 700;
+  font-size: 18px;
+  color: #387bff;
+  text-decoration: none;
+}
+
+/* ALL TOOLS MENU */
+.ts-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 10000;
+  flex-direction: column;
+}
+
+.ts-menu-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+}
+
+.ts-menu-content {
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.ts-menu-content a {
+  display: block;
+  padding: 10px 0;
+  font-size: 15px;
+  color: #111;
+  text-decoration: none;
+}
+
+/* INFO MENU */
+.ts-info-menu {
+  display: none;
+  position: fixed;
+  top: 56px;
+  right: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  z-index: 10001;
+}
+
+.ts-info-menu a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #111;
+}
