@@ -1,11 +1,9 @@
 <header class="ts-navbar">
 
-  <!-- LEFT -->
-  <div class="nav-left">
-    <a href="/" class="nav-logo">Toolsonics</a>
-  </div>
+  <!-- LOGO -->
+  <a href="/" class="nav-logo">Toolsonics</a>
 
-  <!-- CENTER (DESKTOP ONLY) -->
+  <!-- DESKTOP LINKS -->
   <nav class="nav-links">
     <div class="nav-item">
       <span>PDF Tools</span>
@@ -19,47 +17,44 @@
     <div class="nav-item">
       <span>Image Tools</span>
       <div class="dropdown">
-        <a href="/image-compressor.html">Image Compressor</a>
-        <a href="/image-resizer.html">Image Resizer</a>
+        <a href="/image-compressor.html">Compress Image</a>
+        <a href="/image-resizer.html">Resize Image</a>
       </div>
     </div>
 
-    <div class="nav-item">
-      <span>AI Tools</span>
-      <div class="dropdown">
-        <a href="/ppt-generator.html">AI PPT Generator</a>
-        <a href="/resume-builder.html">Resume Builder</a>
-      </div>
-    </div>
+    <a href="/blog.html" class="nav-item">Blog</a>
+    <a href="/contact.html" class="nav-item">Contact</a>
   </nav>
 
-  <!-- RIGHT -->
-  <div class="nav-right">
-    <button class="mobile-menu-btn" id="openMobileMenu">☰</button>
-  </div>
-
+  <!-- MOBILE BUTTON -->
+  <button class="mobile-menu-btn" id="openMobile">☰</button>
 </header>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="close-mobile" id="closeMobileMenu">✕</button>
+  <button class="close-mobile" id="closeMobile">✕</button>
 
   <h4>PDF Tools</h4>
   <a href="/merge-pdf.html">Merge PDF</a>
   <a href="/split-pdf.html">Split PDF</a>
 
   <h4>Image Tools</h4>
-  <a href="/image-compressor.html">Image Compressor</a>
+  <a href="/image-compressor.html">Compress Image</a>
+  <a href="/image-resizer.html">Resize Image</a>
 
-  <h4>AI Tools</h4>
-  <a href="/ppt-generator.html">AI PPT Generator</a>
+  <h4>More</h4>
+  <a href="/blog.html">Blog</a>
+  <a href="/contact.html">Contact</a>
 </div>
 
 <script>
-const openBtn = document.getElementById("openMobileMenu");
-const closeBtn = document.getElementById("closeMobileMenu");
-const mobileMenu = document.getElementById("mobileMenu");
+document.getElementById("openMobile").onclick = () => {
+  document.getElementById("mobileMenu").style.display = "block";
+  document.body.style.overflow = "hidden";
+};
 
-openBtn.onclick = () => mobileMenu.style.display = "block";
-closeBtn.onclick = () => mobileMenu.style.display = "none";
+document.getElementById("closeMobile").onclick = () => {
+  document.getElementById("mobileMenu").style.display = "none";
+  document.body.style.overflow = "auto";
+};
 </script>
