@@ -98,12 +98,17 @@
 }
 
 /* RESPONSIVE */
+/* ===== FORCE MOBILE FIX ===== */
 @media (max-width: 900px) {
   .nav-links {
-    display: none;
+    display: none !important;
   }
 
   .mobile-menu-btn {
-    display: block;
+    display: block !important;
+  }
+
+  .ts-navbar {
+    padding: 0 14px;
   }
 }
