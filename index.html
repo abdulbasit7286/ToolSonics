@@ -1126,5 +1126,33 @@ fetch("footer.html")
   });
 </script>
 
+<script>
+function initNavbar() {
+  const openBtn = document.getElementById("openMobile");
+  const closeBtn = document.getElementById("closeMobile");
+  const menu = document.getElementById("mobileMenu");
+
+  if (!openBtn || !closeBtn || !menu) return;
+
+  openBtn.onclick = () => {
+    menu.style.display = "block";
+    document.body.style.overflow = "hidden";
+  };
+
+  closeBtn.onclick = () => {
+    menu.style.display = "none";
+    document.body.style.overflow = "auto";
+  };
+}
+
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+    initNavbar();
+  });
+</script>
+
+
 </body>
 </html>
