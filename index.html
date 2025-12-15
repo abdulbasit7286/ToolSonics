@@ -1085,18 +1085,13 @@
     </main>
 </div>
 
+<!-- NAVBAR -->
+<div id="navbar"></div>
+
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- JS: load navbar/footer + filter + search -->
 <script>
-    function loadComponent(id, file) {
-        fetch(file)
-            .then(res => res.text())
-            .then(html => document.getElementById(id).innerHTML = html);
-    }
-
-    <script>
 function initNavbar() {
     const openBtn = document.getElementById("openMobile");
     const closeBtn = document.getElementById("closeMobile");
@@ -1104,29 +1099,31 @@ function initNavbar() {
 
     if (!openBtn || !closeBtn || !menu) return;
 
-    openBtn.addEventListener("click", () => {
+    openBtn.onclick = () => {
         menu.style.display = "block";
         document.body.style.overflow = "hidden";
-    });
+    };
 
-    closeBtn.addEventListener("click", () => {
+    closeBtn.onclick = () => {
         menu.style.display = "none";
         document.body.style.overflow = "auto";
-    });
+    };
 }
 
+// LOAD NAVBAR
 fetch("navbar.html")
-    .then(res => res.text())
-    .then(html => {
-        document.getElementById("navbar").innerHTML = html;
-        initNavbar(); // 🔥 THIS WAS MISSING
-    });
+  .then(res => res.text())
+  .then(html => {
+      document.getElementById("navbar").innerHTML = html;
+      initNavbar(); // 🔥 MOST IMPORTANT
+  });
 
+// LOAD FOOTER
 fetch("footer.html")
-    .then(res => res.text())
-    .then(html => {
-        document.getElementById("footer").innerHTML = html;
-    });
+  .then(res => res.text())
+  .then(html => {
+      document.getElementById("footer").innerHTML = html;
+  });
 </script>
 
     loadComponent("footer", "footer.html");
