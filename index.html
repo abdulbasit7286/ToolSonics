@@ -1089,86 +1089,14 @@
 
 <!-- FOOTER -->
 <div id="footer"></div>
-<!-- ================= NAVBAR ================= -->
-<header class="ts-navbar">
-  <button class="mobile-menu-btn" id="openMobile">☰</button>
 
-  <a href="/" class="nav-logo">Toolsonics</a>
-
-  <nav class="nav-links">
-    <div class="nav-item">
-      <button class="nav-btn" id="allToolsBtn">All Tools ▾</button>
-
-      <div class="dropdown" id="allToolsDropdown">
-        <a href="merge-pdf.html">Merge PDF</a>
-        <a href="split-pdf.html">Split PDF</a>
-        <a href="compress-pdf.html">Compress PDF</a>
-        <a href="image-converter.html">Image Converter</a>
-        <a href="emi-calculator.html">EMI Calculator</a>
-      </div>
-    </div>
-
-    <a href="blog.html" class="nav-link">Blog</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-  </nav>
-</header>
-
-<!-- ================= MOBILE MENU ================= -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close-mobile" id="closeMobile">✕</button>
-
-  <h4>All Tools</h4>
-  <a href="merge-pdf.html">Merge PDF</a>
-  <a href="split-pdf.html">Split PDF</a>
-  <a href="compress-pdf.html">Compress PDF</a>
-  <a href="image-converter.html">Image Converter</a>
-  <a href="emi-calculator.html">EMI Calculator</a>
-
-  <h4>Pages</h4>
-  <a href="blog.html">Blog</a>
-  <a href="contact.html">Contact</a>
-</div>
-
-<!-- ================= FOOTER ================= -->
-<footer class="ts-footer">
-  <div class="footer-container">
-    <div class="footer-col">
-      <h3>Toolsonics</h3>
-      <p>Smart, fast & easy online tools for PDF, images, calculators & AI.</p>
-    </div>
-
-    <div class="footer-col">
-      <h3>Popular Tools</h3>
-      <a href="merge-pdf.html">Merge PDF</a><br>
-      <a href="image-compressor.html">Image Compressor</a><br>
-      <a href="emi-calculator.html">EMI Calculator</a>
-    </div>
-
-    <div class="footer-col">
-      <h3>Company</h3>
-      <a href="about.html">About</a><br>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    © 2025 Toolsonics. All rights reserved.
-  </div>
-</footer>
-
-<!-- ================= JS (NAVBAR + FOOTER SAME PLACE) ================= -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const allToolsBtn = document.getElementById("allToolsBtn");
+function initNavbar() {
+  const btn = document.getElementById("allToolsBtn");
   const dropdown = document.getElementById("allToolsDropdown");
 
-  const openMobile = document.getElementById("openMobile");
-  const closeMobile = document.getElementById("closeMobile");
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  // Desktop: All Tools CLICK toggle
-  if (allToolsBtn && dropdown) {
-    allToolsBtn.addEventListener("click", (e) => {
+  if (btn && dropdown) {
+    btn.addEventListener("click", (e) => {
       e.stopPropagation();
       dropdown.classList.toggle("show");
     });
@@ -1177,20 +1105,51 @@ document.addEventListener("DOMContentLoaded", () => {
       dropdown.classList.remove("show");
     });
   }
+}
 
-  // Mobile Menu
-  if (openMobile && closeMobile && mobileMenu) {
-    openMobile.onclick = () => {
-      mobileMenu.style.display = "block";
-      document.body.style.overflow = "hidden";
-    };
+/* LOAD NAVBAR */
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+    initNavbar();
+  });
 
-    closeMobile.onclick = () => {
-      mobileMenu.style.display = "none";
-      document.body.style.overflow = "auto";
-    };
+/* LOAD FOOTER */
+fetch("footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+  });
+</script>
+    
+<script>
+function initNavbar() {
+  const btn = document.getElementById("allToolsBtn");
+  const dropdown = document.getElementById("allToolsDropdown");
+
+  if (!btn || !dropdown) {
+    console.log("All Tools elements missing");
+    return;
   }
-});
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle("show");
+  });
+
+  document.addEventListener("click", () => {
+    dropdown.classList.remove("show");
+  });
+}
+
+// NAVBAR LOAD
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+    initNavbar(); // 🔥 YAHI SABSE IMPORTANT
+  });
 </script>
 
 
