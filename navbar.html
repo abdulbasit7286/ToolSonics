@@ -1,20 +1,14 @@
 <header class="ts-navbar">
-  <div class="nav-left">
-    <button class="mobile-menu-btn" id="openMobile">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+  <a href="/" class="nav-logo">Toolsonics</a>
 
-    <a href="/" class="nav-logo">Toolsonics</a>
-  </div>
-
-  <!-- DESKTOP MENU -->
+  <!-- Desktop -->
   <nav class="nav-links">
     <div class="nav-item">
       <span>PDF Tools</span>
       <div class="dropdown">
         <a href="merge-pdf.html">Merge PDF</a>
         <a href="split-pdf.html">Split PDF</a>
-        <a href="compress-pdf.html">Compress PDF</a>
+        <a href="#">Compress PDF</a>
       </div>
     </div>
 
@@ -26,35 +20,22 @@
       </div>
     </div>
 
-    <div class="nav-item">
-      <span>AI Tools</span>
-      <div class="dropdown">
-        <a href="ppt-generator.html">AI PPT Generator</a>
-        <a href="resume-builder.html">Resume Builder</a>
-      </div>
-    </div>
+    <a href="/about.html">About</a>
   </nav>
+
+  <!-- Mobile button -->
+  <button id="openMobile" class="mobile-menu-btn">☰</button>
 </header>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-header">
-    <span>All Tools</span>
-    <button class="close-mobile" id="closeMobile">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-  </div>
+  <button id="closeMobile" class="close-mobile">✕</button>
 
   <h4>PDF Tools</h4>
   <a href="merge-pdf.html">Merge PDF</a>
   <a href="split-pdf.html">Split PDF</a>
-  <a href="compress-pdf.html">Compress PDF</a>
 
   <h4>Image Tools</h4>
   <a href="image-compressor.html">Image Compressor</a>
   <a href="image-resizer.html">Image Resizer</a>
-
-  <h4>AI Tools</h4>
-  <a href="ppt-generator.html">AI PPT Generator</a>
-  <a href="resume-builder.html">Resume Builder</a>
 </div>
