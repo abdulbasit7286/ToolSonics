@@ -1,48 +1,65 @@
 <header class="ts-navbar">
-  <button class="nav-btn" id="openToolsMenu">☰</button>
 
-  <a href="/" class="nav-logo">Toolsonics</a>
+  <!-- LEFT -->
+  <div class="nav-left">
+    <a href="/" class="nav-logo">Toolsonics</a>
+  </div>
 
-  <button class="nav-btn" id="openInfoMenu">⋮⋮⋮</button>
+  <!-- CENTER (DESKTOP ONLY) -->
+  <nav class="nav-links">
+    <div class="nav-item">
+      <span>PDF Tools</span>
+      <div class="dropdown">
+        <a href="/merge-pdf.html">Merge PDF</a>
+        <a href="/split-pdf.html">Split PDF</a>
+        <a href="/compress-pdf.html">Compress PDF</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <span>Image Tools</span>
+      <div class="dropdown">
+        <a href="/image-compressor.html">Image Compressor</a>
+        <a href="/image-resizer.html">Image Resizer</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <span>AI Tools</span>
+      <div class="dropdown">
+        <a href="/ppt-generator.html">AI PPT Generator</a>
+        <a href="/resume-builder.html">Resume Builder</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- RIGHT -->
+  <div class="nav-right">
+    <button class="mobile-menu-btn" id="openMobileMenu">☰</button>
+  </div>
+
 </header>
 
-<div class="ts-menu" id="toolsMenu">
-  <div class="ts-menu-header">
-    <span>All Tools</span>
-    <button id="closeToolsMenu">✕</button>
-  </div>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-mobile" id="closeMobileMenu">✕</button>
 
-  <div class="ts-menu-content">
-    <a href="/merge-pdf.html">Merge PDF</a>
-    <a href="/split-pdf.html">Split PDF</a>
-    <a href="/image-compressor.html">Image Compressor</a>
-    <a href="/emi-calculator.html">EMI Calculator</a>
-    <a href="/gst-calculator.html">GST Calculator</a>
-    <!-- baaki tools baad me -->
-  </div>
-</div>
+  <h4>PDF Tools</h4>
+  <a href="/merge-pdf.html">Merge PDF</a>
+  <a href="/split-pdf.html">Split PDF</a>
 
-<div class="ts-info-menu" id="infoMenu">
-  <a href="/features.html">Features</a>
-  <a href="/security.html">Security</a>
-  <a href="/about.html">About Us</a>
-  <a href="/contact.html">Contact</a>
+  <h4>Image Tools</h4>
+  <a href="/image-compressor.html">Image Compressor</a>
+
+  <h4>AI Tools</h4>
+  <a href="/ppt-generator.html">AI PPT Generator</a>
 </div>
 
 <script>
-const toolsMenu = document.getElementById("toolsMenu");
-const infoMenu = document.getElementById("infoMenu");
+const openBtn = document.getElementById("openMobileMenu");
+const closeBtn = document.getElementById("closeMobileMenu");
+const mobileMenu = document.getElementById("mobileMenu");
 
-document.getElementById("openToolsMenu").onclick = () => {
-  toolsMenu.style.display = "flex";
-};
-
-document.getElementById("closeToolsMenu").onclick = () => {
-  toolsMenu.style.display = "none";
-};
-
-document.getElementById("openInfoMenu").onclick = () => {
-  infoMenu.style.display =
-    infoMenu.style.display === "block" ? "none" : "block";
-};
+openBtn.onclick = () => mobileMenu.style.display = "block";
+closeBtn.onclick = () => mobileMenu.style.display = "none";
 </script>
