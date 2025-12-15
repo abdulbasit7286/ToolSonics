@@ -1096,7 +1096,39 @@
             .then(html => document.getElementById(id).innerHTML = html);
     }
 
-    loadComponent("navbar", "navbar.html");
+    <script>
+function initNavbar() {
+    const openBtn = document.getElementById("openMobile");
+    const closeBtn = document.getElementById("closeMobile");
+    const menu = document.getElementById("mobileMenu");
+
+    if (!openBtn || !closeBtn || !menu) return;
+
+    openBtn.addEventListener("click", () => {
+        menu.style.display = "block";
+        document.body.style.overflow = "hidden";
+    });
+
+    closeBtn.addEventListener("click", () => {
+        menu.style.display = "none";
+        document.body.style.overflow = "auto";
+    });
+}
+
+fetch("navbar.html")
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+        initNavbar(); // 🔥 THIS WAS MISSING
+    });
+
+fetch("footer.html")
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("footer").innerHTML = html;
+    });
+</script>
+
     loadComponent("footer", "footer.html");
 
     document.addEventListener("DOMContentLoaded", () => {
