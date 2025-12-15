@@ -1,3 +1,7 @@
+/* ==============================
+   TOOLSONICS NAVBAR (CLEAN)
+============================== */
+
 .ts-navbar {
   position: sticky;
   top: 0;
@@ -8,15 +12,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* IMPORTANT: old global css se bachav */
+  all: unset;
+  box-sizing: border-box;
+
+  display: flex;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
+/* BUTTONS */
 .nav-btn {
   background: none;
   border: none;
   font-size: 22px;
   cursor: pointer;
+  color: #111;
 }
 
+/* LOGO */
 .nav-logo {
   font-weight: 700;
   font-size: 18px;
@@ -24,12 +42,15 @@
   text-decoration: none;
 }
 
-/* ALL TOOLS MENU */
+/* ==============================
+   ALL TOOLS FULLSCREEN MENU
+============================== */
+
 .ts-menu {
   display: none;
   position: fixed;
   inset: 0;
-  background: #fff;
+  background: #ffffff;
   z-index: 10000;
   flex-direction: column;
 }
@@ -37,11 +58,20 @@
 .ts-menu-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 16px;
   border-bottom: 1px solid #eee;
   font-weight: 600;
 }
 
+.ts-menu-header button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* TOOLS LIST */
 .ts-menu-content {
   padding: 16px;
   overflow-y: auto;
@@ -55,16 +85,24 @@
   text-decoration: none;
 }
 
-/* INFO MENU */
+.ts-menu-content a:hover {
+  color: #387bff;
+}
+
+/* ==============================
+   INFO MENU (3 DOTS)
+============================== */
+
 .ts-info-menu {
-  display: none;
+  display: none;              /* 🔥 VERY IMPORTANT */
   position: fixed;
   top: 56px;
   right: 10px;
-  background: #fff;
+  background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
   z-index: 10001;
+  overflow: hidden;
 }
 
 .ts-info-menu a {
@@ -72,4 +110,9 @@
   padding: 10px 14px;
   text-decoration: none;
   color: #111;
+  font-size: 14px;
+}
+
+.ts-info-menu a:hover {
+  background: #f5f7fb;
 }
