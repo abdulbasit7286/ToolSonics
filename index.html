@@ -1126,42 +1126,5 @@ fetch("footer.html")
   });
 </script>
 
-    loadComponent("footer", "footer.html");
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const categoryButtons = document.querySelectorAll(".category-btn");
-        const searchInput = document.getElementById("searchInput");
-        const cards = document.querySelectorAll(".tool-card");
-
-        let activeCategory = "all";
-
-        function applyFilters() {
-            const search = searchInput.value.toLowerCase();
-
-            cards.forEach(card => {
-                const title = card.querySelector("h3").innerText.toLowerCase();
-                const desc = card.querySelector("p").innerText.toLowerCase();
-                const categoryMatch =
-                    activeCategory === "all" || card.dataset.category === activeCategory;
-                const searchMatch = title.includes(search) || desc.includes(search);
-
-                card.style.display = (categoryMatch && searchMatch) ? "block" : "none";
-            });
-        }
-
-        categoryButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                categoryButtons.forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                activeCategory = btn.dataset.category;
-                applyFilters();
-            });
-        });
-
-        searchInput.addEventListener("input", applyFilters);
-        applyFilters();
-    });
-</script>   
-
 </body>
 </html>
