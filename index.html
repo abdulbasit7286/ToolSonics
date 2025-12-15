@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="navbar.css">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
     <script>
@@ -1133,17 +1132,7 @@
         searchInput.addEventListener("input", applyFilters);
         applyFilters();
     });
-</script>
-<div id="navbar"></div>
-
-<script>
-fetch("/navbar.html")
-  .then(r => r.text())
-  .then(html => {
-    document.getElementById("navbar").innerHTML = html;
-  });
-</script>
-    
+</script>   
 
 </body>
 </html>
