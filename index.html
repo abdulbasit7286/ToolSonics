@@ -1091,32 +1091,39 @@
 <div id="footer"></div>
 
 <script>
-function initNavbar() {
-  const btn = document.getElementById("allToolsBtn");
+document.addEventListener("DOMContentLoaded", () => {
+  const allToolsBtn = document.getElementById("allToolsBtn");
   const dropdown = document.getElementById("allToolsDropdown");
 
-  if (!btn || !dropdown) {
-    console.log("All Tools elements missing");
-    return;
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // Desktop: All Tools CLICK toggle
+  if (allToolsBtn && dropdown) {
+    allToolsBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle("show");
+    });
+
+    document.addEventListener("click", () => {
+      dropdown.classList.remove("show");
+    });
   }
 
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle("show");
-  });
+  // Mobile Menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
 
-  document.addEventListener("click", () => {
-    dropdown.classList.remove("show");
-  });
-}
-
-// NAVBAR LOAD
-fetch("navbar.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("navbar").innerHTML = html;
-    initNavbar(); // 🔥 YAHI SABSE IMPORTANT
-  });
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
+});
 </script>
 
 </body>
