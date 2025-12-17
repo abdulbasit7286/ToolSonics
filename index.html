@@ -1092,23 +1092,37 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("allToolsBtn");
-  const dropdown = document.getElementById("allToolsDropdown");
 
-  if (!btn || !dropdown) {
-    console.log("Navbar elements missing");
-    return;
-  }
+  // LOAD NAVBAR
+  fetch("/navbar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("navbar").innerHTML = html;
 
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dropdown.classList.toggle("show");
-  });
+      // NAVBAR LOGIC
+      const btn = document.getElementById("allToolsBtn");
+      const dropdown = document.getElementById("allToolsDropdown");
 
-  document.addEventListener("click", () => {
-    dropdown.classList.remove("show");
-  });
+      if (btn && dropdown) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropdown.classList.toggle("show");
+        });
+
+        document.addEventListener("click", () => {
+          dropdown.classList.remove("show");
+        });
+      }
+    });
+
+  // LOAD FOOTER
+  fetch("/footer.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("footer").innerHTML = html;
+    });
+
 });
 </script>
 
