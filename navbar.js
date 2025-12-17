@@ -1,19 +1,24 @@
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("allToolsBtn");
-  const dropdown = document.getElementById("allToolsDropdown");
+document.addEventListener("DOMContentLoaded", function () {
+  const openBtn = document.getElementById("openMobile");
+  const closeBtn = document.getElementById("closeMobile");
+  const menu = document.getElementById("mobileMenu");
 
-  if (!btn || !dropdown) return;
+  console.log(openBtn, closeBtn, menu); // DEBUG
 
-  // Toggle on click
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle("show");
+  if (!openBtn || !closeBtn || !menu) {
+    console.log("❌ Mobile navbar elements missing");
+    return;
+  }
+
+  openBtn.addEventListener("click", function () {
+    menu.style.display = "block";
+    document.body.style.overflow = "hidden";
   });
 
-  // Close when clicking outside
-  document.addEventListener("click", () => {
-    dropdown.classList.remove("show");
+  closeBtn.addEventListener("click", function () {
+    menu.style.display = "none";
+    document.body.style.overflow = "auto";
   });
 });
 </script>
