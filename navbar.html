@@ -1,11 +1,13 @@
 <header class="ts-navbar">
+  <!-- LOGO -->
   <a href="/" class="nav-logo">Toolsonics</a>
 
+  <!-- DESKTOP NAV -->
   <nav class="nav-links">
-    <div class="nav-item" id="allToolsBtn">
-      <span>All Tools</span>
-      
-      <button id="allToolsBtn">All Tools</button>
+    <div class="nav-item">
+      <button id="allToolsBtn" class="all-tools-btn">
+        All Tools
+      </button>
 
       <div class="dropdown" id="allToolsDropdown">
         <a href="/merge-pdf.html">Merge PDF</a>
@@ -16,14 +18,24 @@
       </div>
     </div>
 
-    <div class="nav-item"><a href="/blog.html">Blog</a></div>
-    <div class="nav-item"><a href="/contact.html">Contact</a></div>
+    <a href="/blog.html" class="nav-link">Blog</a>
+    <a href="/contact.html" class="nav-link">Contact</a>
   </nav>
 
+  <!-- MOBILE BUTTON -->
   <button class="mobile-menu-btn" id="openMobile">☰</button>
-
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close-mobile" id="closeMobile">✕</button>
-</div>
-
 </header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button id="closeMobile" class="close-mobile">✕</button>
+
+  <h4>All Tools</h4>
+  <a href="/merge-pdf.html">Merge PDF</a>
+  <a href="/split-pdf.html">Split PDF</a>
+  <a href="/compress-pdf.html">Compress PDF</a>
+
+  <h4>Pages</h4>
+  <a href="/blog.html">Blog</a>
+  <a href="/contact.html">Contact</a>
+</div>
