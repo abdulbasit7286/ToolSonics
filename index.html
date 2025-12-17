@@ -1091,49 +1091,17 @@
 <div id="footer"></div>
 
 <script>
-function initNavbar() {
-  const btn = document.getElementById("allToolsBtn");
-  const dropdown = document.getElementById("allToolsDropdown");
-
-  if (btn && dropdown) {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle("show");
-    });
-
-    document.addEventListener("click", () => {
-      dropdown.classList.remove("show");
-    });
-  }
-}
-
-/* LOAD NAVBAR */
-fetch("navbar.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("navbar").innerHTML = html;
-    initNavbar();
-  });
-
-/* LOAD FOOTER */
-fetch("footer.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("footer").innerHTML = html;
-  });
-</script>
-    
-<script>
-function initNavbar() {
+document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("allToolsBtn");
   const dropdown = document.getElementById("allToolsDropdown");
 
   if (!btn || !dropdown) {
-    console.log("All Tools elements missing");
+    console.log("Navbar elements missing");
     return;
   }
 
   btn.addEventListener("click", (e) => {
+    e.preventDefault();
     e.stopPropagation();
     dropdown.classList.toggle("show");
   });
@@ -1141,15 +1109,7 @@ function initNavbar() {
   document.addEventListener("click", () => {
     dropdown.classList.remove("show");
   });
-}
-
-// NAVBAR LOAD
-fetch("navbar.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("navbar").innerHTML = html;
-    initNavbar(); // 🔥 YAHI SABSE IMPORTANT
-  });
+});
 </script>
 
 
