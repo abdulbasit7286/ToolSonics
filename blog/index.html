@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toolsonics Blog – PDF, Image & Online Tools Guides</title>
+
+  <meta name="description"
+        content="Read expert guides on PDF tools, image converters, calculators and online utilities. Learn how to merge PDFs, compress files and more.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/global-style.css">
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<main class="page-wrapper">
+  <h1>Toolsonics Blog</h1>
+  <p>Guides, tips & tutorials to use online tools smartly.</p>
+
+  <div class="blog-grid">
+
+    <a href="how-to-merge-pdf.html" class="blog-card">
+      <h3>How to Merge PDF Files Online (Free)</h3>
+      <p>Learn step-by-step how to combine multiple PDFs into one file using free tools.</p>
+    </a>
+
+    <a href="compress-pdf-online.html" class="blog-card">
+      <h3>How to Compress PDF Without Losing Quality</h3>
+      <p>Reduce PDF size online while keeping text and images sharp.</p>
+    </a>
+
+  </div>
+</main>
+
+<div id="footer"></div>
+
+<script>
+fetch("/navbar.html").then(r=>r.text()).then(h=>navbar.innerHTML=h);
+fetch("/footer.html").then(r=>r.text()).then(h=>footer.innerHTML=h);
+</script>
+
+</body>
+</html>
