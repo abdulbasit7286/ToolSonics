@@ -39,7 +39,7 @@
 
 .nav-item a,
 .nav-item button {
-  background: none;
+  background-decoration: none;
   border: none;
   color: #111;
   font-size: 15px;
