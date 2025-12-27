@@ -35,6 +35,7 @@
 .nav-item {
   position: relative;
   font-size: 15px;
+  background-decoration: none;
 }
 
 .nav-item a,
