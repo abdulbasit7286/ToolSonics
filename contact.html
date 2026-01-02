@@ -2,41 +2,140 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us – ToolSonics</title>
-    <link rel="stylesheet" href="global-style.css">
+
+    <!-- Title -->
+    <title>Contact ToolSonics | Support, Feedback & Business Inquiries</title>
+
+    <!-- SEO Meta -->
+    <meta name="description"
+          content="Contact ToolSonics for support, feedback or business inquiries. Get help with PDF tools, image converters and online utilities. Fast response and reliable support.">
+    <meta name="keywords"
+          content="contact toolsonics, toolsonics support, pdf tools help, online tools contact, toolsonics email">
+    <meta name="author" content="ToolSonics">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.toolsonics.com/contact.html">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
     <link rel="icon" href="favicon-16x16.png">
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="global-style.css">
+
+    <!-- Page Styling -->
+    <style>
+        body {
+            background: #f5f7fb;
+        }
+
+        .contact-wrapper {
+            max-width: 1000px;
+            margin: 60px auto 90px;
+            padding: 0 20px;
+        }
+
+        .contact-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 40px 36px;
+            border: 1px solid #e2e8ff;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        }
+
+        .contact-card h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 14px;
+        }
+
+        .contact-card p {
+            margin-top: 14px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #475569;
+            max-width: 860px;
+        }
+
+        .contact-box {
+            margin-top: 28px;
+            background: #f3f6ff;
+            border-left: 5px solid #387bff;
+            padding: 20px 22px;
+            border-radius: 12px;
+            max-width: 620px;
+        }
+
+        .contact-box p {
+            margin: 0;
+            font-size: 15.5px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .contact-box b {
+            color: #1e3a8a;
+        }
+
+        .contact-note {
+            margin-top: 26px;
+            font-size: 15px;
+            color: #475569;
+        }
+
+        @media (max-width: 640px) {
+            .contact-card {
+                padding: 28px 22px;
+            }
+
+            .contact-card h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <div id="navbar"></div>
 
-<section class="container" style="margin-top:60px;">
+<main class="contact-wrapper">
+    <section class="contact-card">
 
-    <h1 style="font-size:34px; font-weight:800; text-shadow:var(--primary-glow);">
-        Contact Us
-    </h1>
+        <h1>Contact Us</h1>
 
-    <p style="margin-top:18px; color:var(--text-light); max-width:800px;">
-        Have questions, feedback, or need support?  
-        We’re here to help!
-    </p>
-
-    <div style="margin-top:30px; padding:20px; border:1px solid var(--border-light); 
-                border-radius:var(--radius); background:var(--bg-light); max-width:650px;">
-        <p style="color:var(--text-light); line-height:1.8;">
-            <b>Email:</b> toolsonics6@gmail.com<br>
-            <b>Response Time:</b> 24/7 <br>
+        <p>
+            Have questions, feedback, feature requests or need help using any ToolSonics tool?
+            We’re always happy to assist you. Whether it’s about PDF tools, image converters,
+            calculators or utilities — feel free to reach out anytime.
         </p>
-    </div>
 
-</section>
+        <div class="contact-box">
+            <p>
+                <b>Email:</b> toolsonics6@gmail.com <br>
+                <b>Support Availability:</b> 24/7 <br>
+                <b>Response Time:</b> Usually within 24 hours
+            </p>
+        </div>
 
+        <p class="contact-note">
+            For bug reports, feature suggestions, business inquiries or partnership opportunities,
+            please mention the tool name and a short description in your email so we can help you faster.
+        </p>
+
+    </section>
+</main>
+
+<!-- FOOTER -->
 <div id="footer"></div>
 
 <script>
-    fetch("navbar.html").then(res=>res.text()).then(d=>navbar.innerHTML=d);
-    fetch("footer.html").then(res=>res.text()).then(d=>footer.innerHTML=d);
+    fetch("navbar.html").then(res => res.text()).then(d => navbar.innerHTML = d);
+    fetch("footer.html").then(res => res.text()).then(d => footer.innerHTML = d);
 </script>
 
 </body>
