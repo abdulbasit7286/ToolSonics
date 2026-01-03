@@ -1137,6 +1137,17 @@ fetch("footer.html")
   .then(html => {
     document.getElementById("footer").innerHTML = html;
   });
+ const searchInput = document.getElementById("toolSearch");
+ const tools = document.querySelectorAll(".tool-card");
+
+  searchInput.addEventListener("input", () => {
+    const value = searchInput.value.toLowerCase();
+
+    tools.forEach(tool => {
+      const name = tool.dataset.name.toLowerCase();
+      tool.style.display = name.includes(value) ? "block" : "none";
+    });
+  });
 </script>
 
 
