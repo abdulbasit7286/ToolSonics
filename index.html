@@ -342,7 +342,8 @@
         <div class="tools-grid" id="toolGrid">
 
             <!-- ============ DOCUMENT TOOLS ============ -->
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document" 
+                data-name="merge pdf combine pdf join pdf online">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/pdf-merge.svg" alt="Merge PDF icon">
@@ -358,7 +359,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document" 
+                data-name="merge pdf combine pdf join pdf online">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/split-pdf.svg" alt="Split PDF icon">
@@ -374,7 +376,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document"
+                data-name="delete pdf pages remove pages pdf online">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/pdf-delete.svg" alt="Delete PDF pages icon">
@@ -390,7 +393,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document"
+                data-name="rotate pdf pages pdf orientation fix">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/pdf-rotate.svg" alt="Rotate PDF pages icon">
@@ -406,7 +410,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+           <div class="tool-card" data-category="document"
+            data-name="reorder pdf pages arrange pdf online">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/pdf-reorder.svg" alt="Reorder PDF pages icon">
@@ -422,7 +427,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document"
+                data-name="protect pdf password secure pdf">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/pdf-protect.svg" alt="Protect PDF icon">
@@ -438,7 +444,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document"
+                data-name="unlock pdf remove password pdf">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/unlock-pdf.svg" alt="Unlock PDF icon">
@@ -454,7 +461,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document"
+                data-name="add page numbers pdf numbering">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/pdf-number.svg" alt="Add page numbers icon">
@@ -470,7 +478,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document"
+                data-name="add page numbers pdf numbering">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/pdf-watermark.svg" alt="Add watermark icon">
@@ -486,7 +495,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document"
+                data-name="text to pdf txt to pdf convert">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/pdf-text.svg" alt="Text to PDF icon">
@@ -502,7 +512,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document"
+                data-name="text to pdf txt to pdf convert">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/pdf-image.svg" alt="Images to PDF icon">
@@ -518,7 +529,8 @@
                 </div>
             </div>
 
-            <div class="tool-card" data-category="document">
+            <div class="tool-card" data-category="document"
+                data-name="csv to excel excel to csv converter">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/csv-excel.svg" alt="CSV Excel converter icon">
@@ -1141,14 +1153,14 @@ fetch("footer.html")
  const searchInput = document.getElementById("toolSearch");
  const tools = document.querySelectorAll(".tool-card");
 
-  searchInput.addEventListener("input", () => {
-    const value = searchInput.value.toLowerCase();
+ searchInput.addEventListener("input", () => {
+  const value = searchInput.value.toLowerCase().trim();
 
-    tools.forEach(tool => {
-      const name = tool.dataset.name.toLowerCase();
-      tool.style.display = name.includes(value) ? "block" : "none";
-    });
+  tools.forEach(tool => {
+    const keywords = tool.getAttribute("data-name") || "";
+    tool.style.display = keywords.includes(value) ? "flex" : "none";
   });
+});
 </script>
 
 
