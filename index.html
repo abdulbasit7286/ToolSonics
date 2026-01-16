@@ -313,7 +313,7 @@
     <!-- CATEGORY FILTER -->
     <section class="category-section">
         <div class="category-buttons">
-            <button class="category-btn" data-category="all">All</button>
+            <button class="category-btn active" data-category="all">All</button>
             <button class="category-btn" data-category="document">Document</button>
             <button class="category-btn" data-category="image">Image</button>
             <button class="category-btn" data-category="calculator">Calculator</button>
@@ -360,7 +360,7 @@
             </div>
 
             <div class="tool-card" data-category="document" 
-                data-name="merge pdf combine pdf join pdf online">
+                data-name="split pdf extract pages pdf online">
                 <div class="tool-top">
                     <div class="tool-icon">
                         <img src="assets/icons/split-pdf.svg" alt="Split PDF icon">
@@ -1195,9 +1195,35 @@ fetch("footer.html")
     tool.style.display = keywords.includes(value) ? "flex" : "none";
   });
 });
+const categoryBtns = document.querySelectorAll(".category-btn");
+const toolCards = document.querySelectorAll(".tool-card");
+
+categoryBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    // Active class update
+    categoryBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const selected = btn.getAttribute("data-category");
+
+    // Clear search when category clicked (optional but best)
+    const searchInput = document.getElementById("toolSearch");
+    if (searchInput) searchInput.value = "";
+
+    toolCards.forEach(card => {
+      const cardCategory = card.getAttribute("data-category");
+
+      if (selected === "all" || cardCategory === selected) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+  });
+});
 </script>
-
-
 
 </body>
 </html>
