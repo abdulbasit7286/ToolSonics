@@ -163,4 +163,10 @@
     font-size: 13px;
     text-align: center;
   }
+  html{
+  scroll-behavior: smooth;
+  }
+  #tools{
+  scroll-margin-top: 90px;
+  }
 }
