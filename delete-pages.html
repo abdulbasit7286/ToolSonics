@@ -237,69 +237,152 @@
     </div>
 
     <!-- FOOTER -->
-    <div id="footer"></div>
-
     <script>
-        function load(id, file) {
-            fetch(file).then(res => res.text()).then(html => {
-                document.getElementById(id).innerHTML = html;
-            });
-        }
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-        load("navbar", "navbar.html");
-        load("footer", "footer.html");
-        load("related-tools-container", "related-tools.html?tool=delete-pages");
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
 
-        const BACKEND_URL = "https://api.toolsonics.com/pdf/delete-pages";
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
 
-        const inputFile = document.getElementById("pdfFile");
-        const inputPages = document.getElementById("deletePages");
-        const status = document.getElementById("statusText");
-        const progressBox = document.getElementById("progressContainer");
-        const bar = document.getElementById("progressBar");
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
 
-        document.getElementById("deleteBtn").addEventListener("click", async () => {
-            const file = inputFile.files[0];
-            const pages = inputPages.value.trim();
+  // All Tools Dropdown
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
 
-            if (!file) return status.textContent = "❗ Please upload a PDF file.";
-            if (!pages) return status.textContent = "❗ Enter pages to delete.";
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+}
 
-            progressBox.style.display = "block";
-            bar.style.width = "25%";
-            status.textContent = "Uploading…";
+function loadComponent(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+      if (callback) callback();
+    })
+    .catch(() => {});
+}
 
-            const form = new FormData();
-            form.append("file", file);
-            form.append("pages", pages);
+// ✅ Navbar / Footer
+loadComponent("navbar", "navbar.html", initNavbar);
+loadComponent("footer", "footer.html");
 
-            try {
-                const res = await fetch(BACKEND_URL, { method: "POST", body: form });
+// ✅ OPTIONAL (agar related-tools-container hai tabhi)
+loadComponent("related-tools-container", "related-tools.html?tool=delete-pages");
 
-                bar.style.width = "75%";
-                status.textContent = "Processing…";
 
-                if (!res.ok) {
-                    status.textContent = "❌ Failed to delete pages.";
-                    return;
-                }
+// ✅ Backend URL (FastAPI endpoint)
+const BACKEND_URL = "https://api.toolsonics.com/pdf/delete-pages";
 
-                const blob = await res.blob();
-                const url = URL.createObjectURL(blob);
 
-                bar.style.width = "100%";
-                status.textContent = "✔ Done! Download starting…";
+// ✅ Elements (IDs same hone chahiye HTML me)
+const fileInput = document.getElementById("pdfFile");       // <input id="pdfFile">
+const pagesInput = document.getElementById("pagesToDelete"); // <input id="pagesToDelete">
+const deleteBtn = document.getElementById("deleteBtn");      // <button id="deleteBtn">
 
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "pages-deleted.pdf";
-                a.click();
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const statusText = document.getElementById("statusText");
 
-            } catch (e) {
-                status.textContent = "❌ Network error.";
-            }
-        });
-    </script>
+
+// ✅ Helper: pages format validation
+function isValidPagesFormat(value) {
+  // Allowed examples: 1,2,5   OR  2-6   OR  1,3-5,9
+  return /^[0-9,\-\s]+$/.test(value);
+}
+
+
+deleteBtn.addEventListener("click", async () => {
+  const file = fileInput.files[0];
+  const pages = (pagesInput.value || "").trim();
+
+  if (!file) {
+    statusText.textContent = "❗ Please select a PDF file.";
+    return;
+  }
+
+  if (!pages) {
+    statusText.textContent = "❗ Enter pages to delete (example: 1,3,5-7).";
+    return;
+  }
+
+  if (!isValidPagesFormat(pages)) {
+    statusText.textContent = "❗ Invalid format. Use: 1,2,5-7";
+    return;
+  }
+
+  const originalName = file.name.replace(/\.pdf$/i, "");
+
+  deleteBtn.disabled = true;
+  progressContainer.style.display = "block";
+  progressBar.style.width = "25%";
+  statusText.textContent = "Uploading PDF...";
+
+  const form = new FormData();
+  form.append("file", file);
+  form.append("pages", pages);
+
+  try {
+    progressBar.style.width = "70%";
+    statusText.textContent = "Deleting selected pages...";
+
+    const res = await fetch(BACKEND_URL, {
+      method: "POST",
+      body: form
+    });
+
+    if (!res.ok) {
+      statusText.textContent = "❌ Delete Pages failed. Please try again.";
+      progressBar.style.width = "0%";
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    progressBar.style.width = "100%";
+    statusText.textContent = "✔ Done! Downloading file…";
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${originalName}-deleted-pages.pdf`;
+
+    document.body.appendChild(a);
+    a.click();
+
+    URL.revokeObjectURL(url);
+    a.remove();
+
+  } catch (err) {
+    console.error(err);
+    statusText.textContent = "❌ Network error. Please check internet and try again.";
+    progressBar.style.width = "0%";
+  } finally {
+    deleteBtn.disabled = false;
+  }
+});
+</script>
 
 </body>
 </html>
