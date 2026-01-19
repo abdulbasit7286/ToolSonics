@@ -246,63 +246,160 @@
     <div id="footer"></div>
 
     <script>
-        function load(id, file) {
-            fetch(file).then(r => r.text()).then(html => {
-                document.getElementById(id).innerHTML = html;
-            });
-        }
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-        load("navbar", "navbar.html");
-        load("footer", "footer.html");
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
 
-        const BACKEND_URL = "https://api.toolsonics.com/pdf/rotate-pages";
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
 
-        document.getElementById("rotateBtn").addEventListener("click", async () => {
-            const file = document.getElementById("pdfFile").files[0];
-            const rotation = document.getElementById("rotation").value;
-            const status = document.getElementById("statusText");
-            const bar = document.getElementById("progressBar");
-            const container = document.getElementById("progressContainer");
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
 
-            if (!file) return status.textContent = "❗ Please upload a PDF file.";
+  // All Tools Dropdown
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
 
-            container.style.display = "block";
-            bar.style.width = "20%";
-            status.textContent = "Uploading…";
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+}
 
-            try {
-                const form = new FormData();
-                form.append("file", file);
-                form.append("rotation", rotation);
+function loadComponent(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+      if (callback) callback();
+    })
+    .catch(() => {});
+}
 
-                bar.style.width = "60%";
+// ✅ Navbar / Footer
+loadComponent("navbar", "navbar.html", initNavbar);
+loadComponent("footer", "footer.html");
 
-                const res = await fetch(BACKEND_URL, { method: "POST", body: form });
+// ✅ OPTIONAL related tools (agar exist karta hai page me)
+loadComponent("related-tools-container", "related-tools.html?tool=rotate-pages");
 
-                bar.style.width = "85%";
-                status.textContent = "Processing…";
 
-                if (!res.ok) {
-                    status.textContent = "❌ Error rotating PDF.";
-                    return;
-                }
+// ✅ Backend URL (FastAPI endpoint)
+const BACKEND_URL = "https://api.toolsonics.com/pdf/rotate-pages";
 
-                const blob = await res.blob();
-                const url = URL.createObjectURL(blob);
 
-                bar.style.width = "100%";
-                status.textContent = "✔ Done! Downloading…";
+// ✅ Elements (IDs same hone chahiye HTML me)
+const fileInput = document.getElementById("pdfFile");        // <input id="pdfFile">
+const rotationSelect = document.getElementById("rotation");  // <select id="rotation">
+const pagesInput = document.getElementById("pagesToRotate"); // <input id="pagesToRotate"> (optional)
+const rotateBtn = document.getElementById("rotateBtn");      // <button id="rotateBtn">
 
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "rotated.pdf";
-                a.click();
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const statusText = document.getElementById("statusText");
 
-            } catch (err) {
-                status.textContent = "❌ Network error.";
-            }
-        });
-    </script>
+
+// ✅ Helper: pages format validation (optional)
+function isValidPagesFormat(value) {
+  // Allowed: "" (empty means all), OR 1,2,5 OR 2-6 OR 1,3-5,9
+  if (!value.trim()) return true;
+  return /^[0-9,\-\s]+$/.test(value);
+}
+
+
+rotateBtn.addEventListener("click", async () => {
+  const file = fileInput.files[0];
+  const rotation = parseInt(rotationSelect.value || "90");
+  const pages = (pagesInput?.value || "").trim(); // optional input
+
+  if (!file) {
+    statusText.textContent = "❗ Please select a PDF file.";
+    return;
+  }
+
+  // Rotation allowed: 90,180,270,-90 (backend support rotate integer)
+  if (![90, 180, 270, -90].includes(rotation)) {
+    statusText.textContent = "❗ Invalid rotation. Use 90, 180, 270.";
+    return;
+  }
+
+  if (!isValidPagesFormat(pages)) {
+    statusText.textContent = "❗ Invalid pages format. Use: 1,2,5-7";
+    return;
+  }
+
+  const originalName = file.name.replace(/\.pdf$/i, "");
+
+  rotateBtn.disabled = true;
+  progressContainer.style.display = "block";
+  progressBar.style.width = "25%";
+  statusText.textContent = "Uploading PDF...";
+
+  const form = new FormData();
+  form.append("file", file);
+  form.append("rotation", rotation);
+
+  // ✅ If pages field blank => backend will rotate all pages
+  if (pages) {
+    form.append("pages", pages);
+  }
+
+  try {
+    progressBar.style.width = "70%";
+    statusText.textContent = "Rotating pages...";
+
+    const res = await fetch(BACKEND_URL, {
+      method: "POST",
+      body: form
+    });
+
+    if (!res.ok) {
+      statusText.textContent = "❌ Rotate failed. Please try again.";
+      progressBar.style.width = "0%";
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    progressBar.style.width = "100%";
+    statusText.textContent = "✔ Done! Downloading file…";
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${originalName}-rotated.pdf`;
+
+    document.body.appendChild(a);
+    a.click();
+
+    URL.revokeObjectURL(url);
+    a.remove();
+
+  } catch (err) {
+    console.error(err);
+    statusText.textContent = "❌ Network error. Please check internet and try again.";
+    progressBar.style.width = "0%";
+  } finally {
+    rotateBtn.disabled = false;
+  }
+});
+</script>
 
 </body>
 </html>
