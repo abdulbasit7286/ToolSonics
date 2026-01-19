@@ -237,71 +237,140 @@
 
     <!-- JS Logic -->
     <script>
-        function load(id, file) {
-            fetch(file).then(r => r.text()).then(html => {
-                document.getElementById(id).innerHTML = html;
-            });
-        }
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-        load("navbar", "navbar.html");
-        load("footer", "footer.html");
-        load("related-tools-container", "related-tools.html?tool=split-pdf");
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
 
-        /* FIXED: Correct backend variable */
-        const BACKEND_URL = "https://api.toolsonics.com/pdf/split";
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
 
-        const fileInput = document.getElementById("pdfFile");
-        const startInput = document.getElementById("startPage");
-        const endInput = document.getElementById("endPage");
-        const btn = document.getElementById("splitBtn");
-        const status = document.getElementById("statusText");
-        const progress = document.getElementById("progressContainer");
-        const bar = document.getElementById("progressBar");
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
 
-        btn.addEventListener("click", async () => {
-            const file = fileInput.files[0];
-            const start = parseInt(startInput.value);
-            const end = parseInt(endInput.value);
+  // All Tools Dropdown
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
 
-            if (!file) return status.textContent = "❗ Please select a PDF file.";
-            if (!start || !end || start > end)
-                return status.textContent = "❗ Enter valid page numbers.";
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+}
 
-            progress.style.display = "block";
-            bar.style.width = "20%";
-            status.textContent = "Uploading PDF...";
+function loadComponent(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+      if (callback) callback();
+    })
+    .catch(() => {});
+}
 
-            const form = new FormData();
-            form.append("file", file);
-            form.append("start_page", start);
-            form.append("end_page", end);
+loadComponent("navbar", "navbar.html", initNavbar);
+loadComponent("footer", "footer.html");
 
-            try {
-                const res = await fetch(BACKEND_URL, { method: "POST", body: form });
+// ✅ OPTIONAL (agar related-tools-container HTML me hai tabhi chalega)
+loadComponent("related-tools-container", "related-tools.html?tool=split-pdf");
 
-                bar.style.width = "80%";
-                status.textContent = "Processing pages...";
 
-                if (!res.ok) {
-                    status.textContent = "❌ Error splitting PDF.";
-                    return;
-                }
+// ✅ Split Tool Backend
+const BACKEND_URL = "https://api.toolsonics.com/pdf/split";
 
-                const blob = await res.blob();
-                const url = URL.createObjectURL(blob);
+const fileInput = document.getElementById("pdfFile");
+const startInput = document.getElementById("startPage");
+const endInput = document.getElementById("endPage");
+const splitBtn = document.getElementById("splitBtn");
 
-                bar.style.width = "100%";
-                status.textContent = "✔ Done! Download starting…";
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const statusText = document.getElementById("statusText");
 
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "split.pdf";
-                a.click();
 
-            } catch (e) {
-                status.textContent = "❌ Network error.";
-            }
-        });
-    </script>
+splitBtn.addEventListener("click", async () => {
+  const file = fileInput.files[0];
+  const start = parseInt(startInput.value);
+  const end = parseInt(endInput.value);
+
+  // ✅ Validation
+  if (!file) {
+    statusText.textContent = "❗ Please select a PDF file.";
+    return;
+  }
+
+  if (!start || !end || start > end) {
+    statusText.textContent = "❗ Enter valid page numbers.";
+    return;
+  }
+
+  const originalName = file.name.replace(/\.pdf$/i, "");
+
+  splitBtn.disabled = true;
+  progressContainer.style.display = "block";
+  progressBar.style.width = "25%";
+  statusText.textContent = "Uploading PDF...";
+
+  const form = new FormData();
+  form.append("file", file);
+  form.append("start_page", start);
+  form.append("end_page", end);
+
+  try {
+    progressBar.style.width = "70%";
+    statusText.textContent = "Splitting pages...";
+
+    const res = await fetch(BACKEND_URL, {
+      method: "POST",
+      body: form
+    });
+
+    if (!res.ok) {
+      statusText.textContent = "❌ Split failed. Please try again.";
+      progressBar.style.width = "0%";
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    progressBar.style.width = "100%";
+    statusText.textContent = "✔ Split complete! Downloading file…";
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${originalName}-split-${start}-to-${end}.pdf`;
+
+    document.body.appendChild(a);
+    a.click();
+
+    URL.revokeObjectURL(url);
+    a.remove();
+
+  } catch (err) {
+    console.error(err);
+    statusText.textContent = "❌ Network error. Please check your internet and try again.";
+    progressBar.style.width = "0%";
+  } finally {
+    splitBtn.disabled = false;
+  }
+});
+</script>
+
 </body>
 </html>
