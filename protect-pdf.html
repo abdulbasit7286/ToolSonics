@@ -250,69 +250,139 @@
 <div id="footer"></div>
 
 <script>
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-    function load(id, file) {
-        fetch(file).then(r => r.text()).then(html => {
-            document.getElementById(id).innerHTML = html;
-        });
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
+
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
+
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
+
+  // All Tools dropdown
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
+
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+}
+
+function loadComponent(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+      if (callback) callback();
+    })
+    .catch(() => {});
+}
+
+// ✅ Navbar + Footer
+loadComponent("navbar", "navbar.html", initNavbar);
+loadComponent("footer", "footer.html");
+
+// ✅ Optional related tools
+loadComponent("related-tools-container", "related-tools.html?tool=protect-pdf");
+
+
+// ✅ Backend URL (FastAPI)
+const BACKEND_URL = "https://api.toolsonics.com/pdf/protect";
+
+
+// ✅ Elements (IDs must match)
+const fileInput = document.getElementById("pdfFile");        // input id="pdfFile"
+const passwordInput = document.getElementById("password");   // input id="password"
+const protectBtn = document.getElementById("protectBtn");    // button id="protectBtn"
+
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const statusText = document.getElementById("statusText");
+
+protectBtn.addEventListener("click", async () => {
+  const file = fileInput.files[0];
+  const password = (passwordInput.value || "").trim();
+
+  if (!file) {
+    statusText.textContent = "❗ Please select a PDF file.";
+    return;
+  }
+
+  if (!password || password.length < 3) {
+    statusText.textContent = "❗ Please enter a password (min 3 characters).";
+    return;
+  }
+
+  const originalName = file.name.replace(/\.pdf$/i, "");
+
+  protectBtn.disabled = true;
+  progressContainer.style.display = "block";
+  progressBar.style.width = "25%";
+  statusText.textContent = "Uploading PDF...";
+
+  const form = new FormData();
+  form.append("file", file);
+  form.append("password", password);
+
+  try {
+    progressBar.style.width = "70%";
+    statusText.textContent = "Encrypting PDF...";
+
+    const res = await fetch(BACKEND_URL, {
+      method: "POST",
+      body: form
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      statusText.textContent = "❌ Protect failed. Please try again.";
+      console.log("Backend error:", errText);
+      progressBar.style.width = "0%";
+      return;
     }
 
-    load("navbar", "navbar.html");
-    load("footer", "footer.html");
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
 
-    const BACKEND_URL = "https://api.toolsonics.com/pdf/protect";
+    progressBar.style.width = "100%";
+    statusText.textContent = "✔ Protected! Downloading file…";
 
-    document.getElementById("protectBtn").addEventListener("click", async () => {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${originalName}-protected.pdf`;
 
-        const file = document.getElementById("pdfFile").files[0];
-        const password = document.getElementById("passwordInput").value.trim();
-        const bar = document.getElementById("progressBar");
-        const box = document.getElementById("progressContainer");
-        const status = document.getElementById("statusText");
+    document.body.appendChild(a);
+    a.click();
 
-        if (!file) return status.textContent = "❗ Please select a PDF file.";
-        if (!password) return status.textContent = "❗ Enter a password.";
+    URL.revokeObjectURL(url);
+    a.remove();
 
-        box.style.display = "block";
-        bar.style.width = "25%";
-        status.textContent = "Uploading PDF…";
-
-        try {
-            const form = new FormData();
-            form.append("file", file);
-            form.append("password", password);
-
-            bar.style.width = "55%";
-
-            const res = await fetch(BACKEND_URL, {
-                method: "POST",
-                body: form
-            });
-
-            bar.style.width = "85%";
-            status.textContent = "Encrypting PDF…";
-
-            if (!res.ok) {
-                status.textContent = "❌ Failed to protect PDF.";
-                return;
-            }
-
-            const blob = await res.blob();
-            const url = URL.createObjectURL(blob);
-
-            bar.style.width = "100%";
-            status.textContent = "✔ Done! Downloading…";
-
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "protected.pdf";
-            a.click();
-
-        } catch (err) {
-            status.textContent = "❌ Network error.";
-        }
-
-    });
+  } catch (err) {
+    console.error(err);
+    statusText.textContent = "❌ Network error. Please try again.";
+    progressBar.style.width = "0%";
+  } finally {
+    protectBtn.disabled = false;
+  }
+});
 </script>
 
 </body>
