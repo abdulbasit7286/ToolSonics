@@ -255,66 +255,151 @@
     <div id="footer"></div>
 
     <script>
-        function load(id, file) {
-            fetch(file).then(r => r.text()).then(html => {
-                document.getElementById(id).innerHTML = html;
-            });
-        }
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-        load("navbar", "navbar.html");
-        load("footer", "footer.html");
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
 
-        const BACKEND_URL = "https://api.toolsonics.com/pdf/reorder-pages";
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
 
-        document.getElementById("reorderBtn").addEventListener("click", async () => {
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
 
-            const file = document.getElementById("pdfFile").files[0];
-            const order = document.getElementById("orderInput").value.trim();
-            const bar = document.getElementById("progressBar");
-            const container = document.getElementById("progressContainer");
-            const status = document.getElementById("statusText");
+  // All Tools Dropdown
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
 
-            if (!file) return status.textContent = "❗ Please upload a PDF file.";
-            if (!order) return status.textContent = "❗ Enter a valid page order.";
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+}
 
-            container.style.display = "block";
-            bar.style.width = "25%";
-            status.textContent = "Uploading…";
+function loadComponent(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+      if (callback) callback();
+    })
+    .catch(() => {});
+}
 
-            try {
-                const form = new FormData();
-                form.append("file", file);
-                form.append("order", order);
+// ✅ Navbar / Footer
+loadComponent("navbar", "navbar.html", initNavbar);
+loadComponent("footer", "footer.html");
 
-                bar.style.width = "60%";
+// ✅ Optional related tools
+loadComponent("related-tools-container", "related-tools.html?tool=reorder-pages");
 
-                const res = await fetch(BACKEND_URL, { method: "POST", body: form });
 
-                bar.style.width = "85%";
-                status.textContent = "Processing…";
+// ✅ Backend URL
+const BACKEND_URL = "https://api.toolsonics.com/pdf/reorder-pages";
 
-                if (!res.ok) {
-                    status.textContent = "❌ Failed to reorder PDF.";
-                    return;
-                }
 
-                const blob = await res.blob();
-                const url = URL.createObjectURL(blob);
+// ✅ Elements (IDs must match)
+const fileInput = document.getElementById("pdfFile");        // input id="pdfFile"
+const orderInput = document.getElementById("order");         // input id="order"
+const reorderBtn = document.getElementById("reorderBtn");    // button id="reorderBtn"
 
-                bar.style.width = "100%";
-                status.textContent = "✔ Done! Downloading…";
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const statusText = document.getElementById("statusText");
 
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "reordered.pdf";
-                a.click();
 
-            } catch (error) {
-                status.textContent = "❌ Network error.";
-            }
-        });
+// ✅ Helper: validate order format "1,2,3,4"
+function isValidOrder(value) {
+  return /^[0-9,\s]+$/.test(value.trim());
+}
 
-    </script>
+reorderBtn.addEventListener("click", async () => {
+  const file = fileInput.files[0];
+  const order = (orderInput.value || "").trim();
+
+  if (!file) {
+    statusText.textContent = "❗ Please select a PDF file.";
+    return;
+  }
+
+  if (!order) {
+    statusText.textContent = "❗ Please enter page order. Example: 3,1,2";
+    return;
+  }
+
+  if (!isValidOrder(order)) {
+    statusText.textContent = "❗ Invalid order format. Example: 3,1,2";
+    return;
+  }
+
+  const originalName = file.name.replace(/\.pdf$/i, "");
+
+  reorderBtn.disabled = true;
+  progressContainer.style.display = "block";
+  progressBar.style.width = "25%";
+  statusText.textContent = "Uploading PDF...";
+
+  const form = new FormData();
+  form.append("file", file);
+  form.append("order", order);
+
+  try {
+    progressBar.style.width = "70%";
+    statusText.textContent = "Reordering pages...";
+
+    const res = await fetch(BACKEND_URL, {
+      method: "POST",
+      body: form
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      statusText.textContent = "❌ Reorder failed. Please check page order.";
+      console.log("Backend error:", errText);
+      progressBar.style.width = "0%";
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    progressBar.style.width = "100%";
+    statusText.textContent = "✔ Done! Downloading file…";
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${originalName}-reordered.pdf`;
+
+    document.body.appendChild(a);
+    a.click();
+
+    URL.revokeObjectURL(url);
+    a.remove();
+
+  } catch (err) {
+    console.error(err);
+    statusText.textContent = "❌ Network error. Please try again.";
+    progressBar.style.width = "0%";
+  } finally {
+    reorderBtn.disabled = false;
+  }
+});
+</script>
 
 </body>
 </html>
