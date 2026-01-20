@@ -218,75 +218,134 @@
 <div id="footer"></div>
 
 <script>
-    function load(id, file) {
-        fetch(file).then(r => r.text()).then(html => {
-            document.getElementById(id).innerHTML = html;
-        });
-    }
-    load("navbar", "navbar.html");
-    load("footer", "footer.html");
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-    /* BACKEND API */
-    const BACKEND_URL = "https://api.toolsonics.com/pdf/images-to-pdf";
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
 
-    const fileInput = document.getElementById("imgFiles");
-    const bar = document.getElementById("progressBar");
-    const box = document.getElementById("progressContainer");
-    const status = document.getElementById("statusText");
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
 
-    document.getElementById("convertBtn").addEventListener("click", async () => {
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
 
-        const files = fileInput.files;
+  // All Tools dropdown
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
 
-        if (!files.length) {
-            status.textContent = "❗ Please select at least 1 image.";
-            return;
-        }
-
-        box.style.display = "block";
-        bar.style.width = "25%";
-        status.textContent = "Preparing images...";
-
-        const form = new FormData();
-        [...files].forEach(f => form.append("images", f));
-
-        try {
-            bar.style.width = "60%";
-            status.textContent = "Uploading...";
-
-            const res = await fetch(BACKEND_URL, {
-                method:"POST",
-                body:form
-            });
-
-            bar.style.width = "90%";
-
-            if (!res.ok) {
-                status.textContent = "❌ Error creating PDF.";
-                return;
-            }
-
-            const blob = await res.blob();
-            const url = URL.createObjectURL(blob);
-
-            bar.style.width = "100%";
-            status.textContent = "✔ PDF Ready! Downloading…";
-
-            const firstImageName = files[0].name.replace(/\.[^/.]+$/, "");
-
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = firstImageName + ".pdf";
-            document.body.appendChild(a);
-            a.click();
-
-            URL.revokeObjectURL(url);
-            a.remove();
-
-        } catch (err) {
-            status.textContent = "❌ Network error.";
-        }
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
     });
+  }
+}
+
+function loadComponent(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+      if (callback) callback();
+    })
+    .catch(() => {});
+}
+
+// ✅ Navbar + Footer
+loadComponent("navbar", "navbar.html", initNavbar);
+loadComponent("footer", "footer.html");
+
+// ✅ Optional related tools
+loadComponent("related-tools-container", "related-tools.html?tool=images-to-pdf");
+
+
+// ✅ Backend URL (FastAPI)
+const BACKEND_URL = "https://api.toolsonics.com/pdf/images-to-pdf";
+
+const fileInput = document.getElementById("imgFiles");
+const btn = document.getElementById("convertBtn");
+
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const statusText = document.getElementById("statusText");
+
+btn.addEventListener("click", async () => {
+  const files = fileInput.files;
+
+  if (!files || files.length < 1) {
+    statusText.textContent = "❗ Please select at least 1 image.";
+    return;
+  }
+
+  // ✅ Output filename: first image name use karenge
+  const firstName = files[0].name.replace(/\.[^/.]+$/, "");
+  const safeName = firstName
+    .replace(/[^a-z0-9-_ ]/gi, "")
+    .trim()
+    .replace(/\s+/g, "-") || "images";
+
+  btn.disabled = true;
+  progressContainer.style.display = "block";
+  progressBar.style.width = "25%";
+  statusText.textContent = "Uploading images...";
+
+  const formData = new FormData();
+  Array.from(files).forEach(img => formData.append("images", img));
+
+  try {
+    progressBar.style.width = "70%";
+    statusText.textContent = "Creating PDF...";
+
+    const res = await fetch(BACKEND_URL, {
+      method: "POST",
+      body: formData
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      console.log("Backend error:", errText);
+      statusText.textContent = "❌ Error creating PDF. Try again.";
+      progressBar.style.width = "0%";
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    progressBar.style.width = "100%";
+    statusText.textContent = "✔ PDF Ready! Downloading…";
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${safeName}.pdf`;
+
+    document.body.appendChild(a);
+    a.click();
+
+    URL.revokeObjectURL(url);
+    a.remove();
+
+  } catch (err) {
+    console.error(err);
+    statusText.textContent = "❌ Network error. Please try again.";
+    progressBar.style.width = "0%";
+  } finally {
+    btn.disabled = false;
+  }
+});
 </script>
 
 </body>
