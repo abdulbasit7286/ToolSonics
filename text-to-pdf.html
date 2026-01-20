@@ -219,74 +219,145 @@
 <div id="footer"></div>
 
 <script>
-    function load(id, file) {
-        fetch(file).then(r => r.text()).then(html => {
-            document.getElementById(id).innerHTML = html;
-        });
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
+
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
+
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
+
+  // All Tools dropdown
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
+
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+}
+
+function loadComponent(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+      if (callback) callback();
+    })
+    .catch(() => {});
+}
+
+// ✅ Navbar + Footer
+loadComponent("navbar", "navbar.html", initNavbar);
+loadComponent("footer", "footer.html");
+
+// ✅ Optional related tools
+loadComponent("related-tools-container", "related-tools.html?tool=text-to-pdf");
+
+
+// ✅ Backend URL (FastAPI)
+const BACKEND_URL = "https://api.toolsonics.com/pdf/text-to-pdf";
+
+
+// ✅ Elements (IDs must match)
+const textArea = document.getElementById("textInput");      // textarea id="textInput"
+const titleInput = document.getElementById("titleInput");   // input id="titleInput"
+const fontSize = document.getElementById("fontSize");       // select/input id="fontSize"
+const alignment = document.getElementById("alignment");     // select id="alignment"
+
+const btn = document.getElementById("convertBtn");          // button id="convertBtn"
+
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const statusText = document.getElementById("statusText");
+
+
+btn.addEventListener("click", async () => {
+  const text = (textArea.value || "").trim();
+  const title = (titleInput.value || "").trim();
+  const size = fontSize ? parseInt(fontSize.value) : 12;
+  const align = alignment ? alignment.value : "left";
+
+  if (!text) {
+    statusText.textContent = "❗ Please enter some text.";
+    return;
+  }
+
+  // ✅ Filename logic
+  const safeTitle = title
+    ? title.replace(/[^a-z0-9-_ ]/gi, "").trim().replace(/\s+/g, "-")
+    : "text";
+
+  btn.disabled = true;
+  progressContainer.style.display = "block";
+  progressBar.style.width = "25%";
+  statusText.textContent = "Sending text...";
+
+  const form = new FormData();
+  form.append("text", text);
+  form.append("title", title);
+  form.append("font_size", size);
+  form.append("alignment", align);
+
+  try {
+    progressBar.style.width = "70%";
+    statusText.textContent = "Creating PDF...";
+
+    const res = await fetch(BACKEND_URL, {
+      method: "POST",
+      body: form
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      statusText.textContent = "❌ Failed. Please try again.";
+      console.log("Backend error:", errText);
+      progressBar.style.width = "0%";
+      return;
     }
 
-    load("navbar", "navbar.html");
-    load("footer", "footer.html");
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
 
-    /* BACKEND */
-    const BACKEND_URL = "https://api.toolsonics.com/pdf/text-to-pdf";
+    progressBar.style.width = "100%";
+    statusText.textContent = "✔ Done! Downloading…";
 
-    const bar = document.getElementById("progressBar");
-    const box = document.getElementById("progressContainer");
-    const status = document.getElementById("statusText");
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${safeTitle}.pdf`;
 
-    document.getElementById("convertBtn").addEventListener("click", async () => {
+    document.body.appendChild(a);
+    a.click();
 
-        const text = document.getElementById("textInput").value.trim();
-        const title = document.getElementById("title").value.trim();
-        const size = document.getElementById("fontSize").value;
-        const align = document.getElementById("alignment").value;
+    URL.revokeObjectURL(url);
+    a.remove();
 
-        if (!text) {
-            status.textContent = "❗ Please enter some text.";
-            return;
-        }
-
-        box.style.display = "block";
-        bar.style.width = "25%";
-        status.textContent = "Creating PDF…";
-
-        const form = new FormData();
-        form.append("text", text);
-        form.append("title", title);
-        form.append("font_size", size);
-        form.append("alignment", align);
-
-        try {
-            bar.style.width = "60%";
-
-            const res = await fetch(BACKEND_URL, {
-                method:"POST",
-                body:form
-            });
-
-            bar.style.width = "90%";
-
-            if (!res.ok) {
-                status.textContent = "❌ Error converting PDF.";
-                return;
-            }
-
-            const blob = await res.blob();
-            const url = URL.createObjectURL(blob);
-
-            bar.style.width = "100%";
-            status.textContent = "✔ PDF Ready! Downloading…";
-
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "text.pdf";
-            a.click();
-
-        } catch (err) {
-            status.textContent = "❌ Network error.";
-        }
-    });
+  } catch (err) {
+    console.error(err);
+    statusText.textContent = "❌ Network error. Please try again.";
+    progressBar.style.width = "0%";
+  } finally {
+    btn.disabled = false;
+  }
+});
 </script>
 
 </body>
