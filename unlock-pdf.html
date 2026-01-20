@@ -247,68 +247,139 @@
 <div id="footer"></div>
 
 <script>
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-    function load(id, file) {
-        fetch(file).then(r => r.text()).then(html => {
-            document.getElementById(id).innerHTML = html;
-        });
-    }
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
 
-    load("navbar", "navbar.html");
-    load("footer", "footer.html");
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
 
-    const BACKEND_URL = "https://api.toolsonics.com/pdf/unlock";
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
 
-    document.getElementById("unlockBtn").addEventListener("click", async () => {
+  // All Tools dropdown
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
 
-        const file = document.getElementById("pdfFile").files[0];
-        const password = document.getElementById("passwordInput").value.trim();
-        const bar = document.getElementById("progressBar");
-        const box = document.getElementById("progressContainer");
-        const status = document.getElementById("statusText");
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+}
 
-        if (!file) return status.textContent = "❗ Please select a PDF file.";
-        if (!password) return status.textContent = "❗ Enter the correct password.";
+function loadComponent(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+      if (callback) callback();
+    })
+    .catch(() => {});
+}
 
-        box.style.display = "block";
-        bar.style.width = "25%";
-        status.textContent = "Starting…";
+// ✅ Navbar + Footer
+loadComponent("navbar", "navbar.html", initNavbar);
+loadComponent("footer", "footer.html");
 
-        try {
-            const form = new FormData();
-            form.append("file", file);
-            form.append("password", password);
+// ✅ Optional related tools
+loadComponent("related-tools-container", "related-tools.html?tool=unlock-pdf");
 
-            bar.style.width = "55%";
-            status.textContent = "Uploading…";
 
-            const res = await fetch(BACKEND_URL, { method: "POST", body: form });
+// ✅ Backend URL (FastAPI)
+const BACKEND_URL = "https://api.toolsonics.com/pdf/unlock";
 
-            bar.style.width = "80%";
-            status.textContent = "Decrypting…";
 
-            if (!res.ok) {
-                const msg = await res.text();
-                status.textContent = "❌ Error: " + msg;
-                return;
-            }
+// ✅ Elements (IDs must match)
+const fileInput = document.getElementById("pdfFile");        // input id="pdfFile"
+const passwordInput = document.getElementById("password");   // input id="password"
+const unlockBtn = document.getElementById("unlockBtn");      // button id="unlockBtn"
 
-            const blob = await res.blob();
-            const url = URL.createObjectURL(blob);
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const statusText = document.getElementById("statusText");
 
-            bar.style.width = "100%";
-            status.textContent = "✔ Done! Downloading…";
+unlockBtn.addEventListener("click", async () => {
+  const file = fileInput.files[0];
+  const password = (passwordInput.value || "").trim();
 
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "unlocked.pdf";
-            a.click();
+  if (!file) {
+    statusText.textContent = "❗ Please select a locked PDF file.";
+    return;
+  }
 
-        } catch (err) {
-            status.textContent = "❌ Network error.";
-        }
+  if (!password) {
+    statusText.textContent = "❗ Please enter the PDF password.";
+    return;
+  }
+
+  const originalName = file.name.replace(/\.pdf$/i, "");
+
+  unlockBtn.disabled = true;
+  progressContainer.style.display = "block";
+  progressBar.style.width = "25%";
+  statusText.textContent = "Uploading PDF...";
+
+  const form = new FormData();
+  form.append("file", file);
+  form.append("password", password);
+
+  try {
+    progressBar.style.width = "70%";
+    statusText.textContent = "Unlocking PDF...";
+
+    const res = await fetch(BACKEND_URL, {
+      method: "POST",
+      body: form
     });
 
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      statusText.textContent = "❌ Unlock failed. Wrong password or file issue.";
+      console.log("Backend error:", errText);
+      progressBar.style.width = "0%";
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    progressBar.style.width = "100%";
+    statusText.textContent = "✔ Unlocked! Downloading file…";
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${originalName}-unlocked.pdf`;
+
+    document.body.appendChild(a);
+    a.click();
+
+    URL.revokeObjectURL(url);
+    a.remove();
+
+  } catch (err) {
+    console.error(err);
+    statusText.textContent = "❌ Network error. Please try again.";
+    progressBar.style.width = "0%";
+  } finally {
+    unlockBtn.disabled = false;
+  }
+});
 </script>
 
 </body>
