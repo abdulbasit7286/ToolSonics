@@ -248,98 +248,221 @@
     <div id="footer"></div>
 
     <script>
-        // Load Components
-        function load(id, file) {
-            fetch(file).then(res => res.text()).then(html => {
-                document.getElementById(id).innerHTML = html;
-            });
-        }
-        load("navbar", "navbar.html");
-        load("footer", "footer.html");
+/* =========================
+   1) NAVBAR / FOOTER (same as merge)
+========================= */
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-        // Tabs
-        function switchTab(tab) {
-            document.getElementById("csvTab").style.display = tab === "csvTab" ? "block" : "none";
-            document.getElementById("excelTab").style.display = tab === "excelTab" ? "block" : "none";
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
 
-            document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
-            event.target.classList.add("active");
-        }
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
 
-        // API URLs
-        const API_CSV_TO_EXCEL = "https://api.toolsonics.com/convert/csv-to-excel";
-        const API_EXCEL_TO_CSV = "https://api.toolsonics.com/convert/excel-to-csv";
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
 
-        function startProgress(msg) {
-            progressContainer.style.display = "block";
-            progressBar.style.width = "30%";
-            statusText.textContent = msg;
-        }
+  // All Tools dropdown
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
 
-        async function convertCSV() {
-            const file = csvFile.files[0];
-            if (!file) return statusText.textContent = "Please select a CSV file.";
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+}
 
-            startProgress("Uploading...");
+function loadComponent(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+      if (callback) callback();
+    })
+    .catch(() => {});
+}
 
-            const form = new FormData();
-            form.append("file", file);
+loadComponent("navbar", "navbar.html", initNavbar);
+loadComponent("footer", "footer.html");
 
-            try {
-                const res = await fetch(API_CSV_TO_EXCEL, { method: "POST", body: form });
 
-                progressBar.style.width = "75%";
+/* =========================
+   2) TABS FIX (event bug fix)
+========================= */
+function switchTab(tab, btn) {
+  const csvTab = document.getElementById("csvTab");
+  const excelTab = document.getElementById("excelTab");
 
-                if (!res.ok) return statusText.textContent = "Conversion failed.";
+  if (csvTab && excelTab) {
+    csvTab.style.display = tab === "csvTab" ? "block" : "none";
+    excelTab.style.display = tab === "excelTab" ? "block" : "none";
+  }
 
-                const blob = await res.blob();
-                const url = URL.createObjectURL(blob);
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
 
-                progressBar.style.width = "100%";
-                statusText.textContent = "Downloading Excel file...";
+  // clear status + progress when switching
+  if (statusText) statusText.textContent = "";
+  if (progressContainer) progressContainer.style.display = "none";
+  if (progressBar) progressBar.style.width = "0%";
+}
 
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "converted.xlsx";
-                a.click();
+// ✅ If your HTML uses onclick="switchTab('csvTab')" then replace it with:
+// onclick="switchTab('csvTab', this)"
+// onclick="switchTab('excelTab', this)"
 
-            } catch {
-                statusText.textContent = "Network error.";
-            }
-        }
 
-        async function convertExcel() {
-            const file = excelFile.files[0];
-            if (!file) return statusText.textContent = "Please select an Excel file.";
+/* =========================
+   3) API URLs
+========================= */
+const API_CSV_TO_EXCEL = "https://api.toolsonics.com/convert/csv-to-excel";
+const API_EXCEL_TO_CSV = "https://api.toolsonics.com/convert/excel-to-csv";
 
-            startProgress("Uploading...");
 
-            const form = new FormData();
-            form.append("file", file);
+/* =========================
+   4) DOM Elements
+========================= */
+const csvFile = document.getElementById("csvFile");
+const excelFile = document.getElementById("excelFile");
 
-            try {
-                const res = await fetch(API_EXCEL_TO_CSV, { method: "POST", body: form });
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const statusText = document.getElementById("statusText");
 
-                progressBar.style.width = "75%";
 
-                if (!res.ok) return statusText.textContent = "Conversion failed.";
+function startProgress(msg) {
+  if (!progressContainer || !progressBar || !statusText) return;
 
-                const blob = await res.blob();
-                const url = URL.createObjectURL(blob);
+  progressContainer.style.display = "block";
+  progressBar.style.width = "30%";
+  statusText.textContent = msg;
+}
 
-                progressBar.style.width = "100%";
-                statusText.textContent = "Downloading CSV file...";
+function setProgress(percent, msg) {
+  if (progressBar) progressBar.style.width = percent + "%";
+  if (statusText && msg) statusText.textContent = msg;
+}
 
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "converted.csv";
-                a.click();
+function getBaseName(filename) {
+  return filename.replace(/\.[^/.]+$/, "");
+}
 
-            } catch {
-                statusText.textContent = "Network error.";
-            }
-        }
-    </script>
+function safeFileName(name) {
+  return name
+    .replace(/[^a-z0-9-_ ]/gi, "")
+    .trim()
+    .replace(/\s+/g, "-") || "converted";
+}
+
+
+/* =========================
+   5) CSV → Excel
+========================= */
+async function convertCSV() {
+  const file = csvFile?.files?.[0];
+  if (!file) {
+    if (statusText) statusText.textContent = "❗ Please select a CSV file.";
+    return;
+  }
+
+  const original = safeFileName(getBaseName(file.name));
+
+  startProgress("Uploading CSV...");
+  const form = new FormData();
+  form.append("file", file);
+
+  try {
+    const res = await fetch(API_CSV_TO_EXCEL, { method: "POST", body: form });
+
+    setProgress(75, "Converting to Excel...");
+
+    if (!res.ok) {
+      setProgress(0, "❌ Conversion failed. Please try again.");
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    setProgress(100, "✔ Downloading Excel file...");
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${original}.xlsx`;
+    document.body.appendChild(a);
+    a.click();
+
+    URL.revokeObjectURL(url);
+    a.remove();
+
+  } catch (e) {
+    console.error(e);
+    setProgress(0, "❌ Network error. Please try again.");
+  }
+}
+
+
+/* =========================
+   6) Excel → CSV
+========================= */
+async function convertExcel() {
+  const file = excelFile?.files?.[0];
+  if (!file) {
+    if (statusText) statusText.textContent = "❗ Please select an Excel file.";
+    return;
+  }
+
+  const original = safeFileName(getBaseName(file.name));
+
+  startProgress("Uploading Excel...");
+  const form = new FormData();
+  form.append("file", file);
+
+  try {
+    const res = await fetch(API_EXCEL_TO_CSV, { method: "POST", body: form });
+
+    setProgress(75, "Converting to CSV...");
+
+    if (!res.ok) {
+      setProgress(0, "❌ Conversion failed. Please try again.");
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    setProgress(100, "✔ Downloading CSV file...");
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${original}.csv`;
+    document.body.appendChild(a);
+    a.click();
+
+    URL.revokeObjectURL(url);
+    a.remove();
+
+  } catch (e) {
+    console.error(e);
+    setProgress(0, "❌ Network error. Please try again.");
+  }
+}
+</script>
 
 </body>
 
