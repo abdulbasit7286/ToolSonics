@@ -14,8 +14,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Image Resizer - Resize Photos Online | ToolSonics</title>
-  <meta name="description" content="Free online image resizer tool. Resize JPEG, PNG, GIF images to any dimension. Maintain aspect ratio, bulk resize, and download instantly." />
+  <title>Image Compressor Online – Reduce Image Size | ToolSonics</title>
+  <meta name="description" content="Compress JPG, PNG, WebP images online for free with ToolSonics. Reduce image size without losing visible quality. Fast, private & mobile-friendly." />
+  <link rel="canonical" href="https://www.toolsonics.com/image-compressor.html" />
 
   <style>
     :root{
@@ -52,7 +53,7 @@
       padding:16px;
     }
 
-    /* ToolSonics sections */
+    /* Header card */
     .hero{
       background: var(--grad);
       border: 1px solid var(--border);
@@ -84,7 +85,7 @@
       background:#ffffff;
       border:1px solid var(--border);
       color: var(--text);
-      font-weight:600;
+      font-weight:700;
       font-size:12px;
       box-shadow: 0 1px 0 rgba(34,41,72,0.03);
     }
@@ -105,34 +106,7 @@
       max-width: 62ch;
     }
 
-    .langBox{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:10px;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius: 14px;
-      box-shadow: 0 1px 0 rgba(34,41,72,0.03);
-    }
-
-    .langBox label{
-      font-size:12px;
-      color: var(--muted);
-      font-weight:700;
-    }
-
-    select{
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:10px 12px;
-      background:#fff;
-      color: var(--title);
-      font-weight:600;
-      outline:none;
-      min-width:170px;
-    }
-
+    /* Tool card */
     .toolCard{
       margin-top:14px;
       background: var(--card);
@@ -144,7 +118,7 @@
 
     .sectionTitle{
       font-size:14px;
-      font-weight:800;
+      font-weight:900;
       color: var(--title);
       margin:0 0 10px;
       letter-spacing:-0.01em;
@@ -157,10 +131,11 @@
       line-height:1.45;
     }
 
+    /* Upload Area */
     .uploadArea{
       display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:10px;
       align-items:center;
       justify-content:center;
       text-align:center;
@@ -168,6 +143,29 @@
       border-radius: var(--radius2);
       border: 1px dashed rgba(56,123,255,0.35);
       background: linear-gradient(180deg,#ffffff,#f7f9ff);
+      transition: background .2s ease, border-color .2s ease, transform .15s ease;
+    }
+
+    .uploadArea:hover{
+      border-color: rgba(56,123,255,0.55);
+      background: linear-gradient(180deg,#ffffff,#f2f6ff);
+    }
+
+    .uploadArea.drag-over{
+      border-color: rgba(56,123,255,0.85);
+      background: linear-gradient(180deg,#ffffff,#eaf1ff);
+    }
+
+    .uploadIcon{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(56,123,255,0.10);
+      border: 1px solid rgba(56,123,255,0.20);
+      font-size:22px;
     }
 
     .file-input{display:none;}
@@ -183,7 +181,7 @@
     .btn{
       border:none;
       cursor:pointer;
-      font-weight:800;
+      font-weight:900;
       border-radius:999px;
       padding:12px 16px;
       font-size:14px;
@@ -197,6 +195,7 @@
     }
 
     .btn:active{transform: translateY(1px);}
+
     .btnPrimary{
       background: var(--primary);
       color:#fff;
@@ -214,162 +213,99 @@
       box-shadow: var(--shadow2);
     }
 
-    .btnFull{
-      width:100%;
-    }
+    .btnFull{width:100%;}
 
+    /* Controls */
     .controlsWrap{
       margin-top:14px;
       display:none;
-      gap:14px;
-      flex-direction:column;
-    }
-
-    .controlsGrid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
       gap:12px;
-    }
-
-    .field{
-      display:flex;
       flex-direction:column;
-      gap:6px;
-      padding:12px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background:#fff;
+      padding:14px;
+      background: linear-gradient(180deg,#ffffff,#f7f9ff);
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
     }
 
-    .field label{
+    .fieldLabel{
       font-size:12px;
       color: var(--muted);
-      font-weight:800;
+      font-weight:900;
+      margin:0 0 8px;
     }
 
-    input[type="number"]{
+    .rangeRow{
+      display:flex;
+      align-items:center;
+      gap:10px;
       width:100%;
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:10px 12px;
-      font-weight:700;
-      outline:none;
-      color: var(--title);
-      background:#fff;
+      flex-wrap:wrap;
     }
 
-    input[type="number"]:focus, select:focus{
+    input[type="range"]{
+      flex:1;
+      min-width: 220px;
+      height: 34px;
+      accent-color: var(--primary);
+    }
+
+    .pillValue{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#eef3ff;
+      color:#2f4ab7;
+      border:1px solid #dbe3ff;
+      min-width:70px;
+      text-align:center;
+      font-weight:900;
+    }
+
+    .select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:#fff;
+      color: var(--title);
+      font-weight:800;
+      outline:none;
+    }
+
+    .select:focus{
       border-color: rgba(56,123,255,0.55);
       box-shadow: 0 0 0 4px rgba(56,123,255,0.10);
     }
 
-    .aspectBar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      padding:12px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background:#fff;
+    /* Progress */
+    #progressContainer{
+      width:100%;
+      height:8px;
+      background:#eef1ff;
+      border-radius:999px;
+      overflow:hidden;
+      display:none;
+      margin-top:10px;
     }
 
-    .aspectBar span{
+    #progressBar{
+      width:0%;
+      height:100%;
+      background: linear-gradient(90deg,#387bff,#5f9bff);
+      border-radius:999px;
+      transition: width .25s ease;
+    }
+
+    #statusText{
+      margin-top:10px;
       font-size:13px;
       color: var(--text);
-      font-weight:800;
-    }
-
-    .aspectToggles{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .toggleBtn{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:#fff;
-      color: var(--title);
-      font-weight:800;
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .toggleBtn:hover{border-color: rgba(56,123,255,0.35);}
-    .toggleBtn.active{
-      background: rgba(56,123,255,0.12);
-      border-color: rgba(56,123,255,0.35);
-      color: var(--primaryHover);
-    }
-
-    .loadingBox{
-      display:none;
+      min-height:18px;
       text-align:center;
-      padding:18px;
-      margin-top:14px;
-      border-radius: var(--radius2);
-      border:1px solid var(--border);
-      background:#fff;
+      font-weight:700;
     }
 
-    .spinner{
-      width:44px;height:44px;
-      border-radius:999px;
-      border:4px solid #eef2ff;
-      border-top:4px solid var(--primary);
-      margin:0 auto 10px;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    .statusBox{
-      display:none;
-      margin-top:14px;
-    }
-
-    .alert{
-      border-radius: 14px;
-      padding:12px 14px;
-      border:1px solid var(--border);
-      background:#fff;
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      box-shadow: 0 1px 0 rgba(34,41,72,0.03);
-    }
-
-    .alertText{
-      font-size:13px;
-      line-height:1.45;
-      color: var(--title);
-    }
-
-    .alertText strong{font-weight:900;}
-    .alert.error{
-      border-color: rgba(232,72,84,0.35);
-      background: linear-gradient(180deg,#ffffff,#fff5f6);
-    }
-    .alert.error .alertText strong{color:#e84854;}
-    .alert.warning{
-      border-color: rgba(245,158,11,0.35);
-      background: linear-gradient(180deg,#ffffff,#fff8ee);
-    }
-    .alert.warning .alertText strong{color:#f59e0b;}
-
-    .iconBtn{
-      border:none;
-      background:transparent;
-      cursor:pointer;
-      font-size:20px;
-      line-height:1;
-      padding:0 6px;
-      color: var(--muted);
-    }
-    .iconBtn:hover{color: var(--title);}
-
+    /* Preview */
     .previewWrap{
       display:none;
       margin-top:14px;
@@ -403,7 +339,7 @@
     .previewHeader h3{
       margin:0;
       font-size:13px;
-      font-weight:900;
+      font-weight:950;
       color: var(--title);
     }
 
@@ -429,84 +365,39 @@
       max-height: 320px;
       width:100%;
       object-fit:contain;
+      background:#fff;
     }
 
-    .statsGrid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
       gap:8px;
     }
 
-    .stat{
-      border:1px solid var(--border);
-      border-radius: 12px;
-      padding:10px;
-      background:#fff;
-      text-align:center;
-    }
-
-    .stat .value{
-      display:block;
-      font-weight:900;
-      color: var(--primaryHover);
+    .chip{
       font-size:12px;
-      margin-bottom:2px;
-    }
-
-    .stat small{
-      color: var(--text);
-      font-weight:700;
-      font-size:11px;
-    }
-
-    .features{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:12px;
-    }
-
-    .feature{
+      padding:6px 10px;
+      border-radius:999px;
       background:#fff;
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      padding:14px;
-      box-shadow: var(--shadow2);
+      border:1px solid #dbe3ff;
+      color:#44506a;
+      font-weight:700;
     }
+    .chip b{color:#2f4ab7;}
 
-    .featureTop{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-bottom:6px;
-    }
-
-    .featureIcon{
-      width:34px;
-      height:34px;
-      border-radius:12px;
-      border:1px solid rgba(56,123,255,0.25);
-      background: rgba(56,123,255,0.10);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:18px;
-    }
-
-    .feature h4{
-      margin:0;
+    .infoBanner{
+      display:none;
+      background:#eaf1ff;
+      border:1px solid #cfe0ff;
+      color:#243b7b;
+      border-radius:14px;
+      padding:10px 12px;
       font-size:13px;
-      font-weight:900;
-      color: var(--title);
+      text-align:center;
+      font-weight:800;
     }
 
-    .feature p{
-      margin:0;
-      font-size:13px;
-      color: var(--text);
-      line-height:1.45;
-    }
-
+    /* SEO */
     .seoCard{
       margin-top:14px;
       background:#fff;
@@ -530,12 +421,8 @@
       line-height:1.55;
     }
 
-    /* Responsive */
     @media (max-width: 860px){
-      .controlsGrid{grid-template-columns: 1fr; }
       .previewGrid{grid-template-columns: 1fr;}
-      .features{grid-template-columns: 1fr;}
-      select{min-width: 200px;}
     }
   </style>
 </head>
@@ -549,133 +436,107 @@
       <div class="heroTop">
         <div class="heroTitleWrap">
           <div class="badge">🧰 ToolSonics • Image Tool</div>
-          <h1 class="heroTitle" id="pageTitle">🖼️ Image Resizer</h1>
-          <p class="heroSubtitle" id="pageSubtitle">Resize your images to any dimension instantly</p>
-        </div>
-
-        <div class="langBox">
-          <label for="languageSelect">Language</label>
-          <select id="languageSelect" onchange="changeLanguage()">
-            <option value="en">🌐 English</option>
-            <option value="es">🌐 Español</option>
-            <option value="fr">🌐 Français</option>
-            <option value="de">🌐 Deutsch</option>
-            <option value="hi">🌐 हिन्दी</option>
-            <option value="ar">🌐 العربية</option>
-          </select>
+          <h1 class="heroTitle">🗜️ Image Compressor</h1>
+          <p class="heroSubtitle">
+            Reduce image size online without losing visible quality. Works for JPG, PNG and WebP — fast and private.
+          </p>
         </div>
       </div>
     </section>
 
     <!-- Tool Box -->
-    <section class="toolCard" aria-label="Image Resizer Tool">
+    <section class="toolCard" aria-label="Image Compressor Tool">
       <h2 class="sectionTitle">Upload</h2>
 
-      <div class="uploadArea">
+      <div class="uploadArea" id="uploadBox">
+        <div class="uploadIcon">🖼️</div>
+
         <input type="file" id="fileInput" accept="image/*" class="file-input" />
+
         <div class="btnRow">
-          <button class="btn btnPrimary" type="button" onclick="document.getElementById('fileInput').click()">
-            📁 Choose Image File
-          </button>
-          <button class="btn btnSoft" type="button" onclick="resetResizer()">
-            ♻️ Reset
-          </button>
+          <button class="btn btnPrimary" type="button" id="uploadBtn">📁 Select Image</button>
+          <button class="btn btnSoft" type="button" id="newBtnTop" style="display:none;">♻️ New Image</button>
         </div>
-        <p class="hint" id="supportedHint">Supports JPEG, PNG, GIF, WebP (Max 10MB)</p>
+
+        <p class="hint">Supports JPG, PNG, WebP (Max 10MB) • Drag & Drop also supported</p>
       </div>
 
-      <!-- Progress / Status -->
-      <div id="loading" class="loadingBox" role="status" aria-live="polite">
-        <div class="spinner"></div>
-        <p class="hint" style="margin:0;" id="loadingText">Processing your image...</p>
-      </div>
-
-      <div id="errorContainer" class="statusBox"></div>
-
-      <!-- Controls -->
-      <div id="controlsSection" class="controlsWrap">
-        <h2 class="sectionTitle">Resize Settings</h2>
-
-        <div class="controlsGrid">
-          <div class="field">
-            <label for="widthInput" id="widthLabel">Width (px)</label>
-            <input type="number" id="widthInput" placeholder="Enter width" inputmode="numeric" />
-          </div>
-
-          <div class="field">
-            <label for="heightInput" id="heightLabel">Height (px)</label>
-            <input type="number" id="heightInput" placeholder="Enter height" inputmode="numeric" />
-          </div>
-
-          <div class="field">
-            <label for="sizeUnit" id="unitLabel">Size Unit</label>
-            <select id="sizeUnit">
-              <option value="px" id="unitPx">Pixels (px)</option>
-              <option value="percent" id="unitPercent">Percentage (%)</option>
-            </select>
+      <!-- Controls / Status -->
+      <div class="controlsWrap" id="controls">
+        <div>
+          <p class="fieldLabel">Compression Quality</p>
+          <div class="rangeRow">
+            <input type="range" id="qualitySlider" min="10" max="100" value="80" />
+            <span class="pillValue"><span id="qualityValue">80</span>%</span>
           </div>
         </div>
 
-        <div class="aspectBar">
-          <span id="aspectText">Maintain Aspect Ratio:</span>
-          <div class="aspectToggles">
-            <button class="toggleBtn active aspect-toggle" type="button" onclick="toggleAspectRatio(true)" id="aspectYes">Yes</button>
-            <button class="toggleBtn aspect-toggle" type="button" onclick="toggleAspectRatio(false)" id="aspectNo">No</button>
-          </div>
+        <div>
+          <p class="fieldLabel">Output Format</p>
+          <select id="formatSelect" class="select">
+            <option value="original">Original</option>
+            <option value="jpeg">JPEG</option>
+            <option value="png">PNG</option>
+            <option value="webp">WebP</option>
+          </select>
         </div>
 
         <div class="btnRow" style="justify-content:flex-start;">
-          <button class="btn btnPrimary" type="button" onclick="resizeImage()" id="resizeBtn">
-            🔄 Resize Image
-          </button>
-          <button class="btn btnSoft" type="button" onclick="resetResizer()" id="newBtn">
-            🗑️ New Image
-          </button>
+          <button class="btn btnPrimary" id="compressBtn" type="button">🗜️ Compress Image</button>
+          <button class="btn btnSoft" id="newBtn" type="button">🗑️ New Image</button>
         </div>
+
+        <div id="progressContainer">
+          <div id="progressBar"></div>
+        </div>
+
+        <p id="statusText"></p>
       </div>
 
-      <!-- Preview / Output -->
-      <div id="previewSection" class="previewWrap">
+      <!-- Preview -->
+      <div class="previewWrap" id="preview">
         <h2 class="sectionTitle">Preview</h2>
 
         <div class="previewGrid">
           <div class="previewCard">
             <div class="previewHeader">
-              <h3 id="originalTitle">Original Image</h3>
+              <h3>Original</h3>
             </div>
             <div class="previewBody">
               <div class="imgBox">
-                <img id="originalImage" class="preview-image" alt="Original preview" />
+                <img id="originalImage" class="preview-image" alt="Original image preview" />
               </div>
-              <div id="originalStats" class="statsGrid"></div>
+              <div class="chips" id="originalStats"></div>
             </div>
           </div>
 
           <div class="previewCard">
             <div class="previewHeader">
-              <h3 id="resizedTitle">Resized Image</h3>
+              <h3>Compressed</h3>
             </div>
             <div class="previewBody">
               <div class="imgBox">
-                <img id="resizedImage" class="preview-image" alt="Resized preview" />
+                <img id="compressedImage" class="preview-image" alt="Compressed image preview" />
               </div>
-              <div id="resizedStats" class="statsGrid"></div>
+              <div class="chips" id="compressedStats"></div>
             </div>
           </div>
         </div>
 
-        <button class="btn btnPrimary btnFull" id="downloadBtn" type="button" onclick="downloadImage()" style="display:none;">
-          📥 Download Resized Image
+        <div class="infoBanner" id="infoBanner"></div>
+
+        <button class="btn btnPrimary btnFull" id="downloadBtn" type="button" style="display:none;">
+          📥 Download Compressed Image
         </button>
       </div>
     </section>
 
-    <!-- SEO text -->
+    <!-- SEO -->
     <section class="seoCard">
-      <h2>Free Online Image Resizer (Fast & Secure)</h2>
+      <h2>Why use ToolSonics Image Compressor?</h2>
       <p>
-        ToolSonics Image Resizer helps you resize JPG, PNG, GIF and WebP images instantly in your browser.
-        Your files are processed locally for better privacy, and you can maintain aspect ratio for perfect results on any device.
+        ToolSonics Image Compressor reduces file size quickly while keeping quality good for websites, social media,
+        WhatsApp sharing, and faster page loading. Everything works inside your browser for privacy.
       </p>
     </section>
   </main>
@@ -683,7 +544,25 @@
   <div id="footer"></div>
 
   <script>
-    // ✅ Navbar init (All Tools dropdown + mobile menu working)
+    // ================= NAVBAR + FOOTER loading =================
+    async function loadNavbarAndFooter() {
+      try {
+        const navRes = await fetch("navbar.html", { cache: "no-cache" });
+        const navHtml = await navRes.text();
+        document.getElementById("navbar").innerHTML = navHtml;
+
+        // After navbar loads
+        initNavbar();
+
+        const footerRes = await fetch("footer.html", { cache: "no-cache" });
+        const footerHtml = await footerRes.text();
+        document.getElementById("footer").innerHTML = footerHtml;
+      } catch (e) {
+        console.warn("Navbar/Footer load failed:", e);
+      }
+    }
+
+    // ================= initNavbar() EXACT =================
     function initNavbar() {
       const openMobile = document.getElementById("openMobile");
       const closeMobile = document.getElementById("closeMobile");
@@ -693,45 +572,38 @@
       const allToolsDropdown = document.getElementById("allToolsDropdown");
 
       if (openMobile && closeMobile && mobileMenu) {
-        openMobile.onclick = () => {
-          mobileMenu.style.display = "block";
-          document.body.style.overflow = "hidden";
-        };
-        closeMobile.onclick = () => {
-          mobileMenu.style.display = "none";
-          document.body.style.overflow = "auto";
-        };
+        openMobile.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          mobileMenu.classList.add("active");
+        });
+
+        closeMobile.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          mobileMenu.classList.remove("active");
+        });
       }
 
       if (allToolsBtn && allToolsDropdown) {
-        allToolsBtn.onclick = (e) => {
+        allToolsBtn.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
-          allToolsDropdown.classList.toggle("show");
-        };
+          allToolsDropdown.classList.toggle("active");
+        });
 
-        document.addEventListener("click", () => {
-          allToolsDropdown.classList.remove("show");
+        document.addEventListener("click", (e) => {
+          if (!allToolsDropdown.contains(e.target) && !allToolsBtn.contains(e.target)) {
+            allToolsDropdown.classList.remove("active");
+          }
         });
       }
     }
 
-    function loadComponent(id, file, callback) {
-      fetch(file)
-        .then(res => res.text())
-        .then(html => {
-          const el = document.getElementById(id);
-          if (el) el.innerHTML = html;
-          if (callback) callback();
-        });
-    }
-
-    loadComponent("navbar", "navbar.html", initNavbar);
-    loadComponent("footer", "footer.html");
-
-    // Tool elements
+    // ================= TOOL LOGIC (SAME FEATURES) =================
     const uploadBox = document.getElementById("uploadBox");
     const uploadBtn = document.getElementById("uploadBtn");
+    const newBtnTop = document.getElementById("newBtnTop");
     const fileInput = document.getElementById("fileInput");
 
     const controls = document.getElementById("controls");
@@ -787,6 +659,7 @@
     });
 
     newBtn.addEventListener("click", resetTool);
+    newBtnTop.addEventListener("click", resetTool);
 
     compressBtn.addEventListener("click", () => {
       if (!originalFile) {
@@ -808,7 +681,6 @@
     });
 
     function handleFile(file) {
-      // Validate
       if (!file.type.startsWith("image/")) {
         statusText.textContent = "❌ Please select a valid image file.";
         return;
@@ -822,21 +694,17 @@
       originalFile = file;
       originalFileName = file.name.replace(/\.[^/.]+$/, "");
 
-      // Reset preview state
       compressedBlob = null;
       infoBanner.style.display = "none";
       downloadBtn.style.display = "none";
       progressContainer.style.display = "none";
       progressBar.style.width = "0%";
 
-      // Show UI
-      controls.style.display = "block";
-      preview.style.display = "block";
+      controls.style.display = "flex";
+      preview.style.display = "flex";
+      newBtnTop.style.display = "inline-flex";
 
-      // Show original preview
-      const url = URL.createObjectURL(file);
-      originalImage.src = url;
-
+      originalImage.src = URL.createObjectURL(file);
       setOriginalStats(file);
 
       statusText.textContent = "✅ Image selected. Choose quality and click Compress.";
@@ -846,9 +714,9 @@
       const img = new Image();
       img.onload = () => {
         originalStats.innerHTML = `
-          <span class="stat-chip"><b>${kb(file.size)}</b> KB</span>
-          <span class="stat-chip"><b>${img.width}×${img.height}</b> px</span>
-          <span class="stat-chip"><b>${file.type.split("/")[1].toUpperCase()}</b></span>
+          <span class="chip"><b>${kb(file.size)}</b> KB</span>
+          <span class="chip"><b>${img.width}×${img.height}</b> px</span>
+          <span class="chip"><b>${file.type.split("/")[1].toUpperCase()}</b></span>
         `;
       };
       img.src = URL.createObjectURL(file);
@@ -856,9 +724,9 @@
 
     function setCompressedStats(blob, width, height, format) {
       compressedStats.innerHTML = `
-        <span class="stat-chip"><b>${kb(blob.size)}</b> KB</span>
-        <span class="stat-chip"><b>${width}×${height}</b> px</span>
-        <span class="stat-chip"><b>${format.toUpperCase()}</b></span>
+        <span class="chip"><b>${kb(blob.size)}</b> KB</span>
+        <span class="chip"><b>${width}×${height}</b> px</span>
+        <span class="chip"><b>${format.toUpperCase()}</b></span>
       `;
     }
 
@@ -869,13 +737,12 @@
     function getOutputFormat() {
       const val = formatSelect.value;
       if (val === "original") {
-        return originalFile.type.split("/")[1]; // jpeg/png/webp etc
+        return originalFile.type.split("/")[1];
       }
-      return val; // jpeg/png/webp
+      return val;
     }
 
     async function compressImage() {
-      // UI
       progressContainer.style.display = "block";
       progressBar.style.width = "20%";
       statusText.textContent = "Compressing image...";
@@ -894,12 +761,11 @@
 
         setCompressedStats(blob, width, height, format);
 
-        // info banner
         const saved = (1 - blob.size / originalFile.size) * 100;
         infoBanner.innerHTML = `🎉 Reduced by <b>${saved.toFixed(1)}%</b> • Original: <b>${kb(originalFile.size)} KB</b> • Compressed: <b>${kb(blob.size)} KB</b>`;
         infoBanner.style.display = "block";
 
-        downloadBtn.style.display = "block";
+        downloadBtn.style.display = "inline-flex";
       } catch (err) {
         console.error(err);
         statusText.textContent = "❌ Compression failed. Please try again.";
@@ -923,7 +789,6 @@
           else if (format === "webp") mime = "image/webp";
           else if (format === "jpeg" || format === "jpg") mime = "image/jpeg";
 
-          // little progress bump
           progressBar.style.width = "65%";
 
           canvas.toBlob((blob) => {
@@ -945,6 +810,7 @@
       fileInput.value = "";
       controls.style.display = "none";
       preview.style.display = "none";
+      newBtnTop.style.display = "none";
 
       originalImage.src = "";
       compressedImage.src = "";
@@ -958,7 +824,15 @@
       progressContainer.style.display = "none";
       progressBar.style.width = "0%";
       statusText.textContent = "";
+
+      uploadBox.classList.remove("drag-over");
     }
+
+    // Init
+    document.addEventListener("DOMContentLoaded", () => {
+      loadNavbarAndFooter();
+      qualityValue.textContent = qualitySlider.value;
+    });
   </script>
 </body>
 </html>
