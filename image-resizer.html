@@ -683,26 +683,7 @@
   <div id="footer"></div>
 
   <script>
-    // ================= NAVBAR + FOOTER LOADER =================
-    async function loadNavbarAndFooter() {
-      try {
-        const navRes = await fetch("navbar.html", { cache: "no-cache" });
-        const navHtml = await navRes.text();
-        document.getElementById("navbar").innerHTML = navHtml;
-
-        // Call initNavbar AFTER navbar loads
-        initNavbar();
-
-        const footerRes = await fetch("footer.html", { cache: "no-cache" });
-        const footerHtml = await footerRes.text();
-        document.getElementById("footer").innerHTML = footerHtml;
-      } catch (e) {
-        // Silent fail (keeps tool usable even if navbar/footer missing)
-        console.warn("Navbar/Footer load failed:", e);
-      }
-    }
-
-    // ================= initNavbar() (EXACT BEHAVIOR REQUIRED) =================
+    // ✅ Navbar init (All Tools dropdown + mobile menu working)
     function initNavbar() {
       const openMobile = document.getElementById("openMobile");
       const closeMobile = document.getElementById("closeMobile");
@@ -712,534 +693,272 @@
       const allToolsDropdown = document.getElementById("allToolsDropdown");
 
       if (openMobile && closeMobile && mobileMenu) {
-        openMobile.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          mobileMenu.classList.add("active");
-        });
-
-        closeMobile.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          mobileMenu.classList.remove("active");
-        });
+        openMobile.onclick = () => {
+          mobileMenu.style.display = "block";
+          document.body.style.overflow = "hidden";
+        };
+        closeMobile.onclick = () => {
+          mobileMenu.style.display = "none";
+          document.body.style.overflow = "auto";
+        };
       }
 
       if (allToolsBtn && allToolsDropdown) {
-        allToolsBtn.addEventListener("click", (e) => {
+        allToolsBtn.onclick = (e) => {
           e.preventDefault();
           e.stopPropagation();
-          allToolsDropdown.classList.toggle("active");
-        });
+          allToolsDropdown.classList.toggle("show");
+        };
 
-        document.addEventListener("click", (e) => {
-          if (!allToolsDropdown.contains(e.target) && !allToolsBtn.contains(e.target)) {
-            allToolsDropdown.classList.remove("active");
-          }
+        document.addEventListener("click", () => {
+          allToolsDropdown.classList.remove("show");
         });
       }
     }
 
-    // ================= TOOL LOGIC (UNCHANGED FEATURES) =================
-    const translations = {
-      en: {
-        title: "🖼️ Image Resizer",
-        subtitle: "Resize your images to any dimension instantly",
-        chooseImage: "📁 Choose Image File",
-        supportedFormats: "Supports JPEG, PNG, GIF, WebP (Max 10MB)",
-        processing: "Processing your image...",
-        width: "Width (px)",
-        height: "Height (px)",
-        sizeUnit: "Size Unit",
-        pixels: "Pixels (px)",
-        percent: "Percentage (%)",
-        maintainAspect: "Maintain Aspect Ratio:",
-        yes: "Yes",
-        no: "No",
-        resizeBtn: "🔄 Resize Image",
-        newImageBtn: "🗑️ New Image",
-        downloadBtn: "📥 Download Resized Image",
-        original: "Original Image",
-        resized: "Resized Image",
-        size: "Size",
-        dimensions: "Dimensions",
-        type: "Type",
-        lightningFast: "Lightning Fast",
-        lightningDesc: "Resize images instantly in your browser",
-        secure: "100% Secure",
-        secureDesc: "Your images never leave your computer",
-        precise: "Precise Control",
-        preciseDesc: "Exact dimensions and aspect ratio",
-        privacy: "🔒 Your Privacy Matters: All processing happens locally in your browser. We never upload your images.",
-        errorFileType: "Please select a valid image file (JPEG, PNG, GIF, WebP).",
-        errorFileSize: "Image file is too large. Please select a smaller image (max 10MB).",
-        successResize: "Image resized successfully! You can now download it."
-      },
-      es: {
-        title: "🖼️ Redimensionador de Imágenes",
-        subtitle: "Redimensiona tus imágenes a cualquier dimensión al instante",
-        chooseImage: "📁 Elegir Archivo de Imagen",
-        supportedFormats: "Soporta JPEG, PNG, GIF, WebP (Máx. 10MB)",
-        processing: "Procesando tu imagen...",
-        width: "Ancho (px)",
-        height: "Alto (px)",
-        sizeUnit: "Unidad de Tamaño",
-        pixels: "Píxeles (px)",
-        percent: "Porcentaje (%)",
-        maintainAspect: "Mantener Relación de Aspecto:",
-        yes: "Sí",
-        no: "No",
-        resizeBtn: "🔄 Redimensionar Imagen",
-        newImageBtn: "🗑️ Nueva Imagen",
-        downloadBtn: "📥 Descargar Imagen Redimensionada",
-        original: "Imagen Original",
-        resized: "Imagen Redimensionada",
-        size: "Tamaño",
-        dimensions: "Dimensiones",
-        type: "Tipo",
-        lightningFast: "Súper Rápido",
-        lightningDesc: "Redimensiona imágenes al instante en tu navegador",
-        secure: "100% Seguro",
-        secureDesc: "Tus imágenes nunca salen de tu computadora",
-        precise: "Control Preciso",
-        preciseDesc: "Dimensiones exactas y relación de aspecto",
-        privacy: "🔒 Tu Privacidad Importa: Todo el procesamiento ocurre localmente en tu navegador. Nunca subimos tus imágenes.",
-        errorFileType: "Por favor selecciona un archivo de imagen válido (JPEG, PNG, GIF, WebP).",
-        errorFileSize: "El archivo de imagen es demasiado grande. Por favor selecciona una imagen más pequeña (máx. 10MB).",
-        successResize: "¡Imagen redimensionada exitosamente! Ya puedes descargarla."
-      },
-      fr: {
-        title: "🖼️ Redimensionneur d'Image",
-        subtitle: "Redimensionnez vos images à n'importe quelle dimension instantanément",
-        chooseImage: "📁 Choisir un Fichier Image",
-        supportedFormats: "Prend en charge JPEG, PNG, GIF, WebP (Max 10MB)",
-        processing: "Traitement de votre image...",
-        width: "Largeur (px)",
-        height: "Hauteur (px)",
-        sizeUnit: "Unité de Taille",
-        pixels: "Pixels (px)",
-        percent: "Pourcentage (%)",
-        maintainAspect: "Maintenir le Ratio d'Aspect:",
-        yes: "Oui",
-        no: "Non",
-        resizeBtn: "🔄 Redimensionner l'Image",
-        newImageBtn: "🗑️ Nouvelle Image",
-        downloadBtn: "📥 Télécharger l'Image Redimensionnée",
-        original: "Image Originale",
-        resized: "Image Redimensionnée",
-        size: "Taille",
-        dimensions: "Dimensions",
-        type: "Type",
-        lightningFast: "Extrêmement Rapide",
-        lightningDesc: "Redimensionnez les images instantanément dans votre navigateur",
-        secure: "100% Sécurisé",
-        secureDesc: "Vos images ne quittent jamais votre ordinateur",
-        precise: "Contrôle Précis",
-        preciseDesc: "Dimensions exactes et ratio d'aspect",
-        privacy: "🔒 Votre Vie Privée Compte: Tout le traitement se fait localement dans votre navigateur. Nous ne téléchargeons jamais vos images.",
-        errorFileType: "Veuillez sélectionner un fichier image valide (JPEG, PNG, GIF, WebP).",
-        errorFileSize: "Le fichier image est trop volumineux. Veuillez sélectionner une image plus petite (max 10MB).",
-        successResize: "Image redimensionnée avec succès ! Vous pouvez maintenant la télécharger."
-      },
-      de: {
-        title: "🖼️ Bildgrößenänderer",
-        subtitle: "Ändern Sie Ihre Bilder sofort auf jede Größe",
-        chooseImage: "📁 Bilddatei Auswählen",
-        supportedFormats: "Unterstützt JPEG, PNG, GIF, WebP (Max. 10MB)",
-        processing: "Ihr Bild wird verarbeitet...",
-        width: "Breite (px)",
-        height: "Höhe (px)",
-        sizeUnit: "Größeneinheit",
-        pixels: "Pixel (px)",
-        percent: "Prozentsatz (%)",
-        maintainAspect: "Seitenverhältnis beibehalten:",
-        yes: "Ja",
-        no: "Nein",
-        resizeBtn: "🔄 Bildgröße Ändern",
-        newImageBtn: "🗑️ Neues Bild",
-        downloadBtn: "📥 Größenverändertes Bild Herunterladen",
-        original: "Originalbild",
-        resized: "Größenverändertes Bild",
-        size: "Größe",
-        dimensions: "Abmessungen",
-        type: "Typ",
-        lightningFast: "Blitzschnell",
-        lightningDesc: "Ändern Sie Bildgrößen sofort in Ihrem Browser",
-        secure: "100% Sicher",
-        secureDesc: "Ihre Bilder verlassen nie Ihren Computer",
-        precise: "Präzise Steuerung",
-        preciseDesc: "Exakte Abmessungen und Seitenverhältnis",
-        privacy: "🔒 Ihre Privatsphäre ist wichtig: Die gesamte Verarbeitung erfolgt lokal in Ihrem Browser. Wir laden Ihre Bilder niemals hoch.",
-        errorFileType: "Bitte wählen Sie eine gültige Bilddatei (JPEG, PNG, GIF, WebP).",
-        errorFileSize: "Die Bilddatei ist zu groß. Bitte wählen Sie ein kleineres Bild (max. 10MB).",
-        successResize: "Bild erfolgreich Größenverändert! Sie können es jetzt herunterladen."
-      },
-      hi: {
-        title: "🖼️ इमेज रीसाइज़र",
-        subtitle: "अपनी इमेज को किसी भी आकार में तुरंत बदलें",
-        chooseImage: "📁 इमेज फाइल चुनें",
-        supportedFormats: "JPEG, PNG, GIF, WebP सपोर्टेड (अधिकतम 10MB)",
-        processing: "आपकी इमेज प्रोसेस हो रही है...",
-        width: "चौड़ाई (px)",
-        height: "ऊंचाई (px)",
-        sizeUnit: "आकार इकाई",
-        pixels: "पिक्सेल (px)",
-        percent: "प्रतिशत (%)",
-        maintainAspect: "एस्पेक्ट रेशियो बनाए रखें:",
-        yes: "हाँ",
-        no: "नहीं",
-        resizeBtn: "🔄 इमेज रीसाइज़ करें",
-        newImageBtn: "🗑️ नई इमेज",
-        downloadBtn: "📥 रीसाइज़ की गई इमेज डाउनलोड करें",
-        original: "ओरिजिनल इमेज",
-        resized: "रीसाइज़ की गई इमेज",
-        size: "आकार",
-        dimensions: "डाइमेंशन",
-        type: "प्रकार",
-        lightningFast: "बिजली की तेज",
-        lightningDesc: "अपने ब्राउज़र में तुरंत इमेज रीसाइज़ करें",
-        secure: "100% सुरक्षित",
-        secureDesc: "आपकी इमेज आपके कंप्यूटर से कभी बाहर नहीं जाती",
-        precise: "सटीक नियंत्रण",
-        preciseDesc: "सटीक आयाम और एस्पेक्ट रेशियो",
-        privacy: "🔒 आपकी गोपनीयता मायने रखती है: सारी प्रोसेसिंग आपके ब्राउज़र में स्थानीय रूप से होती है। हम आपकी इमेज कभी अपलोड नहीं करते।",
-        errorFileType: "कृपया एक वैध इमेज फ़ाइल चुनें (JPEG, PNG, GIF, WebP)।",
-        errorFileSize: "इमेज फ़ाइल बहुत बड़ी है। कृपया छोटी इमेज चुनें (अधिकतम 10MB)।",
-        successResize: "इमेज सफलतापूर्वक रीसाइज़ हो गई! अब आप इसे डाउनलोड कर सकते हैं।"
-      },
-      ar: {
-        title: "🖼️ مُغيِّر حجم الصورة",
-        subtitle: "غيّر حجم صورك إلى أي بُعد على الفور",
-        chooseImage: "📁 اختر ملف الصورة",
-        supportedFormats: "يدعم JPEG, PNG, GIF, WebP (الحد الأقصى 10MB)",
-        processing: "جاري معالجة صورتك...",
-        width: "العرض (بكسل)",
-        height: "الارتفاع (بكسل)",
-        sizeUnit: "وحدة الحجم",
-        pixels: "بكسل (px)",
-        percent: "النسبة المئوية (%)",
-        maintainAspect: "الحفاظ على نسبة العرض إلى الارتفاع:",
-        yes: "نعم",
-        no: "لا",
-        resizeBtn: "🔄 تغيير حجم الصورة",
-        newImageBtn: "🗑️ صورة جديدة",
-        downloadBtn: "📥 تحميل الصورة المُغيَّر حجمها",
-        original: "الصورة الأصلية",
-        resized: "الصورة المُغيَّر حجمها",
-        size: "الحجم",
-        dimensions: "الأبعاد",
-        type: "النوع",
-        lightningFast: "سريع جدًا",
-        lightningDesc: "غيّر حجم الصور على الفور في متصفحك",
-        secure: "آمن 100%",
-        secureDesc: "صورك لا تترك جهازك أبدًا",
-        precise: "تحكم دقيق",
-        preciseDesc: "أبعاد دقيقة ونسبة عرض إلى ارتفاع",
-        privacy: "🔒 خصوصيتك تهمنا: كل المعالجة تتم محليًا في متصفحك. نحن never نرفع صورك.",
-        errorFileType: "يرجى تحديد ملف صورة صالح (JPEG, PNG, GIF, WebP).",
-        errorFileSize: "ملف الصورة كبير جدًا. يرجى تحديد صورة أصغر (الحد الأقصى 10MB).",
-        successResize: "تم تغيير حجم الصورة بنجاح! يمكنك الآن تحميلها."
-      }
-    };
+    function loadComponent(id, file, callback) {
+      fetch(file)
+        .then(res => res.text())
+        .then(html => {
+          const el = document.getElementById(id);
+          if (el) el.innerHTML = html;
+          if (callback) callback();
+        });
+    }
 
-    let currentLanguage = "en";
-    let originalImage = null;
-    let resizedImageBlob = null;
-    let maintainAspectRatio = true;
-    let originalWidth = 0;
-    let originalHeight = 0;
+    loadComponent("navbar", "navbar.html", initNavbar);
+    loadComponent("footer", "footer.html");
+
+    // Tool elements
+    const uploadBox = document.getElementById("uploadBox");
+    const uploadBtn = document.getElementById("uploadBtn");
+    const fileInput = document.getElementById("fileInput");
+
+    const controls = document.getElementById("controls");
+    const qualitySlider = document.getElementById("qualitySlider");
+    const qualityValue = document.getElementById("qualityValue");
+    const formatSelect = document.getElementById("formatSelect");
+
+    const compressBtn = document.getElementById("compressBtn");
+    const newBtn = document.getElementById("newBtn");
+
+    const progressContainer = document.getElementById("progressContainer");
+    const progressBar = document.getElementById("progressBar");
+    const statusText = document.getElementById("statusText");
+
+    const preview = document.getElementById("preview");
+    const originalImage = document.getElementById("originalImage");
+    const compressedImage = document.getElementById("compressedImage");
+    const originalStats = document.getElementById("originalStats");
+    const compressedStats = document.getElementById("compressedStats");
+    const infoBanner = document.getElementById("infoBanner");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    let originalFile = null;
+    let compressedBlob = null;
     let originalFileName = "";
-    let originalFileType = "";
 
-    function changeLanguage() {
-      currentLanguage = document.getElementById("languageSelect").value;
-      updateTexts();
-    }
+    uploadBtn.addEventListener("click", () => fileInput.click());
 
-    function updateTexts() {
-      const trans = translations[currentLanguage];
-      if (!trans) return;
+    // Drag & Drop
+    uploadBox.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      uploadBox.classList.add("drag-over");
+    });
 
-      document.getElementById("pageTitle").textContent = trans.title;
-      document.getElementById("pageSubtitle").textContent = trans.subtitle;
+    uploadBox.addEventListener("dragleave", () => {
+      uploadBox.classList.remove("drag-over");
+    });
 
-      // Upload button + hints
-      document.querySelector(".btnPrimary").innerHTML = trans.chooseImage;
-      document.getElementById("supportedHint").textContent = trans.supportedFormats;
-      document.getElementById("loadingText").textContent = trans.processing;
+    uploadBox.addEventListener("drop", (e) => {
+      e.preventDefault();
+      uploadBox.classList.remove("drag-over");
+      const file = (e.dataTransfer.files && e.dataTransfer.files[0]) ? e.dataTransfer.files[0] : null;
+      if (file) handleFile(file);
+    });
 
-      // Controls labels
-      document.getElementById("widthLabel").textContent = trans.width;
-      document.getElementById("heightLabel").textContent = trans.height;
-      document.getElementById("unitLabel").textContent = trans.sizeUnit;
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+      if (file) handleFile(file);
+    });
 
-      // Units
-      document.getElementById("unitPx").textContent = trans.pixels;
-      document.getElementById("unitPercent").textContent = trans.percent;
+    qualitySlider.addEventListener("input", () => {
+      qualityValue.textContent = qualitySlider.value;
+    });
 
-      // Aspect
-      document.getElementById("aspectText").textContent = trans.maintainAspect;
-      document.getElementById("aspectYes").textContent = trans.yes;
-      document.getElementById("aspectNo").textContent = trans.no;
+    newBtn.addEventListener("click", resetTool);
 
-      // Buttons
-      document.getElementById("resizeBtn").innerHTML = trans.resizeBtn;
-      document.getElementById("newBtn").innerHTML = trans.newImageBtn;
-      document.getElementById("downloadBtn").innerHTML = trans.downloadBtn;
+    compressBtn.addEventListener("click", () => {
+      if (!originalFile) {
+        statusText.textContent = "❗ Please select an image first.";
+        return;
+      }
+      compressImage();
+    });
 
-      // Preview titles
-      document.getElementById("originalTitle").textContent = trans.original;
-      document.getElementById("resizedTitle").textContent = trans.resized;
-    }
+    downloadBtn.addEventListener("click", () => {
+      if (!compressedBlob) return;
+      const format = getOutputFormat();
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(compressedBlob);
+      a.download = `${originalFileName}-compressed.${format}`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
 
-    function handleImageUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      if (!file.type.match("image.*")) {
-        showError(translations[currentLanguage].errorFileType, "error");
+    function handleFile(file) {
+      // Validate
+      if (!file.type.startsWith("image/")) {
+        statusText.textContent = "❌ Please select a valid image file.";
         return;
       }
 
       if (file.size > 10 * 1024 * 1024) {
-        showError(translations[currentLanguage].errorFileSize, "error");
+        statusText.textContent = "❌ Max 10MB allowed.";
         return;
       }
 
-      originalFileName = file.name;
-      originalFileType = file.type;
+      originalFile = file;
+      originalFileName = file.name.replace(/\.[^/.]+$/, "");
 
-      showLoading();
+      // Reset preview state
+      compressedBlob = null;
+      infoBanner.style.display = "none";
+      downloadBtn.style.display = "none";
+      progressContainer.style.display = "none";
+      progressBar.style.width = "0%";
 
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        originalImage = new Image();
-        originalImage.onload = function () {
-          originalWidth = originalImage.width;
-          originalHeight = originalImage.height;
+      // Show UI
+      controls.style.display = "block";
+      preview.style.display = "block";
 
-          hideLoading();
-          showControls();
-          showPreview();
-          updateOriginalStats(file);
+      // Show original preview
+      const url = URL.createObjectURL(file);
+      originalImage.src = url;
 
-          document.getElementById("widthInput").value = originalWidth;
-          document.getElementById("heightInput").value = originalHeight;
-        };
-        originalImage.onerror = function () {
-          hideLoading();
-          showError("Failed to load image", "error");
-        };
-        originalImage.src = e.target.result;
-      };
-      reader.onerror = function () {
-        hideLoading();
-        showError("Failed to read file", "error");
-      };
-      reader.readAsDataURL(file);
+      setOriginalStats(file);
+
+      statusText.textContent = "✅ Image selected. Choose quality and click Compress.";
     }
 
-    function resizeImage() {
-      if (!originalImage) {
-        showError("Please select an image first", "error");
-        return;
-      }
-
-      const width = parseInt(document.getElementById("widthInput").value);
-      const height = parseInt(document.getElementById("heightInput").value);
-      const unit = document.getElementById("sizeUnit").value;
-
-      if (!width || !height || width <= 0 || height <= 0) {
-        showError("Please enter valid dimensions", "error");
-        return;
-      }
-
-      showLoading();
-
-      setTimeout(() => {
-        let newWidth = width;
-        let newHeight = height;
-
-        if (unit === "percent") {
-          newWidth = (originalWidth * width) / 100;
-          newHeight = (originalHeight * height) / 100;
-        }
-
-        if (maintainAspectRatio) {
-          const ratio = originalWidth / originalHeight;
-          if (newWidth / newHeight > ratio) {
-            newWidth = newHeight * ratio;
-          } else {
-            newHeight = newWidth / ratio;
-          }
-        }
-
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        canvas.width = newWidth;
-        canvas.height = newHeight;
-
-        ctx.drawImage(originalImage, 0, 0, newWidth, newHeight);
-
-        let outputType = "image/png";
-        if (originalFileType === "image/jpeg") outputType = "image/jpeg";
-        else if (originalFileType === "image/png") outputType = "image/png";
-        else if (originalFileType === "image/gif") outputType = "image/gif";
-        else if (originalFileType === "image/webp") outputType = "image/webp";
-
-        canvas.toBlob(
-          function (blob) {
-            resizedImageBlob = blob;
-            const resizedUrl = URL.createObjectURL(blob);
-            document.getElementById("resizedImage").src = resizedUrl;
-            updateResizedStats(blob, newWidth, newHeight);
-
-            hideLoading();
-            document.getElementById("downloadBtn").style.display = "inline-flex";
-            showError(translations[currentLanguage].successResize, "warning");
-          },
-          outputType,
-          0.95
-        );
-      }, 500);
+    function setOriginalStats(file) {
+      const img = new Image();
+      img.onload = () => {
+        originalStats.innerHTML = `
+          <span class="stat-chip"><b>${kb(file.size)}</b> KB</span>
+          <span class="stat-chip"><b>${img.width}×${img.height}</b> px</span>
+          <span class="stat-chip"><b>${file.type.split("/")[1].toUpperCase()}</b></span>
+        `;
+      };
+      img.src = URL.createObjectURL(file);
     }
 
-    function toggleAspectRatio(enable) {
-      maintainAspectRatio = enable;
-      document.querySelectorAll(".aspect-toggle").forEach((btn, index) => {
-        if ((enable && index === 0) || (!enable && index === 1)) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
+    function setCompressedStats(blob, width, height, format) {
+      compressedStats.innerHTML = `
+        <span class="stat-chip"><b>${kb(blob.size)}</b> KB</span>
+        <span class="stat-chip"><b>${width}×${height}</b> px</span>
+        <span class="stat-chip"><b>${format.toUpperCase()}</b></span>
+      `;
+    }
+
+    function kb(bytes) {
+      return (bytes / 1024).toFixed(2);
+    }
+
+    function getOutputFormat() {
+      const val = formatSelect.value;
+      if (val === "original") {
+        return originalFile.type.split("/")[1]; // jpeg/png/webp etc
+      }
+      return val; // jpeg/png/webp
+    }
+
+    async function compressImage() {
+      // UI
+      progressContainer.style.display = "block";
+      progressBar.style.width = "20%";
+      statusText.textContent = "Compressing image...";
+
+      const quality = parseInt(qualitySlider.value) / 100;
+      const format = getOutputFormat();
+
+      try {
+        const { blob, width, height } = await compressImageFile(originalFile, quality, format);
+
+        compressedBlob = blob;
+        compressedImage.src = URL.createObjectURL(blob);
+
+        progressBar.style.width = "100%";
+        statusText.textContent = "✅ Done! Download ready.";
+
+        setCompressedStats(blob, width, height, format);
+
+        // info banner
+        const saved = (1 - blob.size / originalFile.size) * 100;
+        infoBanner.innerHTML = `🎉 Reduced by <b>${saved.toFixed(1)}%</b> • Original: <b>${kb(originalFile.size)} KB</b> • Compressed: <b>${kb(blob.size)} KB</b>`;
+        infoBanner.style.display = "block";
+
+        downloadBtn.style.display = "block";
+      } catch (err) {
+        console.error(err);
+        statusText.textContent = "❌ Compression failed. Please try again.";
+        progressBar.style.width = "0%";
+      }
+    }
+
+    function compressImageFile(file, quality, format) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+
+          let mime = "image/jpeg";
+          if (format === "png") mime = "image/png";
+          else if (format === "webp") mime = "image/webp";
+          else if (format === "jpeg" || format === "jpg") mime = "image/jpeg";
+
+          // little progress bump
+          progressBar.style.width = "65%";
+
+          canvas.toBlob((blob) => {
+            if (!blob) return reject(new Error("Blob conversion failed"));
+            resolve({ blob, width: img.width, height: img.height });
+          }, mime, quality);
+        };
+
+        img.onerror = () => reject(new Error("Image load error"));
+        img.src = URL.createObjectURL(file);
       });
-
-      if (enable && originalImage) {
-        const width = document.getElementById("widthInput").value;
-        if (width) {
-          const ratio = originalWidth / originalHeight;
-          document.getElementById("heightInput").value = Math.round(width / ratio);
-        }
-      }
     }
 
-    function showControls() {
-      document.getElementById("controlsSection").style.display = "flex";
-    }
-
-    function showPreview() {
-      document.getElementById("previewSection").style.display = "flex";
-      document.getElementById("originalImage").src = originalImage.src;
-    }
-
-    function updateOriginalStats(file) {
-      document.getElementById("originalStats").innerHTML = `
-        <div class="stat"><span class="value">${(file.size / 1024).toFixed(2)} KB</span><small>Size</small></div>
-        <div class="stat"><span class="value">${originalWidth}×${originalHeight}</span><small>Dimensions</small></div>
-        <div class="stat"><span class="value">${file.type.split("/")[1]}</span><small>Type</small></div>
-      `;
-    }
-
-    function updateResizedStats(blob, width, height) {
-      let fileExtension = "PNG";
-      if (originalFileType === "image/jpeg") fileExtension = "JPEG";
-      else if (originalFileType === "image/png") fileExtension = "PNG";
-      else if (originalFileType === "image/gif") fileExtension = "GIF";
-      else if (originalFileType === "image/webp") fileExtension = "WebP";
-
-      document.getElementById("resizedStats").innerHTML = `
-        <div class="stat"><span class="value">${(blob.size / 1024).toFixed(2)} KB</span><small>Size</small></div>
-        <div class="stat"><span class="value">${Math.round(width)}×${Math.round(height)}</span><small>Dimensions</small></div>
-        <div class="stat"><span class="value">${fileExtension}</span><small>Type</small></div>
-      `;
-    }
-
-    function downloadImage() {
-      if (!resizedImageBlob) return;
-
-      const originalName = originalFileName.substring(0, originalFileName.lastIndexOf("."));
-      let fileExtension = ".png";
-      if (originalFileType === "image/jpeg") fileExtension = ".jpg";
-      else if (originalFileType === "image/png") fileExtension = ".png";
-      else if (originalFileType === "image/gif") fileExtension = ".gif";
-      else if (originalFileType === "image/webp") fileExtension = ".webp";
-
-      const downloadName = `${originalName}-resized${fileExtension}`;
-
-      const link = document.createElement("a");
-      link.download = downloadName;
-      link.href = URL.createObjectURL(resizedImageBlob);
-      link.click();
-    }
-
-    function resetResizer() {
-      originalImage = null;
-      resizedImageBlob = null;
+    function resetTool() {
+      originalFile = null;
+      compressedBlob = null;
       originalFileName = "";
-      originalFileType = "";
-      document.getElementById("controlsSection").style.display = "none";
-      document.getElementById("previewSection").style.display = "none";
-      document.getElementById("downloadBtn").style.display = "none";
-      document.getElementById("fileInput").value = "";
-      hideError();
+
+      fileInput.value = "";
+      controls.style.display = "none";
+      preview.style.display = "none";
+
+      originalImage.src = "";
+      compressedImage.src = "";
+
+      originalStats.innerHTML = "";
+      compressedStats.innerHTML = "";
+
+      infoBanner.style.display = "none";
+      downloadBtn.style.display = "none";
+
+      progressContainer.style.display = "none";
+      progressBar.style.width = "0%";
+      statusText.textContent = "";
     }
-
-    function showLoading() {
-      document.getElementById("loading").style.display = "block";
-    }
-
-    function hideLoading() {
-      document.getElementById("loading").style.display = "none";
-    }
-
-    function showError(message, type = "error") {
-      const errorContainer = document.getElementById("errorContainer");
-      const alertClass = type === "error" ? "alert error" : "alert warning";
-
-      errorContainer.innerHTML = `
-        <div class="${alertClass}">
-          <div class="alertText">
-            <strong>${type === "error" ? "❌ Error:" : "⚠️ Success:"}</strong> ${message}
-          </div>
-          <button class="iconBtn" type="button" onclick="this.closest('.alert').remove()">×</button>
-        </div>
-      `;
-      errorContainer.style.display = "block";
-    }
-
-    function hideError() {
-      const box = document.getElementById("errorContainer");
-      box.style.display = "none";
-      box.innerHTML = "";
-    }
-
-    // ================= INIT =================
-    document.addEventListener("DOMContentLoaded", function () {
-      loadNavbarAndFooter();
-
-      document.getElementById("fileInput").addEventListener("change", handleImageUpload);
-
-      const browserLang = navigator.language.split("-")[0];
-      if (translations[browserLang]) {
-        currentLanguage = browserLang;
-        document.getElementById("languageSelect").value = currentLanguage;
-      }
-      updateTexts();
-
-      document.getElementById("widthInput").addEventListener("input", function () {
-        if (maintainAspectRatio && originalImage) {
-          const ratio = originalWidth / originalHeight;
-          document.getElementById("heightInput").value = Math.round(this.value / ratio);
-        }
-      });
-
-      document.getElementById("heightInput").addEventListener("input", function () {
-        if (maintainAspectRatio && originalImage) {
-          const ratio = originalWidth / originalHeight;
-          document.getElementById("widthInput").value = Math.round(this.value * ratio);
-        }
-      });
-    });
   </script>
 </body>
 </html>
