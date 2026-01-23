@@ -13,9 +13,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Image Resizer Online – Resize JPG, PNG, WebP Free | ToolSonics</title>
-  <meta name="description" content="Resize images online for free with ToolSonics. Resize JPG, PNG, WebP instantly. Maintain aspect ratio, change dimensions, and download resized image quickly." />
-  <link rel="canonical" href="https://www.toolsonics.com/image-resizer.html">
+  <title>Rotate Image Online – Rotate JPG, PNG, WebP Free | ToolSonics</title>
+  <meta name="description" content="Rotate images online for free with ToolSonics. Rotate JPG, PNG, WebP instantly by 90°, 180° or custom angle. Fast, secure and mobile-friendly." />
+  <link rel="canonical" href="https://www.toolsonics.com/rotate-image.html">
 
   <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
   <link rel="stylesheet" href="global-style.css">
@@ -140,71 +140,30 @@
       align-items:center;
     }
 
-    .input{
-      flex:1;
-      min-width:220px;
-      padding:12px 14px;
-      border-radius:12px;
-      border:1px solid #d3dcff;
-      background:#fff;
-      font-size:14px;
-      outline:none;
-      font-weight:700;
-      color:#222948;
-    }
-
-    .select{
-      flex:1;
-      min-width:220px;
-      padding:12px 14px;
-      border-radius:12px;
-      border:1px solid #d3dcff;
-      background:#f7f9ff;
-      font-size:14px;
-      outline:none;
-      font-weight:700;
-      color:#222948;
-    }
-
-    .aspect-row{
-      margin-top:12px;
+    .range-row{
       display:flex;
-      align-items:center;
-      justify-content:space-between;
       gap:10px;
+      align-items:center;
       flex-wrap:wrap;
-      padding:12px;
-      border:1px solid #dbe3ff;
-      border-radius:12px;
-      background:#fff;
-    }
-    .aspect-row span{
-      font-size:13px;
-      color:#44506a;
-      font-weight:800;
+      width:100%;
     }
 
-    .toggle-group{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
+    input[type="range"]{
+      flex:1;
+      min-width:240px;
+      accent-color:#387bff;
     }
 
-    .toggle-btn{
-      border:1px solid #dbe3ff;
-      background:#fff;
-      padding:10px 14px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:800;
-      color:#222948;
-      transition:.2s;
-    }
-    .toggle-btn:hover{ border-color:#387bff; }
-    .toggle-btn.active{
+    .value-pill{
       background:#eef4ff;
-      border-color:#387bff;
+      border:1px solid #dbe3ff;
       color:#2667e5;
+      font-weight:800;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      min-width:80px;
+      text-align:center;
     }
 
     .btn-row{
@@ -242,6 +201,23 @@
       color:#fff;
     }
     .secondary-btn:hover{ background:#56607a; }
+
+    .small-btn{
+      border:none;
+      border-radius:999px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:800;
+      background:#eef4ff;
+      color:#2667e5;
+      border:1px solid #dbe3ff;
+      flex:1;
+      min-width:160px;
+    }
+    .small-btn:hover{
+      border-color:#387bff;
+      background:#eaf1ff;
+    }
 
     /* Progress */
     #progressContainer{
@@ -339,14 +315,16 @@
   <div id="navbar"></div>
 
   <div class="tool-wrapper">
-
     <header class="page-header">
-      <h1>Image Resizer Online</h1>
-      <p>Resize JPG, PNG and WebP images instantly – free, fast and mobile-friendly. Maintain aspect ratio and download resized images easily.</p>
+      <h1>Rotate Image Online</h1>
+      <p>
+        Rotate JPG, PNG and WebP images instantly – free, fast and mobile-friendly.
+        Rotate 90°, 180° or use a custom angle and download the rotated image.
+      </p>
     </header>
 
     <section class="tool-box">
-
+      <!-- Upload -->
       <div class="upload-box" id="uploadBox">
         <i class="fa-regular fa-image"></i><br>
 
@@ -355,31 +333,26 @@
         </button>
 
         <input type="file" id="fileInput" accept="image/*">
-
         <div class="hint">Supports JPG, PNG, WebP (Max 10MB) • Drag & Drop supported</div>
       </div>
 
+      <!-- Controls -->
       <div class="controls" id="controls">
-        <div class="label">Resize Dimensions</div>
+        <div class="label">Quick Rotate</div>
         <div class="row">
-          <input type="number" id="widthInput" class="input" placeholder="Width (px)">
-          <input type="number" id="heightInput" class="input" placeholder="Height (px)">
-          <select id="unitSelect" class="select">
-            <option value="px">Pixels (px)</option>
-            <option value="percent">Percentage (%)</option>
-          </select>
+          <button class="small-btn" id="rotLeftBtn">⟲ Rotate -90°</button>
+          <button class="small-btn" id="rotRightBtn">⟳ Rotate +90°</button>
+          <button class="small-btn" id="rot180Btn">↻ Rotate 180°</button>
         </div>
 
-        <div class="aspect-row">
-          <span>Maintain Aspect Ratio</span>
-          <div class="toggle-group">
-            <button class="toggle-btn active" id="aspectYes">Yes</button>
-            <button class="toggle-btn" id="aspectNo">No</button>
-          </div>
+        <div class="label">Custom Angle</div>
+        <div class="range-row">
+          <input type="range" id="angleSlider" min="-180" max="180" value="0">
+          <div class="value-pill"><span id="angleValue">0</span>°</div>
         </div>
 
         <div class="btn-row">
-          <button class="primary-btn" id="resizeBtn">Resize Image</button>
+          <button class="primary-btn" id="applyBtn">Apply Rotation</button>
           <button class="secondary-btn" id="newBtn">New Image</button>
         </div>
 
@@ -390,6 +363,7 @@
         <p id="statusText"></p>
       </div>
 
+      <!-- Preview -->
       <div class="preview" id="previewSection">
         <div class="preview-card">
           <h3>Original</h3>
@@ -397,28 +371,23 @@
         </div>
 
         <div class="preview-card">
-          <h3>Resized</h3>
-          <img id="resizedImg" alt="Resized preview">
+          <h3>Rotated</h3>
+          <img id="rotatedImg" alt="Rotated preview">
         </div>
 
         <button class="primary-btn download-btn" id="downloadBtn">
-          Download Resized Image
+          Download Rotated Image
         </button>
       </div>
-
     </section>
 
     <section class="seo-text">
-      <h2>Why use ToolSonics Image Resizer?</h2>
+      <h2>Why use ToolSonics Rotate Image?</h2>
       <p>
-        ToolSonics Image Resizer helps you resize images online in seconds. Perfect for websites, WhatsApp sharing,
-        documents, thumbnails and social media posts.
-      </p>
-      <p>
-        Works smoothly on Android, iPhone, Windows and Mac. Fast, private and clean output with no signup required.
+        ToolSonics Rotate Image helps you rotate images for documents, profile pictures, scanned pages, and social media.
+        Everything works locally in your browser for privacy and speed.
       </p>
     </section>
-
   </div>
 
   <!-- FOOTER -->
@@ -473,20 +442,20 @@
     loadComponent("navbar", "navbar.html", initNavbar);
     loadComponent("footer", "footer.html");
 
-    // Tool Logic
+    // Tool Elements
     const uploadBox = document.getElementById("uploadBox");
-    const fileInput = document.getElementById("fileInput");
     const uploadBtn = document.getElementById("uploadBtn");
+    const fileInput = document.getElementById("fileInput");
 
     const controls = document.getElementById("controls");
-    const widthInput = document.getElementById("widthInput");
-    const heightInput = document.getElementById("heightInput");
-    const unitSelect = document.getElementById("unitSelect");
+    const rotLeftBtn = document.getElementById("rotLeftBtn");
+    const rotRightBtn = document.getElementById("rotRightBtn");
+    const rot180Btn = document.getElementById("rot180Btn");
 
-    const aspectYes = document.getElementById("aspectYes");
-    const aspectNo = document.getElementById("aspectNo");
+    const angleSlider = document.getElementById("angleSlider");
+    const angleValue = document.getElementById("angleValue");
 
-    const resizeBtn = document.getElementById("resizeBtn");
+    const applyBtn = document.getElementById("applyBtn");
     const newBtn = document.getElementById("newBtn");
 
     const progressContainer = document.getElementById("progressContainer");
@@ -495,14 +464,13 @@
 
     const previewSection = document.getElementById("previewSection");
     const originalImg = document.getElementById("originalImg");
-    const resizedImg = document.getElementById("resizedImg");
+    const rotatedImg = document.getElementById("rotatedImg");
     const downloadBtn = document.getElementById("downloadBtn");
 
+    // State
     let uploadedFile = null;
-    let originalWidth = 0;
-    let originalHeight = 0;
-    let keepAspect = true;
-    let resizedBlob = null;
+    let currentAngle = 0; // degrees
+    let rotatedBlob = null;
 
     uploadBtn.addEventListener("click", () => fileInput.click());
 
@@ -528,6 +496,57 @@
       if (file) handleFile(file);
     });
 
+    angleSlider.addEventListener("input", () => {
+      angleValue.textContent = angleSlider.value;
+      currentAngle = parseInt(angleSlider.value, 10);
+      // live preview rotate (CSS only for preview)
+      rotatedImg.style.transform = `rotate(${currentAngle}deg)`;
+    });
+
+    rotLeftBtn.addEventListener("click", () => {
+      currentAngle -= 90;
+      normalizeAngle();
+      syncAngleUI();
+    });
+
+    rotRightBtn.addEventListener("click", () => {
+      currentAngle += 90;
+      normalizeAngle();
+      syncAngleUI();
+    });
+
+    rot180Btn.addEventListener("click", () => {
+      currentAngle += 180;
+      normalizeAngle();
+      syncAngleUI();
+    });
+
+    applyBtn.addEventListener("click", () => {
+      if (!uploadedFile) {
+        statusText.textContent = "❗ Please select an image first.";
+        return;
+      }
+      applyRotation();
+    });
+
+    newBtn.addEventListener("click", resetTool);
+
+    downloadBtn.addEventListener("click", () => {
+      if (!rotatedBlob || !uploadedFile) return;
+
+      const baseName = uploadedFile.name.replace(/\.[^/.]+$/, "");
+      const ext = uploadedFile.type.includes("jpeg") ? "jpg" :
+                  uploadedFile.type.includes("png") ? "png" :
+                  uploadedFile.type.includes("webp") ? "webp" : "png";
+
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(rotatedBlob);
+      a.download = `${baseName}-rotated.${ext}`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+
     function handleFile(file) {
       if (!file.type.startsWith("image/")) {
         statusText.textContent = "❌ Please select a valid image file.";
@@ -539,125 +558,87 @@
       }
 
       uploadedFile = file;
-      resizedBlob = null;
+      rotatedBlob = null;
 
       const url = URL.createObjectURL(file);
       originalImg.src = url;
-      resizedImg.src = "";
+      rotatedImg.src = url;
+      rotatedImg.style.transform = "rotate(0deg)";
 
-      previewSection.style.display = "flex";
       controls.style.display = "block";
+      previewSection.style.display = "flex";
       downloadBtn.style.display = "none";
 
       progressContainer.style.display = "none";
       progressBar.style.width = "0%";
 
-      const img = new Image();
-      img.onload = () => {
-        originalWidth = img.width;
-        originalHeight = img.height;
+      currentAngle = 0;
+      angleSlider.value = 0;
+      angleValue.textContent = "0";
 
-        widthInput.value = originalWidth;
-        heightInput.value = originalHeight;
-
-        statusText.textContent = "✅ Image selected. Set size and click Resize.";
-      };
-      img.src = url;
+      statusText.textContent = "✅ Image selected. Choose angle and click Apply Rotation.";
     }
 
-    aspectYes.addEventListener("click", () => {
-      keepAspect = true;
-      aspectYes.classList.add("active");
-      aspectNo.classList.remove("active");
-      autoUpdateHeight();
-    });
-
-    aspectNo.addEventListener("click", () => {
-      keepAspect = false;
-      aspectNo.classList.add("active");
-      aspectYes.classList.remove("active");
-    });
-
-    function autoUpdateHeight() {
-      if (!keepAspect || !uploadedFile) return;
-      const w = parseInt(widthInput.value);
-      if (!w || w <= 0) return;
-      const ratio = originalWidth / originalHeight;
-      heightInput.value = Math.round(w / ratio);
+    function normalizeAngle() {
+      // keep between -180..180 for slider range
+      while (currentAngle > 180) currentAngle -= 360;
+      while (currentAngle < -180) currentAngle += 360;
     }
 
-    widthInput.addEventListener("input", () => {
-      if (keepAspect) autoUpdateHeight();
-    });
+    function syncAngleUI() {
+      angleSlider.value = currentAngle;
+      angleValue.textContent = currentAngle;
+      rotatedImg.style.transform = `rotate(${currentAngle}deg)`;
+    }
 
-    heightInput.addEventListener("input", () => {
-      if (!keepAspect || !uploadedFile) return;
-      const h = parseInt(heightInput.value);
-      if (!h || h <= 0) return;
-      const ratio = originalWidth / originalHeight;
-      widthInput.value = Math.round(h * ratio);
-    });
-
-    resizeBtn.addEventListener("click", async () => {
-      if (!uploadedFile) {
-        statusText.textContent = "❗ Please select an image first.";
-        return;
-      }
-
-      let w = parseInt(widthInput.value);
-      let h = parseInt(heightInput.value);
-      const unit = unitSelect.value;
-
-      if (!w || !h || w <= 0 || h <= 0) {
-        statusText.textContent = "❌ Enter valid dimensions.";
-        return;
-      }
-
+    function applyRotation() {
       progressContainer.style.display = "block";
       progressBar.style.width = "20%";
-      statusText.textContent = "Resizing image...";
+      statusText.textContent = "Applying rotation...";
 
       const img = new Image();
       img.onload = () => {
         progressBar.style.width = "60%";
 
-        let newW = w;
-        let newH = h;
+        const rad = currentAngle * Math.PI / 180;
 
-        if (unit === "percent") {
-          newW = Math.round((img.width * w) / 100);
-          newH = Math.round((img.height * h) / 100);
-        }
+        // calculate new canvas size after rotation
+        const w = img.width;
+        const h = img.height;
 
-        if (keepAspect) {
-          const ratio = img.width / img.height;
-          if (newW / newH > ratio) newW = Math.round(newH * ratio);
-          else newH = Math.round(newW / ratio);
-        }
+        const cos = Math.abs(Math.cos(rad));
+        const sin = Math.abs(Math.sin(rad));
+
+        const newW = Math.round(w * cos + h * sin);
+        const newH = Math.round(w * sin + h * cos);
 
         const canvas = document.createElement("canvas");
         canvas.width = newW;
         canvas.height = newH;
 
         const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, newW, newH);
+
+        // move to center
+        ctx.translate(newW / 2, newH / 2);
+        ctx.rotate(rad);
+        ctx.drawImage(img, -w / 2, -h / 2);
 
         progressBar.style.width = "90%";
 
-        // keep same output type (jpeg/png/webp)
         const mime = uploadedFile.type || "image/png";
         canvas.toBlob((blob) => {
           if (!blob) {
-            statusText.textContent = "❌ Resize failed. Try again.";
+            statusText.textContent = "❌ Rotation failed. Try again.";
             progressBar.style.width = "0%";
             return;
           }
 
-          resizedBlob = blob;
-          resizedImg.src = URL.createObjectURL(blob);
+          rotatedBlob = blob;
+          rotatedImg.style.transform = "rotate(0deg)";
+          rotatedImg.src = URL.createObjectURL(blob);
 
           progressBar.style.width = "100%";
-          statusText.textContent = "✅ Done! Resized image ready to download.";
+          statusText.textContent = "✅ Done! Rotated image ready to download.";
           downloadBtn.style.display = "block";
         }, mime, 0.95);
       };
@@ -669,40 +650,32 @@
       };
 
       img.src = URL.createObjectURL(uploadedFile);
-    });
+    }
 
-    downloadBtn.addEventListener("click", () => {
-      if (!resizedBlob || !uploadedFile) return;
-
-      const baseName = uploadedFile.name.replace(/\.[^/.]+$/, "");
-      const ext = uploadedFile.type.includes("jpeg") ? "jpg" :
-                  uploadedFile.type.includes("png") ? "png" :
-                  uploadedFile.type.includes("webp") ? "webp" : "png";
-
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(resizedBlob);
-      a.download = `${baseName}-resized.${ext}`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    });
-
-    newBtn.addEventListener("click", () => {
+    function resetTool() {
       uploadedFile = null;
-      resizedBlob = null;
+      rotatedBlob = null;
 
       fileInput.value = "";
       controls.style.display = "none";
       previewSection.style.display = "none";
 
       originalImg.src = "";
-      resizedImg.src = "";
+      rotatedImg.src = "";
+      rotatedImg.style.transform = "rotate(0deg)";
 
       downloadBtn.style.display = "none";
+
       progressContainer.style.display = "none";
       progressBar.style.width = "0%";
       statusText.textContent = "";
-    });
+
+      uploadBox.classList.remove("drag-over");
+
+      currentAngle = 0;
+      angleSlider.value = 0;
+      angleValue.textContent = "0";
+    }
   </script>
 
 </body>
