@@ -1,1447 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1H0ZEYLH0K');
-</script>
-
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Keyword Optimizer - Boost Your ATS Score | ToolSonics</title>
-    <meta name="description" content="Free AI-powered resume keyword optimizer. Find the right keywords for your target job, improve ATS compatibility, and increase interview chances.">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="keywords" content="resume keyword optimizer, ATS keywords, resume keywords, job application keywords, keyword density, resume scanner">
-    <meta name="author" content="ToolSonics">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Resume Keyword Optimizer - Boost Your ATS Score | ToolSonics">
-    <meta property="og:description" content="Free AI-powered resume keyword optimizer with industry-specific keyword recommendations.">
-    <meta property="og:type" content="website">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #1a73e8;
-            --primary-dark: #0d47a1;
-            --primary-light: #e8f0fe;
-            --secondary: #f8f9fa;
-            --text: #202124;
-            --text-light: #5f6368;
-            --white: #ffffff;
-            --success: #34a853;
-            --warning: #f9ab00;
-            --error: #ea4335;
-            --info: #4285f4;
-            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.15);
-            --radius: 8px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: var(--white);
-            border-radius: 15px 15px 0 0;
-            padding: 30px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            margin-bottom: 0;
-        }
-
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .logo span {
-            color: var(--text);
-        }
-
-        .tagline {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        /* Main Card */
-        .main-card {
-            background: var(--white);
-            border-radius: 0 0 15px 15px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-        }
-
-        /* Tool Header */
-        .tool-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .tool-title {
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .tool-description {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Main Content Grid */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        /* Input Section */
-        .input-section {
-            background: var(--secondary);
-            border-radius: var(--radius);
-            padding: 25px;
-            border: 2px solid var(--primary-light);
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Form Groups */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .input-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-
-        .textarea-input, .text-input, .select-input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: var(--radius);
-            font-size: 1rem;
-            transition: var(--transition);
-            background: var(--white);
-        }
-
-        .textarea-input {
-            min-height: 200px;
-            resize: vertical;
-        }
-
-        .textarea-input:focus, .text-input:focus, .select-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px var(--primary-light);
-        }
-
-        /* Analysis Section */
-        .analysis-section {
-            background: var(--secondary);
-            border-radius: var(--radius);
-            padding: 25px;
-            border: 2px solid var(--primary-light);
-        }
-
-        /* Score Cards */
-        .score-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .score-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 20px;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-        .score-value {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .score-value.excellent {
-            color: var(--success);
-        }
-
-        .score-value.good {
-            color: var(--warning);
-        }
-
-        .score-value.poor {
-            color: var(--error);
-        }
-
-        .score-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Keyword Analysis */
-        .keyword-analysis {
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--radius);
-            margin-bottom: 25px;
-            box-shadow: var(--shadow);
-        }
-
-        .keyword-category {
-            margin-bottom: 20px;
-        }
-
-        .category-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .keyword-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .keyword-tag {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .keyword-tag.present {
-            background: var(--success);
-            color: white;
-        }
-
-        .keyword-tag.missing {
-            background: #ffebee;
-            color: var(--error);
-            border: 1px solid var(--error);
-        }
-
-        .keyword-tag.recommended {
-            background: var(--primary-light);
-            color: var(--primary);
-        }
-
-        /* Keyword Density */
-        .density-section {
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--radius);
-            margin-bottom: 25px;
-            box-shadow: var(--shadow);
-        }
-
-        .density-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            margin: 10px 0;
-            overflow: hidden;
-        }
-
-        .density-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-
-        .density-fill.optimal {
-            background: var(--success);
-        }
-
-        .density-fill.low {
-            background: var(--warning);
-        }
-
-        .density-fill.poor {
-            background: var(--error);
-        }
-
-        .density-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        /* Improvement Suggestions */
-        .suggestions-section {
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        .suggestion-item {
-            background: var(--secondary);
-            padding: 15px;
-            border-radius: var(--radius);
-            margin-bottom: 15px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .suggestion-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .suggestion-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 0.8rem;
-        }
-
-        .suggestion-icon.critical {
-            background: var(--error);
-        }
-
-        .suggestion-icon.important {
-            background: var(--warning);
-        }
-
-        .suggestion-icon.suggestion {
-            background: var(--info);
-        }
-
-        .suggestion-title {
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .suggestion-content {
-            color: var(--text);
-            font-size: 0.9rem;
-        }
-
-        /* Action Buttons */
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: var(--radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-        }
-
-        .analyze-btn {
-            background: var(--success);
-            color: var(--white);
-        }
-
-        .analyze-btn:hover {
-            background: #2e7d32;
-            transform: translateY(-2px);
-        }
-
-        .optimize-btn {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .optimize-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .reset-btn {
-            background: var(--error);
-            color: var(--white);
-        }
-
-        .reset-btn:hover {
-            background: #c62828;
-            transform: translateY(-2px);
-        }
-
-        /* Features Section */
-        .features-section {
-            margin: 40px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 25px;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .feature-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-
-        .feature-description {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* Industry Keywords Section */
-        .industry-section {
-            background: var(--white);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            margin: 40px 0;
-        }
-
-        .industry-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .industry-card {
-            background: var(--secondary);
-            padding: 20px;
-            border-radius: var(--radius);
-            border: 2px solid transparent;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .industry-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .industry-card.active {
-            border-color: var(--primary);
-            background: var(--primary-light);
-        }
-
-        .industry-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .industry-name {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-
-        .industry-keywords {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            line-height: 1.4;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 25px;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .copyright {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--text);
-            color: var(--white);
-            padding: 15px 25px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-hover);
-            transform: translateY(100px);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 1000;
-        }
-
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .toast.success {
-            background: var(--success);
-        }
-
-        .toast.error {
-            background: var(--error);
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #ffffff;
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .score-cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .industry-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .action-btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .tool-title {
-                font-size: 1.8rem;
-            }
-            
-            header {
-                padding: 20px;
-            }
-            
-            .main-card {
-                padding: 25px;
-            }
-            
-            .industry-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .tool-title {
-                font-size: 1.5rem;
-            }
-            
-            .tool-description {
-                font-size: 1rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0ZEYLH0K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1H0ZEYLH0K');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Resume ATS Optimizer – Improve ATS Score | ToolSonics</title>
+  <meta name="description" content="Free Resume ATS Optimizer by ToolSonics. Match resume with job description, get ATS score, missing keywords & optimization tips.">
+
+  <link rel="icon" href="favicon-16x16.png">
+  <link rel="stylesheet" href="global-style.css">
+  <link rel="stylesheet" href="navbar.css">
+
+  <style>
+    body{
+      background:#f5f7fb;
+      font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+      color:#222948;
+    }
+
+    .wrapper{
+      max-width:1100px;
+      margin:40px auto 60px;
+      padding:0 16px;
+    }
+
+    .header{
+      background:linear-gradient(180deg,#fefeff,#edf3ff);
+      border-radius:18px;
+      padding:26px;
+      border:1px solid #dde5ff;
+      box-shadow:0 10px 26px rgba(30,42,90,.06);
+      margin-bottom:20px;
+    }
+    .header h1{margin:0 0 6px;font-size:26px;}
+    .header p{margin:0;font-size:14px;color:#5b6684;max-width:700px;}
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    @media(max-width:900px){.grid{grid-template-columns:1fr;}}
+
+    .card{
+      background:#fff;
+      border-radius:16px;
+      padding:20px;
+      border:1px solid #e0e6ff;
+      box-shadow:0 6px 18px rgba(46,61,120,.05);
+    }
+
+    .card h2{
+      margin:0 0 12px;
+      font-size:15px;
+      font-weight:900;
+    }
+
+    .label{
+      font-size:12px;
+      font-weight:800;
+      color:#44506a;
+      margin-bottom:6px;
+      display:block;
+    }
+
+    .textarea{
+      width:100%;
+      min-height:180px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid #d3dcff;
+      font-size:14px;
+      font-weight:600;
+      resize:vertical;
+      outline:none;
+    }
+    .textarea:focus{
+      border-color:#387bff;
+      box-shadow:0 0 0 3px rgba(56,123,255,.15);
+    }
+
+    .btn{
+      margin-top:14px;
+      width:100%;
+      border:none;
+      border-radius:999px;
+      padding:12px 18px;
+      font-size:14px;
+      font-weight:900;
+      cursor:pointer;
+      background:#387bff;
+      color:#fff;
+      box-shadow:0 8px 18px rgba(56,123,255,.35);
+    }
+    .btn:hover{background:#2667e5;}
+
+    /* Result */
+    .result{
+      display:none;
+      margin-top:18px;
+    }
+
+    .scoreBox{
+      text-align:center;
+      padding:16px;
+      border-radius:16px;
+      background:#f7f9ff;
+      border:1px solid #dbe3ff;
+      margin-bottom:14px;
+    }
+
+    .score{
+      font-size:38px;
+      font-weight:900;
+      color:#387bff;
+    }
+    .scoreBox p{
+      margin:6px 0 0;
+      font-size:13px;
+      color:#5b6684;
+      font-weight:700;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .tag{
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      border:1px solid #dbe3ff;
+      background:#fff;
+    }
+    .tag.missing{
+      background:#fff5f6;
+      border-color:#ffd6db;
+      color:#c0392b;
+    }
+    .tag.matched{
+      background:#f0f7ff;
+      border-color:#cfe0ff;
+      color:#2667e5;
+    }
+
+    .tip{
+      margin-top:12px;
+      font-size:13px;
+      color:#44506a;
+      background:#f7f9ff;
+      border:1px solid #dbe3ff;
+      padding:12px;
+      border-radius:14px;
+      font-weight:700;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="logo">Tool<span>Sonics</span></div>
-            <p class="tagline">Your Daily Tools, All in One Place</p>
-        </header>
 
-        <!-- Main Card -->
-        <div class="main-card">
-            <!-- Tool Header -->
-            <div class="tool-header">
-                <h1 class="tool-title">
-                    <i class="fas fa-key"></i>
-                    Resume Keyword Optimizer
-                </h1>
-                <p class="tool-description">
-                    Optimize your resume with the right keywords for ATS systems. 
-                    Get industry-specific keyword recommendations and improve your chances of getting noticed.
-                </p>
-            </div>
+<div id="navbar"></div>
 
-            <!-- Main Content Grid -->
-            <div class="main-grid">
-                <!-- Input Section -->
-                <div class="input-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-edit"></i>
-                        Your Resume & Target Job
-                    </h3>
-                    
-                    <div class="form-group">
-                        <label class="input-label">Paste Your Resume Content</label>
-                        <textarea class="textarea-input" id="resume-text" placeholder="Paste your resume content here..."></textarea>
-                    </div>
+<div class="wrapper">
 
-                    <div class="form-group">
-                        <label class="input-label">Target Job Title</label>
-                        <input type="text" class="text-input" id="job-title" placeholder="e.g., Software Engineer, Marketing Manager">
-                    </div>
+  <div class="header">
+    <h1>Resume ATS Optimizer</h1>
+    <p>Check how well your resume matches the job description. Improve ATS score, find missing keywords and optimize for recruiters.</p>
+  </div>
 
-                    <div class="form-group">
-                        <label class="input-label">Industry</label>
-                        <select class="select-input" id="industry">
-                            <option value="">Select Industry</option>
-                            <option value="technology">Technology</option>
-                            <option value="healthcare">Healthcare</option>
-                            <option value="finance">Finance & Banking</option>
-                            <option value="marketing">Marketing & Sales</option>
-                            <option value="education">Education</option>
-                            <option value="engineering">Engineering</option>
-                            <option value="design">Design & Creative</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
+  <div class="grid">
 
-                    <div class="form-group">
-                        <label class="input-label">Job Description (Optional)</label>
-                        <textarea class="textarea-input" id="job-description" placeholder="Paste the job description to match keywords..."></textarea>
-                    </div>
+    <!-- INPUT -->
+    <div class="card">
+      <h2>Your Resume</h2>
+      <label class="label">Paste Resume Text</label>
+      <textarea id="resumeText" class="textarea" placeholder="Paste your resume here..."></textarea>
 
-                    <div class="action-buttons">
-                        <button class="action-btn analyze-btn" id="analyze-btn">
-                            <i class="fas fa-search"></i>
-                            Analyze Keywords
-                        </button>
-                        <button class="action-btn reset-btn" id="reset-btn">
-                            <i class="fas fa-redo"></i>
-                            Reset
-                        </button>
-                    </div>
-                </div>
+      <h2 style="margin-top:16px;">Job Description</h2>
+      <label class="label">Paste Job Description</label>
+      <textarea id="jobText" class="textarea" placeholder="Paste job description here..."></textarea>
 
-                <!-- Analysis Section -->
-                <div class="analysis-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-chart-bar"></i>
-                        Keyword Analysis Results
-                    </h3>
-                    
-                    <!-- Score Cards -->
-                    <div class="score-cards">
-                        <div class="score-card">
-                            <div class="score-value" id="keyword-score">0%</div>
-                            <div class="score-label">Keyword Match Score</div>
-                        </div>
-                        <div class="score-card">
-                            <div class="score-value" id="ats-score">0%</div>
-                            <div class="score-label">ATS Compatibility</div>
-                        </div>
-                    </div>
-
-                    <!-- Keyword Analysis -->
-                    <div class="keyword-analysis">
-                        <h4 class="section-title" style="font-size: 1.1rem;">
-                            <i class="fas fa-key"></i>
-                            Keyword Analysis
-                        </h4>
-                        
-                        <div class="keyword-category">
-                            <div class="category-title">
-                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                                Keywords Found in Your Resume
-                            </div>
-                            <div class="keyword-tags" id="found-keywords">
-                                <!-- Found keywords will appear here -->
-                            </div>
-                        </div>
-
-                        <div class="keyword-category">
-                            <div class="category-title">
-                                <i class="fas fa-exclamation-circle" style="color: var(--error);"></i>
-                                Missing Important Keywords
-                            </div>
-                            <div class="keyword-tags" id="missing-keywords">
-                                <!-- Missing keywords will appear here -->
-                            </div>
-                        </div>
-
-                        <div class="keyword-category">
-                            <div class="category-title">
-                                <i class="fas fa-lightbulb" style="color: var(--info);"></i>
-                                Recommended Keywords to Add
-                            </div>
-                            <div class="keyword-tags" id="recommended-keywords">
-                                <!-- Recommended keywords will appear here -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Keyword Density -->
-                    <div class="density-section">
-                        <h4 class="section-title" style="font-size: 1.1rem;">
-                            <i class="fas fa-chart-pie"></i>
-                            Keyword Density Analysis
-                        </h4>
-                        <div class="density-bar">
-                            <div class="density-fill" id="density-fill" style="width: 0%"></div>
-                        </div>
-                        <div class="density-info">
-                            <span>Too Few</span>
-                            <span id="density-value">0% Density</span>
-                            <span>Too Many</span>
-                        </div>
-                        <div id="density-feedback" style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">
-                            Optimal density: 2-3% of total words
-                        </div>
-                    </div>
-
-                    <!-- Improvement Suggestions -->
-                    <div class="suggestions-section">
-                        <h4 class="section-title" style="font-size: 1.1rem;">
-                            <i class="fas fa-bullseye"></i>
-                            Optimization Suggestions
-                        </h4>
-                        <div id="suggestions-list">
-                            <div class="suggestion-item">
-                                <div class="suggestion-header">
-                                    <div class="suggestion-icon suggestion">
-                                        <i class="fas fa-lightbulb"></i>
-                                    </div>
-                                    <div class="suggestion-title">Get Started</div>
-                                </div>
-                                <div class="suggestion-content">
-                                    Paste your resume and target job title to get personalized keyword optimization suggestions.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="action-buttons">
-                        <button class="action-btn optimize-btn" id="optimize-btn" disabled>
-                            <i class="fas fa-magic"></i>
-                            Auto-Optimize Resume
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Industry Keywords Section -->
-            <div class="industry-section">
-                <h2 class="section-title" style="text-align: center;">
-                    <i class="fas fa-industry"></i>
-                    Industry-Specific Keywords
-                </h2>
-                <p style="text-align: center; color: var(--text-light); margin-bottom: 20px;">
-                    Click on an industry to see commonly searched keywords
-                </p>
-                <div class="industry-grid">
-                    <div class="industry-card" data-industry="technology">
-                        <div class="industry-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <div class="industry-name">Technology</div>
-                        <div class="industry-keywords">JavaScript, Python, React, AWS, Agile, DevOps, API, Cloud</div>
-                    </div>
-                    <div class="industry-card" data-industry="marketing">
-                        <div class="industry-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <div class="industry-name">Marketing</div>
-                        <div class="industry-keywords">SEO, SEM, Content Marketing, Social Media, Analytics, CRM, ROI</div>
-                    </div>
-                    <div class="industry-card" data-industry="finance">
-                        <div class="industry-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="industry-name">Finance</div>
-                        <div class="industry-keywords">Financial Analysis, Risk Management, Investment, Compliance, Forecasting</div>
-                    </div>
-                    <div class="industry-card" data-industry="healthcare">
-                        <div class="industry-icon">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <div class="industry-name">Healthcare</div>
-                        <div class="industry-keywords">Patient Care, EHR, HIPAA, Clinical, Healthcare Management, Medical</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Features Section -->
-            <div class="features-section">
-                <h2 class="section-title" style="text-align: center; color: white;">
-                    Why Keyword Optimization Matters
-                </h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 class="feature-title">Beat ATS Systems</h3>
-                        <p class="feature-description">
-                            75% of resumes are rejected by Applicant Tracking Systems before human review.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h3 class="feature-title">Target Specific Roles</h3>
-                        <p class="feature-description">
-                            Get the exact keywords hiring managers and recruiters are searching for.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="feature-title">Increase Visibility</h3>
-                        <p class="feature-description">
-                            Proper keyword usage can increase your resume's visibility by up to 60%.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3 class="feature-title">Save Time</h3>
-                        <p class="feature-description">
-                            Get instant keyword analysis instead of manual research.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-links">
-                <a href="#">Home</a>
-                <a href="#">All Tools</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="mailto:toolsonics6@gmail.com">Contact Us</a>
-            </div>
-            <p class="copyright">
-                &copy; 2024 ToolSonics. All rights reserved. | 
-                Resume Keyword Optimizer Tool
-            </p>
-        </footer>
+      <button class="btn" onclick="analyzeATS()">Analyze ATS Score</button>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
+    <!-- OUTPUT -->
+    <div class="card">
+      <h2>ATS Result</h2>
 
-    <script>
-        // DOM Elements
-        const analyzeBtn = document.getElementById('analyze-btn');
-        const resetBtn = document.getElementById('reset-btn');
-        const optimizeBtn = document.getElementById('optimize-btn');
-        const industryCards = document.querySelectorAll('.industry-card');
+      <div class="result" id="resultBox">
 
-        // Industry keyword database
-        const industryKeywords = {
-            technology: [
-                'javascript', 'python', 'java', 'react', 'node.js', 'aws', 'azure', 'docker', 'kubernetes',
-                'agile', 'scrum', 'devops', 'ci/cd', 'api', 'rest', 'graphql', 'microservices', 'cloud',
-                'machine learning', 'ai', 'data science', 'sql', 'nosql', 'mongodb', 'postgresql',
-                'typescript', 'angular', 'vue', 'html', 'css', 'sass', 'bootstrap', 'git', 'github'
-            ],
-            marketing: [
-                'seo', 'sem', 'ppc', 'content marketing', 'social media', 'digital marketing', 'email marketing',
-                'analytics', 'google analytics', 'crm', 'salesforce', 'hubspot', 'conversion rate', 'roi',
-                'brand management', 'market research', 'campaign management', 'content strategy', 'inbound marketing',
-                'outbound marketing', 'lead generation', 'customer acquisition', 'social media marketing'
-            ],
-            finance: [
-                'financial analysis', 'risk management', 'investment', 'portfolio management', 'compliance',
-                'forecasting', 'budgeting', 'financial modeling', 'accounting', 'gaap', 'ifrs', 'audit',
-                'taxation', 'treasury', 'mergers and acquisitions', 'due diligence', 'valuation', 'equity research',
-                'derivatives', 'hedge funds', 'private equity', 'venture capital', 'financial reporting'
-            ],
-            healthcare: [
-                'patient care', 'ehr', 'emr', 'hipaa', 'clinical', 'healthcare management', 'medical',
-                'healthcare administration', 'patient safety', 'quality improvement', 'health informatics',
-                'telehealth', 'medical coding', 'icd-10', 'cpt', 'healthcare compliance', 'public health',
-                'healthcare policy', 'medical research', 'clinical trials', 'pharmaceutical', 'healthcare it'
-            ],
-            education: [
-                'curriculum development', 'lesson planning', 'classroom management', 'student assessment',
-                'differentiated instruction', 'educational technology', 'edtech', 'learning management system',
-                'lms', 'student engagement', 'special education', 'inclusive education', 'educational leadership',
-                'instructional design', 'pedagogy', 'andragogy', 'academic advising', 'student counseling',
-                'educational research', 'accreditation', 'professional development', 'teacher training'
-            ],
-            engineering: [
-                'cad', 'solidworks', 'autocad', 'fea', 'finite element analysis', 'product development',
-                'mechanical design', 'electrical engineering', 'civil engineering', 'structural engineering',
-                'project management', 'quality control', 'six sigma', 'lean manufacturing', 'supply chain',
-                'logistics', 'operations management', 'manufacturing', 'prototyping', '3d printing', 'cnc',
-                'machining', 'welding', 'materials science', 'thermodynamics', 'fluid mechanics'
-            ],
-            design: [
-                'ui design', 'ux design', 'user experience', 'user interface', 'wireframing', 'prototyping',
-                'figma', 'sketch', 'adobe xd', 'illustrator', 'photoshop', 'indesign', 'visual design',
-                'interaction design', 'design thinking', 'human-centered design', 'responsive design',
-                'mobile design', 'web design', 'graphic design', 'brand identity', 'typography', 'color theory',
-                'layout design', 'motion design', 'animation', '3d modeling', 'blender', 'maya'
-            ]
-        };
+        <div class="scoreBox">
+          <div class="score" id="scoreValue">0%</div>
+          <p>ATS Match Score</p>
+        </div>
 
-        // Initialize the optimizer
-        function initOptimizer() {
-            setupEventListeners();
-        }
+        <h2>Matched Keywords</h2>
+        <div class="tags" id="matchedTags"></div>
 
-        // Setup event listeners
-        function setupEventListeners() {
-            // Button events
-            analyzeBtn.addEventListener('click', analyzeKeywords);
-            resetBtn.addEventListener('click', resetForm);
-            optimizeBtn.addEventListener('click', autoOptimize);
-            
-            // Industry card events
-            industryCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const industry = card.dataset.industry;
-                    document.getElementById('industry').value = industry;
-                    
-                    // Update active state
-                    industryCards.forEach(c => c.classList.remove('active'));
-                    card.classList.add('active');
-                    
-                    showToast(`Selected ${industry.charAt(0).toUpperCase() + industry.slice(1)} industry`);
-                });
-            });
-        }
+        <h2 style="margin-top:14px;">Missing Keywords</h2>
+        <div class="tags" id="missingTags"></div>
 
-        // Analyze keywords
-        function analyzeKeywords() {
-            const resumeText = document.getElementById('resume-text').value;
-            const jobTitle = document.getElementById('job-title').value;
-            const industry = document.getElementById('industry').value;
-            const jobDescription = document.getElementById('job-description').value;
-            
-            if (!resumeText) {
-                showToast('Please paste your resume content', 'error');
-                return;
-            }
-            
-            if (!jobTitle && !industry) {
-                showToast('Please specify a job title or select an industry', 'error');
-                return;
-            }
-            
-            // Show loading state
-            analyzeBtn.innerHTML = '<div class="loading"></div> Analyzing...';
-            analyzeBtn.disabled = true;
-            
-            // Simulate AI analysis
-            setTimeout(() => {
-                // Generate analysis results
-                generateAnalysisResults(resumeText, jobTitle, industry, jobDescription);
-                
-                // Enable optimize button
-                optimizeBtn.disabled = false;
-                
-                // Reset analyze button
-                analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Analyze Keywords';
-                analyzeBtn.disabled = false;
-                
-                showToast('Keyword analysis completed!');
-            }, 2000);
-        }
+        <div class="tip" id="tipBox"></div>
 
-        // Generate analysis results
-        function generateAnalysisResults(resumeText, jobTitle, industry, jobDescription) {
-            const resumeLower = resumeText.toLowerCase();
-            
-            // Get relevant keywords based on inputs
-            let relevantKeywords = [];
-            
-            if (jobDescription) {
-                // Extract keywords from job description
-                relevantKeywords = extractKeywordsFromJobDescription(jobDescription);
-            } else if (industry && industryKeywords[industry]) {
-                relevantKeywords = industryKeywords[industry];
-            } else if (jobTitle) {
-                // Get keywords based on job title
-                relevantKeywords = getKeywordsByJobTitle(jobTitle);
-            }
-            
-            // Analyze which keywords are present and missing
-            const foundKeywords = [];
-            const missingKeywords = [];
-            
-            relevantKeywords.forEach(keyword => {
-                if (resumeLower.includes(keyword.toLowerCase())) {
-                    foundKeywords.push(keyword);
-                } else {
-                    missingKeywords.push(keyword);
-                }
-            });
-            
-            // Calculate scores
-            const keywordScore = calculateKeywordScore(foundKeywords.length, relevantKeywords.length);
-            const atsScore = calculateATSScore(foundKeywords.length, resumeText);
-            
-            // Update UI
-            updateScores(keywordScore, atsScore);
-            updateKeywordDisplay(foundKeywords, missingKeywords, relevantKeywords);
-            updateDensityAnalysis(resumeText, foundKeywords);
-            generateSuggestions(foundKeywords, missingKeywords, keywordScore);
-        }
+      </div>
+    </div>
 
-        // Extract keywords from job description
-        function extractKeywordsFromJobDescription(jobDescription) {
-            const commonWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by'];
-            const words = jobDescription.toLowerCase()
-                .replace(/[^\w\s]/g, ' ')
-                .split(/\s+/)
-                .filter(word => word.length > 3 && !commonWords.includes(word));
-            
-            // Remove duplicates and return
-            return [...new Set(words)].slice(0, 30);
-        }
+  </div>
+</div>
 
-        // Get keywords by job title
-        function getKeywordsByJobTitle(jobTitle) {
-            const titleLower = jobTitle.toLowerCase();
-            
-            // Map job titles to industries
-            const titleMap = {
-                'software': 'technology',
-                'developer': 'technology',
-                'engineer': technologyKeywords.includes('engineering') ? 'engineering' : 'technology',
-                'data': 'technology',
-                'analyst': 'technology',
-                'marketing': 'marketing',
-                'sales': 'marketing',
-                'financial': 'finance',
-                'account': 'finance',
-                'health': 'healthcare',
-                'medical': 'healthcare',
-                'teacher': 'education',
-                'educator': 'education',
-                'design': 'design',
-                'creative': 'design'
-            };
-            
-            for (const [key, industry] of Object.entries(titleMap)) {
-                if (titleLower.includes(key)) {
-                    return industryKeywords[industry] || industryKeywords.technology;
-                }
-            }
-            
-            // Default to technology keywords
-            return industryKeywords.technology;
-        }
+<div id="footer"></div>
 
-        // Calculate keyword score
-        function calculateKeywordScore(foundCount, totalCount) {
-            if (totalCount === 0) return 0;
-            const percentage = (foundCount / totalCount) * 100;
-            return Math.min(Math.round(percentage), 100);
-        }
+<script>
+  // Navbar + Footer
+  function loadComponent(id,file,cb){
+    fetch(file).then(r=>r.text()).then(h=>{
+      document.getElementById(id).innerHTML=h;
+      if(cb)cb();
+    });
+  }
+  function initNavbar(){}
+  loadComponent("navbar","navbar.html",initNavbar);
+  loadComponent("footer","footer.html");
 
-        // Calculate ATS score
-        function calculateATSScore(foundCount, resumeText) {
-            let score = 50; // Base score
-            
-            // Keyword presence (up to 30 points)
-            const keywordPoints = Math.min((foundCount / 10) * 15, 30);
-            score += keywordPoints;
-            
-            // Resume length (ideal: 400-800 words)
-            const wordCount = resumeText.split(/\s+/).length;
-            if (wordCount >= 400 && wordCount <= 800) score += 15;
-            else if (wordCount >= 300 && wordCount <= 1000) score += 10;
-            
-            // Action verbs (up to 5 points)
-            const actionVerbs = ['managed', 'led', 'developed', 'created', 'implemented', 'increased', 'reduced'];
-            const actionVerbCount = actionVerbs.filter(verb => resumeText.toLowerCase().includes(verb)).length;
-            if (actionVerbCount >= 5) score += 5;
-            else if (actionVerbCount >= 3) score += 3;
-            
-            return Math.min(score, 100);
-        }
+  // ATS Logic
+  function analyzeATS(){
+    const resume = document.getElementById("resumeText").value.toLowerCase();
+    const job = document.getElementById("jobText").value.toLowerCase();
 
-        // Update scores in UI
-        function updateScores(keywordScore, atsScore) {
-            const keywordScoreElem = document.getElementById('keyword-score');
-            const atsScoreElem = document.getElementById('ats-score');
-            
-            keywordScoreElem.textContent = `${keywordScore}%`;
-            atsScoreElem.textContent = `${atsScore}%`;
-            
-            // Update score colors based on value
-            keywordScoreElem.className = `score-value ${getScoreClass(keywordScore)}`;
-            atsScoreElem.className = `score-value ${getScoreClass(atsScore)}`;
-        }
+    if(!resume || !job){
+      alert("Please paste both resume and job description.");
+      return;
+    }
 
-        // Get CSS class for score value
-        function getScoreClass(score) {
-            if (score >= 80) return 'excellent';
-            if (score >= 60) return 'good';
-            return 'poor';
-        }
+    const clean = txt =>
+      [...new Set(
+        txt.replace(/[^a-z0-9\s]/g,"")
+           .split(/\s+/)
+           .filter(w => w.length > 3)
+      )];
 
-        // Update keyword display
-        function updateKeywordDisplay(foundKeywords, missingKeywords, allKeywords) {
-            const foundContainer = document.getElementById('found-keywords');
-            const missingContainer = document.getElementById('missing-keywords');
-            const recommendedContainer = document.getElementById('recommended-keywords');
-            
-            // Clear containers
-            foundContainer.innerHTML = '';
-            missingContainer.innerHTML = '';
-            recommendedContainer.innerHTML = '';
-            
-            // Display found keywords (limit to 15)
-            foundKeywords.slice(0, 15).forEach(keyword => {
-                const tag = document.createElement('span');
-                tag.className = 'keyword-tag present';
-                tag.textContent = keyword;
-                foundContainer.appendChild(tag);
-            });
-            
-            if (foundKeywords.length === 0) {
-                foundContainer.innerHTML = '<span class="keyword-tag present">No keywords found</span>';
-            }
-            
-            // Display missing keywords (limit to 15)
-            missingKeywords.slice(0, 15).forEach(keyword => {
-                const tag = document.createElement('span');
-                tag.className = 'keyword-tag missing';
-                tag.textContent = keyword;
-                missingContainer.appendChild(tag);
-            });
-            
-            if (missingKeywords.length === 0) {
-                missingContainer.innerHTML = '<span class="keyword-tag missing">All keywords present!</span>';
-            }
-            
-            // Display recommended keywords (top 10 from missing)
-            const recommended = missingKeywords.slice(0, 10);
-            recommended.forEach(keyword => {
-                const tag = document.createElement('span');
-                tag.className = 'keyword-tag recommended';
-                tag.textContent = keyword;
-                recommendedContainer.appendChild(tag);
-            });
-        }
+    const resumeWords = clean(resume);
+    const jobWords = clean(job);
 
-        // Update density analysis
-        function updateDensityAnalysis(resumeText, foundKeywords) {
-            const totalWords = resumeText.split(/\s+/).length;
-            const keywordInstances = foundKeywords.reduce((count, keyword) => {
-                const regex = new RegExp(keyword, 'gi');
-                const matches = resumeText.match(regex);
-                return count + (matches ? matches.length : 0);
-            }, 0);
-            
-            const density = totalWords > 0 ? (keywordInstances / totalWords) * 100 : 0;
-            const densityValue = document.getElementById('density-value');
-            const densityFill = document.getElementById('density-fill');
-            const densityFeedback = document.getElementById('density-feedback');
-            
-            densityValue.textContent = `${density.toFixed(1)}% Density`;
-            densityFill.style.width = `${Math.min(density * 10, 100)}%`;
-            
-            // Set color based on density
-            if (density >= 2 && density <= 3) {
-                densityFill.className = 'density-fill optimal';
-                densityFeedback.textContent = 'Optimal keyword density (2-3%)';
-                densityFeedback.style.color = 'var(--success)';
-            } else if (density < 1) {
-                densityFill.className = 'density-fill poor';
-                densityFeedback.textContent = 'Low keyword density - consider adding more keywords';
-                densityFeedback.style.color = 'var(--error)';
-            } else {
-                densityFill.className = 'density-fill low';
-                densityFeedback.textContent = 'Moderate keyword density - could be improved';
-                densityFeedback.style.color = 'var(--warning)';
-            }
-        }
+    const matched = jobWords.filter(w => resumeWords.includes(w));
+    const missing = jobWords.filter(w => !resumeWords.includes(w));
 
-        // Generate suggestions
-        function generateSuggestions(foundKeywords, missingKeywords, keywordScore) {
-            const suggestionsList = document.getElementById('suggestions-list');
-            suggestionsList.innerHTML = '';
-            
-            const suggestions = [];
-            
-            // Keyword score suggestion
-            if (keywordScore < 50) {
-                suggestions.push({
-                    type: 'critical',
-                    title: 'Low Keyword Match',
-                    content: `Your resume only matches ${keywordScore}% of important keywords. Add more relevant keywords.`
-                });
-            } else if (keywordScore < 70) {
-                suggestions.push({
-                    type: 'important',
-                    title: 'Moderate Keyword Match',
-                    content: `Your resume matches ${keywordScore}% of keywords. Consider adding the missing keywords.`
-                });
-            } else {
-                suggestions.push({
-                    type: 'suggestion',
-                    title: 'Good Keyword Match',
-                    content: `Great! Your resume matches ${keywordScore}% of important keywords.`
-                });
-            }
-            
-            // Missing keywords suggestion
-            if (missingKeywords.length > 10) {
-                suggestions.push({
-                    type: 'important',
-                    title: 'Many Missing Keywords',
-                    content: `Your resume is missing ${missingKeywords.length} important keywords. Focus on adding the top 5-10.`
-                });
-            }
-            
-            // Keyword distribution suggestion
-            if (foundKeywords.length > 0 && foundKeywords.length < 5) {
-                suggestions.push({
-                    type: 'critical',
-                    title: 'Limited Keyword Variety',
-                    content: 'Your resume uses very few keywords. Expand your keyword usage across different categories.'
-                });
-            }
-            
-            // Add suggestions to UI
-            suggestions.forEach(suggestion => {
-                const item = document.createElement('div');
-                item.className = 'suggestion-item';
-                
-                const iconClass = suggestion.type;
-                const icon = suggestion.type === 'critical' ? 'fa-exclamation-triangle' :
-                           suggestion.type === 'important' ? 'fa-info-circle' : 'fa-lightbulb';
-                
-                item.innerHTML = `
-                    <div class="suggestion-header">
-                        <div class="suggestion-icon ${iconClass}">
-                            <i class="fas ${icon}"></i>
-                        </div>
-                        <div class="suggestion-title">${suggestion.title}</div>
-                    </div>
-                    <div class="suggestion-content">${suggestion.content}</div>
-                `;
-                suggestionsList.appendChild(item);
-            });
-        }
+    const score = Math.round((matched.length / jobWords.length) * 100);
 
-        // Auto-optimize resume
-        function autoOptimize() {
-            const resumeText = document.getElementById('resume-text').value;
-            const missingKeywords = Array.from(document.querySelectorAll('.keyword-tag.missing'))
-                .map(tag => tag.textContent)
-                .slice(0, 5); // Top 5 missing keywords
-            
-            if (missingKeywords.length === 0) {
-                showToast('No missing keywords to add', 'error');
-                return;
-            }
-            
-            // Show loading state
-            optimizeBtn.innerHTML = '<div class="loading"></div> Optimizing...';
-            optimizeBtn.disabled = true;
-            
-            // Simulate optimization
-            setTimeout(() => {
-                // In a real application, this would modify the resume text
-                // For demo, we'll just show a success message
-                
-                // Reset button
-                optimizeBtn.innerHTML = '<i class="fas fa-magic"></i> Auto-Optimize Resume';
-                optimizeBtn.disabled = false;
-                
-                showToast(`Added ${missingKeywords.length} keywords to your resume!`, 'success');
-                
-                // Update scores to show improvement
-                const currentKeywordScore = parseInt(document.getElementById('keyword-score').textContent);
-                const currentATSScore = parseInt(document.getElementById('ats-score').textContent);
-                
-                document.getElementById('keyword-score').textContent = `${Math.min(currentKeywordScore + 15, 100)}%`;
-                document.getElementById('ats-score').textContent = `${Math.min(currentATSScore + 10, 100)}%`;
-            }, 1500);
-        }
+    document.getElementById("scoreValue").textContent = score + "%";
 
-        // Reset form
-        function resetForm() {
-            document.getElementById('resume-text').value = '';
-            document.getElementById('job-title').value = '';
-            document.getElementById('industry').value = '';
-            document.getElementById('job-description').value = '';
-            
-            // Reset analysis
-            document.getElementById('keyword-score').textContent = '0%';
-            document.getElementById('ats-score').textContent = '0%';
-            document.getElementById('keyword-score').className = 'score-value';
-            document.getElementById('ats-score').className = 'score-value';
-            
-            document.getElementById('found-keywords').innerHTML = '';
-            document.getElementById('missing-keywords').innerHTML = '';
-            document.getElementById('recommended-keywords').innerHTML = '';
-            
-            document.getElementById('density-value').textContent = '0% Density';
-            document.getElementById('density-fill').style.width = '0%';
-            document.getElementById('density-fill').className = 'density-fill';
-            document.getElementById('density-feedback').textContent = 'Optimal density: 2-3% of total words';
-            document.getElementById('density-feedback').style.color = 'var(--text-light)';
-            
-            document.getElementById('suggestions-list').innerHTML = `
-                <div class="suggestion-item">
-                    <div class="suggestion-header">
-                        <div class="suggestion-icon suggestion">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <div class="suggestion-title">Get Started</div>
-                    </div>
-                    <div class="suggestion-content">
-                        Paste your resume and target job title to get personalized keyword optimization suggestions.
-                    </div>
-                </div>
-            `;
-            
-            optimizeBtn.disabled = true;
-            
-            // Reset industry cards
-            industryCards.forEach(card => card.classList.remove('active'));
-            
-            showToast('Form reset successfully');
-        }
+    const matchedBox = document.getElementById("matchedTags");
+    const missingBox = document.getElementById("missingTags");
 
-        // Show toast notification
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = `toast ${type} show`;
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
+    matchedBox.innerHTML = "";
+    missingBox.innerHTML = "";
 
-        // Initialize the optimizer
-        document.addEventListener('DOMContentLoaded', initOptimizer);
-    </script>
+    matched.forEach(w=>{
+      const s=document.createElement("span");
+      s.className="tag matched";
+      s.textContent=w;
+      matchedBox.appendChild(s);
+    });
+
+    missing.forEach(w=>{
+      const s=document.createElement("span");
+      s.className="tag missing";
+      s.textContent=w;
+      missingBox.appendChild(s);
+    });
+
+    const tip = document.getElementById("tipBox");
+    if(score >= 80){
+      tip.textContent = "🔥 Excellent! Your resume is highly ATS-friendly. Minor keyword tweaks can make it perfect.";
+    }else if(score >= 60){
+      tip.textContent = "👍 Good match. Add missing keywords naturally into skills and experience sections.";
+    }else{
+      tip.textContent = "⚠️ Low ATS score. Strongly consider adding relevant skills, tools and role-specific keywords.";
+    }
+
+    document.getElementById("resultBox").style.display = "block";
+  }
+</script>
+
 </body>
 </html>
