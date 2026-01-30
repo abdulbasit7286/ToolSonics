@@ -1,20 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url><loc>https://toolsonics.com/</loc></url>
+  <!-- PDF TOOLS -->
+  <url><loc>https://toolsonics.com/merge-pdf.html</loc></url>
+  <url><loc>https://toolsonics.com/split-pdf.html</loc></url>
+  <url><loc>https://toolsonics.com/delete-pages.html</loc></url>
+  <url><loc>https://toolsonics.com/rotate-pages.html</loc></url>
+  <url><loc>https://toolsonics.com/reorder-pages.html</loc></url>
+  <url><loc>https://toolsonics.com/protect-pdf.html</loc></url>
+  <url><loc>https://toolsonics.com/unlock-pdf.html</loc></url>
+  <url><loc>https://toolsonics.com/add-page-numbers.html</loc></url>
+  <url><loc>https://toolsonics.com/watermark-pdf.html</loc></url>
+  <url><loc>https://toolsonics.com/text-to-pdf.html</loc></url>
+  <url><loc>https://toolsonics.com/images-to-pdf.html</loc></url>
+  <url><loc>https://toolsonics.com/csv-excel-converter.html</loc></url>
 
-  <loc>https://toolsonics.com/merge-pdf.html</loc>
-  <loc>https://toolsonics.com/split-pdf.html</loc>
-  <loc>https://toolsonics.com/rotate-pages.html</loc>
-  <loc>https://toolsonics.com/delete-pages.html</loc>
-  <loc>https://toolsonics.com/reorder-pages.html</loc>
-  <loc>https://toolsonics.com/protect-pdf.html</loc>
-  <loc>https://toolsonics.com/unlock-pdf.html</loc>
-  <loc>https://toolsonics.com/add-page-numbers.html</loc>
-  <loc>https://toolsonics.com/watermark-pdf.html</loc>
-  <loc>https://toolsonics.com/text-to-pdf.html</loc>
-  <loc>https://toolsonics.com/csv-excel-converter.html</loc>
-  <loc>https://toolsonics.com/images-to-pdf.html</loc>
+  <!-- IMAGE TOOLS -->
+  <url><loc>https://toolsonics.com/image-converter.html</loc></url>
+  <url><loc>https://toolsonics.com/merge-image.html</loc></url>
+  <url><loc>https://toolsonics.com/image-compressor.html</loc></url>
+  <url><loc>https://toolsonics.com/image-resizer.html</loc></url>
+  <url><loc>https://toolsonics.com/image-cropper.html</loc></url>
+  <url><loc>https://toolsonics.com/image-rotator.html</loc></url>
 
+  <!-- CALCULATORS -->
+  <url><loc>https://toolsonics.com/gst-calculator.html</loc></url>
+  <url><loc>https://toolsonics.com/EMI-calculator.html</loc></url>
+  <url><loc>https://toolsonics.com/SIP-calculator.html</loc></url>
+  <url><loc>https://toolsonics.com/PPF-calculator.html</loc></url>
+  <url><loc>https://toolsonics.com/TAX-calculator.html</loc></url>
+  <url><loc>https://toolsonics.com/compound-interest-calculator.html</loc></url>
+  <url><loc>https://toolsonics.com/age-calculator.html</loc></url>
+  <url><loc>https://toolsonics.com/BMI-calculator.html</loc></url>
+  <url><loc>https://toolsonics.com/slip-generator.html</loc></url>
+  <url><loc>https://toolsonics.com/area-converter.html</loc></url>
+  <url><loc>https://toolsonics.com/budget-generator.html</loc></url>
+  <url><loc>https://toolsonics.com/currency-converter.html</loc></url>
+  <url><loc>https://toolsonics.com/percentage-calculator.html</loc></url>
+
+  <!-- WEB / DEV TOOLS -->
+  <url><loc>https://toolsonics.com/html-css-js-minifier.html</loc></url>
+  <url><loc>https://toolsonics.com/JSON-Formatter-Validator.html</loc></url>
+  <url><loc>https://toolsonics.com/base64.html</loc></url>
+  <url><loc>https://toolsonics.com/url-encoder-decoder.html</loc></url>
+  <url><loc>https://toolsonics.com/color-picker.html</loc></url>
+  <url><loc>https://toolsonics.com/regex-tester.html</loc></url>
+
+  <!-- UTILITY TOOLS -->
+  <url><loc>https://toolsonics.com/qr-code-generator.html</loc></url>
+  <url><loc>https://toolsonics.com/barcode-generator.html</loc></url>
+  <url><loc>https://toolsonics.com/uuid-generator.html</loc></url>
+  <url><loc>https://toolsonics.com/unit-converter.html</loc></url>
+  <url><loc>https://toolsonics.com/time-zone-converter.html</loc></url>
+  <url><loc>https://toolsonics.com/random-no-pass-generator.html</loc></url>
+
+  <!-- AI TOOLS -->
+  <url><loc>https://toolsonics.com/ppt-generator.html</loc></url>
+  <url><loc>https://toolsonics.com/resume-builder.html</loc></url>
+  <url><loc>https://toolsonics.com/resume-keyword-optimizer.html</loc></url>
 
 </urlset>
