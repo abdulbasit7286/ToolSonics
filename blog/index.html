@@ -168,9 +168,92 @@
 <div id="footer"></div>
 
 <script>
-fetch("/navbar.html").then(r => r.text()).then(h => navbar.innerHTML = h);
-fetch("/footer.html").then(r => r.text()).then(h => footer.innerHTML = h);
-</script>
+function initNavbar() {
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
 
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
+
+  // Mobile menu
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
+
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
+
+  // All Tools click (desktop + mobile)
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.onclick = (e) => {
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    };
+
+    document.addEventListener("click", () => {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+}
+
+fetch("navbar.html")
+  .then(r => r.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+    initNavbar();
+  });
+
+fetch("footer.html")
+  .then(r => r.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+  });
+ const searchInput = document.getElementById("toolSearch");
+ const tools = document.querySelectorAll(".tool-card");
+
+ searchInput.addEventListener("input", () => {
+  const value = searchInput.value.toLowerCase().trim();
+
+  tools.forEach(tool => {
+    const keywords = tool.getAttribute("data-name") || "";
+    tool.style.display = keywords.includes(value) ? "flex" : "none";
+  });
+});
+const categoryBtns = document.querySelectorAll(".category-btn");
+const toolCards = document.querySelectorAll(".tool-card");
+
+categoryBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    // Active class update
+    categoryBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const selected = btn.getAttribute("data-category");
+
+    // Clear search when category clicked (optional but best)
+    const searchInput = document.getElementById("toolSearch");
+    if (searchInput) searchInput.value = "";
+
+    toolCards.forEach(card => {
+      const cardCategory = card.getAttribute("data-category");
+
+      if (selected === "all" || cardCategory === selected) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+  });
+});
+</script>
+  
 </body>
 </html>
