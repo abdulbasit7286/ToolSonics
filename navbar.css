@@ -156,13 +156,13 @@
   text-decoration: none;
   border-radius: 6px;
   transition: background 0.2s ease;
-}
+  }
 
-.nav-btn:hover {
+   .nav-btn:hover {
   background: #edf3ff;
-}
+  }
 
-.nav-item {
+   .nav-item {
   position: relative;
 }
 }
