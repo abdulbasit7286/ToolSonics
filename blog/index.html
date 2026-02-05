@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
+  <!-- Google AdSense -->
   <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3907005980307112"
     crossorigin="anonymous"></script>
+
   <title>Toolsonics Blog – PDF, Image & Online Tools Guides</title>
 
   <meta name="description"
@@ -13,10 +16,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/x-icon" href="https://toolsonics.com/favicon.ico">
-  <link rel="stylesheet" href="/global-style.css">
-  <link rel="stylesheet" href="navbar.css">
 
-  <!-- Professional Blog Styling -->
+  <!-- GLOBAL CSS -->
+  <link rel="stylesheet" href="/global-style.css">
+  <link rel="stylesheet" href="/navbar.css">
+
+  <!-- Blog Styling -->
   <style>
     body {
       background: #f5f7fb;
@@ -94,8 +99,10 @@
 
 <body>
 
+<!-- NAVBAR -->
 <div id="navbar"></div>
 
+<!-- MAIN CONTENT -->
 <main class="page-wrapper">
   <h1>Toolsonics Blog</h1>
   <p>Guides, tips & tutorials to use online tools smartly.</p>
@@ -109,7 +116,7 @@
 
     <a href="split-pdf-online.html" class="blog-card">
       <h3>How to Split PDF Online Free</h3>
-      <p>Learn how to split PDF pages online easily and extract selected pages from a PDF file for free.</p>
+      <p>Learn how to split PDF pages online easily and extract selected pages from a PDF file.</p>
     </a>
 
     <a href="how-to-delete-pdf-pages.html" class="blog-card">
@@ -119,55 +126,58 @@
 
     <a href="rotate-pdf-pages-online.html" class="blog-card">
       <h3>How to Rotate PDF Pages Online</h3>
-      <p>Rotate PDF pages left or right online and fix incorrect page orientation in seconds.</p>
+      <p>Rotate PDF pages left or right online and fix incorrect page orientation.</p>
     </a>
 
     <a href="reorder-pdf-pages.html" class="blog-card">
       <h3>How to Reorder PDF Pages Online</h3>
-      <p>Change the order of PDF pages easily by rearranging them online using a free tool.</p>
+      <p>Change the order of PDF pages easily using a free online tool.</p>
     </a>
 
     <a href="protect-pdf-online.html" class="blog-card">
       <h3>How to Protect PDF with Password</h3>
-      <p>Secure your PDF files by adding password protection online to prevent unauthorized access.</p>
+      <p>Secure your PDF files by adding password protection online.</p>
     </a>
 
     <a href="unlock-pdf-online.html" class="blog-card">
       <h3>How to Unlock PDF Online</h3>
-      <p>Remove password protection from secured PDF files online quickly and safely.</p>
+      <p>Remove password protection from secured PDF files quickly and safely.</p>
     </a>
 
     <a href="add-page-numbers-pdf.html" class="blog-card">
       <h3>How to Add Page Numbers to PDF</h3>
-      <p>Insert page numbers into PDF documents online with custom position and style.</p>
+      <p>Insert page numbers into PDF documents online.</p>
     </a>
 
     <a href="add-watermark-pdf.html" class="blog-card">
       <h3>How to Add Watermark to PDF</h3>
-      <p>Add text watermark to your PDF files online to protect documents and branding.</p>
+      <p>Add text watermark to your PDF files online.</p>
     </a>
 
     <a href="images-to-pdf-online.html" class="blog-card">
       <h3>How to Convert Images to PDF Online</h3>
-      <p>Combine JPG, PNG or other images into a single PDF document online for free.</p>
+      <p>Combine JPG, PNG images into a single PDF document.</p>
     </a>
 
     <a href="text-to-pdf-online.html" class="blog-card">
       <h3>How to Convert Text to PDF Online</h3>
-      <p>Convert plain text files into formatted PDF documents online easily.</p>
+      <p>Convert plain text files into formatted PDF documents.</p>
     </a>
 
     <a href="csv-to-excel-online.html" class="blog-card">
       <h3>How to Convert CSV to Excel Online</h3>
-      <p>Convert CSV files to Excel format online and vice versa without data loss.</p>
+      <p>Convert CSV files to Excel format online easily.</p>
     </a>
 
   </div>
 </main>
 
+<!-- FOOTER -->
 <div id="footer"></div>
 
+<!-- SCRIPTS -->
 <script>
+/* ===== NAVBAR INIT ===== */
 function initNavbar() {
   const openMobile = document.getElementById("openMobile");
   const closeMobile = document.getElementById("closeMobile");
@@ -200,6 +210,7 @@ function initNavbar() {
   }
 }
 
+/* LOAD NAVBAR */
 fetch("/navbar.html")
   .then(res => res.text())
   .then(html => {
@@ -207,6 +218,7 @@ fetch("/navbar.html")
     initNavbar();
   });
 
+/* LOAD FOOTER */
 fetch("/footer.html")
   .then(res => res.text())
   .then(html => {
@@ -214,6 +226,5 @@ fetch("/footer.html")
   });
 </script>
 
-  
 </body>
 </html>
