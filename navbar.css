@@ -1,6 +1,6 @@
 /* =========================
    TOOLSONICS NAVBAR CSS
-   FINAL FIXED (DESKTOP + MOBILE)
+   FINAL FIX (DESKTOP + MOBILE)
    ========================= */
 
 .ts-navbar {
@@ -29,45 +29,39 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 26px;
 }
 
-.nav-item {
-  position: relative;
-  font-size: 15px;
-}
-
-/* ALL BUTTON BASE STYLE (All Tools + Blog + Contact) */
-.nav-item a,
-.nav-item button,
-.nav-links .nav-link {
+/* COMMON BUTTON STYLE (MOST IMPORTANT FIX) */
+.nav-btn {
   background: transparent;
   border: none;
   font-size: 15px;
   font-weight: 600;
-  color: #111;
-  padding: 8px 12px;
+  color: #1f2a44;
+  padding: 8px 14px;
   cursor: pointer;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 8px;
   transition: background 0.2s ease;
-  display: inline-flex;
-  align-items: center;
 }
 
-.nav-item a:hover,
-.nav-item button:hover,
-.nav-links .nav-link:hover {
+.nav-btn:hover {
   background: #edf3ff;
 }
 
-/* ================= DROPDOWN (ONLY FOR ALL TOOLS) ================= */
+/* NAV ITEM */
+.nav-item {
+  position: relative;
+}
+
+/* ================= DROPDOWN ================= */
 .dropdown {
   display: none;
   position: absolute;
   top: 38px;
   left: 0;
-  background: #fff;
+  background: #ffffff;
   min-width: 190px;
   border-radius: 10px;
   box-shadow: 0 12px 30px rgba(0,0,0,.12);
@@ -138,22 +132,18 @@
 /* ================= MOBILE FIX ================= */
 @media (max-width: 900px) {
 
-  /* Desktop nav hide */
   .nav-links {
     display: none !important;
   }
 
-  /* Hamburger show */
   .mobile-menu-btn {
     display: block !important;
   }
 
-  /* Navbar padding */
   .ts-navbar {
     padding: 0 16px;
   }
 
-  /* Center logo */
   .nav-logo {
     position: absolute;
     left: 50%;
