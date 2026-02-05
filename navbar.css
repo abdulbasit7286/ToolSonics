@@ -145,4 +145,24 @@
     left: 50%;
     transform: translateX(-50%);
   }
+   .nav-btn {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2a44;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: #edf3ff;
+}
+
+.nav-item {
+  position: relative;
+}
 }
