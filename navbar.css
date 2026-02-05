@@ -37,17 +37,31 @@
   font-size: 15px;
 }
 
+/* ALL BUTTON BASE STYLE (All Tools + Blog + Contact) */
 .nav-item a,
-.nav-item button {
-  background: none;
+.nav-item button,
+.nav-links .nav-link {
+  background: transparent;
   border: none;
-  color: #111;
   font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  padding: 8px 12px;
   cursor: pointer;
   text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
 }
 
-/* ================= DROPDOWN ================= */
+.nav-item a:hover,
+.nav-item button:hover,
+.nav-links .nav-link:hover {
+  background: #edf3ff;
+}
+
+/* ================= DROPDOWN (ONLY FOR ALL TOOLS) ================= */
 .dropdown {
   display: none;
   position: absolute;
@@ -121,7 +135,7 @@
   border-bottom: 1px solid #eee;
 }
 
-/* ================= MOBILE FIX (MOST IMPORTANT) ================= */
+/* ================= MOBILE FIX ================= */
 @media (max-width: 900px) {
 
   /* Desktop nav hide */
@@ -145,24 +159,4 @@
     left: 50%;
     transform: translateX(-50%);
   }
-   .nav-btn {
-  background: transparent;
-  border: none;
-  font-size: 15px;
-  font-weight: 600;
-  color: #1f2a44;
-  padding: 8px 12px;
-  cursor: pointer;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background 0.2s ease;
-  }
-
-   .nav-btn:hover {
-  background: #edf3ff;
-  }
-
-   .nav-item {
-  position: relative;
-}
 }
