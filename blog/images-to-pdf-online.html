@@ -189,16 +189,57 @@
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- LOAD NAVBAR & FOOTER -->
 <script>
-  fetch("/navbar.html")
-    .then(res => res.text())
-    .then(html => document.getElementById("navbar").innerHTML = html);
+function initNavbar() {
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
 
-  fetch("/footer.html")
-    .then(res => res.text())
-    .then(html => document.getElementById("footer").innerHTML = html);
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  /* ===== ALL TOOLS DROPDOWN ===== */
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function () {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+
+  /* ===== MOBILE MENU ===== */
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.addEventListener("click", () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    });
+
+    closeMobile.addEventListener("click", () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    });
+  }
+}
+
+/* ===== LOAD NAVBAR THEN INIT ===== */
+fetch("/navbar.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+    initNavbar(); // 🔥 MOST IMPORTANT
+  });
+
+/* ===== LOAD FOOTER ===== */
+fetch("/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+  });
 </script>
+
 
 </body>
 </html>
