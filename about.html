@@ -121,42 +121,50 @@
         <h1>About ToolSonics</h1>
 
         <p>
-            ToolSonics is a modern online tools platform built to simplify everyday digital tasks for students,
-            professionals, developers, creators and businesses. Our goal is to provide fast, accurate and
-            easy-to-use tools that work instantly — without installation, without login and without hidden limits.
+        ToolSonics was created with one simple idea in mind — to make everyday online tasks easier, faster and stress-free.
+        We noticed that many people struggle with complicated software, unnecessary sign-ups and slow tools, so we decided
+        to build something better.
         </p>
-
+        
         <p>
-            We offer 50+ powerful tools across multiple categories including PDF tools, image tools, calculators,
-            file converters, utilities, AI tools, developer tools and educational tools — all accessible directly
-            from your browser.
+        ToolSonics is an all-in-one online tools platform where anyone can access powerful tools directly from their browser.
+        No installations, no logins and no hidden restrictions. Whether you are a student, professional, freelancer,
+        developer or business owner, our tools are built to save your time and effort.
         </p>
-
+        
         <div class="about-highlight">
-            ToolSonics is designed to save your time. Every tool loads quickly, works smoothly on all devices,
-            and delivers clean, reliable output without watermarks.
+        Every tool on ToolSonics is designed to be fast, simple and reliable — working smoothly on all devices without
+        watermarks or complicated steps.
         </div>
-
+        
+        <h2>What We Offer</h2>
+        <p>
+        We currently provide 50+ tools across multiple categories including PDF tools, image tools, calculators,
+        file converters, utilities, developer tools and AI-powered tools. Each tool is carefully designed to deliver
+        accurate results with a clean and easy-to-use interface.
+        </p>
+        
         <h2>Our Vision</h2>
         <p>
-            Our vision is to become one of the world’s most trusted and widely-used online tool platforms by focusing
-            on reliability, speed, privacy and simplicity. We believe powerful tools should be accessible to everyone,
-            anytime and anywhere.
+        Our vision is to build a trusted online platform that people can rely on every day. We believe online tools
+        should be accessible to everyone, without forcing users to create accounts or compromise their privacy.
+        Speed, simplicity and security are at the core of everything we build.
         </p>
-
+        
         <h2>Why Choose ToolSonics?</h2>
         <ul>
-            <li>✔ Secure and privacy-focused file handling</li>
-            <li>✔ No login, no signup and no daily limits</li>
-            <li>✔ Works seamlessly on Android, iPhone, Windows and Mac</li>
-            <li>✔ Clean, modern and distraction-free interface</li>
-            <li>✔ Regular updates with new tools and improvements</li>
+          <li>✔ Secure and privacy-focused processing</li>
+          <li>✔ No signup, no login and no daily usage limits</li>
+          <li>✔ Works smoothly on mobile, tablet and desktop</li>
+          <li>✔ Clean, modern and distraction-free design</li>
+          <li>✔ Regular updates with new tools and improvements</li>
         </ul>
-
+        
         <p style="margin-top:22px;">
-            Whether you need to merge PDFs, convert images, calculate values, work with files or use smart AI tools,
-            ToolSonics is built to help you get things done faster — with confidence and ease.
+        Whether you want to merge PDFs, convert images, calculate values, manage files or use smart AI tools,
+        ToolSonics is built to help you get things done faster — with confidence and simplicity.
         </p>
+
 
     </section>
 </main>
@@ -165,8 +173,54 @@
 <div id="footer"></div>
 
 <script>
-    fetch("navbar.html").then(res => res.text()).then(d => navbar.innerHTML = d);
-    fetch("footer.html").then(res => res.text()).then(d => footer.innerHTML = d);
+function initNavbar() {
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
+
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // ===== All Tools dropdown =====
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function () {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+
+  // ===== Mobile menu =====
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
+
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
+}
+
+/* LOAD NAVBAR */
+fetch("/navbar.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+    initNavbar(); // 🔥 MOST IMPORTANT
+  });
+
+/* LOAD FOOTER */
+fetch("/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+  });
 </script>
 
 </body>
