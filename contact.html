@@ -113,22 +113,28 @@
         <h1>Contact Us</h1>
 
         <p>
-            Have questions, feedback, feature requests or need help using any ToolSonics tool?
-            We’re always happy to assist you. Whether it’s about PDF tools, image converters,
-            calculators or utilities — feel free to reach out anytime.
+        If you have any questions, feedback, suggestions or need help using any ToolSonics tool,
+        feel free to reach out to us. We’re always open to hearing from our users and improving
+        the platform based on real needs.
         </p>
-
+        
+        <p>
+        Whether it’s related to PDF tools, image converters, calculators, utilities or any other
+        feature on ToolSonics, we’ll do our best to assist you as quickly as possible.
+        </p>
+        
         <div class="contact-box">
-            <p>
-                <b>Email:</b> toolsonics6@gmail.com <br>
-                <b>Support Availability:</b> 24/7 <br>
-                <b>Response Time:</b> Usually within 24 hours
-            </p>
+          <p>
+            <b>Email:</b> toolsonics6@gmail.com <br>
+            <b>Support Availability:</b> 24/7 <br>
+            <b>Response Time:</b> Usually within 24 hours
+          </p>
         </div>
-
+        
         <p class="contact-note">
-            For bug reports, feature suggestions, business inquiries or partnership opportunities,
-            please mention the tool name and a short description in your email so we can help you faster.
+        For bug reports, feature requests, business inquiries or partnership opportunities,
+        please mention the tool name along with a brief description in your email.
+        This helps us understand your request better and respond faster.
         </p>
 
     </section>
@@ -138,8 +144,54 @@
 <div id="footer"></div>
 
 <script>
-    fetch("navbar.html").then(res => res.text()).then(d => navbar.innerHTML = d);
-    fetch("footer.html").then(res => res.text()).then(d => footer.innerHTML = d);
+function initNavbar() {
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
+
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // ===== All Tools dropdown =====
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function () {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+
+  // ===== Mobile menu =====
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
+
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
+}
+
+/* LOAD NAVBAR */
+fetch("/navbar.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+    initNavbar(); // 🔥 MOST IMPORTANT
+  });
+
+/* LOAD FOOTER */
+fetch("/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+  });
 </script>
 
 </body>
