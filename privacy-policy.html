@@ -120,39 +120,55 @@
         <h1>Privacy Policy</h1>
 
         <p>
-            ToolSonics respects your privacy and is committed to protecting your data.
-            We do not store, sell, share, or reuse your files or personal information.
-            All tools on ToolSonics are designed to work securely with temporary processing only.
+        At ToolSonics, your privacy is extremely important to us. We are committed to keeping
+        your data safe and ensuring complete transparency about how our tools work.
+        We do not store, sell, share or misuse your files or personal information in any way.
         </p>
-
+        
+        <p>
+        All tools available on ToolSonics are built to work securely with temporary processing only,
+        so you can use them with confidence.
+        </p>
+        
         <h2>1. Information We Do Not Collect</h2>
-        <p>ToolSonics does <strong>not</strong> collect any of the following:</p>
-        <ul>
-            <li>Uploaded PDF, image, or document files</li>
-            <li>Personal identification data</li>
-            <li>User accounts, logins, or passwords</li>
-            <li>Permanent IP address tracking</li>
-        </ul>
-
-        <h2>2. File Processing & Security</h2>
+        
         <p>
-            All files uploaded to ToolSonics are processed temporarily in secure server memory (RAM)
-            and are automatically deleted immediately after the operation is completed.
-            No file is saved or backed up on our servers.
+        ToolSonics does <strong>not</strong> collect, store or track the following:
         </p>
-
-        <div class="highlight-box">
-            <p>
-                ✔ Temporary processing only <br>
-                ✔ No server-side file storage <br>
-                ✔ No manual or automated access to your documents
-            </p>
-        </div>
-
-        <h2>Your Consent</h2>
+        
+        <ul>
+          <li>Uploaded PDF, image or document files</li>
+          <li>Personal details such as name, email or phone number</li>
+          <li>User accounts, passwords or login credentials</li>
+          <li>Permanent IP address tracking or user profiling</li>
+        </ul>
+        
+        <h2>2. File Processing & Security</h2>
+        
         <p>
-            By using ToolSonics, you agree to this Privacy Policy and the secure handling
-            of your data as described above.
+        When you upload a file to ToolSonics, it is processed temporarily and securely.
+        All files are handled only for the purpose of completing the requested action
+        (such as merging, converting or editing).
+        </p>
+        
+        <p>
+        Once the process is finished, files are automatically removed and are not saved,
+        backed up or accessed again.
+        </p>
+        
+        <div class="highlight-box">
+          <p>
+            ✔ Temporary file processing only<br>
+            ✔ No permanent server storage<br>
+            ✔ No manual or automated access to your files
+          </p>
+        </div>
+        
+        <h2>3. Your Consent</h2>
+        
+        <p>
+        By using ToolSonics, you agree to this Privacy Policy and understand how files and data
+        are handled securely on our platform.
         </p>
 
     </section>
@@ -162,9 +178,56 @@
 <div id="footer"></div>
 
 <script>
-    fetch("navbar.html").then(res => res.text()).then(d => navbar.innerHTML = d);
-    fetch("footer.html").then(res => res.text()).then(d => footer.innerHTML = d);
+function initNavbar() {
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
+
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // ===== All Tools dropdown =====
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function () {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+
+  // ===== Mobile menu =====
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
+
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
+}
+
+/* LOAD NAVBAR */
+fetch("/navbar.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+    initNavbar(); // 🔥 MOST IMPORTANT
+  });
+
+/* LOAD FOOTER */
+fetch("/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+  });
 </script>
+
 
 </body>
 </html>
