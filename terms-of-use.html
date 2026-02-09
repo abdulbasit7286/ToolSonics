@@ -120,50 +120,50 @@
         <h1>Terms of Use</h1>
 
         <p>
-            By accessing or using ToolSonics, you agree to comply with and be bound by the
-            following Terms of Use. If you do not agree with these terms, please do not use our services.
+        By accessing or using ToolSonics, you agree to follow and be bound by these Terms of Use.
+        If you do not agree with any part of these terms, please discontinue using our website
+        and services.
         </p>
-
+        
         <h2>1. Allowed Use</h2>
         <ul>
-            <li>Personal and commercial use of ToolSonics tools is permitted</li>
-            <li>Unlimited access to tools without login or registration</li>
-            <li>Usage for education, office, business and professional purposes</li>
+          <li>ToolSonics tools may be used for both personal and commercial purposes</li>
+          <li>No account, login or registration is required to access the tools</li>
+          <li>Tools can be used for education, office work, business and professional needs</li>
         </ul>
-
+        
         <h2>2. Prohibited Use</h2>
         <ul>
-            <li>Uploading illegal, harmful, malicious, or copyrighted content without permission</li>
-            <li>Attempting to hack, exploit, reverse-engineer or overload ToolSonics servers</li>
-            <li>Reselling, copying, or redistributing ToolSonics tools or services without written consent</li>
+          <li>Uploading illegal, harmful, malicious or copyrighted content without proper rights</li>
+          <li>Attempting to hack, exploit, reverse-engineer or disrupt ToolSonics systems</li>
+          <li>Copying, reselling or redistributing ToolSonics tools or services without written permission</li>
         </ul>
-
-        <h2>3. No File Storage Guarantee</h2>
+        
+        <h2>3. File Handling & Storage</h2>
         <p>
-            ToolSonics does not store user files. All uploaded files are processed temporarily
-            in memory and automatically deleted after the task is completed.
+        ToolSonics does not store user files. All uploaded files are processed temporarily
+        only to complete the requested task and are automatically deleted immediately after.
         </p>
-
+        
         <div class="highlight-box">
-            <p>
-                ✔ Temporary processing only <br>
-                ✔ No permanent file storage <br>
-                ✔ No manual access to user files
-            </p>
+          <p>
+            ✔ Temporary file processing only<br>
+            ✔ No permanent file storage<br>
+            ✔ No manual access to uploaded content
+          </p>
         </div>
-
+        
         <h2>4. Limitation of Liability</h2>
         <p>
-            ToolSonics shall not be held responsible for any direct or indirect loss,
-            data corruption, misuse, or damages arising from the use or inability to use our tools.
-            Users are responsible for verifying output files before final use.
+        ToolSonics is provided on an "as-is" basis. We are not responsible for any direct or indirect
+        loss, data issues or damages resulting from the use or inability to use our tools.
+        Users are advised to review output files before final use.
         </p>
-
-        <h2>5. Updates & Modifications</h2>
+        
+        <h2>5. Changes to These Terms</h2>
         <p>
-            ToolSonics reserves the right to update or modify these Terms of Use at any time
-            without prior notice. Continued use of the website after changes indicates acceptance
-            of the updated terms.
+        ToolSonics may update or modify these Terms of Use at any time without prior notice.
+        Continued use of the website after changes means you accept the updated terms.
         </p>
 
     </section>
@@ -173,8 +173,54 @@
 <div id="footer"></div>
 
 <script>
-    fetch("navbar.html").then(res => res.text()).then(d => navbar.innerHTML = d);
-    fetch("footer.html").then(res => res.text()).then(d => footer.innerHTML = d);
+function initNavbar() {
+  const allToolsBtn = document.getElementById("allToolsBtn");
+  const allToolsDropdown = document.getElementById("allToolsDropdown");
+
+  const openMobile = document.getElementById("openMobile");
+  const closeMobile = document.getElementById("closeMobile");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // ===== All Tools dropdown =====
+  if (allToolsBtn && allToolsDropdown) {
+    allToolsBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      allToolsDropdown.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function () {
+      allToolsDropdown.classList.remove("show");
+    });
+  }
+
+  // ===== Mobile menu =====
+  if (openMobile && closeMobile && mobileMenu) {
+    openMobile.onclick = () => {
+      mobileMenu.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
+
+    closeMobile.onclick = () => {
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+  }
+}
+
+/* LOAD NAVBAR */
+fetch("/navbar.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+    initNavbar(); // 🔥 MOST IMPORTANT
+  });
+
+/* LOAD FOOTER */
+fetch("/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+  });
 </script>
 
 </body>
