@@ -231,6 +231,57 @@
             Whether you need pages for an assignment, legal filing, client submission, project report, or
             business documentation, ToolSonics allows you to split PDFs quickly, safely, and completely free.
             Bookmark this page whenever you need to extract PDF pages online — fast, secure, and watermark-free.
+
+            <h3 style="margin-top:18px;">How to split PDF pages online step by step</h3>
+            <p>
+            To split a PDF file using ToolSonics, first click on the “Select PDF File” button and upload your document.
+            Then enter the starting page number and ending page number you want to extract.
+            For example, if you want pages 2 to 5, enter 2 in the start field and 5 in the end field.
+            Finally, click on the “Split PDF” button. The tool will securely process your file and automatically download the new split PDF to your device.
+            </p>
+            
+            <h3>When should you split a PDF file?</h3>
+            <ul>
+            <li>To remove unnecessary pages from a long document</li>
+            <li>To extract a single certificate or invoice</li>
+            <li>To separate chapters from study material</li>
+            <li>To create smaller files for email attachments</li>
+            <li>To isolate legal or official document sections</li>
+            </ul>
+            
+            <h3>Is ToolSonics Split PDF safe?</h3>
+            <p>
+            ToolSonics is designed with privacy in mind. Files are processed only to generate the output document.
+            Always use trusted internet connections when uploading confidential documents.
+            </p>
+            
+            <h3>Advantages of using an online PDF splitter</h3>
+            <ul>
+            <li>No software installation required</li>
+            <li>Works on Windows, Mac, Android and iPhone</li>
+            <li>Fast cloud processing</li>
+            <li>No watermark added to output</li>
+            <li>Simple and beginner-friendly interface</li>
+            </ul>
+
+            <h3>Related PDF Tools</h3>
+            <ul>
+            <li><a href="merge-pdf.html">Merge PDF</a></li>
+            <li><a href="delete-pages.html">Delete PDF Pages</a></li>
+            <li><a href="rotate-pages.html">Rotate PDF Pages</a></li>
+            <li><a href="protect-pdf.html">Protect PDF</a></li>
+            </ul>
+
+            <h3>Frequently Asked Questions</h3>
+
+            <h4>Can I split PDF files for free?</h4>
+            <p>Yes, ToolSonics Split PDF tool is completely free to use without any signup.</p>
+            
+            <h4>Does this tool add a watermark?</h4>
+            <p>No, the split PDF file is clean and does not contain any watermark.</p>
+            
+            <h4>Can I split PDF on mobile?</h4>
+            <p>Yes, this tool works on Android, iPhone, and all modern browsers.</p>
         </div>
 
     </div>
@@ -317,7 +368,7 @@ splitBtn.addEventListener("click", async () => {
     return;
   }
 
-  if (!start || !end || start > end) {
+  if (isNaN(start) || isNaN(end) || start < 1 || end < start) {
     statusText.textContent = "❗ Enter valid page numbers.";
     return;
   }
