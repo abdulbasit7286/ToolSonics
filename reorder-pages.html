@@ -20,7 +20,7 @@
 
     <meta name="description"
           content="Reorder PDF pages online for free using ToolSonics. Arrange PDF pages in any order such as 3,1,2,4. Fast, secure, mobile-friendly, no watermark and no signup required.">
-    <link rel="canonical" href="https://www.toolsonics.com/reorder-pdf.html">
+    <link rel="canonical" href="https://www.toolsonics.com/reorder-pages.html">
 
     <meta property="og:title" content="Reorder PDF Pages Online – ToolSonics">
     <meta property="og:description"
@@ -250,6 +250,58 @@
             Whether you're preparing assignments, organizing scanned books, reordering invoices, or 
             restructuring business documents, ToolSonics helps you save time with a clean, fast and 
             intuitive interface.
+
+            <h3 style="margin-top:18px;">How to reorder PDF pages online</h3>
+            <p>
+            To reorder PDF pages using ToolSonics, first upload your PDF document using the “Choose PDF File” button.
+            After uploading, enter the new page sequence in the input box. For example, if you want page 3 to appear first,
+            followed by page 1 and page 2, simply type: 3,1,2. Then click the “Reorder PDF” button and download your newly arranged PDF instantly.
+            The tool works directly in your browser without installing any software.
+            </p>
+            
+            <h3>When should you rearrange PDF pages?</h3>
+            <ul>
+            <li>When scanned documents are out of sequence</li>
+            <li>When combining multiple reports into one structured file</li>
+            <li>When preparing official documents for submission</li>
+            <li>When reorganizing invoices, contracts or certificates</li>
+            <li>When correcting page mistakes in assignments or books</li>
+            </ul>
+            
+            <h3>Is it safe to reorder PDF files online?</h3>
+            <p>
+            ToolSonics processes files securely. Your uploaded documents are used only to generate the reordered PDF.
+            We recommend using a secure internet connection while uploading confidential documents.
+            The tool is optimized for speed and privacy.
+            </p>
+            
+            <h3>Benefits of using ToolSonics PDF tools</h3>
+            <ul>
+            <li>No watermark on output files</li>
+            <li>No registration or login required</li>
+            <li>Works on Android, iPhone, Windows and Mac</li>
+            <li>Fast cloud-based processing</li>
+            <li>Clean and simple interface</li>
+            </ul>
+            
+            <h3>Related PDF Tools</h3>
+            <ul>
+            <li><a href="merge-pdf.html">Merge PDF</a></li>
+            <li><a href="split-pdf.html">Split PDF</a></li>
+            <li><a href="delete-pages.html">Delete PDF Pages</a></li>
+            <li><a href="rotate-pages.html">Rotate PDF Pages</a></li>
+            </ul>
+            
+            <h3>Frequently Asked Questions</h3>
+            
+            <h4>Can I rearrange PDF pages for free?</h4>
+            <p>Yes, ToolSonics Reorder PDF tool is completely free and does not add any watermark.</p>
+            
+            <h4>Does this tool work on mobile devices?</h4>
+            <p>Yes, you can reorder PDF pages using any modern browser on Android or iPhone.</p>
+            
+            <h4>Can I use custom page order like 5,4,3,2,1?</h4>
+            <p>Yes, you can enter any valid page sequence separated by commas.</p>
         </div>
 
     </div>
@@ -315,23 +367,27 @@ loadComponent("related-tools-container", "related-tools.html?tool=reorder-pages"
 // ✅ Backend URL
 const BACKEND_URL = "https://api.toolsonics.com/pdf/reorder-pages";
 
-
-// ✅ Elements (IDs must match)
-const fileInput = document.getElementById("pdfFile");        // input id="pdfFile"
-const orderInput = document.getElementById("order");         // input id="order"
-const reorderBtn = document.getElementById("reorderBtn");    // button id="reorderBtn"
+const fileInput = document.getElementById("pdfFile");
+const orderInput = document.getElementById("orderInput");
+const reorderBtn = document.getElementById("reorderBtn");
 
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
 const statusText = document.getElementById("statusText");
 
-
-// ✅ Helper: validate order format "1,2,3,4"
+// Validate order format: 1,2,3
 function isValidOrder(value) {
-  return /^[0-9,\s]+$/.test(value.trim());
+  return /^(\d+)(,\s*\d+)*$/.test(value.trim());
 }
 
 reorderBtn.addEventListener("click", async () => {
+
+  if (!orderInput) {
+    console.error("Order input not found!");
+    statusText.textContent = "⚠ Internal error. Please refresh page.";
+    return;
+  }
+
   const file = fileInput.files[0];
   const order = (orderInput.value || "").trim();
 
@@ -371,9 +427,7 @@ reorderBtn.addEventListener("click", async () => {
     });
 
     if (!res.ok) {
-      const errText = await res.text().catch(() => "");
       statusText.textContent = "❌ Reorder failed. Please check page order.";
-      console.log("Backend error:", errText);
       progressBar.style.width = "0%";
       return;
     }
