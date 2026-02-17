@@ -245,6 +245,40 @@
         Windows, and Mac. With a powerful backend and global optimization, ToolSonics provides
         a reliable, secure, and easy PDF protection solution that saves your time and keeps your
         sensitive documents private.
+
+        <h3 style="margin-top:18px;">How to add password to PDF online</h3>
+        <p>
+        To protect your PDF using ToolSonics, upload your file, enter a strong password,
+        and click on the “Protect PDF” button. The tool will encrypt your document
+        and generate a password-protected PDF instantly.
+        </p>
+        
+        <h3>Why password protect a PDF?</h3>
+        <ul>
+        <li>To secure financial or legal documents</li>
+        <li>To prevent unauthorized access</li>
+        <li>To protect confidential reports</li>
+        <li>To share documents safely via email</li>
+        <li>To control access to sensitive files</li>
+        </ul>
+        
+        <h3>Related PDF Tools</h3>
+        <ul>
+        <li><a href="merge-pdf.html">Merge PDF</a></li>
+        <li><a href="split-pdf.html">Split PDF</a></li>
+        <li><a href="reorder-pdf.html">Reorder PDF Pages</a></li>
+        </ul>
+        
+        <h3>Frequently Asked Questions</h3>
+        
+        <h4>Is ToolSonics Protect PDF free?</h4>
+        <p>Yes, it is completely free and does not add any watermark.</p>
+        
+        <h4>Can I remove the password later?</h4>
+        <p>You can use a PDF unlock tool if you know the password.</p>
+        
+        <h4>Does this work on mobile?</h4>
+        <p>Yes, it works on Android, iPhone, Windows and Mac browsers.</p>
     </div>
 
 </div>
@@ -306,21 +340,24 @@ loadComponent("footer", "footer.html");
 // ✅ Optional related tools
 loadComponent("related-tools-container", "related-tools.html?tool=protect-pdf");
 
-
-// ✅ Backend URL (FastAPI)
 const BACKEND_URL = "https://api.toolsonics.com/pdf/protect";
 
-
-// ✅ Elements (IDs must match)
-const fileInput = document.getElementById("pdfFile");        // input id="pdfFile"
-const passwordInput = document.getElementById("password");   // input id="password"
-const protectBtn = document.getElementById("protectBtn");    // button id="protectBtn"
+const fileInput = document.getElementById("pdfFile");
+const passwordInput = document.getElementById("passwordInput");
+const protectBtn = document.getElementById("protectBtn");
 
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
 const statusText = document.getElementById("statusText");
 
 protectBtn.addEventListener("click", async () => {
+
+  if (!passwordInput) {
+    console.error("Password input not found!");
+    statusText.textContent = "⚠ Internal error. Please refresh page.";
+    return;
+  }
+
   const file = fileInput.files[0];
   const password = (passwordInput.value || "").trim();
 
@@ -330,7 +367,7 @@ protectBtn.addEventListener("click", async () => {
   }
 
   if (!password || password.length < 3) {
-    statusText.textContent = "❗ Please enter a password (min 3 characters).";
+    statusText.textContent = "❗ Please enter a password (minimum 3 characters).";
     return;
   }
 
@@ -355,9 +392,7 @@ protectBtn.addEventListener("click", async () => {
     });
 
     if (!res.ok) {
-      const errText = await res.text().catch(() => "");
       statusText.textContent = "❌ Protect failed. Please try again.";
-      console.log("Backend error:", errText);
       progressBar.style.width = "0%";
       return;
     }
