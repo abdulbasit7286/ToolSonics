@@ -20,7 +20,7 @@
     <meta name="description"
         content="Rotate PDF pages online for free with ToolSonics. Fix sideways PDFs by rotating pages 90°, 180° or 270°. Fast, secure, no watermark, no signup. Works on mobile & desktop.">
 
-    <link rel="canonical" href="https://www.toolsonics.com/rotate-pdf.html">
+    <link rel="canonical" href="https://www.toolsonics.com/rotate-pages.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
 
@@ -241,6 +241,30 @@
             All files are processed securely and deleted automatically after processing. ToolSonics works 
             smoothly on Android, iPhone, Windows, and Mac, making it one of the fastest online PDF rotation 
             tools globally. Bookmark this page for quick and reliable PDF rotation anytime!
+
+            <h3 style="margin-top:15px;">How to rotate PDF pages online</h3>
+            <p>
+            To rotate a PDF using ToolSonics, first upload your document.
+            Then select the rotation angle (90°, 180°, or 270°).
+            Click on the “Rotate PDF” button and download your corrected file instantly.
+            The tool works on both single-page and multi-page PDFs.
+            </p>
+            
+            <h3>When should you rotate a PDF file?</h3>
+            <ul>
+            <li>When scanned pages appear sideways</li>
+            <li>When documents are upside-down</li>
+            <li>When combining PDFs with mixed orientations</li>
+            <li>Before submitting official documents</li>
+            <li>Before printing important files</li>
+            </ul>
+            
+            <h3>Related PDF Tools</h3>
+            <ul>
+            <li><a href="merge-pdf.html">Merge PDF</a></li>
+            <li><a href="split-pdf.html">Split PDF</a></li>
+            <li><a href="delete-pages.html">Delete PDF Pages</a></li>
+            </ul>
         </div>
 
     </div>
@@ -257,7 +281,6 @@ function initNavbar() {
   const allToolsBtn = document.getElementById("allToolsBtn");
   const allToolsDropdown = document.getElementById("allToolsDropdown");
 
-  // Mobile menu
   if (openMobile && closeMobile && mobileMenu) {
     openMobile.onclick = () => {
       mobileMenu.style.display = "block";
@@ -270,7 +293,6 @@ function initNavbar() {
     };
   }
 
-  // All Tools Dropdown
   if (allToolsBtn && allToolsDropdown) {
     allToolsBtn.onclick = (e) => {
       e.preventDefault();
@@ -295,55 +317,36 @@ function loadComponent(id, file, callback) {
     .catch(() => {});
 }
 
-// ✅ Navbar / Footer
 loadComponent("navbar", "navbar.html", initNavbar);
 loadComponent("footer", "footer.html");
 
-// ✅ OPTIONAL related tools (agar exist karta hai page me)
-loadComponent("related-tools-container", "related-tools.html?tool=rotate-pages");
 
+// ===============================
+// ROTATE PDF LOGIC
+// ===============================
 
-// ✅ Backend URL (FastAPI endpoint)
 const BACKEND_URL = "https://api.toolsonics.com/pdf/rotate-pages";
 
-
-// ✅ Elements (IDs same hone chahiye HTML me)
-const fileInput = document.getElementById("pdfFile");        // <input id="pdfFile">
-const rotationSelect = document.getElementById("rotation");  // <select id="rotation">
-const pagesInput = document.getElementById("pagesToRotate"); // <input id="pagesToRotate"> (optional)
-const rotateBtn = document.getElementById("rotateBtn");      // <button id="rotateBtn">
+const fileInput = document.getElementById("pdfFile");
+const rotationSelect = document.getElementById("rotation");
+const rotateBtn = document.getElementById("rotateBtn");
 
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
 const statusText = document.getElementById("statusText");
 
-
-// ✅ Helper: pages format validation (optional)
-function isValidPagesFormat(value) {
-  // Allowed: "" (empty means all), OR 1,2,5 OR 2-6 OR 1,3-5,9
-  if (!value.trim()) return true;
-  return /^[0-9,\-\s]+$/.test(value);
-}
-
-
 rotateBtn.addEventListener("click", async () => {
+
   const file = fileInput.files[0];
   const rotation = parseInt(rotationSelect.value || "90");
-  const pages = (pagesInput?.value || "").trim(); // optional input
 
   if (!file) {
     statusText.textContent = "❗ Please select a PDF file.";
     return;
   }
 
-  // Rotation allowed: 90,180,270,-90 (backend support rotate integer)
-  if (![90, 180, 270, -90].includes(rotation)) {
-    statusText.textContent = "❗ Invalid rotation. Use 90, 180, 270.";
-    return;
-  }
-
-  if (!isValidPagesFormat(pages)) {
-    statusText.textContent = "❗ Invalid pages format. Use: 1,2,5-7";
+  if (![90, 180, 270].includes(rotation)) {
+    statusText.textContent = "❗ Invalid rotation angle.";
     return;
   }
 
@@ -357,11 +360,6 @@ rotateBtn.addEventListener("click", async () => {
   const form = new FormData();
   form.append("file", file);
   form.append("rotation", rotation);
-
-  // ✅ If pages field blank => backend will rotate all pages
-  if (pages) {
-    form.append("pages", pages);
-  }
 
   try {
     progressBar.style.width = "70%";
@@ -401,6 +399,7 @@ rotateBtn.addEventListener("click", async () => {
   } finally {
     rotateBtn.disabled = false;
   }
+
 });
 </script>
 
