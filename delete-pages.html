@@ -400,7 +400,7 @@ deleteBtn.addEventListener("click", async () => {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${originalName}-deleted-pages.pdf`;
+    a.download = `${originalName}.pdf`;
 
     document.body.appendChild(a);
     a.click();
