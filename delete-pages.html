@@ -235,6 +235,30 @@
 
             <br><br>
             If you regularly work with PDFs, bookmark this tool for fast, reliable, and watermark-free page removal.
+
+            <h3 style="margin-top:15px;">How to delete pages from a PDF online</h3>
+            <p>
+            To delete pages from a PDF using ToolSonics, first upload your file.
+            Then enter the page numbers you want to remove using commas or ranges.
+            For example, type 2,4-6 to delete page 2 and pages 4 to 6.
+            Click on “Delete Pages” and download your updated PDF instantly.
+            </p>
+            
+            <h3>When should you remove pages from a PDF?</h3>
+            <ul>
+            <li>To remove blank scanned pages</li>
+            <li>To delete confidential information</li>
+            <li>To shorten large documents</li>
+            <li>To clean draft or duplicate pages</li>
+            <li>To prepare documents for official submission</li>
+            </ul>
+            
+            <h3>Related PDF Tools</h3>
+            <ul>
+            <li><a href="merge-pdf.html">Merge PDF</a></li>
+            <li><a href="split-pdf.html">Split PDF</a></li>
+            <li><a href="rotate-pages.html">Rotate PDF Pages</a></li>
+            </ul>           
         </div>
 
     </div>
@@ -303,7 +327,7 @@ const BACKEND_URL = "https://api.toolsonics.com/pdf/delete-pages";
 
 // ✅ Elements (IDs same hone chahiye HTML me)
 const fileInput = document.getElementById("pdfFile");       // <input id="pdfFile">
-const pagesInput = document.getElementById("pagesToDelete"); // <input id="pagesToDelete">
+const pagesInput = document.getElementById("deletePages");
 const deleteBtn = document.getElementById("deleteBtn");      // <button id="deleteBtn">
 
 const progressContainer = document.getElementById("progressContainer");
@@ -313,12 +337,17 @@ const statusText = document.getElementById("statusText");
 
 // ✅ Helper: pages format validation
 function isValidPagesFormat(value) {
-  // Allowed examples: 1,2,5   OR  2-6   OR  1,3-5,9
-  return /^[0-9,\-\s]+$/.test(value);
+  return /^(\d+(-\d+)?)(,\s*\d+(-\d+)?)*$/.test(value);
 }
 
-
 deleteBtn.addEventListener("click", async () => {
+
+  if (!pagesInput) {
+    console.error("Pages input not found!");
+    statusText.textContent = "⚠ Internal error. Please refresh the page.";
+    return;
+  }
+
   const file = fileInput.files[0];
   const pages = (pagesInput.value || "").trim();
 
