@@ -20,7 +20,7 @@
     <!-- SEO -->
     <meta name="description"
           content="Add text watermark to PDF files online using ToolSonics. Fast, secure, watermark tool with rotation and opacity control. No signup. Works on Android, iPhone, Windows, Mac.">
-    <link rel="canonical" href="https://www.toolsonics.com/add-watermark.html">
+    <link rel="canonical" href="https://www.toolsonics.com/watermark-pdf.html">
 
     <!-- OG TAGS -->
     <meta property="og:title" content="Add Watermark to PDF – ToolSonics">
@@ -242,6 +242,33 @@
         Your files are processed securely through our optimized backend and deleted automatically after completion
         to ensure 100% privacy. With a clean interface, modern theme and global high-speed servers, ToolSonics offers
         the best free PDF watermarking tool available online.
+
+        <h3 style="margin-top:18px;">How to add watermark to PDF online</h3>
+        <p>
+        Upload your PDF file, enter your custom watermark text, choose rotation and opacity,
+        and click the "Add Watermark" button. ToolSonics will instantly generate a secured
+        watermarked PDF ready for download.
+        </p>
+        
+        <h3>Common watermark uses</h3>
+        <ul>
+        <li>Marking documents as Confidential</li>
+        <li>Adding company branding</li>
+        <li>Protecting draft documents</li>
+        <li>Preventing unauthorized copying</li>
+        <li>Adding ownership notice</li>
+        </ul>
+        
+        <h3>Frequently Asked Questions</h3>
+        
+        <h4>Is this tool free?</h4>
+        <p>Yes, ToolSonics Watermark PDF tool is completely free with no watermark on output.</p>
+        
+        <h4>Does it work on mobile?</h4>
+        <p>Yes, it works on Android, iPhone, Windows and Mac browsers.</p>
+        
+        <h4>Are my files stored?</h4>
+        <p>No, files are processed securely and deleted automatically.</p>
     </div>
 
 </div>
@@ -303,23 +330,30 @@ loadComponent("footer", "footer.html");
 // ✅ Optional related tools
 loadComponent("related-tools-container", "related-tools.html?tool=watermark-pdf");
 
-
-// ✅ Backend URL (FastAPI)
 const BACKEND_URL = "https://api.toolsonics.com/pdf/watermark";
 
-
-// ✅ Elements (IDs must match)
-const fileInput = document.getElementById("pdfFile");     // input id="pdfFile"
-const watermarkText = document.getElementById("wmText");  // input id="wmText"
-const btn = document.getElementById("watermarkBtn");      // button id="watermarkBtn"
+const fileInput = document.getElementById("pdfFile");
+const watermarkInput = document.getElementById("watermarkText");
+const rotationSelect = document.getElementById("rotation");
+const opacitySelect = document.getElementById("opacity");
+const btn = document.getElementById("wmBtn");
 
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
 const statusText = document.getElementById("statusText");
 
 btn.addEventListener("click", async () => {
+
+  if (!btn) {
+    console.error("Button not found!");
+    statusText.textContent = "⚠ Internal error. Please refresh page.";
+    return;
+  }
+
   const file = fileInput.files[0];
-  const text = (watermarkText.value || "").trim();
+  const text = (watermarkInput.value || "").trim();
+  const rotation = rotationSelect.value || "45";
+  const opacity = opacitySelect.value || "0.4";
 
   if (!file) {
     statusText.textContent = "❗ Please select a PDF file.";
@@ -341,10 +375,12 @@ btn.addEventListener("click", async () => {
   const form = new FormData();
   form.append("file", file);
   form.append("text", text);
+  form.append("rotation", rotation);
+  form.append("opacity", opacity);
 
   try {
     progressBar.style.width = "70%";
-    statusText.textContent = "Adding watermark...";
+    statusText.textContent = "Applying watermark...";
 
     const res = await fetch(BACKEND_URL, {
       method: "POST",
@@ -352,9 +388,7 @@ btn.addEventListener("click", async () => {
     });
 
     if (!res.ok) {
-      const errText = await res.text().catch(() => "");
       statusText.textContent = "❌ Failed. Please try again.";
-      console.log("Backend error:", errText);
       progressBar.style.width = "0%";
       return;
     }
@@ -367,7 +401,7 @@ btn.addEventListener("click", async () => {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${originalName}-watermark.pdf`;
+    a.download = `${originalName}-watermarked.pdf`;
 
     document.body.appendChild(a);
     a.click();
