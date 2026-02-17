@@ -214,6 +214,34 @@
         <br><br>
         Whether it’s official notes, educational content, story drafts, business letters, scripts or creative writing,
         ToolSonics Text to PDF delivers high-quality output with a smooth experience every time.
+
+        <h3 style="margin-top:18px;">How to convert text to PDF online</h3>
+        <p>
+        Type or paste your text into the input box, optionally add a title,
+        choose your preferred font size and alignment, and click "Convert to PDF".
+        ToolSonics instantly generates a professional PDF file for download.
+        </p>
+        
+        <h3>Who can use this tool?</h3>
+        <ul>
+        <li>Students creating assignments and notes</li>
+        <li>Writers drafting stories and scripts</li>
+        <li>Professionals preparing letters</li>
+        <li>Freelancers creating reports</li>
+        <li>Teachers preparing study materials</li>
+        </ul>
+        
+        <h3>Frequently Asked Questions</h3>
+        
+        <h4>Is this tool free?</h4>
+        <p>Yes, ToolSonics Text to PDF tool is completely free with no watermark.</p>
+        
+        <h4>Does it work on mobile?</h4>
+        <p>Yes, it works smoothly on Android, iPhone, Windows and Mac browsers.</p>
+        
+        <h4>Is my text stored?</h4>
+        <p>No, your text is processed securely and not stored permanently.</p>
+
     </div>
 
 </div>
@@ -275,36 +303,35 @@ loadComponent("footer", "footer.html");
 // ✅ Optional related tools
 loadComponent("related-tools-container", "related-tools.html?tool=text-to-pdf");
 
-
-// ✅ Backend URL (FastAPI)
 const BACKEND_URL = "https://api.toolsonics.com/pdf/text-to-pdf";
 
-
-// ✅ Elements (IDs must match)
-const textArea = document.getElementById("textInput");      // textarea id="textInput"
-const titleInput = document.getElementById("titleInput");   // input id="titleInput"
-const fontSize = document.getElementById("fontSize");       // select/input id="fontSize"
-const alignment = document.getElementById("alignment");     // select id="alignment"
-
-const btn = document.getElementById("convertBtn");          // button id="convertBtn"
+const textArea = document.getElementById("textInput");
+const titleInput = document.getElementById("title");
+const fontSizeSelect = document.getElementById("fontSize");
+const alignmentSelect = document.getElementById("alignment");
+const btn = document.getElementById("convertBtn");
 
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
 const statusText = document.getElementById("statusText");
 
-
 btn.addEventListener("click", async () => {
+
+  if (!btn) {
+    console.error("Convert button not found!");
+    return;
+  }
+
   const text = (textArea.value || "").trim();
   const title = (titleInput.value || "").trim();
-  const size = fontSize ? parseInt(fontSize.value) : 12;
-  const align = alignment ? alignment.value : "left";
+  const size = fontSizeSelect ? parseInt(fontSizeSelect.value) : 12;
+  const align = alignmentSelect ? alignmentSelect.value : "left";
 
   if (!text) {
     statusText.textContent = "❗ Please enter some text.";
     return;
   }
 
-  // ✅ Filename logic
   const safeTitle = title
     ? title.replace(/[^a-z0-9-_ ]/gi, "").trim().replace(/\s+/g, "-")
     : "text";
@@ -330,9 +357,7 @@ btn.addEventListener("click", async () => {
     });
 
     if (!res.ok) {
-      const errText = await res.text().catch(() => "");
       statusText.textContent = "❌ Failed. Please try again.";
-      console.log("Backend error:", errText);
       progressBar.style.width = "0%";
       return;
     }
