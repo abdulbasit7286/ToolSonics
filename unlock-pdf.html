@@ -242,6 +242,39 @@
         Your privacy remains fully protected. This tool works smoothly on mobile devices,
         tablets, Windows, Mac and all modern browsers. With a clean interface and
         high-speed backend, ToolSonics ensures the best unlocking experience for users worldwide.
+
+        <h3 style="margin-top:18px;">How to remove password from PDF online</h3>
+        <p>
+        To unlock your PDF using ToolSonics, upload your password-protected file,
+        enter the correct password, and click the “Unlock PDF” button.
+        The tool will remove the password and generate an unlocked version instantly.
+        </p>
+        
+        <h3>When should you unlock a PDF?</h3>
+        <ul>
+        <li>When you need to edit a protected PDF</li>
+        <li>When printing requires password removal</li>
+        <li>When sharing internally within your team</li>
+        <li>When archiving documents for easy access</li>
+        </ul>
+        
+        <h3>Related PDF Tools</h3>
+        <ul>
+        <li><a href="protect-pdf.html">Protect PDF</a></li>
+        <li><a href="merge-pdf.html">Merge PDF</a></li>
+        <li><a href="split-pdf.html">Split PDF</a></li>
+        </ul>
+        
+        <h3>Frequently Asked Questions</h3>
+        
+        <h4>Is ToolSonics Unlock PDF free?</h4>
+        <p>Yes, it is completely free and does not add any watermark.</p>
+        
+        <h4>Do I need the correct password?</h4>
+        <p>Yes, you must enter the correct password to unlock your PDF.</p>
+        
+        <h4>Does this work on mobile devices?</h4>
+        <p>Yes, it works on Android, iPhone, Windows and Mac browsers.</p>
     </div>
 
 </div>
@@ -307,17 +340,22 @@ loadComponent("related-tools-container", "related-tools.html?tool=unlock-pdf");
 // ✅ Backend URL (FastAPI)
 const BACKEND_URL = "https://api.toolsonics.com/pdf/unlock";
 
-
-// ✅ Elements (IDs must match)
-const fileInput = document.getElementById("pdfFile");        // input id="pdfFile"
-const passwordInput = document.getElementById("password");   // input id="password"
-const unlockBtn = document.getElementById("unlockBtn");      // button id="unlockBtn"
+const fileInput = document.getElementById("pdfFile");
+const passwordInput = document.getElementById("passwordInput");
+const unlockBtn = document.getElementById("unlockBtn");
 
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
 const statusText = document.getElementById("statusText");
 
 unlockBtn.addEventListener("click", async () => {
+
+  if (!passwordInput) {
+    console.error("Password input not found!");
+    statusText.textContent = "⚠ Internal error. Please refresh page.";
+    return;
+  }
+
   const file = fileInput.files[0];
   const password = (passwordInput.value || "").trim();
 
@@ -352,9 +390,7 @@ unlockBtn.addEventListener("click", async () => {
     });
 
     if (!res.ok) {
-      const errText = await res.text().catch(() => "");
       statusText.textContent = "❌ Unlock failed. Wrong password or file issue.";
-      console.log("Backend error:", errText);
       progressBar.style.width = "0%";
       return;
     }
