@@ -244,6 +244,39 @@
         Your files are processed securely and deleted automatically after conversion. Our system works smoothly
         on Android, iPhone, Windows, Mac and all modern browsers. With a clean UI and fast backend, ToolSonics
         ensures a reliable experience for students, professionals, offices and businesses worldwide.
+
+        <h3 style="margin-top:18px;">How to add page numbers to PDF online</h3>
+        <p>
+        Upload your PDF file, select the desired position for page numbers (bottom-left, bottom-center or bottom-right), 
+        and click the “Add Page Numbers” button. ToolSonics will instantly generate a new numbered PDF for download.
+        </p>
+        
+        <h3>Who needs PDF page numbering?</h3>
+        <ul>
+        <li>Students submitting assignments and reports</li>
+        <li>Lawyers preparing case files</li>
+        <li>Businesses organizing contracts</li>
+        <li>Authors creating eBooks</li>
+        <li>Accountants preparing financial statements</li>
+        </ul>
+        
+        <h3>Related Tools</h3>
+        <ul>
+        <li><a href="merge-pdf.html">Merge PDF</a></li>
+        <li><a href="split-pdf.html">Split PDF</a></li>
+        <li><a href="reorder-pdf.html">Reorder PDF</a></li>
+        </ul>
+        
+        <h3>Frequently Asked Questions</h3>
+        
+        <h4>Is this tool free?</h4>
+        <p>Yes, ToolSonics Add Page Numbers tool is completely free with no watermark.</p>
+        
+        <h4>Can I use this on mobile?</h4>
+        <p>Yes, it works on Android, iPhone, Windows and Mac browsers.</p>
+        
+        <h4>Are my files stored?</h4>
+        <p>No, your uploaded PDFs are processed securely and deleted automatically.</p>
     </div>
 
 </div>
@@ -305,21 +338,24 @@ loadComponent("footer", "footer.html");
 // ✅ Optional related tools
 loadComponent("related-tools-container", "related-tools.html?tool=add-page-numbers");
 
-
-// ✅ Backend URL (FastAPI)
 const BACKEND_URL = "https://api.toolsonics.com/pdf/add-page-numbers";
 
-
-// ✅ Elements (IDs must match)
-const fileInput = document.getElementById("pdfFile");          // input id="pdfFile"
-const positionSelect = document.getElementById("position");    // select id="position"
-const btn = document.getElementById("addBtn");                 // button id="addBtn"
+const fileInput = document.getElementById("pdfFile");
+const positionSelect = document.getElementById("position");
+const btn = document.getElementById("addNumberBtn");
 
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
 const statusText = document.getElementById("statusText");
 
 btn.addEventListener("click", async () => {
+
+  if (!btn) {
+    console.error("Button not found!");
+    statusText.textContent = "⚠ Internal error. Please refresh page.";
+    return;
+  }
+
   const file = fileInput.files[0];
   const position = (positionSelect.value || "bottom-center").trim();
 
@@ -349,9 +385,7 @@ btn.addEventListener("click", async () => {
     });
 
     if (!res.ok) {
-      const errText = await res.text().catch(() => "");
       statusText.textContent = "❌ Failed. Please try again.";
-      console.log("Backend error:", errText);
       progressBar.style.width = "0%";
       return;
     }
