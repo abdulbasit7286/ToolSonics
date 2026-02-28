@@ -7,6 +7,18 @@
     border-top: 1px solid #eaeaea;
     margin-top: 60px;
 }
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-wrapper {
+  flex: 1;
+}
 
 /* Container */
 .ts-footer .footer-container {
