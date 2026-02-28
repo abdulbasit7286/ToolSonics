@@ -456,7 +456,8 @@
     loadComponent("navbar", "navbar.html", initNavbar);
     loadComponent("footer", "footer.html");
 
-    // ========= JSON Formatter Logic =========
+  document.addEventListener("DOMContentLoaded", function() {
+  
     const inputJson = document.getElementById("inputJson");
     const outputJson = document.getElementById("outputJson");
   
@@ -473,6 +474,7 @@
     const statusText = document.getElementById("statusText");
     const inSize = document.getElementById("inSize");
     const outSize = document.getElementById("outSize");
+});
 
     function setStatus(msg){
       statusText.textContent = msg || "";
